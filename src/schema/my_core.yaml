@@ -1,5 +1,5 @@
 id: https://w3id.org/my_core
-name: my_core
+name: alliance_core
 description: >-
   This is an example of an imported module
 imports:
@@ -7,7 +7,7 @@ imports:
 prefixes:
   biolinkml: https://w3id.org/biolink/biolinkml/
   my_core: https://w3id.org/mixs/my_core/
-default_prefix: my_core
+default_prefix: alliance
 
 slots:
   id:
