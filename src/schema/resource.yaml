@@ -1,0 +1,99 @@
+id: Alliance-reference-prototype
+
+imports:
+  - core
+  - reference
+  - person
+
+classes:
+  resource:
+    slots:
+      - id
+      - title
+      - iso abbreviation
+      - medline abbreviation
+      - copyright date
+      - publisher
+      - print issn
+      - online issn
+      - has publisher
+      - volumes
+      - summary
+      - has synonyms
+      - has references
+      - has authors
+      - has editors
+    id_prefixes:
+      - PMID
+      - NLMID
+      - DOI
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+    slot_usage:
+      id:
+        description: >-
+          Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
+          alternate CURIE otherwise.
+      title:
+        description: >-
+          the title of the publication
+
+slots:
+
+    iso abbreviation:
+      is_a: node property
+      description: >-
+      range: string
+      domain: information content entity
+
+    medline abbreviation:
+      is_a: node property
+      description: >-
+      range: string
+      domain: information content entity
+
+    copyright date:
+      is_a: node property
+      description: >-
+      range: date
+      domain: information content entity
+
+    publisher:
+      is_a: node property
+      description: >-
+      range: string
+      domain: information content entity
+
+    print issn:
+      is_a: node property
+      description: >-
+      range: string
+      domain: information content entity
+
+    online issn:
+      is_a: node property
+      description: >-
+      range: string
+      domain: information content entity
+
+    summary:
+      is_a: node property
+      description: >-
+      range: string
+      domain: information content entity
+
+    has references:
+      is_a: named thing
+      singular_name: has reference
+      description: >-
+      domain: resource
+      multivalued: true
+      range: reference
+
+
+
+

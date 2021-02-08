@@ -1,0 +1,12 @@
+id: https://w3id.org/my_schema
+name: alliance_schema
+description: >-
+imports:
+ - biolinkml:types
+ - alliance_core
+prefixes:
+  biolinkml: https://w3id.org/biolink/biolinkml/
+  my_schema: https://w3id.org/mixs/my_schema/
+default_prefix: alliance
+
+

@@ -1,0 +1,352 @@
+id: https://github.com/alliance-genome/agr_schemas/linkml/reference.yaml
+
+imports:
+  - core
+  - biolinkml:types
+  - cross_reference
+  - person
+  - author_reference
+
+prefixes:
+  SGD: http://www.yeastgenome.org/
+  WB: https://www.wormbase.org/
+  FB: https://flybase.org
+  ZFIN: https://zfin.org/
+  RGD: https://rgd.mcw.edu/
+  MGI: http://www.informatics.jax.org/
+  biolinkml: https://w3id.org/biolink/biolinkml/
+
+
+classes:
+
+  reference:
+    is_a: information content entity
+    description: >-
+    slots:
+      - id
+      - title
+      - alliance category
+      - date published
+      - year published
+      - month published
+      - day published
+      - date arrived in pubmed
+      - date last modified in pubmed
+      - date last modified
+      - volume
+      - pages
+      - abstract
+      - citation
+      - pub med type
+      - issue name
+      - issue date
+      - has mod reference types
+      - has authors
+      - has tags
+      - has topics
+      - has cross reference
+      - has publisher
+      - has keywords
+    id_prefixes:
+      - PMID
+      - NLMID
+      - DOI
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+      - PMC
+      - DOI
+    slot_usage:
+      id:
+        description: >-
+          the identifier for the publication in the form of a curie.
+        examples:
+          - value: ZFIN:ZDB-PUB-010101-1
+          - value: PMID:3323398
+        required: true
+      title:
+        description: >-
+          the title of the publication
+        examples:
+          - Substrate interactions affecting motor growth cone guidance during development and regeneration
+      alliance category:
+        description: >-
+          assigned as one of the alliance controlled vocabulary for types.
+        examples:
+          - Research Article
+          - Review Article
+          - Thesis
+          - Other
+          - Preprint
+          - Conference Publication
+          - Personal Communication
+          - Direct Data Submission
+          - Internal Process Reference
+          - Unknown
+          - Retraction
+      date published:
+        description: >-
+          The date the reference was published.  This field can be submitted by a MOD or from PUBMED.
+          When pulled from PUBMED, this date is generated from the year, month and day published fields.
+          When submitted from a MOD it can be any string.
+        examples:
+          - Spring 1991
+          - 01-01-1991
+          - 25-12-1991
+      year published:
+        description: >-
+          When the reference is a PUBMED reference, this will be a 4-digit year.
+      month published:
+        description: >-
+          When the reference is a PUBMED reference, this will be a 2-digit year.
+      day published:
+        description: >-
+          When the reference is a PUBMED reference, this will be a 2-digit day.
+      date arrived in pubmed:
+        description: >-
+          As per the PUBMED XML record, this is the date the reference entered PUBMED.
+      mod last modified date:
+        description: >-
+          The date the meta data on this object was last updated at the MOD.
+      pubmed last modified date:
+        description: >-
+          The date the meta data on this object was last updated at PUBMED.
+      volume:
+        description: >-
+      alliance category:
+        description: >-
+          Controlled vocabulary term drawn from a list of Alliance-defined reference categories.
+            - mod reference types
+      publisher:
+          Volume of a book or music release in a collection/series or a published collection of
+          journal issues in a serial publication
+      pages:
+        description: >-
+          Page number of source referenced for statement or publication
+      abstract:
+        description: >-
+          The abstract of the reference.
+      citation:
+        description: >-
+          Is a reference to a source.
+      has mod reference types:
+        description: >-
+          Reference type as defined by the MOD on submission of the publication.
+        multivalued: true
+      has authors:
+        description: >-
+          List of authors in the reference.  There might be more than one author in the publication with the same
+          name.
+        multivalued: true
+      has tags:
+        description: >-
+          Tags from the MOD from a controlled vocabulary of possible tags.
+        multivalued: true
+        examples:
+          - inCorpus
+          - canShowImages
+          - PMCOpenAccess
+          - notRelevant
+      has topics:
+        description: >-
+          The list of MeSH terms associated with a reference.  Note: this is an association slot that allows
+          a qualifier to be associated with the reference-meshTerm relationship.
+        multivalued: true
+      has cross reference:
+        description: >-
+          The list of crossReference objects associated with a reference.
+
+slots:
+
+  reference to mesh association:
+    is_a: association
+    defining_slots:
+      - subject
+      - object
+      - predicate
+      - qualifier
+    slot_usage:
+      subject:
+        range: reference
+        description: >-
+      object:
+        range: ontology
+        description:
+      predicate:
+        subproperty of: has topics
+        description: has topic is the relation used to describe the relationship between
+
+  has topics:
+    is_a: related to
+    singular_name: has topic
+    domain: reference
+    range: ontology
+    exact_mappings:
+      - foaf:topic
+    description: >-
+      Connects an object to a vocabulary term or ontology that describes some aspect of the entity.
+
+  qualifier:
+    is_a: association slot
+    range: reference
+    description: >-
+      This is the MeSH qualifier term that is optionally added to the descriptor term.
+
+  pub med type:
+    is_a: node property
+    description: >-
+      Type of information content entity as descriped by pub med/
+    range: string
+    domain: information content entity
+
+  date published:
+    is_a: node property
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: information content entity
+
+  date last modified:
+    is_a: node property
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: named thing
+
+  date last modified in pubmed:
+    is_a: node property
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: information content entity
+
+  date last modified:
+    is_a: node property
+    description: >-
+      Date on which an entity was last modified by the MOD.
+    range: date
+    domain: named thing
+
+  year published:
+    is_a: node property
+    description: >-
+      Year in which an entity was created.
+    range: string
+    domain: information content entity
+
+  month published:
+    is_a: node property
+    description: >-
+      Month in which an entity was created.
+    range: string
+    domain: information content entity
+
+  day published:
+    is_a: node property
+    description: >-
+      Day in which an entity was created.
+    range: string
+    domain: information content entity
+
+  date arrived in pubmed:
+    is_a: node property
+    description: >-
+      Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references
+    range: date
+    domain: information content entity
+
+  has mod reference types:
+    is_a: node property
+    singular_name: has mod reference type
+    multivalued: true
+    description: >-
+      List of types as assigned at a MOD.
+
+  has tags:
+    is_a: node property
+    singular_name: has tag
+    description: >-
+      Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").
+    multivalued: true
+
+  issue date:
+    is_a: node property
+    description: >-
+      Date on which an entity was issued.
+    domain: information content entity
+    range: date
+
+  last modified:
+    is_a: node property
+    description: >-
+      Date on which an entity was last modified in PubMed or in the MOD.
+    domain: information content entity
+    range: date
+
+  volume:
+    multivalued: false
+    range: string
+    domain: information content entity
+    description: >-
+
+  pages:
+    is_a: node property
+    description: >-
+      page number of source referenced for statement or publication
+    domain: information content entity
+    multivalued: true
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P304
+
+  abstract:
+    multivalued: false
+    domain: reference
+    range: string
+    description: >-
+
+  citation:
+    multivalued: false
+    domain: reference
+    range: string
+    description: >-
+
+  issue name:
+    multivalued: false
+    domain: reference
+    range:
+    description: >-
+
+  alliance category:
+    multivalued: false
+    domain: reference
+    range:
+    description: >-
+
+
+#    description: >-
+#      mesh terms tagging a publication
+#    domain: reference
+#    range: mesh term
+#    values_from:
+#      - MESH
+#    multivalued: true
+
+  has keywords:
+    is_a: node property
+    multivalued: true
+    description: >-
+      keywords tagging a publication
+    domain: information content entity
+    range: string
+
+  has authors:
+    is_a: node property
+    multivalued: true
+    domain: information content entity
+    range: information content entity
+
+
+
