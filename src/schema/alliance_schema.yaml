@@ -1,0 +1,1417 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
+name: Alliance-Schema-Prototype-Core-Types
+title: Alliance Schema Prototype Core Types
+description: Alliance Schema Prototype with LinkML
+
+prefixes:
+  alliance: http://alliancegenome.org/
+  biolinkml: https://w3id.org/biolink/biolinkml/
+
+default_prefix: alliance
+
+imports:
+  - biolinkml:types
+
+types:
+
+  biological sequence:
+    typeof: string
+
+# Classes
+
+classes:
+
+  variant:
+    is_a: genomic entity
+    description: >-
+      Variant class
+    slots:
+      - hgvs nomenclature
+      - genomic reference sequence
+      - genomic variant sequence
+      - padding left
+      - padding right
+      - date produced
+      - release
+      # below are one-to-many, those after data provider are predicates
+      - data provider
+      - is variant of gene
+      - is variant of transcript
+      - is variant of allele
+      - has synonyms
+      - has identifier
+      - has so term
+      - has ontology
+      - has references
+      - on chromosome
+      - has assembly
+      - has genomic location
+      - has note
+      - has gene level consequence
+      - has transcript level consequence
+      - has variant protein sequence
+      - has cross references
+    exact_mappings:
+      - SO:0001059
+      - biolink:Sequence_variant
+    slot_usage:
+      id:
+        required: true
+        description: Unique ID for variant
+      genomic reference sequence:
+        description: Reference sequence at the variant position
+      genomic variant sequence:
+        description: Alternative sequence at the variant position
+      padding left:
+        description: Upstream genomic sequence flanking variant
+      padding right:
+        description: Downstream genomic sequence flanking variant
+      data provider:
+        description: Name of the MOD that submitted the variant data
+
+  molecular consequence:
+    is_a: named thing
+    description: >-
+      Class for molecular consequences calculated by the EnsEMBL Variant
+      Effect Predictor (VEP)
+    slots:
+      - vep consequence
+      - vep impact
+      - polyphen prediction
+      - polyphen score
+      - sift prediction
+      - sift score
+      - consequence of variant
+    slot_usage:
+      vep consequence:
+        required: true
+        description: EnsEMBL VEP calculated consequence (SO term)
+      vep impact:
+        required: true
+        description: >-
+          EnsEMBL VEP impact rating (HIGH/MODERATE/LOW/MODIFIER)
+      polyphen prediction:
+        description: >-
+          Pathogenicity prediction category calculated by PolyPhen-2
+      polyphen score:
+        description: >-
+          Pathogenicity score, between 0 and 1, calculated by PolyPhen-2
+      sift prediction:
+        description: >-
+          Pathogenicity prediction category calculated by SIFT
+      sift score:
+        description: >-
+          Pathogenicity score calculated by SIFT
+      consequence of variant:
+        required: true
+        description: Variant associated with the molecular consequence
+
+  gene level consequence:
+    is_a: molecular consequence
+    description: >-
+      Class for gene-level VEP results
+    slots:
+      # below are predicates
+      - affects gene
+    slot_usage:
+      affects gene:
+        required: true
+        description: Gene that is affected by the associated variant
+
+  transcript level consequence:
+    is_a: molecular consequence
+    description: >-
+      Class for transcript-level VEP results
+    slots:
+      - amino acid reference
+      - amino acid variant
+      - codon reference
+      - codon variant
+      - cdna start
+      - cdna end
+      - cds start
+      - cds end
+      - protein start
+      - protein end
+      - hgvs protein nomenclature
+      - hgvs coding nomenclature
+      # below are predicates
+      - affects transcript
+    slot_usage:
+      amino acid reference:
+        description: >-
+          Amino acid sequence encoded by codon(s) in reference genome sequence
+          altered by the variant
+      amino acid variant:
+        description: >-
+          Amino acid sequence encoded by codon(s) in variant sequence
+      codon reference:
+        description: >-
+          Reference genome sequence of codon(s) altered by the variant.  Bases
+          affected by the variant are given in upper case, bases flanking the
+          variation are given in lower case
+      codon variant:
+        description: >-
+          Sequence of codon(s) in variant sequence altered by the variant.
+          Bases affected by the variant are given in upper case, bases flanking
+          the variation are given in lower case
+      cdna start:
+        description: Start position of variant in cDNA coordinates
+      cnda end:
+        description: End position of variant in cDNA coordinates
+      cds start:
+        description: Start position of variant in CDS coordinates
+      cns end:
+        description: End position of variant in CDS coordinates
+      protein start:
+        description: Start position of variant in amino acid sequence
+      protein end:
+        description: End position of variant in amino acid sequence
+      hgvs protein nomenclature:
+        description: HGVS protein sequence (HGVSp) name
+      hgvs coding nomenclature:
+        description: HGVS coding sequence (HGVSc) name
+      affects transcript:
+        required: true
+        description: Transcript that is affected by the associated variant
+
+  variant protein sequence:
+    is_a: genomic entity
+    description: >-
+      Class for variant protein sequences
+    slots:
+      - has variant
+      - has transcript
+    slot_usage:
+      has biological sequence:
+        description: >-
+          Protein sequence transcribed from transcript with variant
+      has variant:
+        description: Variant associated with sequence
+        required: true
+      has transcript:
+        description: Transcript associated with sequence
+        required: true
+
+  variant to entity association mixin:
+    description:
+      An association between a variant and another entity
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: variant
+        description: the variant that alters the molecular entity
+
+  editor resource:
+    is_a: information content entity
+    slots:
+      - first name
+      - middle names
+      - last name
+      - initials
+      - has cross references
+
+  resource:
+    is_a: information content entity
+    slots:
+      - id
+      - title
+      - iso abbreviation
+      - medline abbreviation
+      - copyright date
+      - print issn
+      - online issn
+      - has publisher
+      - volumes
+      - summary
+      - has synonyms
+      - has references
+      - has authors
+      - has editors
+    id_prefixes:
+      - PMID
+      - NLMID
+      - DOI
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+    slot_usage:
+      id:
+        description: >-
+          Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
+          alternate CURIE otherwise.
+      title:
+        description: >-
+          the title of the publication
+
+  person:
+
+  reference:
+    is_a: information content entity
+    slots:
+      - id
+      - title
+      - alliance category
+      - date published
+      - year published
+      - month published
+      - day published
+      - date arrived in pubmed
+      - date last modified in pubmed
+      - date last modified
+      - volume
+      - pages
+      - abstract
+      - citation
+      - pub med type
+      - issue name
+      - issue date
+      - has mod reference types
+      - has authors
+      - has tags
+      - has topics
+      - has cross references
+      - has publisher
+      - has keywords
+    id_prefixes:
+      - PMID
+      - NLMID
+      - DOI
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+      - PMC
+      - DOI
+    slot_usage:
+      id:
+        description: the identifier for the publication in the form of a curie.
+        required: true
+      title:
+        description: the title of the publication
+      date published:
+        description: >-
+          The date the reference was published.  This field can be submitted by a MOD or from PUBMED.
+          When pulled from PUBMED, this date is generated from the year, month and day published fields.
+          When submitted from a MOD it can be any string. examples include: Spring 1991, 01-01-1991, 25-12-1991
+      year published:
+        description: When the reference is a PUBMED reference, this will be a 4-digit year.
+      month published:
+        description: When the reference is a PUBMED reference, this will be a 2-digit year.
+      day published:
+        description: When the reference is a PUBMED reference, this will be a 2-digit day.
+      date arrived in pubmed:
+        description: As per the PUBMED XML record, this is the date the reference entered PUBMED.
+      mod last modified date:
+        description: The date the meta data on this object was last updated at the MOD.
+      pubmed last modified date:
+        description: The date the meta data on this object was last updated at PUBMED.
+      alliance category:
+        description: Controlled vocabulary term drawn from a list of Alliance-defined reference categories.
+      has publisher:
+         description: >-
+            Volume of a book or music release in a collection/series or a published collection of
+            journal issues in a serial publication
+      pages:
+        description: Page number of source referenced for statement or publication
+      abstract:
+        description: The abstract of the reference.
+      citation:
+        description: Is a reference to a source.
+      has mod reference types:
+        description: Reference type as defined by the MOD on submission of the publication.
+        multivalued: true
+      has authors:
+        description: >-
+          List of authors in the reference.  There might be more than one author in the publication with the same
+          name.
+        multivalued: true
+      has tags:
+        description: Tags from the MOD from a controlled vocabulary of possible tags.
+        multivalued: true
+      has topics:
+        description: >-
+          The list of MeSH terms associated with a reference.  Note: this is an association slot that allows
+          a qualifier to be associated with the reference-meshTerm relationship.
+        multivalued: true
+      has cross references:
+        description: >-
+          The list of crossReference objects associated with a reference.
+
+  reference to mesh association:
+    is_a: association
+    defining_slots:
+      - subject
+      - object
+    slot_usage:
+      subject:
+        range: reference
+      object:
+        range: ontology
+        description: has topic is the relation used to describe the relationship between
+
+  publisher resource:
+    is_a: information content entity
+    slots:
+      - first name
+      - middle names
+      - last name
+      - initials
+      - has cross references
+
+  cross reference:
+    is_a: entity
+    slots:
+      - id
+      - page areas
+      - display name
+      - prefix
+
+  author reference:
+    slots:
+      - corresponding author
+      - first name
+      - middle names
+      - last name
+      - initials
+      - has cross references
+    slot_usage:
+
+  association:
+    is_a: entity
+    description: >-
+      A typed association between two entities, supported by evidence
+    comments:
+      - This is roughly the model used by biolink and ontobio at the moment
+    slots:
+      - subject
+      - predicate
+      - object
+      - relation
+      - negated
+      - qualifiers
+    slot_usage:
+      type:
+        description: rdf:type of biolink:Association should be fixed at rdf:Statement
+      category:
+        range: association
+        required: false
+    exact_mappings:
+      - OBAN:association
+      - rdf:Statement
+      - owl:Axiom
+
+  information content entity:
+    aliases: ['information', 'information artifact', 'information entity']
+    abstract: true
+    description: >-
+      a piece of information that typically describes some topic of discourse or is used as support.
+    slots:
+      - creation date
+    exact_mappings:
+      - biolink:information content entity
+      - IAO:0000030
+    slot_usage:
+      creation date:
+        description: >-
+          Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
+          alternate CURIE otherwise.
+
+  agent:
+    aliases: ['group']
+    description: >-
+      person, group, organization or project that provides
+      a piece of information (i.e. a knowledge association)
+    slots:
+      - name
+      - id
+    slot_usage:
+      id:
+        required: true
+        description: >-
+          Different classes of agents have distinct preferred identifiers.
+          For publishers, use the ISBN publisher code.
+          See https://grp.isbn-international.org/ for publisher code lookups.
+          For editors, authors and  individual providers, use the individual's
+          ORCID if available; Otherwise, a ScopusID, ResearchID or
+          Google Scholar ID ('GSID') may be used if the author ORCID is unknown.
+          Institutional agents could be identified by an
+          International Standard Name Identifier ('ISNI') code.
+      name:
+        description: >-
+          it is recommended that an author's 'name' property
+          be formatted as "surname, firstname initial."
+    id_prefixes:
+      - ORCID
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+
+  named thing:
+    is_a: entity
+    description: "a databased entity or concept/class"
+    exact_mappings:
+      - BFO:0000001
+      - WIKIDATA:Q35120
+      # UMLS Semantic Group "Objects"
+      - UMLSSG:OBJC
+      # Entity
+      - UMLSSC:T071
+      - UMLSST:enty
+
+  entity:
+    description: >-
+      Root Biolink Model class for all things and informational relationships, real or imagined.
+    abstract: true
+
+  biological entity:
+    is_a: named thing
+    abstract: true
+    exact_mappings:
+      - biolink:BiologicalEntity
+
+  molecular entity:
+    is_a: biological entity
+    aliases: ['bioentity']
+    description: >-
+      A gene, gene product, small molecule or macromolecule (including protein complex)"
+    #notes:
+    #  - "Check SIO mapping - also mapped to chemical substance.": Resolved by changing SIO:010004 to SIO:010341
+    exact_mappings:
+      - CHEBI:24431
+      - biolink:MolecularEntity
+
+  genomic entity:
+    is_a: molecular entity
+    aliases: ['sequence feature']
+    description: >-
+      an entity that can either be directly located on a genome (gene,
+      transcript, exon, regulatory region) or is encoded in a genome (protein)
+    slots:
+      - has biological sequence
+    exact_mappings:
+      - biolink:GenomicEntity
+
+  gene:
+    description: >-
+      A region (or regions) that includes all of the sequence elements
+      necessary to encode a functional transcript. A gene locus may include
+      regulatory regions, transcribed regions and/or other
+      functional sequence regions.
+    is_a: genomic entity
+    aliases: ['locus']
+    exact_mappings:
+      - biolink:Gene
+    id_prefixes:
+      - ENSEMBL
+      - HGNC
+      - FB
+      - MGI
+      - RGD
+      - SGD
+      - WB
+      - ZFIN
+
+  transcript:
+    is_a: genomic entity
+    description: >-
+      An RNA synthesized on a DNA or RNA template by an RNA polymerase.
+    exact_mappings:
+      - biolink:Transcript
+    id_prefixes:
+      - ENSEMBL # ENSEMBL:ENST for human
+      - FB      # FlyBase:FBtr
+      - WB
+      - MGI
+      - RGD
+      - SGD
+      - ZFIN
+
+  allele:
+    is_a: genomic entity
+
+  feature:
+
+  synonym:
+
+  identifier:
+
+  chromosome:
+    is_a: genomic entity
+
+  assembly:
+
+  genomic_location:
+
+  note:
+
+  species:
+
+  ontology:
+    is_a: named thing
+    description: a concept or class in an ontology, vocabulary or thesaurus
+
+  so term:
+    is_a: ontology
+
+  go term:
+    is_a: ontology
+
+# Slots
+
+slots:
+
+  iso abbreviation:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
+
+  medline abbreviation:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
+
+  copyright date:
+    is_a: node property
+    description: >-
+    range: date
+    domain: information content entity
+
+  print issn:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
+
+  online issn:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
+
+  summary:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
+
+  has editors:
+    is_a: related to
+    description: >-
+      holds between a resource and a editor_resource
+    multivalued: true
+    domain: resource
+    range: resource
+
+  has topics:
+    is_a: related to
+    singular_name: has topic
+    domain: reference
+    range: ontology
+    exact_mappings:
+      - foaf:topic
+    description: Connects an object to a vocabulary term or ontology that describes some aspect of the entity.
+
+  pub med type:
+    is_a: node property
+    description: >-
+      Type of information content entity as descriped by pub med/
+    range: string
+    domain: information content entity
+
+  date published:
+    is_a: node property
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: information content entity
+
+  date last modified in pubmed:
+    is_a: node property
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: information content entity
+
+  date last modified:
+    is_a: node property
+    description: >-
+      Date on which an entity was last modified by the MOD.
+    range: date
+    domain: named thing
+
+  year published:
+    is_a: node property
+    description: >-
+      Year in which an entity was created.
+    range: string
+    domain: information content entity
+
+  month published:
+    is_a: node property
+    description: >-
+      Month in which an entity was created.
+    range: string
+    domain: information content entity
+
+  day published:
+    is_a: node property
+    description: >-
+      Day in which an entity was created.
+    range: string
+    domain: information content entity
+
+  date arrived in pubmed:
+    is_a: node property
+    description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.
+    range: date
+    domain: information content entity
+
+  has mod reference types:
+    is_a: node property
+    singular_name: has mod reference type
+    multivalued: true
+    description: List of types as assigned at a MOD.
+
+  has tags:
+    is_a: node property
+    singular_name: has tag
+    description: >-
+      Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").
+    multivalued: true
+
+  issue date:
+    is_a: node property
+    description: Date on which an entity was issued.
+    domain: information content entity
+    range: date
+
+  last modified:
+    is_a: node property
+    description: Date on which an entity was last modified in PubMed or in the MOD.
+    domain: information content entity
+    range: date
+
+  volume:
+    multivalued: false
+    range: string
+    domain: information content entity
+
+  pages:
+    is_a: node property
+    description: page number of source referenced for statement or publication
+    domain: information content entity
+    multivalued: true
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P304
+
+  abstract:
+    multivalued: false
+    domain: reference
+    range: string
+
+  citation:
+    multivalued: false
+    domain: reference
+    range: string
+
+  issue name:
+    multivalued: false
+    domain: reference
+
+  alliance category:
+    multivalued: false
+    domain: reference
+
+  has keywords:
+    is_a: node property
+    multivalued: true
+    description: keywords tagging a publication
+    domain: information content entity
+    range: string
+
+  date produced:
+    is_a: node property
+    description: >-
+      Date on which an entity was produced.
+    range: date
+    domain: variant
+
+  hgvs nomenclature:
+    is_a: node property
+    description: HGVSg nomenclature for variant
+    domain: variant
+
+  genomic reference sequence:
+    is_a: node property
+    description: reference genome sequence at variation position
+    domain: variant
+    range: biological sequence
+
+  genomic variant sequence:
+    description: variant genome sequence at variation position
+    domain: variant
+    range: biological sequence
+
+  padding left:
+    description: >-
+      flanking sequence upstream of the variation position
+      on the sense strand of the reference genome
+    domain: variant
+    range: biological sequence
+
+  padding right:
+    description: >-
+      flanking sequence downstream of the variation position
+      on the sense strand of the reference genome
+    domain: variant
+    range: biological sequence
+
+  is variant of:
+    is_a: related to
+    description: holds between a variant and a genomic entity
+    multivalued: true
+    domain: variant
+    range: genomic entity
+    narrow_mappings:
+      biolink:is sequence variant of
+
+  is variant of gene:
+    is_a: is variant of
+    description: holds between a variant and a gene
+    multivalued: true
+    domain: variant
+    range: gene
+
+  is variant of transcript:
+    is_a: is variant of
+    description: holds between a variant and a transcript
+    multivalued: true
+    domain: variant
+    range: transcript
+
+  is variant of allele:
+    is_a: is variant of
+    description: holds between a variant and an allele
+    multivalued: true
+    domain: variant
+    range: allele
+
+  has consequence:
+    is_a: related to
+    description: holds between a variant and a molecular consequence
+    multivalued: true
+    domain: variant
+    range: molecular consequence
+
+  has gene level consequence:
+    is_a: has consequence
+    description: holds between a variant and a gene level consequence
+    multivalued: true
+    domain: variant
+    range: gene level consequence
+
+  has transcript level consequence:
+    is_a: has consequence
+    description: holds between a variant and a transcript level consequence
+    multivalued: true
+    domain: variant
+    range: transcript level consequence
+
+  has variant protein sequence:
+    is_a: related to
+    description: holds between a variant and a variant protein sequence
+    multivalued: true
+    domain: variant
+    range: variant protein sequence
+
+  vep consequence:
+    is_a: node property
+    description: VEP molecular consequence
+    domain: molecular consequence
+
+  vep impact:
+    is_a: node property
+    description: VEP predicted impact of variation on molecule
+    domain: molecular consequence
+
+  polyphen score:
+    is_a: node property
+    description: PolyPhen-2 score between 0 and 1
+    domain: molecular consequence
+    range: float
+
+  polyphen prediction:
+    is_a: node property
+    description: PolyPhen-2 prediction
+    domain: molecular consequence
+
+  sift score:
+    is_a: node property
+    description: SIFT score between 0 and 1
+    domain: molecular consequence
+    range: float
+
+  sift prediction:
+    is_a: node property
+    description: SIFT prediction
+    domain: molecular consequence
+
+  consequence of variant:
+    is_a: related to
+    description: holds between a molecular consequence and a variant
+    domain: molecular consequence
+    range: variant
+
+  affects gene:
+    is_a: related to
+    description: holds between a gene level consequence and a gene
+    domain: gene level consequence
+    range: gene
+
+  affects transcript:
+    is_a: related to
+    description: holds between a transcript level consequence and a transcript
+    domain: transcript level consequence
+    range: transcript
+
+  amino acid reference:
+    is_a: node property
+    description: reference genome amino acid sequence at variant position
+    domain: transcript level consequence
+    range: biological sequence
+
+  amino acid variant:
+    is_a: node property
+    description: variant amino acid sequence at variant position
+    domain: transcript level consequence
+    range: biological sequence
+
+  codon reference:
+    is_a: node property
+    description: >-
+      reference sequence of codon(s) affected by variation - bases
+      outside of the variant region are in lower case, those within are in
+      upper case (e.g. cTa)
+    domain: transcript level consequence
+
+  codon variant:
+    is_a: node property
+    description: >-
+      variant sequence of codon(s) affected by variation - bases
+      outside of the variant region are in lower case, those within are in
+      upper case (e.g. cAa)
+    domain: transcript level consequence
+
+  cdna start:
+    is_a: node property
+    description: start position of variation in cDNA coordinates
+    domain: transcript level consequence
+    range: integer
+
+  cdna end:
+    is_a: node property
+    description: end position of variation in cDNA coordinates
+    domain: transcript level consequence
+    range: integer
+
+  cds start:
+    is_a: node property
+    description: start position of variation in CDS coordinates
+    domain: transcript level consequence
+    range: integer
+
+  cds end:
+    is_a: node property
+    description: end position of variation in CDS coordinates
+    domain: transcript level consequence
+    range: integer
+
+  protein start:
+    is_a: node property
+    description: start position of variation in protein amino acid coordinates
+    domain: transcript level consequence
+    range: integer
+
+  protein end:
+    is_a: node property
+    description: end position of variation in protein amino acid coordinates
+    domain: transcript level consequence
+    range: integer
+
+  hgvs protein nomenclature:
+    is_a: node property
+    description: HGVSp nomenclature for variation in protein
+    domain: transcript level consequence
+
+  hgvs coding nomenclature:
+    is_a: node property
+    description: HGVSc nomenclature for variation in coding sequence
+    domain: transcript level consequence
+
+  has variant:
+    is_a: related to
+    description: holds between a named thing and a variant
+    multivalued: true
+    domain: named thing
+    range: variant
+
+  corresponding author:
+    is_a: node property
+    description: >-
+    range: information content entity
+    domain: information content entity
+
+  first name:
+    is_a: node property
+    description: >-
+    domain: information content entity
+    range: information content entity
+
+  middle names:
+    is_a: node property
+    description: >-
+    domain: information content entity
+    range: information content entity
+    multivalued: false
+
+  last name:
+    is_a: node property
+    description: >-
+    domain: information content entity
+    range: information content entity
+
+  initials:
+    is_a: node property
+    description: >-
+    domain: information content entity
+    range: information content entity
+
+
+
+  prefix:
+    required: true
+    multivalued: false
+    description: Denormalization to help with classifying types of crossReferences, distinguishing DOIs from PMC ids, etc.
+
+  page areas:
+    required: true
+    multivalued: true
+    range: string
+
+  display name:
+    required: true
+    multivalued: false
+    range: string
+
+  id:
+    identifier: true
+    required: true
+    multivalued: false
+    description: >-
+      A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI
+    range: uriorcurie
+
+  title:
+    multivalued: false
+    description: >-
+      A human readable title for a reference.
+    domain: information content entity
+    range: string
+
+  volumes:
+    singular_name: volume
+    multivalued: false
+    range: string
+    domain: information content entity
+    description: >-
+
+  has publisher:
+    is_a: related to
+    range: information content entity
+    domain: information content entity
+
+  has synonyms:
+    singular_name: has synonym
+    is_a: related to
+    range: information content entity
+    domain: named thing
+
+  date_produced:
+    description: date AGR data generated by MOD
+    domain: named thing
+    range: date
+
+  release:
+    description: MOD release ID
+    domain: named thing
+
+  data provider:
+    description: MOD that provided data
+    multivalued: true
+    domain: named thing
+
+  association slot:
+    abstract: true
+    domain: association
+    aliases: ['edge property', 'statement property']
+    description: >-
+      any slot that relates an association to another entity
+    exact_mappings:
+      - biolink:association_slot
+
+  subject:
+    is_a: association slot
+    description: >-
+      connects an association to the subject of the association.
+      For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
+    required: true
+    range: named thing
+    exact_mappings:
+      - owl:annotatedSource
+      - OBAN:association_has_subject
+      - biolink:subject
+
+  object:
+    is_a: association slot
+    description: >-
+      connects an association to the object of the association.
+      For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
+    required: true
+    range: named thing
+    exact_mappings:
+      - biolink:object
+
+  predicate:
+    is_a: association slot
+    description: >-
+      A high-level grouping for the relationship type. AKA minimal predicate.
+      This is analogous to category for nodes.
+    domain: association
+    notes: >-
+      Has a value from the Biolink related_to hierarchy. In RDF,  this
+      corresponds to rdf:predicate and in Neo4j this corresponds to the
+      relationship type. The convention is for an edge label in snake_case
+      form. For example, biolink:related_to, biolink:causes, biolink:treats
+    required: true
+    exact_mappings:
+      - biolink:predicate
+
+  node property:
+    description: >-
+      A grouping for any property that holds between a node and a value
+
+  description:
+    aliases: ['definition']
+    description: >-
+      a human-readable description of an entity
+
+  name:
+    description: >-
+      a human-readable name for an entity
+
+  address:
+    is_a: node property
+    description: >-
+      the particulars of the place where someone or an organization is situated.  For now, this slot is a
+      simple text "blob" containing all relevant details of the given location for fitness of purpose.
+      For the moment, this "address" can include other contact details such as email and phone number(?).
+
+  creation date:
+    is_a: node property
+    aliases: ['publication date']
+    range: date
+    description: >-
+      date on which an entity was created. This can be applied to nodes or edges
+    exact_mappings:
+      - dct:createdOn
+      - WIKIDATA_PROPERTY:P577
+
+  has cross references:
+    is_a: node property
+    singular_name: has cross reference
+    description: >-
+    domain: named thing
+    multivalued: true
+
+  related to:
+    description: >-
+      A relationship that is asserted between two named things
+    domain: named thing
+    range: named thing
+    multivalued: true
+    inherited: true
+    symmetric: true
+    exact_mappings:
+      - skos:relatedMatch
+      - SEMMEDDB:ASSOCIATED_WITH
+      - SEMMEDDB:associated_with
+      - UMLS:related_to
+    broad_mappings:
+      - owl:topObjectProperty
+    narrow_mappings:
+      - SEMMEDDB:compared_with
+      - SEMMEDDB:higher_than
+      - SEMMEDDB:lower_than
+      - BFO:0000054
+      - UBERON_CORE:protects
+      - GOREL:0002005
+      - GOREL:0012006
+      # several of the following terms mapped here by RTX could merit upgrade to new Biolink terms
+      - BFO:0000068
+      - BFO:0000069
+      - BTO:related_to
+      - CHEBI:is_conjugate_acid_of
+      - CHEBI:is_conjugate_base_of
+      - CPT:has_add_on_code
+      - CPT:mapped_to
+      - EFO:0006351
+      - FMA:connected_to
+      - FMA:continuous_with
+      - FMA:homonym_of
+      - FMA:related_developmental_entity_of
+      - GO:ends_during
+      - GO:happens_during
+      - GO:inverse_ends_during
+      - GOREL:0002005
+      - GOREL:0012006
+      - HCPCS:mapped_to
+      # RTX contributed terms, perhaps belong somewhere else with more precise semantics?
+      - HMDB:disease
+      - HMDB:has_protein_association
+      - IAO:0000136
+      - LOINC:has_answer
+      - LOINC:has_challenge
+      - LOINC:has_evaluation
+      - LOINC:mapped_to
+      - LOINC:mth_has_expanded_form
+      - MESH:RO
+      - MESH:has_mapping_qualifier
+      - MESH:mapped_to
+      - MONDO:disease_shares_features_of
+      - NCIT:disease_may_have_associated_disease
+      - NCIT:human_disease_maps_to_eo_disease
+      - NCIT:is_abnormal_cell_of_disease
+      - NCIT:is_related_to_endogenous_product
+      - OBO:core#connected_to
+      - OBO:core#innervated_by
+      - OBO:envo#has_increased_levels_of
+      - OBO:has_role
+      - OBO:nbo#is_about
+      - OBOREL:0000053 # bearer_of
+      - PATO:decreased_in_magnitude_relative_to
+      - PATO:has_cross_section
+      - PATO:has_relative_magnitude
+      - PATO:increased_in_magnitude_relative_to
+      - PATO:reciprocal_of
+      - RO:0000052
+      - RO:0002001
+      - RO:0002002
+      - RO:0002003
+      - RO:0002008
+      - RO:0002134
+      - RO:0002150
+      - RO:0002159
+      - RO:0002176
+      - RO:0002177
+      - RO:0002178
+      - RO:0002179
+      - RO:0002314
+      - RO:0002322
+      - RO:0002328
+      - RO:0002332
+      - RO:0002338
+      - RO:0002339
+      - RO:0002341
+      - RO:0002342
+      - RO:0002344
+      - RO:0002348
+      - RO:0002349
+      - RO:0002356
+      - RO:0002371
+      - RO:0002372
+      - RO:0002373
+      - RO:0002374
+      - RO:0002385
+      - RO:0002387
+      - RO:0002451
+      - RO:0002494
+      - RO:0002495
+      - RO:0002568
+      - RO:0002573
+      - RO:0004026
+      - RO:0004027
+      - RO:0009001
+      - RO:0009004
+      - RTXKG1:functionally_related_to
+      - RXNORM:has_form
+      - RXNORM:reformulated_to
+      - SNOMED:has_associated_morphology
+      - SNOMED:has_associated_procedure
+      - SNOMED:has_direct_morphology
+      - SNOMED:has_disposition
+      - SNOMED:has_indirect_morphology
+      - SNOMED:has_modification
+      - SNOMED:has_procedure_morphology
+      - SNOMED:has_specimen_source_morphology
+      - SNOMED:inheres_in
+      - SNOMED:is_interpreted_by
+      - SNOMED:relative_to_part_of
+      - UBERON:synapsed_by
+      - UMLS:RO
+      - UMLS:RQ
+      - UMLS:class_code_classified_by
+      - UMLS:exhibited_by
+      - UMLS:has_context_binding
+      - UMLS:has_form
+      - UMLS:has_mapping_qualifier
+      - UMLS:larger_than
+      - UMLS:mapped_to
+      - UMLS:owning_section_of
+
+  has biological sequence:
+    is_a: node property
+    description: >-
+      connects a genomic feature to its sequence
+    range: biological sequence
+
+  symbol:
+    is_a: node property
+    domain: named thing
+    description: >-
+      Symbol for a particular thing
+    exact_mappings:
+      - biolink:symbol
+
+  from_species:
+    is_a: related to
+    description: holds between a genomic entity and a species
+    domain: genomic entity
+    range: species
+
+  has gene:
+    is_a: related to
+    description: holds between a named thing and a gene
+    multivalued: true
+    domain: named thing
+    range: gene
+
+  has transcript:
+    is_a: related to
+    description: holds between a named thing and a transcript
+    multivalued: true
+    domain: named thing
+    range: transcript
+
+  has feature:
+    is_a: related to
+    description: holds between a named thing and a feature
+    multivalued: true
+    domain: named thing
+    range: feature
+
+  has synonym:
+    is_a: related to
+    description: holds between a named thing and a synonym
+    multivalued: true
+    domain: named thing
+    range: synonym
+
+  has identifier:
+    is_a: related to
+    description: holds between a named thing and an identifier
+    multivalued: true
+    domain: named thing
+    range: identifier
+
+  has ontology:
+    is_a: related to
+    description: holds between a named thing and an ontology
+    multivalued: true
+    domain: named thing
+    range: ontology
+
+  has go term:
+    is_a: related to
+    description: holds between a named thing and a gene ontology term
+    domain: named thing
+    range: go term
+
+  on chromosome:
+    is_a: related to
+    description: holds between a genomic entity and a chromosome
+    domain: genomic entity
+    range: chromosome
+
+  has assembly:
+    is_a: related to
+    description: holds between a genomic entity and an assembly
+    domain: genomic entity
+    range: assembly
+
+  has genomic location:
+    is_a: related to
+    description: holds between a genomic entity and a genomic location
+    domain: genomic entity
+    range: genomic_location
+
+  has note:
+    is_a: related to
+    description: holds between a named thing and a note
+    multivalued: true
+    domain: named thing
+    range: note
+
+  has so term:
+    is_a: related to
+    description: holds between a named thing and a sequence ontology term
+    domain: named thing
+    range: so term
+
+  has references:
+    is_a: related to
+    description: holds between a named thing and a reference
+    multivalued: true
+    domain: named thing
+
+  has authors:
+    is_a: node property
+    multivalued: true
+
+  relation:
+    is_a: association slot
+    description: >-
+      The relation which describes an association between a subject and
+      an object in a more granular manner. Usually this is a term from
+      Relation Ontology, but it can be any edge CURIE.
+    domain: association
+    range: uriorcurie
+    required: true
+    id_prefixes:
+      - RO
+      - BSPO
+      - SIO
+
+  negated:
+    is_a: association slot
+    range: boolean
+    description: if set to true, then the association is negated i.e. is not true
+
+  qualifiers:
+    is_a: association slot
+    singular_name: qualifier
+    range: entity
+    description: >-
+      This is the MeSH qualifier term that is optionally added to the descriptor term.
