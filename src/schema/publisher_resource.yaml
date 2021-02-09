@@ -6,6 +6,7 @@ imports:
 
 classes:
   publisher resource:
+    is_a: information content entity
     slots:
       - first name
       - middle names

@@ -5,6 +5,7 @@ imports:
 
 classes:
   resource:
+    is_a: information content entity
     slots:
       - id
       - title
