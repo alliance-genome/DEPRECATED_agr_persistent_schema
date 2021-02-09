@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  
+  
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <title>{{schema.description}}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Index";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="js/jquery-2.1.1.min.js" defer></script>
+  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> {{schema.description}}</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="home/">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Index</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mixins">Mixins</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#slots">Slots</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#types">Types</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#built-in">Built in</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#defined">Defined</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="credits/">Credits</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">{{schema.description}}</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Index</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="alliance-schema-prototype-core-types-schema">Alliance-Schema-Prototype-Core-Types schema</h1>
+<p>Alliance Schema Prototype with LinkML</p>
+<h3 id="classes">Classes</h3>
+<ul>
+<li><a href="Agent/">Agent</a> - person, group, organization or project that provides a piece of information (i.e. a knowledge association)</li>
+<li><a href="Assembly/">Assembly</a></li>
+<li><a href="Entity/">Entity</a> - Root Biolink Model class for all things and informational relationships, real or imagined.<ul>
+<li><a href="Association/">Association</a> - A typed association between two entities, supported by evidence</li>
+<li><a href="NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
+<li><a href="BiologicalEntity/">BiologicalEntity</a><ul>
+<li><a href="MolecularEntity/">MolecularEntity</a> - A gene, gene product, small molecule or macromolecule (including protein complex)"<ul>
+<li><a href="GenomicEntity/">GenomicEntity</a> - an entity that can either be directly located on a genome (gene, transcript, exon, regulatory region) or is encoded in a genome (protein)<ul>
+<li><a href="Allele/">Allele</a></li>
+<li><a href="Chromosome/">Chromosome</a></li>
+<li><a href="Gene/">Gene</a> - A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</li>
+<li><a href="Transcript/">Transcript</a> - An RNA synthesized on a DNA or RNA template by an RNA polymerase.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="Ontology/">Ontology</a> - a concept or class in an ontology, vocabulary or thesaurus<ul>
+<li><a href="GoTerm/">GoTerm</a></li>
+<li><a href="SoTerm/">SoTerm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="Feature/">Feature</a></li>
+<li><a href="GenomicLocation/">GenomicLocation</a></li>
+<li><a href="Identifier/">Identifier</a></li>
+<li><a href="InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support.</li>
+<li><a href="Note/">Note</a></li>
+<li><a href="Species/">Species</a></li>
+<li><a href="Synonym/">Synonym</a></li>
+</ul>
+<h3 id="mixins">Mixins</h3>
+<h3 id="slots">Slots</h3>
+<ul>
+<li><a href="association_slot/">association slot</a> - any slot that relates an association to another entity<ul>
+<li><a href="negated/">negated</a> - if set to true, then the association is negated i.e. is not true</li>
+<li><a href="object/">object</a> - connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+<li><a href="predicate/">predicate</a> - A high-level grouping for the relationship type. AKA minimal predicate. This is analogous to category for nodes.</li>
+<li><a href="qualifiers/">qualifiers</a> - This is the MeSH qualifier term that is optionally added to the descriptor term.</li>
+<li><a href="relation/">relation</a> - The relation which describes an association between a subject and an object in a more granular manner. Usually this is a term from Relation Ontology, but it can be any edge CURIE.</li>
+<li><a href="subject/">subject</a> - connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+</ul>
+</li>
+<li><a href="category/">category</a><ul>
+<li><a href="association_category/">association➞category</a></li>
+</ul>
+</li>
+<li><a href="data_provider/">data provider</a> - MOD that provided data</li>
+<li><a href="date_produced/">date_produced</a> - date AGR data generated by MOD</li>
+<li><a href="description/">description</a> - a human-readable description of an entity</li>
+<li><a href="id/">id</a> - A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI<ul>
+<li><a href="agent_id/">agent➞id</a> - Different classes of agents have distinct preferred identifiers. For publishers, use the ISBN publisher code. See https://grp.isbn-international.org/ for publisher code lookups. For editors, authors and  individual providers, use the individual's ORCID if available; Otherwise, a ScopusID, ResearchID or Google Scholar ID ('GSID') may be used if the author ORCID is unknown. Institutional agents could be identified by an International Standard Name Identifier ('ISNI') code.</li>
+</ul>
+</li>
+<li><a href="name/">name</a> - a human-readable name for an entity<ul>
+<li><a href="agent_name/">agent➞name</a> - it is recommended that an author's 'name' property be formatted as "surname, firstname initial."</li>
+</ul>
+</li>
+<li><a href="node_property/">node property</a> - A grouping for any property that holds between a node and a value<ul>
+<li><a href="address/">address</a> - the particulars of the place where someone or an organization is situated.  For now, this slot is a simple text "blob" containing all relevant details of the given location for fitness of purpose. For the moment, this "address" can include other contact details such as email and phone number(?).</li>
+<li><a href="creation_date/">creation date</a> - date on which an entity was created. This can be applied to nodes or edges</li>
+<li><a href="information_content_entity_creation_date/">information content entity➞creation date</a> - Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
+<li><a href="has_authors/">has authors</a></li>
+<li><a href="has_biological_sequence/">has biological sequence</a> - connects a genomic feature to its sequence</li>
+<li><a href="has_cross_references/">has cross references</a></li>
+<li><a href="symbol/">symbol</a> - Symbol for a particular thing</li>
+</ul>
+</li>
+<li><a href="related_to/">related to</a> - A relationship that is asserted between two named things<ul>
+<li><a href="from_species/">from_species</a> - holds between a genomic entity and a species</li>
+<li><a href="has_assembly/">has assembly</a> - holds between a genomic entity and an assembly</li>
+<li><a href="has_feature/">has feature</a> - holds between a named thing and a feature</li>
+<li><a href="has_gene/">has gene</a> - holds between a named thing and a gene</li>
+<li><a href="has_genomic_location/">has genomic location</a> - holds between a genomic entity and a genomic location</li>
+<li><a href="has_go_term/">has go term</a> - holds between a named thing and a gene ontology term</li>
+<li><a href="has_identifier/">has identifier</a> - holds between a named thing and an identifier</li>
+<li><a href="has_note/">has note</a> - holds between a named thing and a note</li>
+<li><a href="has_ontology/">has ontology</a> - holds between a named thing and an ontology</li>
+<li><a href="has_publisher/">has publisher</a></li>
+<li><a href="has_references/">has references</a> - holds between a named thing and a reference</li>
+<li><a href="has_so_term/">has so term</a> - holds between a named thing and a sequence ontology term</li>
+<li><a href="has_synonym/">has synonym</a> - holds between a named thing and a synonym</li>
+<li><a href="has_synonyms/">has synonyms</a></li>
+<li><a href="has_transcript/">has transcript</a> - holds between a named thing and a transcript</li>
+<li><a href="on_chromosome/">on chromosome</a> - holds between a genomic entity and a chromosome</li>
+</ul>
+</li>
+<li><a href="release/">release</a> - MOD release ID</li>
+<li><a href="title/">title</a> - A human readable title for a reference.</li>
+<li><a href="type/">type</a> - rdf:type of biolink:Association should be fixed at rdf:Statement<ul>
+<li><a href="association_type/">association➞type</a></li>
+</ul>
+</li>
+<li><a href="volumes/">volumes</a></li>
+</ul>
+<h3 id="types">Types</h3>
+<h4 id="built-in">Built in</h4>
+<ul>
+<li><strong>Bool</strong></li>
+<li><strong>Decimal</strong></li>
+<li><strong>ElementIdentifier</strong></li>
+<li><strong>NCName</strong></li>
+<li><strong>NodeIdentifier</strong></li>
+<li><strong>URI</strong></li>
+<li><strong>URIorCURIE</strong></li>
+<li><strong>XSDDate</strong></li>
+<li><strong>XSDDateTime</strong></li>
+<li><strong>XSDTime</strong></li>
+<li><strong>float</strong></li>
+<li><strong>int</strong></li>
+<li><strong>str</strong></li>
+</ul>
+<h4 id="defined">Defined</h4>
+<ul>
+<li><a href="types/BiologicalSequence/">BiologicalSequence</a>  (<a href="types/String/">String</a>) </li>
+<li><a href="types/Boolean/">Boolean</a>  (<strong>Bool</strong>)  - A binary (true or false) value</li>
+<li><a href="types/Date/">Date</a>  (<strong>XSDDate</strong>)  - a date (year, month and day) in an idealized calendar</li>
+<li><a href="types/Datetime/">Datetime</a>  (<strong>XSDDateTime</strong>)  - The combination of a date and time</li>
+<li><a href="types/Decimal/">Decimal</a>  (<strong>Decimal</strong>)  - A real number with arbitrary precision that conforms to the xsd:decimal specification</li>
+<li><a href="types/Double/">Double</a>  (<strong>float</strong>)  - A real number that conforms to the xsd:double specification</li>
+<li><a href="types/Float/">Float</a>  (<strong>float</strong>)  - A real number that conforms to the xsd:float specification</li>
+<li><a href="types/Integer/">Integer</a>  (<strong>int</strong>)  - An integer</li>
+<li><a href="types/Ncname/">Ncname</a>  (<strong>NCName</strong>)  - Prefix part of CURIE</li>
+<li><a href="types/Nodeidentifier/">Nodeidentifier</a>  (<strong>NodeIdentifier</strong>)  - A URI, CURIE or BNODE that represents a node in a model.</li>
+<li><a href="types/Objectidentifier/">Objectidentifier</a>  (<strong>ElementIdentifier</strong>)  - A URI or CURIE that represents an object in the model.</li>
+<li><a href="types/String/">String</a>  (<strong>str</strong>)  - A character string</li>
+<li><a href="types/Time/">Time</a>  (<strong>XSDTime</strong>)  - A time object represents a (local) time of day, independent of any particular day</li>
+<li><a href="types/Uri/">Uri</a>  (<strong>URI</strong>)  - a complete URI</li>
+<li><a href="types/Uriorcurie/">Uriorcurie</a>  (<strong>URIorCURIE</strong>)  - a URI or a CURIE</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="credits/" class="btn btn-neutral float-right" title="Credits">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="home/" class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="home/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="credits/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme.js" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2021-02-09 00:20:32.611955+00:00
+-->
