@@ -93,12 +93,22 @@
               
                 <h1 id="type-information-content-entity">Type: information content entity</h1>
 <p>a piece of information that typically describes some topic of discourse or is used as support.</p>
-<p>URI: <a href="http://alliancegenome.org/InformationContentEntity">alliance:InformationContentEntity</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing],[InformationContentEntity&#124;creation_date:date%20%3F]" /></p>
+<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference.yaml/InformationContentEntity">https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference.yaml/InformationContentEntity</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Reference],[NamedThing],[AuthorReference]++-%20corresponding%20author%200..1&gt;[InformationContentEntity&#124;creation_date:date%20%3F],[AuthorReference]++-%20first%20name%200..1&gt;[InformationContentEntity],[Reference]++-%20has%20publisher(i)%200..*&gt;[InformationContentEntity],[AuthorReference]++-%20initials%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20last%20name%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20middle%20names%200..1&gt;[InformationContentEntity],[Reference]++-%20has%20publisher%200..*&gt;[InformationContentEntity],[InformationContentEntity]^-[Reference],[AuthorReference]" /></p>
+<h2 id="children">Children</h2>
+<ul>
+<li><a href="../Reference/">Reference</a></li>
+</ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
+<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../corresponding_author/">corresponding author</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
+<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../first_name/">first name</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
 <li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../has_publisher/">has publisher</a></em>  <sub>0..<em></sub>  </em><em><a href="./">InformationContentEntity</a></em>*</li>
 <li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_synonyms/">has synonyms</a></em>  <sub>0..<em></sub>  </em><em><a href="./">InformationContentEntity</a></em>*</li>
+<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../initials/">initials</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
+<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../last_name/">last name</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
+<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../middle_names/">middle names</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
+<li><strong><a href="../Reference/">Reference</a></strong> <em><a href="../reference_has_publisher/">reference➞has publisher</a></em>  <sub>0..<em></sub>  </em><em><a href="./">InformationContentEntity</a></em>*</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>

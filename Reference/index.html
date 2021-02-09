@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Type: reference - {{schema.description}}</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Type: reference";
+    var mkdocs_page_input_path = "Reference.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> {{schema.description}}</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../home/">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Index</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../credits/">Credits</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">{{schema.description}}</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Type: reference</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="type-reference">Type: reference</h1>
+<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference.yaml/Reference">https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference.yaml/Reference</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[ReferenceToMeshAssociation],[InformationContentEntity]&lt;has%20publisher%200..*-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_pubmed:date%20%3F;date_last_modified_in_pubmed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;pub_med_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;has_mod_reference_types:string%20*;has_authors:string%20*;has_tags:string%20*;has_cross_references:string%20*;has_keywords:string%20*;mod_last_modified_date:string%20%3F;pubmed_last_modified_date:string%20%3F;creation_date(i):date%20%3F],[Ontology]&lt;has%20topics%200..*-++[Reference],[ReferenceToMeshAssociation]-%20subject%201..1&gt;[Reference],[InformationContentEntity]^-[Reference],[Ontology],[InformationContentEntity]" /></p>
+<h2 id="parents">Parents</h2>
+<ul>
+<li>is_a: <a href="../InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support.</li>
+</ul>
+<h2 id="referenced-by-class">Referenced by class</h2>
+<ul>
+<li><strong><a href="../ReferenceToMeshAssociation/">ReferenceToMeshAssociation</a></strong> <em><a href="../reference_to_mesh_association_subject/">reference to mesh association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Reference</a></strong></li>
+</ul>
+<h2 id="attributes">Attributes</h2>
+<h3 id="own">Own</h3>
+<ul>
+<li><a href="../date_last_modified/">date last modified</a>  <sub>OPT</sub><ul>
+<li>Description: Date on which an entity was last modified by the MOD.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+<li><a href="../date_last_modified_in_pubmed/">date last modified in pubmed</a>  <sub>OPT</sub><ul>
+<li>Description: Date on which an entity was created.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+<li><a href="../has_keywords/">has keywords</a>  <sub>0..*</sub><ul>
+<li>Description: keywords tagging a publication</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../issue_date/">issue date</a>  <sub>OPT</sub><ul>
+<li>Description: Date on which an entity was issued.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+<li><a href="../issue_name/">issue name</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../pub_med_type/">pub med type</a>  <sub>OPT</sub><ul>
+<li>Description: Type of information content entity as descriped by pub med/</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_abstract/">reference➞abstract</a>  <sub>OPT</sub><ul>
+<li>Description: The abstract of the reference.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_alliance_category/">reference➞alliance category</a>  <sub>OPT</sub><ul>
+<li>Description: Controlled vocabulary term drawn from a list of Alliance-defined reference categories.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_citation/">reference➞citation</a>  <sub>OPT</sub><ul>
+<li>Description: Is a reference to a source.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_date_arrived_in_pubmed/">reference➞date arrived in pubmed</a>  <sub>OPT</sub><ul>
+<li>Description: As per the PUBMED XML record, this is the date the reference entered PUBMED.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+<li><a href="../reference_date_published/">reference➞date published</a>  <sub>OPT</sub><ul>
+<li>Description: The date the reference was published.  This field can be submitted by a MOD or from PUBMED. When pulled from PUBMED, this date is generated from the year, month and day published fields. When submitted from a MOD it can be any string. examples include: Spring 1991, 01-01-1991, 25-12-1991</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+<li><a href="../reference_day_published/">reference➞day published</a>  <sub>OPT</sub><ul>
+<li>Description: When the reference is a PUBMED reference, this will be a 2-digit day.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_has_authors/">reference➞has authors</a>  <sub>0..*</sub><ul>
+<li>Description: List of authors in the reference.  There might be more than one author in the publication with the same name.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_has_cross_references/">reference➞has cross references</a>  <sub>0..*</sub><ul>
+<li>Description: The list of crossReference objects associated with a reference.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_has_mod_reference_types/">reference➞has mod reference types</a>  <sub>0..*</sub><ul>
+<li>Description: Reference type as defined by the MOD on submission of the publication.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_has_publisher/">reference➞has publisher</a>  <sub>0..*</sub><ul>
+<li>Description: Volume of a book or music release in a collection/series or a published collection of journal issues in a serial publication</li>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../reference_has_tags/">reference➞has tags</a>  <sub>0..*</sub><ul>
+<li>Description: Tags from the MOD from a controlled vocabulary of possible tags.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_has_topics/">reference➞has topics</a>  <sub>0..*</sub><ul>
+<li>Description: The list of MeSH terms associated with a reference.  Note: this is an association slot that allows a qualifier to be associated with the reference-meshTerm relationship.</li>
+<li>range: <a href="../Ontology/">Ontology</a></li>
+</ul>
+</li>
+<li><a href="../reference_id/">reference➞id</a>  <sub>REQ</sub><ul>
+<li>Description: the identifier for the publication in the form of a curie.</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+<li><a href="../reference_mod_last_modified_date/">reference➞mod last modified date</a>  <sub>OPT</sub><ul>
+<li>Description: The date the meta data on this object was last updated at the MOD.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_month_published/">reference➞month published</a>  <sub>OPT</sub><ul>
+<li>Description: When the reference is a PUBMED reference, this will be a 2-digit year.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_pages/">reference➞pages</a>  <sub>0..*</sub><ul>
+<li>Description: Page number of source referenced for statement or publication</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_pubmed_last_modified_date/">reference➞pubmed last modified date</a>  <sub>OPT</sub><ul>
+<li>Description: The date the meta data on this object was last updated at PUBMED.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_title/">reference➞title</a>  <sub>OPT</sub><ul>
+<li>Description: the title of the publication</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../reference_year_published/">reference➞year published</a>  <sub>OPT</sub><ul>
+<li>Description: When the reference is a PUBMED reference, this will be a 4-digit year.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../volume/">volume</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="inherited-from-information-content-entity">Inherited from information content entity:</h3>
+<ul>
+<li><a href="../information_content_entity_creation_date/">information content entity➞creation date</a>  <sub>OPT</sub><ul>
+<li>Description: Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
