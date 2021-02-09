@@ -93,13 +93,14 @@
               
                 <h1 id="type-reference">Type: reference</h1>
 <p>URI: <a href="http://alliancegenome.org/Reference">alliance:Reference</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[ReferenceToMeshAssociation],[InformationContentEntity]&lt;has%20publisher%200..*-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_pubmed:date%20%3F;date_last_modified_in_pubmed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;pub_med_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;has_mod_reference_types:string%20*;has_authors:string%20*;has_tags:string%20*;has_cross_references:string%20*;has_keywords:string%20*;mod_last_modified_date:string%20%3F;pubmed_last_modified_date:string%20%3F;creation_date(i):date%20%3F],[Ontology]&lt;has%20topics%200..*-++[Reference],[ReferenceToMeshAssociation]-%20subject%201..1&gt;[Reference],[InformationContentEntity]^-[Reference],[Ontology],[InformationContentEntity]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[ReferenceToMeshAssociation],[InformationContentEntity]&lt;has%20publisher%200..*-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_pubmed:date%20%3F;date_last_modified_in_pubmed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;pub_med_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;has_mod_reference_types:string%20*;has_authors:string%20*;has_tags:string%20*;has_cross_references:string%20*;has_keywords:string%20*;mod_last_modified_date:string%20%3F;pubmed_last_modified_date:string%20%3F;creation_date(i):date%20%3F],[Ontology]&lt;has%20topics%200..*-++[Reference],[Variant]-%20has%20references%200..*&gt;[Reference],[Resource]-%20has%20references%200..*&gt;[Reference],[ReferenceToMeshAssociation]-%20subject%201..1&gt;[Reference],[InformationContentEntity]^-[Reference],[Variant],[Resource],[Ontology],[NamedThing],[InformationContentEntity]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support.</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
+<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_references/">has references</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Reference</a></em>*</li>
 <li><strong><a href="../ReferenceToMeshAssociation/">ReferenceToMeshAssociation</a></strong> <em><a href="../reference_to_mesh_association_subject/">reference to mesh association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Reference</a></strong></li>
 </ul>
 <h2 id="attributes">Attributes</h2>

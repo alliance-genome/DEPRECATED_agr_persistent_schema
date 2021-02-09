@@ -94,7 +94,7 @@
                 <h1 id="type-named-thing">Type: named thing</h1>
 <p>a databased entity or concept/class</p>
 <p>URI: <a href="http://alliancegenome.org/NamedThing">alliance:NamedThing</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Ontology],[Variant]++-%20has%20references%200..*&gt;[NamedThing],[Resource]++-%20has%20references%200..*&gt;[NamedThing],[Association]++-%20object%201..1&gt;[NamedThing],[Association]++-%20subject%201..1&gt;[NamedThing],[NamedThing]^-[Ontology],[NamedThing]^-[MolecularConsequence],[NamedThing]^-[BiologicalEntity],[Entity]^-[NamedThing],[Variant],[Resource],[MolecularConsequence],[Entity],[BiologicalEntity],[Association]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Ontology],[Association]++-%20object%201..1&gt;[NamedThing],[Association]++-%20subject%201..1&gt;[NamedThing],[NamedThing]^-[Ontology],[NamedThing]^-[MolecularConsequence],[NamedThing]^-[BiologicalEntity],[Entity]^-[NamedThing],[MolecularConsequence],[Entity],[BiologicalEntity],[Association]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../Entity/">Entity</a> - Root Biolink Model class for all things and informational relationships, real or imagined.</li>
@@ -107,7 +107,6 @@
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
-<li><strong><a href="./">NamedThing</a></strong> <em><a href="../has_references/">has references</a></em>  <sub>0..<em></sub>  </em><em><a href="./">NamedThing</a></em>*</li>
 <li><strong><a href="../Association/">Association</a></strong> <em><a href="../object/">object</a></em>  <sub>REQ</sub>  <strong><a href="./">NamedThing</a></strong></li>
 <li><strong><a href="./">NamedThing</a></strong> <em><a href="../related_to/">related to</a></em>  <sub>0..<em></sub>  </em><em><a href="./">NamedThing</a></em>*</li>
 <li><strong><a href="../Association/">Association</a></strong> <em><a href="../subject/">subject</a></em>  <sub>REQ</sub>  <strong><a href="./">NamedThing</a></strong></li>
