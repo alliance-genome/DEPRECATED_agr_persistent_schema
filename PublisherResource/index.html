@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Type: go term - {{schema.description}}</title>
+  <title>Type: publisher resource - {{schema.description}}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Type: go term";
-    var mkdocs_page_input_path = "GoTerm.md";
+    var mkdocs_page_name = "Type: publisher resource";
+    var mkdocs_page_input_path = "PublisherResource.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Type: go term</li>
+    <li>Type: publisher resource</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,18 +91,45 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="type-go-term">Type: go term</h1>
-<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/GoTerm">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/GoTerm</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Ontology],[NamedThing],[Ontology]^-[GoTerm]" /></p>
+                <h1 id="type-publisher-resource">Type: publisher resource</h1>
+<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/PublisherResource">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/PublisherResource</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;initials%200..1-++[PublisherResource&#124;has_cross_references:string%20*;creation_date(i):date%20%3F],[InformationContentEntity]&lt;last%20name%200..1-++[PublisherResource],[InformationContentEntity]&lt;middle%20names%200..1-++[PublisherResource],[InformationContentEntity]&lt;first%20name%200..1-++[PublisherResource],[InformationContentEntity]^-[PublisherResource],[InformationContentEntity]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
-<li>is_a: <a href="../Ontology/">Ontology</a> - a concept or class in an ontology, vocabulary or thesaurus</li>
-</ul>
-<h2 id="referenced-by-class">Referenced by class</h2>
-<ul>
-<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_go_term/">has go term</a></em>  <sub>0..<em></sub>  </em><em><a href="./">GoTerm</a></em>*</li>
+<li>is_a: <a href="../InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support.</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
+<h3 id="own">Own</h3>
+<ul>
+<li><a href="../first_name/">first name</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../has_cross_references/">has cross references</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../initials/">initials</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../last_name/">last name</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../middle_names/">middle names</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="inherited-from-information-content-entity">Inherited from information content entity:</h3>
+<ul>
+<li><a href="../information_content_entity_creation_date/">information content entity➞creation date</a>  <sub>OPT</sub><ul>
+<li>Description: Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>
