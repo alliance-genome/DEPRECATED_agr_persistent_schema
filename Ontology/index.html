@@ -93,8 +93,8 @@
               
                 <h1 id="type-ontology">Type: ontology</h1>
 <p>a concept or class in an ontology, vocabulary or thesaurus</p>
-<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/Ontology">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/Ontology</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[SoTerm],[Ontology]^-[SoTerm],[Ontology]^-[GoTerm],[NamedThing]^-[Ontology],[NamedThing],[GoTerm]" /></p>
+<p>URI: <a href="http://alliancegenome.org/Ontology">alliance:Ontology</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[SoTerm],[ReferenceToMeshAssociation],[Reference],[Variant]++-%20has%20ontology%200..*&gt;[Ontology],[Reference]++-%20has%20topics(i)%200..*&gt;[Ontology],[ReferenceToMeshAssociation]++-%20object%201..1&gt;[Ontology],[Reference]++-%20has%20topics%200..*&gt;[Ontology],[Ontology]^-[SoTerm],[Ontology]^-[GoTerm],[NamedThing]^-[Ontology],[Variant],[NamedThing],[GoTerm]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
@@ -107,6 +107,9 @@
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
 <li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_ontology/">has ontology</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Ontology</a></em>*</li>
+<li><strong><a href="../Reference/">Reference</a></strong> <em><a href="../has_topics/">has topics</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Ontology</a></em>*</li>
+<li><strong><a href="../ReferenceToMeshAssociation/">ReferenceToMeshAssociation</a></strong> <em><a href="../reference_to_mesh_association_object/">reference to mesh association➞object</a></em>  <sub>REQ</sub>  <strong><a href="./">Ontology</a></strong></li>
+<li><strong><a href="../Reference/">Reference</a></strong> <em><a href="../reference_has_topics/">reference➞has topics</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Ontology</a></em>*</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
               

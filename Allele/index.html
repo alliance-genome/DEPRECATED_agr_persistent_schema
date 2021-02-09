@@ -92,11 +92,15 @@
             <div class="section">
               
                 <h1 id="type-allele">Type: allele</h1>
-<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/Allele">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/Allele</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[GenomicEntity],[GenomicEntity]^-[Allele&#124;has_biological_sequence(i):biological_sequence%20%3F]" /></p>
+<p>URI: <a href="http://alliancegenome.org/Allele">alliance:Allele</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[GenomicEntity],[Variant]++-%20is%20variant%20of%20allele%200..*&gt;[Allele&#124;has_biological_sequence(i):biological_sequence%20%3F],[GenomicEntity]^-[Allele]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../GenomicEntity/">GenomicEntity</a> - an entity that can either be directly located on a genome (gene, transcript, exon, regulatory region) or is encoded in a genome (protein)</li>
+</ul>
+<h2 id="referenced-by-class">Referenced by class</h2>
+<ul>
+<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of_allele/">is variant of allele</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Allele</a></em>*</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="inherited-from-genomic-entity">Inherited from genomic entity:</h3>

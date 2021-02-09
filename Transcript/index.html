@@ -93,15 +93,19 @@
               
                 <h1 id="type-transcript">Type: transcript</h1>
 <p>An RNA synthesized on a DNA or RNA template by an RNA polymerase.</p>
-<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/Transcript">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/Transcript</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[GenomicEntity]^-[Transcript&#124;has_biological_sequence(i):biological_sequence%20%3F],[NamedThing],[GenomicEntity]" /></p>
+<p>URI: <a href="http://alliancegenome.org/Transcript">alliance:Transcript</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantProteinSequence],[Variant],[TranscriptLevelConsequence],[TranscriptLevelConsequence]++-%20affects%20transcript(i)%200..*&gt;[Transcript&#124;has_biological_sequence(i):biological_sequence%20%3F],[VariantProteinSequence]++-%20has%20transcript(i)%200..*&gt;[Transcript],[Variant]++-%20is%20variant%20of%20transcript%200..*&gt;[Transcript],[TranscriptLevelConsequence]++-%20affects%20transcript%201..*&gt;[Transcript],[VariantProteinSequence]++-%20has%20transcript%201..*&gt;[Transcript],[GenomicEntity]^-[Transcript],[NamedThing],[GenomicEntity]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../GenomicEntity/">GenomicEntity</a> - an entity that can either be directly located on a genome (gene, transcript, exon, regulatory region) or is encoded in a genome (protein)</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
+<li><strong><a href="../TranscriptLevelConsequence/">TranscriptLevelConsequence</a></strong> <em><a href="../affects_transcript/">affects transcript</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
 <li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_transcript/">has transcript</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
+<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of_transcript/">is variant of transcript</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
+<li><strong><a href="../TranscriptLevelConsequence/">TranscriptLevelConsequence</a></strong> <em><a href="../transcript_level_consequence_affects_transcript/">transcript level consequence➞affects transcript</a></em>  <sub>1..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
+<li><strong><a href="../VariantProteinSequence/">VariantProteinSequence</a></strong> <em><a href="../variant_protein_sequence_has_transcript/">variant protein sequence➞has transcript</a></em>  <sub>1..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="inherited-from-genomic-entity">Inherited from genomic entity:</h3>

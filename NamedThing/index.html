@@ -93,8 +93,8 @@
               
                 <h1 id="type-named-thing">Type: named thing</h1>
 <p>a databased entity or concept/class</p>
-<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/NamedThing">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/NamedThing</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Ontology],[Association]++-%20object%201..1&gt;[NamedThing],[Association]++-%20subject%201..1&gt;[NamedThing],[NamedThing]^-[Ontology],[NamedThing]^-[BiologicalEntity],[Entity]^-[NamedThing],[Entity],[BiologicalEntity],[Association]" /></p>
+<p>URI: <a href="http://alliancegenome.org/NamedThing">alliance:NamedThing</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Ontology],[Variant]++-%20has%20references%200..*&gt;[NamedThing],[Resource]++-%20has%20references%200..*&gt;[NamedThing],[Association]++-%20object%201..1&gt;[NamedThing],[Association]++-%20subject%201..1&gt;[NamedThing],[NamedThing]^-[Ontology],[NamedThing]^-[MolecularConsequence],[NamedThing]^-[BiologicalEntity],[Entity]^-[NamedThing],[Variant],[Resource],[MolecularConsequence],[Entity],[BiologicalEntity],[Association]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../Entity/">Entity</a> - Root Biolink Model class for all things and informational relationships, real or imagined.</li>
@@ -102,6 +102,7 @@
 <h2 id="children">Children</h2>
 <ul>
 <li><a href="../BiologicalEntity/">BiologicalEntity</a></li>
+<li><a href="../MolecularConsequence/">MolecularConsequence</a> - Class for molecular consequences calculated by the EnsEMBL Variant Effect Predictor (VEP)</li>
 <li><a href="../Ontology/">Ontology</a> - a concept or class in an ontology, vocabulary or thesaurus</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>

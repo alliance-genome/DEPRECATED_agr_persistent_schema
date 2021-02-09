@@ -93,8 +93,8 @@
               
                 <h1 id="type-genomic-entity">Type: genomic entity</h1>
 <p>an entity that can either be directly located on a genome (gene, transcript, exon, regulatory region) or is encoded in a genome (protein)</p>
-<p>URI: <a href="https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/GenomicEntity">https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml/GenomicEntity</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Transcript],[MolecularEntity],[GenomicEntity&#124;has_biological_sequence:biological_sequence%20%3F]^-[Transcript],[GenomicEntity]^-[Gene],[GenomicEntity]^-[Chromosome],[GenomicEntity]^-[Allele],[MolecularEntity]^-[GenomicEntity],[Gene],[Chromosome],[Allele]" /></p>
+<p>URI: <a href="http://alliancegenome.org/GenomicEntity">alliance:GenomicEntity</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantProteinSequence],[Variant],[Transcript],[MolecularEntity],[GenomicEntity&#124;has_biological_sequence:biological_sequence%20%3F]^-[VariantProteinSequence],[GenomicEntity]^-[Variant],[GenomicEntity]^-[Transcript],[GenomicEntity]^-[Gene],[GenomicEntity]^-[Chromosome],[GenomicEntity]^-[Allele],[MolecularEntity]^-[GenomicEntity],[Gene],[Chromosome],[Allele]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../MolecularEntity/">MolecularEntity</a> - A gene, gene product, small molecule or macromolecule (including protein complex)"</li>
@@ -105,8 +105,13 @@
 <li><a href="../Chromosome/">Chromosome</a></li>
 <li><a href="../Gene/">Gene</a> - A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</li>
 <li><a href="../Transcript/">Transcript</a> - An RNA synthesized on a DNA or RNA template by an RNA polymerase.</li>
+<li><a href="../Variant/">Variant</a> - Variant class</li>
+<li><a href="../VariantProteinSequence/">VariantProteinSequence</a> - Class for variant protein sequences</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
+<ul>
+<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of/">is variant of</a></em>  <sub>0..<em></sub>  </em><em><a href="./">GenomicEntity</a></em>*</li>
+</ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
