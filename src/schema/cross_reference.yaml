@@ -1,14 +1,15 @@
-id: Alliance-cross-reference-prototype
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/cross_reference.yaml
 
 imports:
   - core
 
 classes:
 
-  alliance cross reference:
+  cross reference:
+    is_a: entity
     slots:
       - id
-      - pages
+      - page areas
       - display name
       - prefix
 
@@ -17,18 +18,16 @@ slots:
   prefix:
     required: true
     multivalued: false
-    description: Denormalization to help with classifying types of crossReferences, ie: distinguishing DOIs from PMC ids, etc.
+    description: Denormalization to help with classifying types of crossReferences, distinguishing DOIs from PMC ids, etc.
 
-  pages:
+  page areas:
     required: true
     multivalued: true
-    domain: cross reference
     range: string
 
   display name:
     required: true
     multivalued: false
-    domain: cross reference
     range: string
 
 

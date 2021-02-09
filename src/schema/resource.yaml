@@ -1,9 +1,7 @@
-id: Alliance-reference-prototype
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource.yaml
 
 imports:
   - core
-  - reference
-  - person
 
 classes:
   resource:
@@ -13,7 +11,6 @@ classes:
       - iso abbreviation
       - medline abbreviation
       - copyright date
-      - publisher
       - print issn
       - online issn
       - has publisher
@@ -44,56 +41,46 @@ classes:
 
 slots:
 
-    iso abbreviation:
-      is_a: node property
-      description: >-
-      range: string
-      domain: information content entity
+  iso abbreviation:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
 
-    medline abbreviation:
-      is_a: node property
-      description: >-
-      range: string
-      domain: information content entity
+  medline abbreviation:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
 
-    copyright date:
-      is_a: node property
-      description: >-
-      range: date
-      domain: information content entity
+  copyright date:
+    is_a: node property
+    description: >-
+    range: date
+    domain: information content entity
 
-    publisher:
-      is_a: node property
-      description: >-
-      range: string
-      domain: information content entity
+  print issn:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
 
-    print issn:
-      is_a: node property
-      description: >-
-      range: string
-      domain: information content entity
+  online issn:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
 
-    online issn:
-      is_a: node property
-      description: >-
-      range: string
-      domain: information content entity
+  summary:
+    is_a: node property
+    description: >-
+    range: string
+    domain: information content entity
 
-    summary:
-      is_a: node property
-      description: >-
-      range: string
-      domain: information content entity
-
-    has references:
-      is_a: named thing
-      singular_name: has reference
-      description: >-
-      domain: resource
-      multivalued: true
-      range: reference
-
-
-
-
+  has editors:
+    is_a: related to
+    description: >-
+      holds between a resource and a editor_resource
+    multivalued: true
+    domain: resource
+    range: resource

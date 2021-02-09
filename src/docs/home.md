@@ -1,4 +1,4 @@
 # Introduction
 
-about my_schema
+about alliance schema
 
