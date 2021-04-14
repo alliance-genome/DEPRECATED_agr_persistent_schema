@@ -94,7 +94,7 @@
                 <h1 id="class-varianttranscriptconsequenceassociation">Class: VariantTranscriptConsequenceAssociation</h1>
 <p>Class for transcript-level VEP results</p>
 <p>URI: <a href="http://alliancegenome.orgVariantTranscriptConsequenceAssociation">alliance:VariantTranscriptConsequenceAssociation</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing]&lt;object%201..1-++[VariantTranscriptConsequenceAssociation&#124;predicate:string;amino_acid_reference:biological_sequence%20%3F;amino_acid_variant:biological_sequence%20%3F;codon_reference:string%20%3F;codon_variant:string%20%3F;cdna_start:integer%20%3F;cdna_end:integer%20%3F;cds_start:integer%20%3F;cds_end:integer%20%3F;protein_start:integer%20%3F;protein_end:integer%20%3F;hgvs_protein_nomenclature:string%20%3F;hgvs_coding_nomenclature:string%20%3F;cnda_end:string%20%3F;cns_end:string%20%3F],[NamedThing]&lt;subject%201..1-++[VariantTranscriptConsequenceAssociation],[NamedThing]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Transcript]&lt;object%201..1-++[VariantTranscriptConsequenceAssociation&#124;predicate:string;amino_acid_reference:biological_sequence%20%3F;amino_acid_variant:biological_sequence%20%3F;codon_reference:string%20%3F;codon_variant:string%20%3F;cdna_start:integer%20%3F;cdna_end:integer%20%3F;cds_start:integer%20%3F;cds_end:integer%20%3F;protein_start:integer%20%3F;protein_end:integer%20%3F;hgvs_protein_nomenclature:string%20%3F;hgvs_coding_nomenclature:string%20%3F;cnda_end:string%20%3F;cns_end:string%20%3F],[Variant]&lt;subject%201..1-++[VariantTranscriptConsequenceAssociation],[Variant],[Transcript]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
@@ -166,7 +166,7 @@
 </li>
 <li><a href="../variant_transcript_consequence_association_object/">variant transcript consequence association➞object</a>  <sub>REQ</sub><ul>
 <li>Description: Transcript that is affected by the associated variant</li>
-<li>range: <a href="../NamedThing/">NamedThing</a></li>
+<li>range: <a href="../Transcript/">Transcript</a></li>
 </ul>
 </li>
 <li><a href="../variant_transcript_consequence_association_protein_end/">variant transcript consequence association➞protein end</a>  <sub>OPT</sub><ul>
@@ -181,7 +181,7 @@
 </li>
 <li><a href="../variant_transcript_consequence_association_subject/">variant transcript consequence association➞subject</a>  <sub>REQ</sub><ul>
 <li>Description: the variant identifier</li>
-<li>range: <a href="../NamedThing/">NamedThing</a></li>
+<li>range: <a href="../Variant/">Variant</a></li>
 </ul>
 </li>
 </ul>

@@ -93,7 +93,7 @@
               
                 <h1 id="class-varianttochromosomeassociation">Class: VariantToChromosomeAssociation</h1>
 <p>URI: <a href="http://alliancegenome.orgVariantToChromosomeAssociation">alliance:VariantToChromosomeAssociation</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Assembly]&lt;has%20assembly%200..1-++[VariantToChromosomeAssociation&#124;predicate:string;start:string%20%3F;end:string%20%3F],[Chromosome]&lt;has%20chromosome%200..1-++[VariantToChromosomeAssociation],[NamedThing]&lt;object%201..1-++[VariantToChromosomeAssociation],[NamedThing]&lt;subject%201..1-++[VariantToChromosomeAssociation],[NamedThing],[Chromosome],[Assembly]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Assembly]&lt;has%20assembly%200..1-++[VariantToChromosomeAssociation&#124;predicate:string;start:string%20%3F;end:string%20%3F],[Chromosome]&lt;has%20chromosome%200..1-++[VariantToChromosomeAssociation],[Chromosome]&lt;object%201..1-++[VariantToChromosomeAssociation],[Variant]&lt;subject%201..1-++[VariantToChromosomeAssociation],[Variant],[Chromosome],[Assembly]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
@@ -118,7 +118,7 @@
 </li>
 <li><a href="../variant_to_chromosome_association_object/">variant to chromosome association➞object</a>  <sub>REQ</sub><ul>
 <li>Description: Should be the id of the chromosome</li>
-<li>range: <a href="../NamedThing/">NamedThing</a></li>
+<li>range: <a href="../Chromosome/">Chromosome</a></li>
 </ul>
 </li>
 <li><a href="../variant_to_chromosome_association_predicate/">variant to chromosome association➞predicate</a>  <sub>REQ</sub><ul>
@@ -127,7 +127,7 @@
 </li>
 <li><a href="../variant_to_chromosome_association_subject/">variant to chromosome association➞subject</a>  <sub>REQ</sub><ul>
 <li>Description: Should be the id of the variant</li>
-<li>range: <a href="../NamedThing/">NamedThing</a></li>
+<li>range: <a href="../Variant/">Variant</a></li>
 </ul>
 </li>
 </ul>

@@ -93,7 +93,7 @@
               
                 <h1 id="class-variantgeneconsequenceassociation">Class: VariantGeneConsequenceAssociation</h1>
 <p>URI: <a href="http://alliancegenome.orgVariantGeneConsequenceAssociation">alliance:VariantGeneConsequenceAssociation</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing]&lt;object%201..1-++[VariantGeneConsequenceAssociation&#124;predicate:string;vep_consequence:string%20%3F;vep_impact:string%20%3F;polyphen_score:float%20%3F;polyphen_prediction:string%20%3F;sift_score:float%20%3F;sift_prediction:string%20%3F],[NamedThing]&lt;subject%201..1-++[VariantGeneConsequenceAssociation],[NamedThing]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Gene]&lt;object%201..1-++[VariantGeneConsequenceAssociation&#124;predicate:string;vep_consequence:string%20%3F;vep_impact:string%20%3F;polyphen_score:float%20%3F;polyphen_prediction:string%20%3F;sift_score:float%20%3F;sift_prediction:string%20%3F],[Variant]&lt;subject%201..1-++[VariantGeneConsequenceAssociation],[Variant],[Gene]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
@@ -125,12 +125,12 @@
 </li>
 <li><a href="../variant_gene_consequence_association_object/">variant gene consequence association➞object</a>  <sub>REQ</sub><ul>
 <li>Description: object should be the gene identifier</li>
-<li>range: <a href="../NamedThing/">NamedThing</a></li>
+<li>range: <a href="../Gene/">Gene</a></li>
 </ul>
 </li>
 <li><a href="../variant_gene_consequence_association_subject/">variant gene consequence association➞subject</a>  <sub>REQ</sub><ul>
 <li>Description: subject should be the variant identifier</li>
-<li>range: <a href="../NamedThing/">NamedThing</a></li>
+<li>range: <a href="../Variant/">Variant</a></li>
 </ul>
 </li>
 <li><a href="../vep_consequence/">vep consequence</a>  <sub>OPT</sub><ul>

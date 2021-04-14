@@ -94,12 +94,17 @@
                 <h1 id="class-variant">Class: Variant</h1>
 <p>Variant class</p>
 <p>URI: <a href="http://alliancegenome.orgVariant">alliance:Variant</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Reference]&lt;references%200..*-%20[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;cross_references:string%20*],[Allele]&lt;is%20variant%20of%20allele%200..1-++[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-++[Variant],[Gene]&lt;is%20variant%20of%20gene%200..1-++[Variant],[NamedThing]^-[Variant],[Transcript],[Reference],[NamedThing],[Gene],[Allele]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantTranscriptConsequenceAssociation],[VariantToChromosomeAssociation],[VariantGeneConsequenceAssociation],[Reference]&lt;references%200..*-%20[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;cross_references:string%20*],[Allele]&lt;is%20variant%20of%20allele%200..1-++[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-++[Variant],[Gene]&lt;is%20variant%20of%20gene%200..1-++[Variant],[VariantGeneConsequenceAssociation]++-%20subject%201..1&gt;[Variant],[VariantToChromosomeAssociation]++-%20subject%201..1&gt;[Variant],[VariantTranscriptConsequenceAssociation]++-%20subject%201..1&gt;[Variant],[NamedThing]^-[Variant],[Transcript],[Reference],[NamedThing],[Gene],[Allele]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
+<ul>
+<li><strong><a href="../VariantGeneConsequenceAssociation/">VariantGeneConsequenceAssociation</a></strong> <em><a href="../variant_gene_consequence_association_subject/">variant gene consequence association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
+<li><strong><a href="../VariantToChromosomeAssociation/">VariantToChromosomeAssociation</a></strong> <em><a href="../variant_to_chromosome_association_subject/">variant to chromosome association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
+<li><strong><a href="../VariantTranscriptConsequenceAssociation/">VariantTranscriptConsequenceAssociation</a></strong> <em><a href="../variant_transcript_consequence_association_subject/">variant transcript consequence association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
+</ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>

@@ -94,7 +94,7 @@
                 <h1 id="class-gene">Class: Gene</h1>
 <p>A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</p>
 <p>URI: <a href="http://alliancegenome.orgGene">alliance:Gene</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[NamedThing],[Variant]++-%20is%20variant%20of%20gene%200..1&gt;[Gene],[NamedThing]^-[Gene]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantGeneConsequenceAssociation],[Variant],[NamedThing],[Variant]++-%20is%20variant%20of%20gene%200..1&gt;[Gene],[VariantGeneConsequenceAssociation]++-%20object%201..1&gt;[Gene],[NamedThing]^-[Gene]" /></p>
 <h2 id="identifier-prefixes">Identifier prefixes</h2>
 <ul>
 <li>ENSEMBL</li>
@@ -113,6 +113,7 @@
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
 <li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of_gene/">is variant of gene</a></em>  <sub>OPT</sub>  <strong><a href="./">Gene</a></strong></li>
+<li><strong><a href="../VariantGeneConsequenceAssociation/">VariantGeneConsequenceAssociation</a></strong> <em><a href="../variant_gene_consequence_association_object/">variant gene consequence association➞object</a></em>  <sub>REQ</sub>  <strong><a href="./">Gene</a></strong></li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h2 id="other-properties">Other properties</h2>
