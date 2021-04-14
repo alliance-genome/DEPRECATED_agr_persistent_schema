@@ -1,10 +1,12 @@
-id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference.yaml
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
 
 imports:
   - core
-  - biolinkml:types
-  - cross_reference
-  - author_reference
+  - linkml:types
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
 
 classes:
   reference:
@@ -17,23 +19,23 @@ classes:
       - year published
       - month published
       - day published
-      - date arrived in pubmed
-      - date last modified in pubmed
+      - date arrived in PubMed
+      - date last modified in PubMed
       - date last modified
       - volume
       - pages
       - abstract
       - citation
-      - pub med type
+      - PubMed type
       - issue name
       - issue date
-      - has mod reference types
-      - has authors
-      - has tags
-      - has topics
-      - has cross references
-      - has publisher
-      - has keywords
+      - mod reference types
+      - authors
+      - tags
+      - topics
+      - cross references
+      - publisher
+      - keywords
     id_prefixes:
       - PMID
       - NLMID
@@ -46,160 +48,80 @@ classes:
       - RGD
       - PMC
       - DOI
-    slot_usage:
-      id:
-        description: the identifier for the publication in the form of a curie.
-        required: true
-      title:
-        description: the title of the publication
-      date published:
-        description: >-
-          The date the reference was published.  This field can be submitted by a MOD or from PUBMED.
-          When pulled from PUBMED, this date is generated from the year, month and day published fields.
-          When submitted from a MOD it can be any string. examples include: Spring 1991, 01-01-1991, 25-12-1991
-      year published:
-        description: When the reference is a PUBMED reference, this will be a 4-digit year.
-      month published:
-        description: When the reference is a PUBMED reference, this will be a 2-digit year.
-      day published:
-        description: When the reference is a PUBMED reference, this will be a 2-digit day.
-      date arrived in pubmed:
-        description: As per the PUBMED XML record, this is the date the reference entered PUBMED.
-      mod last modified date:
-        description: The date the meta data on this object was last updated at the MOD.
-      pubmed last modified date:
-        description: The date the meta data on this object was last updated at PUBMED.
-      alliance category:
-        description: Controlled vocabulary term drawn from a list of Alliance-defined reference categories.
-      has publisher:
-         description: >-
-            Volume of a book or music release in a collection/series or a published collection of
-            journal issues in a serial publication
-      pages:
-        description: Page number of source referenced for statement or publication
-      abstract:
-        description: The abstract of the reference.
-      citation:
-        description: Is a reference to a source.
-      has mod reference types:
-        description: Reference type as defined by the MOD on submission of the publication.
-        multivalued: true
-      has authors:
-        description: >-
-          List of authors in the reference.  There might be more than one author in the publication with the same
-          name.
-        multivalued: true
-      has tags:
-        description: Tags from the MOD from a controlled vocabulary of possible tags.
-        multivalued: true
-      has topics:
-        description: >-
-          The list of MeSH terms associated with a reference.  Note: this is an association slot that allows
-          a qualifier to be associated with the reference-meshTerm relationship.
-        multivalued: true
-      has cross references:
-        description: >-
-          The list of crossReference objects associated with a reference.
-
-  reference to mesh association:
-    is_a: association
-    defining_slots:
-      - subject
-      - object
-    slot_usage:
-      subject:
-        range: reference
-      object:
-        range: ontology
-        description: has topic is the relation used to describe the relationship between
 
 slots:
 
-  has topics:
-    is_a: related to
-    singular_name: has topic
-    domain: reference
-    range: ontology
+  topics:
+    singular_name: topic
+    range: uriorcurie
     exact_mappings:
       - foaf:topic
     description: Connects an object to a vocabulary term or ontology that describes some aspect of the entity.
 
-  pub med type:
-    is_a: node property
+  PubMed type:
     description: >-
-      Type of information content entity as descriped by pub med/
+      Type of information content entity as described by pub med.
     range: string
     domain: information content entity
 
   date published:
-    is_a: node property
     description: >-
       Date on which an entity was created.
     range: date
     domain: information content entity
 
-  date last modified in pubmed:
-    is_a: node property
+  date last modified in PubMed:
     description: >-
       Date on which an entity was created.
     range: date
     domain: information content entity
 
   date last modified:
-    is_a: node property
     description: >-
       Date on which an entity was last modified by the MOD.
     range: date
     domain: named thing
 
   year published:
-    is_a: node property
     description: >-
       Year in which an entity was created.
     range: string
     domain: information content entity
 
   month published:
-    is_a: node property
     description: >-
       Month in which an entity was created.
     range: string
     domain: information content entity
 
   day published:
-    is_a: node property
     description: >-
       Day in which an entity was created.
     range: string
     domain: information content entity
 
-  date arrived in pubmed:
-    is_a: node property
+  date arrived in PubMed:
     description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.
     range: date
     domain: information content entity
 
-  has mod reference types:
-    is_a: node property
-    singular_name: has mod reference type
+  mod reference types:
+    singular_name: mod reference type
     multivalued: true
     description: List of types as assigned at a MOD.
 
-  has tags:
-    is_a: node property
-    singular_name: has tag
+  tags:
+    singular_name: tag
     description: >-
       Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").
     multivalued: true
 
   issue date:
-    is_a: node property
     description: Date on which an entity was issued.
     domain: information content entity
     range: date
 
   last modified:
-    is_a: node property
     description: Date on which an entity was last modified in PubMed or in the MOD.
     domain: information content entity
     range: date
@@ -210,7 +132,6 @@ slots:
     domain: information content entity
 
   pages:
-    is_a: node property
     description: page number of source referenced for statement or publication
     domain: information content entity
     multivalued: true
@@ -235,8 +156,7 @@ slots:
     multivalued: false
     domain: reference
 
-  has keywords:
-    is_a: node property
+  keywords:
     multivalued: true
     description: keywords tagging a publication
     domain: information content entity

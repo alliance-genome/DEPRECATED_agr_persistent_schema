@@ -1,0 +1,185 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence
+
+imports:
+  - core
+  - linkml:types
+  - variation
+  - genomic
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+
+classes:
+  variant gene consequence association:
+    aliases: ['gene level consequence']
+    slots:
+      - subject
+      - predicate
+      - object
+      - vep consequence
+      - vep impact
+      - polyphen score
+      - polyphen prediction
+      - sift score
+      - sift prediction
+    slot_usage:
+      subject:
+        domain: uriorcurie
+        description: >-
+          subject should be the variant identifier
+      object:
+        domain: uriorcurie
+        description: >-
+          object should be the gene identifier
+
+  variant transcript consequence association:
+    aliases: ['transcript level consequence']
+    description: >-
+      Class for transcript-level VEP results
+    slots:
+      - subject
+      - predicate
+      - object
+      - amino acid reference
+      - amino acid variant
+      - codon reference
+      - codon variant
+      - cdna start
+      - cdna end
+      - cds start
+      - cds end
+      - protein start
+      - protein end
+      - hgvs protein nomenclature
+      - hgvs coding nomenclature
+    slot_usage:
+      amino acid reference:
+        description: >-
+          Amino acid sequence encoded by codon(s) in reference genome sequence
+          altered by the variant
+      amino acid variant:
+        description: >-
+          Amino acid sequence encoded by codon(s) in variant sequence
+      codon reference:
+        description: >-
+          Reference genome sequence of codon(s) altered by the variant.  Bases
+          affected by the variant are given in upper case, bases flanking the
+          variation are given in lower case
+      codon variant:
+        description: >-
+          Sequence of codon(s) in variant sequence altered by the variant.
+          Bases affected by the variant are given in upper case, bases flanking
+          the variation are given in lower case
+      cdna start:
+        description: Start position of variant in cDNA coordinates
+      cnda end:
+        description: End position of variant in cDNA coordinates
+      cds start:
+        description: Start position of variant in CDS coordinates
+      cns end:
+        description: End position of variant in CDS coordinates
+      protein start:
+        description: Start position of variant in amino acid sequence
+      protein end:
+        description: End position of variant in amino acid sequence
+      hgvs protein nomenclature:
+        description: HGVS protein sequence (HGVSp) name
+      hgvs coding nomenclature:
+        description: HGVS coding sequence (HGVSc) name
+      subject:
+        required: true
+        description: the variant identifier
+      object:
+        required: true
+        description: Transcript that is affected by the associated variant
+
+
+slots:
+
+  vep impact:
+    description: VEP predicted impact of variation on molecule
+    domain: variant gene consequence association
+
+  polyphen score:
+    description: PolyPhen-2 score between 0 and 1
+    domain: variant gene consequence association
+    range: float
+
+  polyphen prediction:
+    description: PolyPhen-2 prediction
+    domain: variant gene consequence association
+
+  sift score:
+    description: SIFT score between 0 and 1
+    domain: variant gene consequence association
+    range: float
+
+  sift prediction:
+    description: SIFT prediction
+    domain: variant gene consequence association
+
+
+  amino acid reference:
+    description: reference genome amino acid sequence at variant position
+    domain: variant transcript consequence association
+    range: biological sequence
+
+  amino acid variant:
+    description: variant amino acid sequence at variant position
+    domain: variant transcript consequence association
+    range: biological sequence
+
+  codon reference:
+    description: >-
+      reference sequence of codon(s) affected by variation - bases
+      outside of the variant region are in lower case, those within are in
+      upper case (e.g. cTa)
+    domain: variant transcript consequence association
+
+  codon variant:
+    description: >-
+      variant sequence of codon(s) affected by variation - bases
+      outside of the variant region are in lower case, those within are in
+      upper case (e.g. cAa)
+    domain: variant transcript consequence association
+
+  cdna start:
+    description: start position of variation in cDNA coordinates
+    domain: variant transcript consequence association
+    range: integer
+
+  cdna end:
+    description: end position of variation in cDNA coordinates
+    domain: variant transcript consequence association
+    range: integer
+
+  cds start:
+    description: start position of variation in CDS coordinates
+    domain: variant transcript consequence association
+    range: integer
+
+  cds end:
+    description: end position of variation in CDS coordinates
+    domain: variant transcript consequence association
+    range: integer
+
+  protein start:
+    description: start position of variation in protein amino acid coordinates
+    domain: variant transcript consequence association
+    range: integer
+
+  protein end:
+    description: end position of variation in protein amino acid coordinates
+    domain: variant transcript consequence association
+    range: integer
+
+  hgvs protein nomenclature:
+    description: HGVSp nomenclature for variation in protein
+    domain: variant transcript consequence association
+
+  hgvs coding nomenclature:
+    description: HGVSc nomenclature for variation in coding sequence
+    domain: variant transcript consequence association
+
+  vep consequence:

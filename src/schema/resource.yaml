@@ -1,4 +1,4 @@
-id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource.yaml
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource
 
 imports:
   - core
@@ -14,13 +14,13 @@ classes:
       - copyright date
       - print issn
       - online issn
-      - has publisher
+      - publisher
       - volumes
       - summary
-      - has synonyms
-      - has references
-      - has authors
-      - has editors
+      - synonyms
+      - references
+      - authors
+      - editors
     id_prefixes:
       - PMID
       - NLMID
@@ -43,43 +43,36 @@ classes:
 slots:
 
   iso abbreviation:
-    is_a: node property
     description: >-
     range: string
     domain: information content entity
 
   medline abbreviation:
-    is_a: node property
     description: >-
     range: string
     domain: information content entity
 
   copyright date:
-    is_a: node property
     description: >-
     range: date
     domain: information content entity
 
   print issn:
-    is_a: node property
     description: >-
     range: string
     domain: information content entity
 
   online issn:
-    is_a: node property
     description: >-
     range: string
     domain: information content entity
 
   summary:
-    is_a: node property
     description: >-
     range: string
     domain: information content entity
 
-  has editors:
-    is_a: related to
+  editors:
     description: >-
       holds between a resource and a editor_resource
     multivalued: true

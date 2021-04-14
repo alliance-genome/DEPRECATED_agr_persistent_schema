@@ -1,8 +1,8 @@
-id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisher_resource.yaml
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/publisherResource
 
 imports:
-  - cross_reference
-  - author_reference
+  - core
+  - authorReference
 
 classes:
   publisher resource:
@@ -12,4 +12,4 @@ classes:
       - middle names
       - last name
       - initials
-      - has cross references
+      - cross references
