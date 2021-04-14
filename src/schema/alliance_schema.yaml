@@ -26,8 +26,6 @@ imports:
   - reference
   - resource
   - crossReference
-  - editorResource
-  - publisherResource
   - genomic
   - variation
   - variantConsequence
