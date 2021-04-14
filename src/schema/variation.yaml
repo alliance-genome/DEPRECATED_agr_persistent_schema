@@ -1,18 +1,21 @@
-id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation.yaml
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation
 name: Alliance-Schema-Prototype-Variation
 title: Alliance Schema Prototype Variation
 
 imports:
   - core
-  - cross_reference
-  - resource
+  - linkml:types
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
 
 # Classes
 
 classes:
 
   variant:
-    is_a: genomic entity
+    is_a: named thing
     description: >-
       Variant class
     slots:
@@ -23,195 +26,38 @@ classes:
       - padding right
       - date produced
       - release
-      # below are one-to-many, those after data provider are predicates
       - data provider
       - is variant of gene
       - is variant of transcript
       - is variant of allele
-      - has synonyms
-      - has identifier
-      - has so term
-      - has ontology
-      - has references
-      - on chromosome
-      - has assembly
-      - has genomic location
-      - has note
-      - has gene level consequence
-      - has transcript level consequence
-      - has variant protein sequence
-      - has cross references
+      - synonyms
+      - type
+      - references
+      - note
+      - protein sequence
+      - cross references
     exact_mappings:
       - SO:0001059
-      - biolink:Sequence_variant
-    slot_usage:
-      id:
-        required: true
-        description: Unique ID for variant
-      genomic reference sequence:
-        description: Reference sequence at the variant position
-      genomic variant sequence:
-        description: Alternative sequence at the variant position
-      padding left:
-        description: Upstream genomic sequence flanking variant
-      padding right:
-        description: Downstream genomic sequence flanking variant
-      data provider:
-        description: Name of the MOD that submitted the variant data
-
-  molecular consequence:
-    is_a: named thing
-    description: >-
-      Class for molecular consequences calculated by the EnsEMBL Variant
-      Effect Predictor (VEP)
-    slots:
-      - vep consequence
-      - vep impact
-      - polyphen prediction
-      - polyphen score
-      - sift prediction
-      - sift score
-      - consequence of variant
-    slot_usage:
-      vep consequence:
-        required: true
-        description: EnsEMBL VEP calculated consequence (SO term)
-      vep impact:
-        required: true
-        description: >-
-          EnsEMBL VEP impact rating (HIGH/MODERATE/LOW/MODIFIER)
-      polyphen prediction:
-        description: >-
-          Pathogenicity prediction category calculated by PolyPhen-2
-      polyphen score:
-        description: >-
-          Pathogenicity score, between 0 and 1, calculated by PolyPhen-2
-      sift prediction:
-        description: >-
-          Pathogenicity prediction category calculated by SIFT
-      sift score:
-        description: >-
-          Pathogenicity score calculated by SIFT
-      consequence of variant:
-        required: true
-        description: Variant associated with the molecular consequence
-
-  gene level consequence:
-    is_a: molecular consequence
-    description: >-
-      Class for gene-level VEP results
-    slots:
-      # below are predicates
-      - affects gene
-    slot_usage:
-      affects gene:
-        required: true
-        description: Gene that is affected by the associated variant
-
-  transcript level consequence:
-    is_a: molecular consequence
-    description: >-
-      Class for transcript-level VEP results
-    slots:
-      - amino acid reference
-      - amino acid variant
-      - codon reference
-      - codon variant
-      - cdna start
-      - cdna end
-      - cds start
-      - cds end
-      - protein start
-      - protein end
-      - hgvs protein nomenclature
-      - hgvs coding nomenclature
-      # below are predicates
-      - affects transcript
-    slot_usage:
-      amino acid reference:
-        description: >-
-          Amino acid sequence encoded by codon(s) in reference genome sequence
-          altered by the variant
-      amino acid variant:
-        description: >-
-          Amino acid sequence encoded by codon(s) in variant sequence
-      codon reference:
-        description: >-
-          Reference genome sequence of codon(s) altered by the variant.  Bases
-          affected by the variant are given in upper case, bases flanking the
-          variation are given in lower case
-      codon variant:
-        description: >-
-          Sequence of codon(s) in variant sequence altered by the variant.
-          Bases affected by the variant are given in upper case, bases flanking
-          the variation are given in lower case
-      cdna start:
-        description: Start position of variant in cDNA coordinates
-      cnda end:
-        description: End position of variant in cDNA coordinates
-      cds start:
-        description: Start position of variant in CDS coordinates
-      cns end:
-        description: End position of variant in CDS coordinates
-      protein start:
-        description: Start position of variant in amino acid sequence
-      protein end:
-        description: End position of variant in amino acid sequence
-      hgvs protein nomenclature:
-        description: HGVS protein sequence (HGVSp) name
-      hgvs coding nomenclature:
-        description: HGVS coding sequence (HGVSc) name
-      affects transcript:
-        required: true
-        description: Transcript that is affected by the associated variant
-
-  variant protein sequence:
-    is_a: genomic entity
-    description: >-
-      Class for variant protein sequences
-    slots:
-      - has variant
-      - has transcript
-    slot_usage:
-      has biological sequence:
-        description: >-
-          Protein sequence transcribed from transcript with variant
-      has variant:
-        description: Variant associated with sequence
-        required: true
-      has transcript:
-        description: Transcript associated with sequence
-        required: true
-
-  variant to entity association mixin:
-    description:
-      An association between a variant and another entity
-    mixin: true
-    defining_slots:
-      - subject
-    slot_usage:
-      subject:
-        range: variant
-        description: the variant that alters the molecular entity
 
 # Slots
 
 slots:
 
+  note:
+    range: string
+    multivalued: false
+
   date produced:
-    is_a: node property
     description: >-
       Date on which an entity was produced.
-    range: date
     domain: variant
+    range: date
 
   hgvs nomenclature:
-    is_a: node property
     description: HGVSg nomenclature for variant
     domain: variant
 
   genomic reference sequence:
-    is_a: node property
     description: reference genome sequence at variation position
     domain: variant
     range: biological sequence
@@ -235,191 +81,18 @@ slots:
     domain: variant
     range: biological sequence
 
-  is variant of:
-    is_a: related to
-    description: holds between a variant and a genomic entity
-    multivalued: true
+  protein sequence:
     domain: variant
-    range: genomic entity
-    narrow_mappings:
-      biolink:is sequence variant of
+    range: biological sequence
 
   is variant of gene:
-    is_a: is variant of
-    description: holds between a variant and a gene
-    multivalued: true
     domain: variant
     range: gene
 
   is variant of transcript:
-    is_a: is variant of
-    description: holds between a variant and a transcript
-    multivalued: true
     domain: variant
     range: transcript
 
   is variant of allele:
-    is_a: is variant of
-    description: holds between a variant and an allele
-    multivalued: true
     domain: variant
     range: allele
-
-  has consequence:
-    is_a: related to
-    description: holds between a variant and a molecular consequence
-    multivalued: true
-    domain: variant
-    range: molecular consequence
-
-  has gene level consequence:
-    is_a: has consequence
-    description: holds between a variant and a gene level consequence
-    multivalued: true
-    domain: variant
-    range: gene level consequence
-
-  has transcript level consequence:
-    is_a: has consequence
-    description: holds between a variant and a transcript level consequence
-    multivalued: true
-    domain: variant
-    range: transcript level consequence
-
-  has variant protein sequence:
-    is_a: related to
-    description: holds between a variant and a variant protein sequence
-    multivalued: true
-    domain: variant
-    range: variant protein sequence
-
-  vep consequence:
-    is_a: node property
-    description: VEP molecular consequence
-    domain: molecular consequence
-
-  vep impact:
-    is_a: node property
-    description: VEP predicted impact of variation on molecule
-    domain: molecular consequence
-
-  polyphen score:
-    is_a: node property
-    description: PolyPhen-2 score between 0 and 1
-    domain: molecular consequence
-    range: float
-
-  polyphen prediction:
-    is_a: node property
-    description: PolyPhen-2 prediction
-    domain: molecular consequence
-
-  sift score:
-    is_a: node property
-    description: SIFT score between 0 and 1
-    domain: molecular consequence
-    range: float
-
-  sift prediction:
-    is_a: node property
-    description: SIFT prediction
-    domain: molecular consequence
-
-  consequence of variant:
-    is_a: related to
-    description: holds between a molecular consequence and a variant
-    domain: molecular consequence
-    range: variant
-
-  affects gene:
-    is_a: related to
-    description: holds between a gene level consequence and a gene
-    domain: gene level consequence
-    range: gene
-
-  affects transcript:
-    is_a: related to
-    description: holds between a transcript level consequence and a transcript
-    domain: transcript level consequence
-    range: transcript
-
-  amino acid reference:
-    is_a: node property
-    description: reference genome amino acid sequence at variant position
-    domain: transcript level consequence
-    range: biological sequence
-
-  amino acid variant:
-    is_a: node property
-    description: variant amino acid sequence at variant position
-    domain: transcript level consequence
-    range: biological sequence
-
-  codon reference:
-    is_a: node property
-    description: >-
-      reference sequence of codon(s) affected by variation - bases
-      outside of the variant region are in lower case, those within are in
-      upper case (e.g. cTa)
-    domain: transcript level consequence
-
-  codon variant:
-    is_a: node property
-    description: >-
-      variant sequence of codon(s) affected by variation - bases
-      outside of the variant region are in lower case, those within are in
-      upper case (e.g. cAa)
-    domain: transcript level consequence
-
-  cdna start:
-    is_a: node property
-    description: start position of variation in cDNA coordinates
-    domain: transcript level consequence
-    range: integer
-
-  cdna end:
-    is_a: node property
-    description: end position of variation in cDNA coordinates
-    domain: transcript level consequence
-    range: integer
-
-  cds start:
-    is_a: node property
-    description: start position of variation in CDS coordinates
-    domain: transcript level consequence
-    range: integer
-
-  cds end:
-    is_a: node property
-    description: end position of variation in CDS coordinates
-    domain: transcript level consequence
-    range: integer
-
-  protein start:
-    is_a: node property
-    description: start position of variation in protein amino acid coordinates
-    domain: transcript level consequence
-    range: integer
-
-  protein end:
-    is_a: node property
-    description: end position of variation in protein amino acid coordinates
-    domain: transcript level consequence
-    range: integer
-
-  hgvs protein nomenclature:
-    is_a: node property
-    description: HGVSp nomenclature for variation in protein
-    domain: transcript level consequence
-
-  hgvs coding nomenclature:
-    is_a: node property
-    description: HGVSc nomenclature for variation in coding sequence
-    domain: transcript level consequence
-
-  has variant:
-    is_a: related to
-    description: holds between a named thing and a variant
-    multivalued: true
-    domain: named thing
-    range: variant

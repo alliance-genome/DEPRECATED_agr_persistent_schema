@@ -1,9 +1,7 @@
-id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/author_reference.yaml
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/authorReference
 
 imports:
   - core
-  - biolinkml:types
-  - cross_reference
 
 classes:
   author reference:
@@ -13,39 +11,32 @@ classes:
       - middle names
       - last name
       - initials
-      - has cross references
-    slot_usage:
-
+      - cross references
 
 slots:
 
   corresponding author:
-    is_a: node property
     description: >-
     range: information content entity
     domain: information content entity
 
   first name:
-    is_a: node property
     description: >-
     domain: information content entity
     range: information content entity
 
   middle names:
-    is_a: node property
     description: >-
     domain: information content entity
     range: information content entity
     multivalued: false
 
   last name:
-    is_a: node property
     description: >-
     domain: information content entity
     range: information content entity
 
   initials:
-    is_a: node property
     description: >-
     domain: information content entity
     range: information content entity

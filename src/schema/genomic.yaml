@@ -1,0 +1,37 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
+name: Alliance-Schema-Prototype-Variation
+title: Alliance Schema Prototype Variation
+
+imports:
+  - core
+  - linkml:types
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+
+classes:
+
+  chromosome:
+    is_a: named thing
+    description: The ID of the landmark used to establish the coordinate system for the current feature.
+
+  assembly:
+    is_a: named thing
+
+slots:
+
+  start:
+    description: The start of the feature in positive 1-based integer coordinates
+    close_mappings:
+      - biolink:start_interbase_coordinate
+    exact_mappings:
+      - faldo:begin
+
+  end:
+    description: The end of the feature in positive 1-based integer coordinates
+    close_mappings:
+      - biolink:end_interbase_coordinate
+    exact_mappings:
+      - faldo:end
+
