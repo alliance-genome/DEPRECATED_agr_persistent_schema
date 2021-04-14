@@ -24,12 +24,12 @@ classes:
       - sift score
       - sift prediction
     slot_usage:
-      subject:
-        domain: uriorcurie
+      subject: variant
+        range:
         description: >-
           subject should be the variant identifier
       object:
-        domain: uriorcurie
+        range: gene
         description: >-
           object should be the gene identifier
 
@@ -90,9 +90,11 @@ classes:
       subject:
         required: true
         description: the variant identifier
+        range: variant
       object:
         required: true
         description: Transcript that is affected by the associated variant
+        range: transcript
 
 
 slots:
