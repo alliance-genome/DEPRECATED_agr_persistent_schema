@@ -1,5 +1,5 @@
 # Auto generated from variantGenomicLocation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:32
+# Generation date: 2021-04-14 16:48
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation
@@ -23,6 +23,7 @@ from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import NamedThing
 from . genomic import Assembly, Chromosome
+from . variation import Variant
 from linkml_model.types import String
 
 metamodel_version = "1.7.0"
@@ -51,9 +52,9 @@ class VariantToChromosomeAssociation(YAMLRoot):
     class_name: ClassVar[str] = "variant to chromosome association"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosomeAssociation")
 
-    subject: Union[dict, NamedThing] = None
+    subject: Union[dict, Variant] = None
     predicate: str = None
-    object: Union[dict, NamedThing] = None
+    object: Union[dict, Chromosome] = None
     has_chromosome: Optional[Union[dict, Chromosome]] = None
     has_assembly: Optional[Union[dict, Assembly]] = None
     start: Optional[str] = None
@@ -62,8 +63,8 @@ class VariantToChromosomeAssociation(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.subject is None:
             raise ValueError("subject must be supplied")
-        if not isinstance(self.subject, NamedThing):
-            self.subject = NamedThing()
+        if not isinstance(self.subject, Variant):
+            self.subject = Variant(**self.subject)
 
         if self.predicate is None:
             raise ValueError("predicate must be supplied")
@@ -72,8 +73,8 @@ class VariantToChromosomeAssociation(YAMLRoot):
 
         if self.object is None:
             raise ValueError("object must be supplied")
-        if not isinstance(self.object, NamedThing):
-            self.object = NamedThing()
+        if not isinstance(self.object, Chromosome):
+            self.object = Chromosome()
 
         if self.has_chromosome is not None and not isinstance(self.has_chromosome, Chromosome):
             self.has_chromosome = Chromosome()
@@ -107,10 +108,10 @@ slots.has_assembly = Slot(uri=DEFAULT_.has_assembly, name="has assembly", curie=
                    model_uri=DEFAULT_.has_assembly, domain=VariantToChromosomeAssociation, range=Optional[Union[dict, Assembly]])
 
 slots.variant_to_chromosome_association_subject = Slot(uri=DEFAULT_.subject, name="variant to chromosome association_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_to_chromosome_association_subject, domain=VariantToChromosomeAssociation, range=Union[dict, NamedThing])
+                   model_uri=DEFAULT_.variant_to_chromosome_association_subject, domain=VariantToChromosomeAssociation, range=Union[dict, Variant])
 
 slots.variant_to_chromosome_association_object = Slot(uri=DEFAULT_.object, name="variant to chromosome association_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_to_chromosome_association_object, domain=VariantToChromosomeAssociation, range=Union[dict, NamedThing])
+                   model_uri=DEFAULT_.variant_to_chromosome_association_object, domain=VariantToChromosomeAssociation, range=Union[dict, Chromosome])
 
 slots.variant_to_chromosome_association_predicate = Slot(uri=DEFAULT_.predicate, name="variant to chromosome association_predicate", curie=DEFAULT_.curie('predicate'),
                    model_uri=DEFAULT_.variant_to_chromosome_association_predicate, domain=VariantToChromosomeAssociation, range=str)
