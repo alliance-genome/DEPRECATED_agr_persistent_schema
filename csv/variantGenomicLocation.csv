@@ -14,5 +14,6 @@ publisher_resource,,
 reference,,
 species,,
 transcript,,An RNA synthesized on a DNA or RNA template by an RNA polymerase.
+variant,,Variant class
 variant_to_chromosome_association,,
 

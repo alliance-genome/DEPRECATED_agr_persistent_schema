@@ -24,8 +24,8 @@ classes:
       - sift score
       - sift prediction
     slot_usage:
-      subject: variant
-        range:
+      subject:
+        range: variant
         description: >-
           subject should be the variant identifier
       object:

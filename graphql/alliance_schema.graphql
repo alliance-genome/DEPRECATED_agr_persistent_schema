@@ -157,9 +157,9 @@ type Variant
 
 type VariantGeneConsequenceAssociation
   {
-    subject: NamedThing!
+    subject: Variant!
     predicate: String!
-    object: NamedThing!
+    object: Gene!
     vepConsequence: String
     vepImpact: String
     polyphenScore: Float
@@ -170,9 +170,9 @@ type VariantGeneConsequenceAssociation
 
 type VariantToChromosomeAssociation
   {
-    subject: NamedThing!
+    subject: Variant!
     predicate: String!
-    object: NamedThing!
+    object: Chromosome!
     hasChromosome: Chromosome
     hasAssembly: Assembly
     start: String
@@ -181,9 +181,9 @@ type VariantToChromosomeAssociation
 
 type VariantTranscriptConsequenceAssociation
   {
-    subject: NamedThing!
+    subject: Variant!
     predicate: String!
-    object: NamedThing!
+    object: Transcript!
     aminoAcidReference: BiologicalSequence
     aminoAcidVariant: BiologicalSequence
     codonReference: String
