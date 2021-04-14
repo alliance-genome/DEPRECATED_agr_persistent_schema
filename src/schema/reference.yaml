@@ -3,6 +3,7 @@ id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/referenc
 imports:
   - core
   - linkml:types
+  - informationContentEntity
 
 prefixes:
   alliance: 'http://alliancegenome.org'

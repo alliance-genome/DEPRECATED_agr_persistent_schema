@@ -1,0 +1,146 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
+
+default_prefix: alliance
+default_range: string
+
+default_curi_maps:
+  - obo_context
+  - idot_context
+  - semweb_context
+  - monarch_context
+
+emit_prefixes:
+  - rdf
+  - rdfs
+  - xsd
+  - skos
+
+imports:
+  - linkml:types
+  - core
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+
+classes:
+
+  information content entity:
+    aliases: ['information', 'information artifact', 'information entity']
+    abstract: true
+    description: >-
+      a piece of information that typically describes some topic of discourse or is used as support.
+      Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
+      alternate CURIE otherwise.
+    slots:
+      - creation date
+    exact_mappings:
+      - IAO:0000030
+
+  author reference:
+    slots:
+      - corresponding author
+      - first name
+      - middle names
+      - last name
+      - initials
+      - cross references
+
+  editor resource:
+    is_a: information content entity
+    slots:
+      - first name
+      - middle names
+      - last name
+      - initials
+      - cross references
+
+  publisher resource:
+    is_a: information content entity
+    slots:
+      - first name
+      - middle names
+      - last name
+      - initials
+      - cross references
+
+slots:
+  creation date:
+    aliases: [ 'publication date' ]
+    range: date
+    description: >-
+      date on which an entity was created. This can be applied to nodes or edges
+    exact_mappings:
+      - dct:createdOn
+      - WIKIDATA_PROPERTY:P577
+
+  summary:
+    description: >-
+    domain: information content entity
+    range: string
+
+  copyright date:
+    description: >-
+    domain: information content entity
+    range: date
+
+  references:
+    description: holds between a named thing and a reference
+    multivalued: true
+    domain: named thing
+    range: reference
+
+  authors:
+    multivalued: true
+    domain: information content entity
+    range: author reference
+
+  corresponding author:
+    description: >-
+    range: information content entity
+    domain: information content entity
+
+  first name:
+    description: >-
+    domain: information content entity
+    range: information content entity
+
+  middle names:
+    description: >-
+    domain: information content entity
+    range: information content entity
+    multivalued: false
+
+  last name:
+    description: >-
+    domain: information content entity
+    range: information content entity
+
+  initials:
+    description: >-
+    domain: information content entity
+    range: information content entity
+
+  title:
+    multivalued: false
+    description: >-
+      A human readable title for a reference.
+    domain: information content entity
+    range: string
+
+  volumes:
+    singular_name: volume
+    multivalued: false
+    range: string
+    domain: information content entity
+    description: >-
+
+  publisher:
+    range: information content entity
+    domain: information content entity
+
+  address:
+    description: >-
+      the particulars of the place where someone or an organization is situated.  For now, this slot is a
+      simple text "blob" containing all relevant details of the given location for fitness of purpose.
+      For the moment, this "address" can include other contact details such as email and phone number(?).

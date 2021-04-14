@@ -1,5 +1,39 @@
 id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/person
 
+default_prefix: alliance
+default_range: string
+
+default_curi_maps:
+  - obo_context
+  - idot_context
+  - semweb_context
+  - monarch_context
+
+emit_prefixes:
+  - rdf
+  - rdfs
+  - xsd
+  - skos
+
+imports:
+  - linkml:types
+  - core
+  - informationContentEntity
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+
 classes:
 
   person:
+    slots:
+      - last name
+      - first name
+      - orcid
+
+slots:
+
+  orcid:
+    domain: information content entity
+    range: string

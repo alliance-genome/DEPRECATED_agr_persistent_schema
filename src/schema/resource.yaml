@@ -2,6 +2,7 @@ id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource
 
 imports:
   - core
+  - informationContentEntity
 
 classes:
   resource:
@@ -44,37 +45,27 @@ slots:
 
   iso abbreviation:
     description: >-
+    domain: resource
     range: string
-    domain: information content entity
 
   medline abbreviation:
     description: >-
+    domain: resource
     range: string
-    domain: information content entity
-
-  copyright date:
-    description: >-
-    range: date
-    domain: information content entity
 
   print issn:
     description: >-
+    domain: resource
     range: string
-    domain: information content entity
 
   online issn:
     description: >-
+    domain: resource
     range: string
-    domain: information content entity
-
-  summary:
-    description: >-
-    range: string
-    domain: information content entity
 
   editors:
     description: >-
       holds between a resource and a editor_resource
     multivalued: true
     domain: resource
-    range: resource
+    range: author reference
