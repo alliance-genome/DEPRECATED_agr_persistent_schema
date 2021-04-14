@@ -94,7 +94,7 @@
                 <h1 id="class-variant">Class: Variant</h1>
 <p>Variant class</p>
 <p>URI: <a href="http://alliancegenome.orgVariant">alliance:Variant</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Allele]&lt;is%20variant%20of%20allele%200..1-++[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;references:string%20*;note:string%20%3F;protein_sequence:biological_sequence%20%3F;cross_references:string%20*],[Transcript]&lt;is%20variant%20of%20transcript%200..1-++[Variant],[Gene]&lt;is%20variant%20of%20gene%200..1-++[Variant],[NamedThing]^-[Variant],[Transcript],[NamedThing],[Gene],[Allele]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Reference]&lt;references%200..*-%20[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;cross_references:string%20*],[Allele]&lt;is%20variant%20of%20allele%200..1-++[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-++[Variant],[Gene]&lt;is%20variant%20of%20gene%200..1-++[Variant],[NamedThing]^-[Variant],[Transcript],[Reference],[NamedThing],[Gene],[Allele]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
@@ -164,7 +164,7 @@
 </li>
 <li><a href="../references/">references</a>  <sub>0..*</sub><ul>
 <li>Description: holds between a named thing and a reference</li>
-<li>range: <a href="../types/String/">String</a></li>
+<li>range: <a href="../Reference/">Reference</a></li>
 </ul>
 </li>
 <li><a href="../release/">release</a>  <sub>OPT</sub><ul>
