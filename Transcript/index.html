@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Type: transcript - {{schema.description}}</title>
+  <title>Class: Transcript - {{schema.description}}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Type: transcript";
+    var mkdocs_page_name = "Class: Transcript";
     var mkdocs_page_input_path = "Transcript.md";
     var mkdocs_page_url = null;
   </script>
@@ -80,7 +80,7 @@
     
       
     
-    <li>Type: transcript</li>
+    <li>Class: Transcript</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,31 +91,25 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="type-transcript">Type: transcript</h1>
+                <h1 id="class-transcript">Class: Transcript</h1>
 <p>An RNA synthesized on a DNA or RNA template by an RNA polymerase.</p>
-<p>URI: <a href="http://alliancegenome.org/Transcript">alliance:Transcript</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantProteinSequence],[Variant],[TranscriptLevelConsequence],[TranscriptLevelConsequence]++-%20affects%20transcript(i)%200..*&gt;[Transcript&#124;has_biological_sequence(i):biological_sequence%20%3F],[VariantProteinSequence]++-%20has%20transcript(i)%200..*&gt;[Transcript],[Variant]++-%20is%20variant%20of%20transcript%200..*&gt;[Transcript],[TranscriptLevelConsequence]++-%20affects%20transcript%201..*&gt;[Transcript],[VariantProteinSequence]++-%20has%20transcript%201..*&gt;[Transcript],[GenomicEntity]^-[Transcript],[NamedThing],[GenomicEntity]" /></p>
+<p>URI: <a href="http://alliancegenome.orgTranscript">alliance:Transcript</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing]^-[Transcript],[NamedThing]" /></p>
+<h2 id="identifier-prefixes">Identifier prefixes</h2>
+<ul>
+<li>ENSEMBL</li>
+<li>FB</li>
+<li>WB</li>
+<li>MGI</li>
+<li>RGD</li>
+<li>SGD</li>
+<li>ZFIN</li>
+</ul>
 <h2 id="parents">Parents</h2>
 <ul>
-<li>is_a: <a href="../GenomicEntity/">GenomicEntity</a> - an entity that can either be directly located on a genome (gene, transcript, exon, regulatory region) or is encoded in a genome (protein)</li>
-</ul>
-<h2 id="referenced-by-class">Referenced by class</h2>
-<ul>
-<li><strong><a href="../TranscriptLevelConsequence/">TranscriptLevelConsequence</a></strong> <em><a href="../affects_transcript/">affects transcript</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
-<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_transcript/">has transcript</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
-<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of_transcript/">is variant of transcript</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
-<li><strong><a href="../TranscriptLevelConsequence/">TranscriptLevelConsequence</a></strong> <em><a href="../transcript_level_consequence_affects_transcript/">transcript level consequence➞affects transcript</a></em>  <sub>1..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
-<li><strong><a href="../VariantProteinSequence/">VariantProteinSequence</a></strong> <em><a href="../variant_protein_sequence_has_transcript/">variant protein sequence➞has transcript</a></em>  <sub>1..<em></sub>  </em><em><a href="./">Transcript</a></em>*</li>
+<li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
-<h3 id="inherited-from-genomic-entity">Inherited from genomic entity:</h3>
-<ul>
-<li><a href="../has_biological_sequence/">has biological sequence</a>  <sub>OPT</sub><ul>
-<li>Description: connects a genomic feature to its sequence</li>
-<li>range: <a href="../types/BiologicalSequence/">BiologicalSequence</a></li>
-</ul>
-</li>
-</ul>
 <h2 id="other-properties">Other properties</h2>
 <table>
 <thead>

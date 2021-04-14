@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Type: reference - {{schema.description}}</title>
+  <title>Class: Reference - {{schema.description}}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Type: reference";
+    var mkdocs_page_name = "Class: Reference";
     var mkdocs_page_input_path = "Reference.md";
     var mkdocs_page_url = null;
   </script>
@@ -80,7 +80,7 @@
     
       
     
-    <li>Type: reference</li>
+    <li>Class: Reference</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,34 +91,84 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="type-reference">Type: reference</h1>
-<p>URI: <a href="http://alliancegenome.org/Reference">alliance:Reference</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[ReferenceToMeshAssociation],[InformationContentEntity]&lt;has%20publisher%200..*-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_pubmed:date%20%3F;date_last_modified_in_pubmed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;pub_med_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;has_mod_reference_types:string%20*;has_authors:string%20*;has_tags:string%20*;has_cross_references:string%20*;has_keywords:string%20*;mod_last_modified_date:string%20%3F;pubmed_last_modified_date:string%20%3F;creation_date(i):date%20%3F],[Ontology]&lt;has%20topics%200..*-++[Reference],[Variant]-%20has%20references%200..*&gt;[Reference],[Resource]-%20has%20references%200..*&gt;[Reference],[ReferenceToMeshAssociation]-%20subject%201..1&gt;[Reference],[InformationContentEntity]^-[Reference],[Variant],[Resource],[Ontology],[NamedThing],[InformationContentEntity]" /></p>
+                <h1 id="class-reference">Class: Reference</h1>
+<p>URI: <a href="http://alliancegenome.orgReference">alliance:Reference</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;publisher%200..1-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_PubMed:date%20%3F;date_last_modified_in_PubMed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;PubMed_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;mod_reference_types:string%20*;authors:string%20*;tags:string%20*;topics:uriorcurie%20%3F;cross_references:string%20*;keywords:string%20*;creation_date(i):date%20%3F],[InformationContentEntity]^-[Reference],[InformationContentEntity]" /></p>
+<h2 id="identifier-prefixes">Identifier prefixes</h2>
+<ul>
+<li>PMID</li>
+<li>NLMID</li>
+<li>DOI</li>
+<li>SGD</li>
+<li>FB</li>
+<li>WB</li>
+<li>ZFIN</li>
+<li>MGI</li>
+<li>RGD</li>
+<li>PMC</li>
+<li>DOI</li>
+</ul>
 <h2 id="parents">Parents</h2>
 <ul>
-<li>is_a: <a href="../InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support.</li>
+<li>is_a: <a href="../InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
-<ul>
-<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_references/">has references</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Reference</a></em>*</li>
-<li><strong><a href="../ReferenceToMeshAssociation/">ReferenceToMeshAssociation</a></strong> <em><a href="../reference_to_mesh_association_subject/">reference to mesh association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Reference</a></strong></li>
-</ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
+<li><a href="../PubMed_type/">PubMed type</a>  <sub>OPT</sub><ul>
+<li>Description: Type of information content entity as described by pub med.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../abstract/">abstract</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../alliance_category/">alliance category</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../authors/">authors</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../citation/">citation</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../cross_references/">cross references</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../date_arrived_in_PubMed/">date arrived in PubMed</a>  <sub>OPT</sub><ul>
+<li>Description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
 <li><a href="../date_last_modified/">date last modified</a>  <sub>OPT</sub><ul>
 <li>Description: Date on which an entity was last modified by the MOD.</li>
 <li>range: <a href="../types/Date/">Date</a></li>
 </ul>
 </li>
-<li><a href="../date_last_modified_in_pubmed/">date last modified in pubmed</a>  <sub>OPT</sub><ul>
+<li><a href="../date_last_modified_in_PubMed/">date last modified in PubMed</a>  <sub>OPT</sub><ul>
 <li>Description: Date on which an entity was created.</li>
 <li>range: <a href="../types/Date/">Date</a></li>
 </ul>
 </li>
-<li><a href="../has_keywords/">has keywords</a>  <sub>0..*</sub><ul>
-<li>Description: keywords tagging a publication</li>
+<li><a href="../date_published/">date published</a>  <sub>OPT</sub><ul>
+<li>Description: Date on which an entity was created.</li>
+<li>range: <a href="../types/Date/">Date</a></li>
+</ul>
+</li>
+<li><a href="../day_published/">day published</a>  <sub>OPT</sub><ul>
+<li>Description: Day in which an entity was created.</li>
 <li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
+<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
 </ul>
 </li>
 <li><a href="../issue_date/">issue date</a>  <sub>OPT</sub><ul>
@@ -130,115 +180,59 @@
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../pub_med_type/">pub med type</a>  <sub>OPT</sub><ul>
-<li>Description: Type of information content entity as descriped by pub med/</li>
+<li><a href="../keywords/">keywords</a>  <sub>0..*</sub><ul>
+<li>Description: keywords tagging a publication</li>
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../reference_abstract/">reference➞abstract</a>  <sub>OPT</sub><ul>
-<li>Description: The abstract of the reference.</li>
+<li><a href="../mod_reference_types/">mod reference types</a>  <sub>0..*</sub><ul>
+<li>Description: List of types as assigned at a MOD.</li>
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../reference_alliance_category/">reference➞alliance category</a>  <sub>OPT</sub><ul>
-<li>Description: Controlled vocabulary term drawn from a list of Alliance-defined reference categories.</li>
+<li><a href="../month_published/">month published</a>  <sub>OPT</sub><ul>
+<li>Description: Month in which an entity was created.</li>
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../reference_citation/">reference➞citation</a>  <sub>OPT</sub><ul>
-<li>Description: Is a reference to a source.</li>
+<li><a href="../pages/">pages</a>  <sub>0..*</sub><ul>
+<li>Description: page number of source referenced for statement or publication</li>
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../reference_date_arrived_in_pubmed/">reference➞date arrived in pubmed</a>  <sub>OPT</sub><ul>
-<li>Description: As per the PUBMED XML record, this is the date the reference entered PUBMED.</li>
-<li>range: <a href="../types/Date/">Date</a></li>
-</ul>
-</li>
-<li><a href="../reference_date_published/">reference➞date published</a>  <sub>OPT</sub><ul>
-<li>Description: The date the reference was published.  This field can be submitted by a MOD or from PUBMED. When pulled from PUBMED, this date is generated from the year, month and day published fields. When submitted from a MOD it can be any string. examples include: Spring 1991, 01-01-1991, 25-12-1991</li>
-<li>range: <a href="../types/Date/">Date</a></li>
-</ul>
-</li>
-<li><a href="../reference_day_published/">reference➞day published</a>  <sub>OPT</sub><ul>
-<li>Description: When the reference is a PUBMED reference, this will be a 2-digit day.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_has_authors/">reference➞has authors</a>  <sub>0..*</sub><ul>
-<li>Description: List of authors in the reference.  There might be more than one author in the publication with the same name.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_has_cross_references/">reference➞has cross references</a>  <sub>0..*</sub><ul>
-<li>Description: The list of crossReference objects associated with a reference.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_has_mod_reference_types/">reference➞has mod reference types</a>  <sub>0..*</sub><ul>
-<li>Description: Reference type as defined by the MOD on submission of the publication.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_has_publisher/">reference➞has publisher</a>  <sub>0..*</sub><ul>
-<li>Description: Volume of a book or music release in a collection/series or a published collection of journal issues in a serial publication</li>
+<li><a href="../publisher/">publisher</a>  <sub>OPT</sub><ul>
 <li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
 </ul>
 </li>
-<li><a href="../reference_has_tags/">reference➞has tags</a>  <sub>0..*</sub><ul>
-<li>Description: Tags from the MOD from a controlled vocabulary of possible tags.</li>
+<li><a href="../tags/">tags</a>  <sub>0..*</sub><ul>
+<li>Description: Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").</li>
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../reference_has_topics/">reference➞has topics</a>  <sub>0..*</sub><ul>
-<li>Description: The list of MeSH terms associated with a reference.  Note: this is an association slot that allows a qualifier to be associated with the reference-meshTerm relationship.</li>
-<li>range: <a href="../Ontology/">Ontology</a></li>
+<li><a href="../title/">title</a>  <sub>OPT</sub><ul>
+<li>Description: A human readable title for a reference.</li>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../reference_id/">reference➞id</a>  <sub>REQ</sub><ul>
-<li>Description: the identifier for the publication in the form of a curie.</li>
+<li><a href="../topics/">topics</a>  <sub>OPT</sub><ul>
+<li>Description: Connects an object to a vocabulary term or ontology that describes some aspect of the entity.</li>
 <li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
-</ul>
-</li>
-<li><a href="../reference_mod_last_modified_date/">reference➞mod last modified date</a>  <sub>OPT</sub><ul>
-<li>Description: The date the meta data on this object was last updated at the MOD.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_month_published/">reference➞month published</a>  <sub>OPT</sub><ul>
-<li>Description: When the reference is a PUBMED reference, this will be a 2-digit year.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_pages/">reference➞pages</a>  <sub>0..*</sub><ul>
-<li>Description: Page number of source referenced for statement or publication</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_pubmed_last_modified_date/">reference➞pubmed last modified date</a>  <sub>OPT</sub><ul>
-<li>Description: The date the meta data on this object was last updated at PUBMED.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_title/">reference➞title</a>  <sub>OPT</sub><ul>
-<li>Description: the title of the publication</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../reference_year_published/">reference➞year published</a>  <sub>OPT</sub><ul>
-<li>Description: When the reference is a PUBMED reference, this will be a 4-digit year.</li>
-<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
 <li><a href="../volume/">volume</a>  <sub>OPT</sub><ul>
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
+<li><a href="../year_published/">year published</a>  <sub>OPT</sub><ul>
+<li>Description: Year in which an entity was created.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
 </ul>
 <h3 id="inherited-from-information-content-entity">Inherited from information content entity:</h3>
 <ul>
-<li><a href="../information_content_entity_creation_date/">information content entity➞creation date</a>  <sub>OPT</sub><ul>
-<li>Description: Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
+<li><a href="../creation_date/">creation date</a>  <sub>OPT</sub><ul>
+<li>Description: date on which an entity was created. This can be applied to nodes or edges</li>
 <li>range: <a href="../types/Date/">Date</a></li>
 </ul>
 </li>

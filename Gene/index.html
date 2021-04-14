@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Type: gene - {{schema.description}}</title>
+  <title>Class: Gene - {{schema.description}}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Type: gene";
+    var mkdocs_page_name = "Class: Gene";
     var mkdocs_page_input_path = "Gene.md";
     var mkdocs_page_url = null;
   </script>
@@ -80,7 +80,7 @@
     
       
     
-    <li>Type: gene</li>
+    <li>Class: Gene</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,30 +91,26 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="type-gene">Type: gene</h1>
+                <h1 id="class-gene">Class: Gene</h1>
 <p>A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</p>
-<p>URI: <a href="http://alliancegenome.org/Gene">alliance:Gene</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[NamedThing],[GenomicEntity],[GeneLevelConsequence],[GeneLevelConsequence]++-%20affects%20gene(i)%200..*&gt;[Gene&#124;has_biological_sequence(i):biological_sequence%20%3F],[GeneLevelConsequence]++-%20affects%20gene%201..*&gt;[Gene],[Variant]++-%20is%20variant%20of%20gene%200..*&gt;[Gene],[GenomicEntity]^-[Gene]" /></p>
+<p>URI: <a href="http://alliancegenome.orgGene">alliance:Gene</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing],[NamedThing]^-[Gene]" /></p>
+<h2 id="identifier-prefixes">Identifier prefixes</h2>
+<ul>
+<li>ENSEMBL</li>
+<li>HGNC</li>
+<li>FB</li>
+<li>MGI</li>
+<li>RGD</li>
+<li>SGD</li>
+<li>WB</li>
+<li>ZFIN</li>
+</ul>
 <h2 id="parents">Parents</h2>
 <ul>
-<li>is_a: <a href="../GenomicEntity/">GenomicEntity</a> - an entity that can either be directly located on a genome (gene, transcript, exon, regulatory region) or is encoded in a genome (protein)</li>
-</ul>
-<h2 id="referenced-by-class">Referenced by class</h2>
-<ul>
-<li><strong><a href="../GeneLevelConsequence/">GeneLevelConsequence</a></strong> <em><a href="../affects_gene/">affects gene</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Gene</a></em>*</li>
-<li><strong><a href="../GeneLevelConsequence/">GeneLevelConsequence</a></strong> <em><a href="../gene_level_consequence_affects_gene/">gene level consequence➞affects gene</a></em>  <sub>1..<em></sub>  </em><em><a href="./">Gene</a></em>*</li>
-<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_gene/">has gene</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Gene</a></em>*</li>
-<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of_gene/">is variant of gene</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Gene</a></em>*</li>
+<li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
-<h3 id="inherited-from-genomic-entity">Inherited from genomic entity:</h3>
-<ul>
-<li><a href="../has_biological_sequence/">has biological sequence</a>  <sub>OPT</sub><ul>
-<li>Description: connects a genomic feature to its sequence</li>
-<li>range: <a href="../types/BiologicalSequence/">BiologicalSequence</a></li>
-</ul>
-</li>
-</ul>
 <h2 id="other-properties">Other properties</h2>
 <table>
 <thead>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Type: named thing - {{schema.description}}</title>
+  <title>Class: NamedThing - {{schema.description}}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Type: named thing";
+    var mkdocs_page_name = "Class: NamedThing";
     var mkdocs_page_input_path = "NamedThing.md";
     var mkdocs_page_url = null;
   </script>
@@ -80,7 +80,7 @@
     
       
     
-    <li>Type: named thing</li>
+    <li>Class: NamedThing</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,24 +91,24 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="type-named-thing">Type: named thing</h1>
+                <h1 id="class-namedthing">Class: NamedThing</h1>
 <p>a databased entity or concept/class</p>
-<p>URI: <a href="http://alliancegenome.org/NamedThing">alliance:NamedThing</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Ontology],[Association]++-%20object%201..1&gt;[NamedThing],[Association]++-%20subject%201..1&gt;[NamedThing],[NamedThing]^-[Ontology],[NamedThing]^-[MolecularConsequence],[NamedThing]^-[BiologicalEntity],[Entity]^-[NamedThing],[MolecularConsequence],[Entity],[BiologicalEntity],[Association]" /></p>
+<p>URI: <a href="http://alliancegenome.orgNamedThing">alliance:NamedThing</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Transcript],[Association]++-%20object%201..1&gt;[NamedThing],[Association]++-%20subject%201..1&gt;[NamedThing],[NamedThing]^-[Transcript],[NamedThing]^-[GenomicEntity],[NamedThing]^-[Gene],[NamedThing]^-[Allele],[Entity]^-[NamedThing],[GenomicEntity],[Gene],[Entity],[Association],[Allele]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../Entity/">Entity</a> - Root Biolink Model class for all things and informational relationships, real or imagined.</li>
 </ul>
 <h2 id="children">Children</h2>
 <ul>
-<li><a href="../BiologicalEntity/">BiologicalEntity</a></li>
-<li><a href="../MolecularConsequence/">MolecularConsequence</a> - Class for molecular consequences calculated by the EnsEMBL Variant Effect Predictor (VEP)</li>
-<li><a href="../Ontology/">Ontology</a> - a concept or class in an ontology, vocabulary or thesaurus</li>
+<li><a href="../Allele/">Allele</a></li>
+<li><a href="../Gene/">Gene</a> - A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</li>
+<li><a href="../GenomicEntity/">GenomicEntity</a></li>
+<li><a href="../Transcript/">Transcript</a> - An RNA synthesized on a DNA or RNA template by an RNA polymerase.</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
 <li><strong><a href="../Association/">Association</a></strong> <em><a href="../object/">object</a></em>  <sub>REQ</sub>  <strong><a href="./">NamedThing</a></strong></li>
-<li><strong><a href="./">NamedThing</a></strong> <em><a href="../related_to/">related to</a></em>  <sub>0..<em></sub>  </em><em><a href="./">NamedThing</a></em>*</li>
 <li><strong><a href="../Association/">Association</a></strong> <em><a href="../subject/">subject</a></em>  <sub>REQ</sub>  <strong><a href="./">NamedThing</a></strong></li>
 </ul>
 <h2 id="attributes">Attributes</h2>

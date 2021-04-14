@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Type: information content entity - {{schema.description}}</title>
+  <title>Class: InformationContentEntity - {{schema.description}}</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Type: information content entity";
+    var mkdocs_page_name = "Class: InformationContentEntity";
     var mkdocs_page_input_path = "InformationContentEntity.md";
     var mkdocs_page_url = null;
   </script>
@@ -80,7 +80,7 @@
     
       
     
-    <li>Type: information content entity</li>
+    <li>Class: InformationContentEntity</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,10 +91,10 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="type-information-content-entity">Type: information content entity</h1>
-<p>a piece of information that typically describes some topic of discourse or is used as support.</p>
-<p>URI: <a href="http://alliancegenome.org/InformationContentEntity">alliance:InformationContentEntity</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Resource],[Reference],[PublisherResource],[NamedThing],[AuthorReference]++-%20corresponding%20author%200..1&gt;[InformationContentEntity&#124;creation_date:date%20%3F],[EditorResource]++-%20first%20name%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20first%20name%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20first%20name%200..1&gt;[InformationContentEntity],[Resource]++-%20has%20publisher%200..*&gt;[InformationContentEntity],[Reference]++-%20has%20publisher(i)%200..*&gt;[InformationContentEntity],[Variant]++-%20has%20synonyms%200..*&gt;[InformationContentEntity],[Resource]++-%20has%20synonyms%200..*&gt;[InformationContentEntity],[EditorResource]++-%20initials%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20initials%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20initials%200..1&gt;[InformationContentEntity],[EditorResource]++-%20last%20name%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20last%20name%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20last%20name%200..1&gt;[InformationContentEntity],[EditorResource]++-%20middle%20names%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20middle%20names%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20middle%20names%200..1&gt;[InformationContentEntity],[Reference]++-%20has%20publisher%200..*&gt;[InformationContentEntity],[InformationContentEntity]^-[Resource],[InformationContentEntity]^-[Reference],[InformationContentEntity]^-[PublisherResource],[InformationContentEntity]^-[EditorResource],[Variant],[EditorResource],[AuthorReference]" /></p>
+                <h1 id="class-informationcontententity">Class: InformationContentEntity</h1>
+<p>a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</p>
+<p>URI: <a href="http://alliancegenome.orgInformationContentEntity">alliance:InformationContentEntity</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Resource],[Reference],[PublisherResource],[NamedThing],[AuthorReference]++-%20corresponding%20author%200..1&gt;[InformationContentEntity&#124;creation_date:date%20%3F],[EditorResource]++-%20first%20name%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20first%20name%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20first%20name%200..1&gt;[InformationContentEntity],[EditorResource]++-%20initials%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20initials%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20initials%200..1&gt;[InformationContentEntity],[EditorResource]++-%20last%20name%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20last%20name%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20last%20name%200..1&gt;[InformationContentEntity],[EditorResource]++-%20middle%20names%200..1&gt;[InformationContentEntity],[PublisherResource]++-%20middle%20names%200..1&gt;[InformationContentEntity],[AuthorReference]++-%20middle%20names%200..1&gt;[InformationContentEntity],[Reference]++-%20publisher%200..1&gt;[InformationContentEntity],[Resource]++-%20publisher%200..1&gt;[InformationContentEntity],[InformationContentEntity]^-[Resource],[InformationContentEntity]^-[Reference],[InformationContentEntity]^-[PublisherResource],[InformationContentEntity]^-[EditorResource],[EditorResource],[AuthorReference]" /></p>
 <h2 id="children">Children</h2>
 <ul>
 <li><a href="../EditorResource/">EditorResource</a></li>
@@ -106,18 +106,17 @@
 <ul>
 <li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../corresponding_author/">corresponding author</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
 <li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../first_name/">first name</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
-<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../has_publisher/">has publisher</a></em>  <sub>0..<em></sub>  </em><em><a href="./">InformationContentEntity</a></em>*</li>
-<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_synonyms/">has synonyms</a></em>  <sub>0..<em></sub>  </em><em><a href="./">InformationContentEntity</a></em>*</li>
+<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../has_synonyms/">has synonyms</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
 <li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../initials/">initials</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
 <li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../last_name/">last name</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
 <li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../middle_names/">middle names</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
-<li><strong><a href="../Reference/">Reference</a></strong> <em><a href="../reference_has_publisher/">reference➞has publisher</a></em>  <sub>0..<em></sub>  </em><em><a href="./">InformationContentEntity</a></em>*</li>
+<li><strong><a href="./">InformationContentEntity</a></strong> <em><a href="../publisher/">publisher</a></em>  <sub>OPT</sub>  <strong><a href="./">InformationContentEntity</a></strong></li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
-<li><a href="../information_content_entity_creation_date/">information content entity➞creation date</a>  <sub>OPT</sub><ul>
-<li>Description: Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
+<li><a href="../creation_date/">creation date</a>  <sub>OPT</sub><ul>
+<li>Description: date on which an entity was created. This can be applied to nodes or edges</li>
 <li>range: <a href="../types/Date/">Date</a></li>
 </ul>
 </li>
