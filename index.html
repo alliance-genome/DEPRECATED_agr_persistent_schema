@@ -117,9 +117,12 @@
 <li><a href="Association/">Association</a> - A typed association between two entities, supported by evidence</li>
 <li><a href="NamedThing/">NamedThing</a> - a databased entity or concept/class<ul>
 <li><a href="Allele/">Allele</a></li>
+<li><a href="Assembly/">Assembly</a></li>
+<li><a href="Chromosome/">Chromosome</a> - The ID of the landmark used to establish the coordinate system for the current feature.</li>
 <li><a href="Gene/">Gene</a> - A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</li>
 <li><a href="GenomicEntity/">GenomicEntity</a></li>
 <li><a href="Transcript/">Transcript</a> - An RNA synthesized on a DNA or RNA template by an RNA polymerase.</li>
+<li><a href="Variant/">Variant</a> - Variant class</li>
 </ul>
 </li>
 </ul>
@@ -132,7 +135,9 @@
 </ul>
 </li>
 <li><a href="Species/">Species</a></li>
-<li><a href="Synonym.md">Synonym</a></li>
+<li><a href="VariantGeneConsequenceAssociation/">VariantGeneConsequenceAssociation</a></li>
+<li><a href="VariantToChromosomeAssociation/">VariantToChromosomeAssociation</a></li>
+<li><a href="VariantTranscriptConsequenceAssociation/">VariantTranscriptConsequenceAssociation</a> - Class for transcript-level VEP results</li>
 </ul>
 <h3 id="mixins">Mixins</h3>
 <h3 id="slots">Slots</h3>
@@ -141,15 +146,61 @@
 <li><a href="abstract/">abstract</a></li>
 <li><a href="address/">address</a> - the particulars of the place where someone or an organization is situated.  For now, this slot is a simple text "blob" containing all relevant details of the given location for fitness of purpose. For the moment, this "address" can include other contact details such as email and phone number(?).</li>
 <li><a href="alliance_category/">alliance category</a></li>
+<li><a href="amino_acid_reference/">amino acid reference</a> - reference genome amino acid sequence at variant position<ul>
+<li><a href="variant_transcript_consequence_association_amino_acid_reference/">variant transcript consequence association➞amino acid reference</a> - Amino acid sequence encoded by codon(s) in reference genome sequence altered by the variant</li>
+</ul>
+</li>
+<li><a href="amino_acid_variant/">amino acid variant</a> - variant amino acid sequence at variant position<ul>
+<li><a href="variant_transcript_consequence_association_amino_acid_variant/">variant transcript consequence association➞amino acid variant</a> - Amino acid sequence encoded by codon(s) in variant sequence</li>
+</ul>
+</li>
 <li><a href="association_slot/">association slot</a> - any slot that relates an association to another entity<ul>
-<li><a href="object/">object</a> - connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li><a href="predicate/">predicate</a> - A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.</li>
-<li><a href="subject/">subject</a> - connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+<li><a href="object/">object</a> - connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.<ul>
+<li><a href="variant_gene_consequence_association_object/">variant gene consequence association➞object</a> - object should be the gene identifier</li>
+<li><a href="variant_to_chromosome_association_object/">variant to chromosome association➞object</a> - Should be the id of the chromosome</li>
+<li><a href="variant_transcript_consequence_association_object/">variant transcript consequence association➞object</a> - Transcript that is affected by the associated variant</li>
+</ul>
+</li>
+<li><a href="predicate/">predicate</a> - A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.<ul>
+<li><a href="variant_to_chromosome_association_predicate/">variant to chromosome association➞predicate</a></li>
+</ul>
+</li>
+<li><a href="subject/">subject</a> - connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.<ul>
+<li><a href="variant_gene_consequence_association_subject/">variant gene consequence association➞subject</a> - subject should be the variant identifier</li>
+<li><a href="variant_to_chromosome_association_subject/">variant to chromosome association➞subject</a> - Should be the id of the variant</li>
+<li><a href="variant_transcript_consequence_association_subject/">variant transcript consequence association➞subject</a> - the variant identifier</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="authors/">authors</a></li>
-<li><a href="biological_sequence/">biological sequence</a> - connects a genomic feature to its sequence</li>
+<li><a href="cdna_end/">cdna end</a> - end position of variation in cDNA coordinates</li>
+<li><a href="cdna_start/">cdna start</a> - start position of variation in cDNA coordinates<ul>
+<li><a href="variant_transcript_consequence_association_cdna_start/">variant transcript consequence association➞cdna start</a> - Start position of variant in cDNA coordinates</li>
+</ul>
+</li>
+<li><a href="cds_end/">cds end</a> - end position of variation in CDS coordinates</li>
+<li><a href="cds_start/">cds start</a> - start position of variation in CDS coordinates<ul>
+<li><a href="variant_transcript_consequence_association_cds_start/">variant transcript consequence association➞cds start</a> - Start position of variant in CDS coordinates</li>
+</ul>
+</li>
 <li><a href="citation/">citation</a></li>
+<li><a href="cnda_end/">cnda end</a> - End position of variant in cDNA coordinates<ul>
+<li><a href="variant_transcript_consequence_association_cnda_end/">variant transcript consequence association➞cnda end</a></li>
+</ul>
+</li>
+<li><a href="cns_end/">cns end</a> - End position of variant in CDS coordinates<ul>
+<li><a href="variant_transcript_consequence_association_cns_end/">variant transcript consequence association➞cns end</a></li>
+</ul>
+</li>
+<li><a href="codon_reference/">codon reference</a> - reference sequence of codon(s) affected by variation - bases outside of the variant region are in lower case, those within are in upper case (e.g. cTa)<ul>
+<li><a href="variant_transcript_consequence_association_codon_reference/">variant transcript consequence association➞codon reference</a> - Reference genome sequence of codon(s) altered by the variant.  Bases affected by the variant are given in upper case, bases flanking the variation are given in lower case</li>
+</ul>
+</li>
+<li><a href="codon_variant/">codon variant</a> - variant sequence of codon(s) affected by variation - bases outside of the variant region are in lower case, those within are in upper case (e.g. cAa)<ul>
+<li><a href="variant_transcript_consequence_association_codon_variant/">variant transcript consequence association➞codon variant</a> - Sequence of codon(s) in variant sequence altered by the variant. Bases affected by the variant are given in upper case, bases flanking the variation are given in lower case</li>
+</ul>
+</li>
 <li><a href="copyright_date/">copyright date</a></li>
 <li><a href="corresponding_author/">corresponding author</a></li>
 <li><a href="creation_date/">creation date</a> - date on which an entity was created. This can be applied to nodes or edges</li>
@@ -158,41 +209,77 @@
 <li><a href="date_arrived_in_PubMed/">date arrived in PubMed</a> - Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.</li>
 <li><a href="date_last_modified/">date last modified</a> - Date on which an entity was last modified by the MOD.</li>
 <li><a href="date_last_modified_in_PubMed/">date last modified in PubMed</a> - Date on which an entity was created.</li>
+<li><a href="date_produced/">date produced</a> - Date on which an entity was produced.</li>
 <li><a href="date_published/">date published</a> - Date on which an entity was created.</li>
 <li><a href="date_produced/">date_produced</a> - date AGR data generated by MOD</li>
 <li><a href="day_published/">day published</a> - Day in which an entity was created.</li>
 <li><a href="description/">description</a> - a human-readable description of an entity</li>
 <li><a href="display_name/">display name</a></li>
 <li><a href="editors/">editors</a> - holds between a resource and a editor_resource</li>
+<li><a href="end/">end</a> - The end of the feature in positive 1-based integer coordinates</li>
 <li><a href="first_name/">first name</a></li>
 <li><a href="from_species/">from species</a> - holds between a genomic entity and a species</li>
+<li><a href="genomic_reference_sequence/">genomic reference sequence</a> - reference genome sequence at variation position</li>
+<li><a href="genomic_variant_sequence/">genomic variant sequence</a> - variant genome sequence at variation position</li>
+<li><a href="has_assembly/">has assembly</a></li>
+<li><a href="has_chromosome/">has chromosome</a></li>
 <li><a href="has_synonyms/">has synonyms</a></li>
+<li><a href="hgvs_coding_nomenclature/">hgvs coding nomenclature</a> - HGVSc nomenclature for variation in coding sequence<ul>
+<li><a href="variant_transcript_consequence_association_hgvs_coding_nomenclature/">variant transcript consequence association➞hgvs coding nomenclature</a> - HGVS coding sequence (HGVSc) name</li>
+</ul>
+</li>
+<li><a href="hgvs_nomenclature/">hgvs nomenclature</a> - HGVSg nomenclature for variant</li>
+<li><a href="hgvs_protein_nomenclature/">hgvs protein nomenclature</a> - HGVSp nomenclature for variation in protein<ul>
+<li><a href="variant_transcript_consequence_association_hgvs_protein_nomenclature/">variant transcript consequence association➞hgvs protein nomenclature</a> - HGVS protein sequence (HGVSp) name</li>
+</ul>
+</li>
 <li><a href="id/">id</a> - A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI<ul>
 <li><a href="resource_id/">resource➞id</a> - Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.</li>
 </ul>
 </li>
 <li><a href="initials/">initials</a></li>
+<li><a href="is_variant_of_allele/">is variant of allele</a></li>
+<li><a href="is_variant_of_gene/">is variant of gene</a></li>
+<li><a href="is_variant_of_transcript/">is variant of transcript</a></li>
 <li><a href="iso_abbreviation/">iso abbreviation</a></li>
 <li><a href="issue_date/">issue date</a> - Date on which an entity was issued.</li>
 <li><a href="issue_name/">issue name</a></li>
 <li><a href="keywords/">keywords</a> - keywords tagging a publication</li>
 <li><a href="last_modified/">last modified</a> - Date on which an entity was last modified in PubMed or in the MOD.</li>
 <li><a href="last_name/">last name</a></li>
+<li><a href="located_on/">located on</a></li>
 <li><a href="medline_abbreviation/">medline abbreviation</a></li>
 <li><a href="middle_names/">middle names</a></li>
 <li><a href="mod_reference_types/">mod reference types</a> - List of types as assigned at a MOD.</li>
 <li><a href="month_published/">month published</a> - Month in which an entity was created.</li>
 <li><a href="name/">name</a> - a human-readable name for an entity</li>
 <li><a href="negated/">negated</a> - if set to true, then the association is negated i.e. is not true</li>
+<li><a href="note/">note</a></li>
 <li><a href="online_issn/">online issn</a></li>
+<li><a href="padding_left/">padding left</a> - flanking sequence upstream of the variation position on the sense strand of the reference genome</li>
+<li><a href="padding_right/">padding right</a> - flanking sequence downstream of the variation position on the sense strand of the reference genome</li>
 <li><a href="page_areas/">page areas</a></li>
 <li><a href="pages/">pages</a> - page number of source referenced for statement or publication</li>
+<li><a href="polyphen_prediction/">polyphen prediction</a> - PolyPhen-2 prediction</li>
+<li><a href="polyphen_score/">polyphen score</a> - PolyPhen-2 score between 0 and 1</li>
 <li><a href="prefix/">prefix</a> - Denormalization to help with classifying types of crossReferences, distinguishing DOIs from PMC ids, etc.</li>
 <li><a href="print_issn/">print issn</a></li>
+<li><a href="protein_end/">protein end</a> - end position of variation in protein amino acid coordinates<ul>
+<li><a href="variant_transcript_consequence_association_protein_end/">variant transcript consequence association➞protein end</a> - End position of variant in amino acid sequence</li>
+</ul>
+</li>
+<li><a href="protein_sequence/">protein sequence</a></li>
+<li><a href="protein_start/">protein start</a> - start position of variation in protein amino acid coordinates<ul>
+<li><a href="variant_transcript_consequence_association_protein_start/">variant transcript consequence association➞protein start</a> - Start position of variant in amino acid sequence</li>
+</ul>
+</li>
 <li><a href="publisher/">publisher</a></li>
 <li><a href="qualifiers/">qualifiers</a> - This is the MeSH qualifier term that is optionally added to the descriptor term.</li>
 <li><a href="references/">references</a> - holds between a named thing and a reference</li>
 <li><a href="release/">release</a> - MOD release ID</li>
+<li><a href="sift_prediction/">sift prediction</a> - SIFT prediction</li>
+<li><a href="sift_score/">sift score</a> - SIFT score between 0 and 1</li>
+<li><a href="start/">start</a> - The start of the feature in positive 1-based integer coordinates</li>
 <li><a href="summary/">summary</a></li>
 <li><a href="symbol/">symbol</a> - Symbol for a particular thing</li>
 <li><a href="synonym/">synonym</a> - holds between a named thing and a synonym</li>
@@ -204,6 +291,8 @@
 </li>
 <li><a href="topics/">topics</a> - Connects an object to a vocabulary term or ontology that describes some aspect of the entity.</li>
 <li><a href="type/">type</a></li>
+<li><a href="vep_consequence/">vep consequence</a></li>
+<li><a href="vep_impact/">vep impact</a> - VEP predicted impact of variation on molecule</li>
 <li><a href="volume/">volume</a></li>
 <li><a href="volumes/">volumes</a></li>
 <li><a href="year_published/">year published</a> - Year in which an entity was created.</li>
@@ -300,5 +389,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-04-14 22:45:21.337281+00:00
+Build Date UTC : 2021-04-14 22:57:29.701323+00:00
 -->
