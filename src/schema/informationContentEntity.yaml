@@ -46,24 +46,6 @@ classes:
       - initials
       - cross references
 
-  editor resource:
-    is_a: information content entity
-    slots:
-      - first name
-      - middle names
-      - last name
-      - initials
-      - cross references
-
-  publisher resource:
-    is_a: information content entity
-    slots:
-      - first name
-      - middle names
-      - last name
-      - initials
-      - cross references
-
 slots:
   creation date:
     aliases: [ 'publication date' ]
