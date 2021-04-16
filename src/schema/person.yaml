@@ -25,15 +25,16 @@ prefixes:
   linkml: 'https://w3id.org/linkml/'
 
 classes:
-
-  person:
+  # TODO: decide on a convention for class, slot names
+  Person:
     slots:
-      - last name
-      - first name
+      - last_name
+      - first_name
       - orcid
+    exact_mappings:
 
 slots:
 
   orcid:
     domain: information content entity
-    range: string
+    range: String

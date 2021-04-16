@@ -97,6 +97,13 @@ slots:
     description: >-
     domain: information content entity
     range: information content entity
+    slot_uri: foaf:familyName # look up these
+    # rdf label
+    # consider not having slot_uris or not
+    # slot uri to schema.org will be compelling (https://schema.org/familyName)
+    # https://schema.org/Person
+    exact_mapping:
+
 
   initials:
     description: >-
