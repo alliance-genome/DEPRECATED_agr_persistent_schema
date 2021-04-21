@@ -27,17 +27,25 @@ prefixes:
   foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
-  # TODO: decide on a convention for class, slot names
   Person:
     slots:
+      - person id
       - last name
       - first name
       - orcid
     exact_mappings:
       - schema:person
       - foaf:Person
+    slot_usage:
+      person id:
+        identifier: true
+
 slots:
 
   orcid:
     domain: information content entity
     range: string
+
+  person id:
+    range: string
+    required: true

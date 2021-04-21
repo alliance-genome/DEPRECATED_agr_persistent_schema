@@ -19,21 +19,20 @@ classes:
   variant to chromosome:
     aliases: ['genomic location']
     slots:
-      - variantId
-      - chromosomeId
-      - assemblyId
+      - variant id
+      - chromosome id
+      - assembly id
       - start
       - end
     slot_usage:
     defining_slots:
-      - variantId
-      - chromosomeId
-      - assemblyId
+      - variant id
+      - chromosome id
+      - assembly id
       - start
       - end
 
 slots:
 
   located on:
-    domain: named thing
     range: chromosome

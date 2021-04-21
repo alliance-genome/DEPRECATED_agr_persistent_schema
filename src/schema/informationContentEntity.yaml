@@ -72,7 +72,6 @@ slots:
   references:
     description: holds between a named thing and a reference
     multivalued: true
-    domain: named thing
     range: reference
 
   authors:

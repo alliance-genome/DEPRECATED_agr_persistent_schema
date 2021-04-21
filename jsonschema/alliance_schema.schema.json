@@ -6,17 +6,12 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
+            "allele_id": {
                "type": "string"
             }
          },
          "required": [
-            "id"
+            "allele_id"
          ],
          "title": "Allele",
          "type": "object"
@@ -24,19 +19,8 @@
       "Assembly": {
          "additionalProperties": false,
          "description": "",
-         "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
+         "properties": {},
+         "required": [],
          "title": "Assembly",
          "type": "object"
       },
@@ -73,19 +57,8 @@
       "Chromosome": {
          "additionalProperties": false,
          "description": "The ID of the landmark used to establish the coordinate system for the current feature.",
-         "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
+         "properties": {},
+         "required": [],
          "title": "Chromosome",
          "type": "object"
       },
@@ -121,10 +94,9 @@
       },
       "Gene": {
          "additionalProperties": false,
-         "description": "A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.",
+         "description": "",
          "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+            "gene_id": {
                "type": "string"
             },
             "name": {
@@ -133,7 +105,7 @@
             }
          },
          "required": [
-            "id"
+            "gene_id"
          ],
          "title": "Gene",
          "type": "object"
@@ -141,39 +113,9 @@
       "GenomicEntity": {
          "additionalProperties": false,
          "description": "",
-         "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
+         "properties": {},
+         "required": [],
          "title": "GenomicEntity",
-         "type": "object"
-      },
-      "NamedThing": {
-         "additionalProperties": false,
-         "description": "a databased entity or concept/class",
-         "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
-         "title": "NamedThing",
          "type": "object"
       },
       "Reference": {
@@ -267,6 +209,9 @@
             "publisher": {
                "$ref": "#/definitions/InformationContentEntity"
             },
+            "reference_id": {
+               "type": "string"
+            },
             "tags": {
                "description": "Optional ist of controlled vocabulary tags that give categories to each pub (ie: \"can show images\").",
                "items": {
@@ -346,6 +291,9 @@
                },
                "type": "array"
             },
+            "resource_id": {
+               "type": "string"
+            },
             "summary": {
                "type": "string"
             },
@@ -378,17 +326,12 @@
          "additionalProperties": false,
          "description": "An RNA synthesized on a DNA or RNA template by an RNA polymerase.",
          "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
+            "transcript_id": {
                "type": "string"
             }
          },
          "required": [
-            "id"
+            "transcript_id"
          ],
          "title": "Transcript",
          "type": "object"
@@ -426,21 +369,13 @@
                "description": "HGVSg nomenclature for variant",
                "type": "string"
             },
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            },
             "is_variant_of_allele": {
-               "type": "string"
+               "$ref": "#/definitions/Allele"
             },
             "is_variant_of_gene": {
                "type": "string"
             },
             "is_variant_of_transcript": {
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
                "type": "string"
             },
             "note": {
@@ -465,7 +400,7 @@
                "type": "array"
             },
             "release": {
-               "description": "MOD release ID",
+               "description": "MOD release IDg",
                "type": "string"
             },
             "synonyms": {
@@ -473,10 +408,13 @@
             },
             "type": {
                "type": "string"
+            },
+            "variant_id": {
+               "type": "string"
             }
          },
          "required": [
-            "id"
+            "variant_id"
          ],
          "title": "Variant",
          "type": "object"
@@ -485,7 +423,7 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "geneId": {
+            "gene_id": {
                "type": "string"
             },
             "polyphen_prediction": {
@@ -504,7 +442,7 @@
                "description": "SIFT score between 0 and 1",
                "type": "number"
             },
-            "variantId": {
+            "variant_id": {
                "type": "string"
             },
             "vep_consequence": {
@@ -516,38 +454,20 @@
             }
          },
          "required": [
-            "variantId",
-            "geneId"
+            "variant_id",
+            "gene_id"
          ],
          "title": "VariantGeneConsequence",
-         "type": "object"
-      },
-      "VariantGeneConsequence2": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "geneId": {
-               "type": "string"
-            },
-            "variantId": {
-               "type": "string"
-            }
-         },
-         "required": [
-            "variantId",
-            "geneId"
-         ],
-         "title": "VariantGeneConsequence2",
          "type": "object"
       },
       "VariantToChromosome": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "assemblyId": {
+            "assembly_id": {
                "type": "string"
             },
-            "chromosomeId": {
+            "chromosome_id": {
                "type": "string"
             },
             "end": {
@@ -558,14 +478,14 @@
                "description": "The start of the feature in positive 1-based integer coordinates",
                "type": "string"
             },
-            "variantId": {
+            "variant_id": {
                "type": "string"
             }
          },
          "required": [
-            "variantId",
-            "chromosomeId",
-            "assemblyId"
+            "variant_id",
+            "chromosome_id",
+            "assembly_id"
          ],
          "title": "VariantToChromosome",
          "type": "object"
@@ -630,16 +550,16 @@
                "description": "Start position of variant in amino acid sequence",
                "type": "integer"
             },
-            "transcriptId": {
+            "transcript_id": {
                "type": "string"
             },
-            "variantId": {
+            "variant_id": {
                "type": "string"
             }
          },
          "required": [
-            "variantId",
-            "transcriptId"
+            "variant_id",
+            "transcript_id"
          ],
          "title": "VariantTranscriptConsequence",
          "type": "object"

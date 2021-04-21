@@ -1,5 +1,5 @@
 # Auto generated from variantConsequence.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:50
+# Generation date: 2021-04-21 16:17
 # Schema: variantConsequence
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence
@@ -21,8 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import BiologicalSequence, GeneId, TranscriptId
-from . variation import VariantId
+from . core import BiologicalSequence
 from linkml_model.types import Float, Integer, String
 
 metamodel_version = "1.7.0"
@@ -42,33 +41,12 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
+class VariantGeneConsequenceVariantId(extended_str):
+    pass
 
 
-
-@dataclass
-class VariantGeneConsequence2(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence2")
-    class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant gene consequence 2"
-    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence2")
-
-    variantId: Union[str, VariantId] = None
-    geneId: Union[str, GeneId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.variantId is None:
-            raise ValueError("variantId must be supplied")
-        if not isinstance(self.variantId, VariantId):
-            self.variantId = VariantId(self.variantId)
-
-        if self.geneId is None:
-            raise ValueError("geneId must be supplied")
-        if not isinstance(self.geneId, GeneId):
-            self.geneId = GeneId(self.geneId)
-
-        super().__post_init__(**kwargs)
+class VariantTranscriptConsequenceVariantId(extended_str):
+    pass
 
 
 @dataclass
@@ -80,8 +58,8 @@ class VariantGeneConsequence(YAMLRoot):
     class_name: ClassVar[str] = "variant gene consequence"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence")
 
-    variantId: Union[str, VariantId] = None
-    geneId: Union[str, GeneId] = None
+    variant_id: Union[str, VariantGeneConsequenceVariantId] = None
+    gene_id: str = None
     vep_consequence: Optional[str] = None
     vep_impact: Optional[str] = None
     polyphen_score: Optional[float] = None
@@ -90,15 +68,15 @@ class VariantGeneConsequence(YAMLRoot):
     sift_prediction: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.variantId is None:
-            raise ValueError("variantId must be supplied")
-        if not isinstance(self.variantId, VariantId):
-            self.variantId = VariantId(self.variantId)
+        if self.variant_id is None:
+            raise ValueError("variant_id must be supplied")
+        if not isinstance(self.variant_id, VariantGeneConsequenceVariantId):
+            self.variant_id = VariantGeneConsequenceVariantId(self.variant_id)
 
-        if self.geneId is None:
-            raise ValueError("geneId must be supplied")
-        if not isinstance(self.geneId, GeneId):
-            self.geneId = GeneId(self.geneId)
+        if self.gene_id is None:
+            raise ValueError("gene_id must be supplied")
+        if not isinstance(self.gene_id, str):
+            self.gene_id = str(self.gene_id)
 
         if self.vep_consequence is not None and not isinstance(self.vep_consequence, str):
             self.vep_consequence = str(self.vep_consequence)
@@ -133,8 +111,8 @@ class VariantTranscriptConsequence(YAMLRoot):
     class_name: ClassVar[str] = "variant transcript consequence"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence")
 
-    variantId: Union[str, VariantId] = None
-    transcriptId: Union[str, TranscriptId] = None
+    variant_id: Union[str, VariantTranscriptConsequenceVariantId] = None
+    transcript_id: str = None
     amino_acid_reference: Optional[Union[str, BiologicalSequence]] = None
     amino_acid_variant: Optional[Union[str, BiologicalSequence]] = None
     codon_reference: Optional[str] = None
@@ -151,15 +129,15 @@ class VariantTranscriptConsequence(YAMLRoot):
     cns_end: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.variantId is None:
-            raise ValueError("variantId must be supplied")
-        if not isinstance(self.variantId, VariantId):
-            self.variantId = VariantId(self.variantId)
+        if self.variant_id is None:
+            raise ValueError("variant_id must be supplied")
+        if not isinstance(self.variant_id, VariantTranscriptConsequenceVariantId):
+            self.variant_id = VariantTranscriptConsequenceVariantId(self.variant_id)
 
-        if self.transcriptId is None:
-            raise ValueError("transcriptId must be supplied")
-        if not isinstance(self.transcriptId, TranscriptId):
-            self.transcriptId = TranscriptId(self.transcriptId)
+        if self.transcript_id is None:
+            raise ValueError("transcript_id must be supplied")
+        if not isinstance(self.transcript_id, str):
+            self.transcript_id = str(self.transcript_id)
 
         if self.amino_acid_reference is not None and not isinstance(self.amino_acid_reference, BiologicalSequence):
             self.amino_acid_reference = BiologicalSequence(self.amino_acid_reference)

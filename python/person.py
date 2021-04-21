@@ -1,5 +1,5 @@
 # Auto generated from person.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:50
+# Generation date: 2021-04-21 16:17
 # Schema: person
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/person
@@ -44,7 +44,8 @@ DEFAULT_ = ALLIANCE
 # Types
 
 # Class references
-
+class PersonPersonId(extended_str):
+    pass
 
 
 @dataclass
@@ -56,11 +57,17 @@ class Person(YAMLRoot):
     class_name: ClassVar[str] = "Person"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Person
 
+    person_id: Union[str, PersonPersonId] = None
     last_name: Optional[Union[dict, InformationContentEntity]] = None
     first_name: Optional[Union[dict, InformationContentEntity]] = None
     orcid: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.person_id is None:
+            raise ValueError("person_id must be supplied")
+        if not isinstance(self.person_id, PersonPersonId):
+            self.person_id = PersonPersonId(self.person_id)
+
         if self.last_name is not None and not isinstance(self.last_name, InformationContentEntity):
             self.last_name = InformationContentEntity(**self.last_name)
 
@@ -82,3 +89,9 @@ class slots:
 
 slots.orcid = Slot(uri=ALLIANCE.orcid, name="orcid", curie=ALLIANCE.curie('orcid'),
                    model_uri=ALLIANCE.orcid, domain=InformationContentEntity, range=Optional[str])
+
+slots.person_id = Slot(uri=ALLIANCE.person_id, name="person id", curie=ALLIANCE.curie('person_id'),
+                   model_uri=ALLIANCE.person_id, domain=None, range=str)
+
+slots.Person_person_id = Slot(uri=ALLIANCE.person_id, name="Person_person id", curie=ALLIANCE.curie('person_id'),
+                   model_uri=ALLIANCE.Person_person_id, domain=Person, range=Union[str, PersonPersonId])

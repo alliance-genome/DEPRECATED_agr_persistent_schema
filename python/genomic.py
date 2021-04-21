@@ -1,5 +1,5 @@
 # Auto generated from genomic.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:50
+# Generation date: 2021-04-21 16:17
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
@@ -21,10 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import GeneId, NamedThing, NamedThingId, TranscriptId
-from . variation import VariantId
-from linkml.utils.metamodelcore import URIorCURIE
-from linkml_model.types import String, Uriorcurie
+from linkml_model.types import String
 
 metamodel_version = "1.7.0"
 
@@ -43,16 +40,10 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class ChromosomeId(NamedThingId):
-    pass
 
 
-class AssemblyId(NamedThingId):
-    pass
 
-
-@dataclass
-class Chromosome(NamedThing):
+class Chromosome(YAMLRoot):
     """
     The ID of the landmark used to establish the coordinate system for the current feature.
     """
@@ -63,35 +54,14 @@ class Chromosome(NamedThing):
     class_name: ClassVar[str] = "chromosome"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
 
-    id: Union[str, ChromosomeId] = None
 
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, ChromosomeId):
-            self.id = ChromosomeId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class Assembly(NamedThing):
+class Assembly(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
     class_class_curie: ClassVar[str] = None
     class_name: ClassVar[str] = "assembly"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
-
-    id: Union[str, AssemblyId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, AssemblyId):
-            self.id = AssemblyId(self.id)
-
-        super().__post_init__(**kwargs)
 
 
 # Enumerations
@@ -107,17 +77,17 @@ slots.start = Slot(uri=DEFAULT_.start, name="start", curie=DEFAULT_.curie('start
 slots.end = Slot(uri=DEFAULT_.end, name="end", curie=DEFAULT_.curie('end'),
                    model_uri=DEFAULT_.end, domain=None, range=Optional[str])
 
-slots.variantId = Slot(uri=DEFAULT_.variantId, name="variantId", curie=DEFAULT_.curie('variantId'),
-                   model_uri=DEFAULT_.variantId, domain=None, range=Union[str, VariantId])
+slots.gene_id = Slot(uri=DEFAULT_.gene_id, name="gene id", curie=DEFAULT_.curie('gene_id'),
+                   model_uri=DEFAULT_.gene_id, domain=None, range=str)
 
-slots.geneId = Slot(uri=DEFAULT_.geneId, name="geneId", curie=DEFAULT_.curie('geneId'),
-                   model_uri=DEFAULT_.geneId, domain=None, range=Union[str, GeneId])
+slots.chromosome_id = Slot(uri=DEFAULT_.chromosome_id, name="chromosome id", curie=DEFAULT_.curie('chromosome_id'),
+                   model_uri=DEFAULT_.chromosome_id, domain=None, range=str)
 
-slots.chromosomeId = Slot(uri=DEFAULT_.chromosomeId, name="chromosomeId", curie=DEFAULT_.curie('chromosomeId'),
-                   model_uri=DEFAULT_.chromosomeId, domain=None, range=Union[str, ChromosomeId])
+slots.transcript_id = Slot(uri=DEFAULT_.transcript_id, name="transcript id", curie=DEFAULT_.curie('transcript_id'),
+                   model_uri=DEFAULT_.transcript_id, domain=None, range=str)
 
-slots.transcriptId = Slot(uri=DEFAULT_.transcriptId, name="transcriptId", curie=DEFAULT_.curie('transcriptId'),
-                   model_uri=DEFAULT_.transcriptId, domain=None, range=Union[str, TranscriptId])
+slots.assembly_id = Slot(uri=DEFAULT_.assembly_id, name="assembly id", curie=DEFAULT_.curie('assembly_id'),
+                   model_uri=DEFAULT_.assembly_id, domain=None, range=str)
 
-slots.assemblyId = Slot(uri=DEFAULT_.assemblyId, name="assemblyId", curie=DEFAULT_.curie('assemblyId'),
-                   model_uri=DEFAULT_.assemblyId, domain=None, range=Union[str, AssemblyId])
+slots.allele_id = Slot(uri=DEFAULT_.allele_id, name="allele id", curie=DEFAULT_.curie('allele_id'),
+                   model_uri=DEFAULT_.allele_id, domain=None, range=str)
