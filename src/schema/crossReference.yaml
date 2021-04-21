@@ -3,14 +3,25 @@ id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossRef
 imports:
   - core
 
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  schema: 'http://schema.org/'
+  foaf: 'http://xmlns.com/foaf/0.1/'
+
+
 classes:
 
   cross reference:
     slots:
-      - id
+      - cross reference id
       - page areas
       - display name
       - prefix
+    defining_slots:
+      - cross reference id
+      - page areas
 
 slots:
 
@@ -31,5 +42,10 @@ slots:
     multivalued: false
     range: string
 
+  cross reference id:
+    required: true
+    multivalued: false
+    range: string
+    identifier: true
 
 

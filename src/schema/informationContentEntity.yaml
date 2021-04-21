@@ -22,6 +22,9 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  schema: 'http://schema.org/'
+  foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
 
@@ -97,6 +100,13 @@ slots:
     description: >-
     domain: information content entity
     range: information content entity
+    slot_uri: foaf:familyName # look up these
+    # rdf label
+    # consider not having slot_uris or not
+    # slot uri to schema.org will be compelling (https://schema.org/familyName)
+    # https://schema.org/Person
+    exact_mappings:
+      schema:familyName
 
   initials:
     description: >-

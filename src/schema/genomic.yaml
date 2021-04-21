@@ -5,10 +5,14 @@ title: Alliance Schema Prototype Variation
 imports:
   - core
   - linkml:types
+  - variation
 
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  schema: 'http://schema.org/'
+  foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
 
@@ -35,3 +39,22 @@ slots:
     exact_mappings:
       - faldo:end
 
+  variantId:
+    required: true
+    range: variant
+
+  geneId:
+    required: true
+    range: gene
+
+  chromosomeId:
+    required: true
+    range: chromosome
+
+  transcriptId:
+    required: true
+    range: transcript
+
+  assemblyId:
+    required: true
+    range: assembly

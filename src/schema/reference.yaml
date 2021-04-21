@@ -8,6 +8,10 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  schema: 'http://schema.org/'
+  foaf: 'http://xmlns.com/foaf/0.1/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
   reference:
@@ -21,6 +25,8 @@ classes:
       - month published
       - day published
       - date arrived in PubMed
+      # date arrived in source - can take other sources here that will be more important.
+      # enumerate 'date arrived in' field pubmed, etc.
       - date last modified in PubMed
       - date last modified
       - volume
@@ -49,6 +55,9 @@ classes:
       - RGD
       - PMC
       - DOI
+    slot_usage: # use regex to constrain local id
+      id:
+        pattern: # check this add a regex - check about resourceDescriptor
 
 slots:
 

@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 15:50
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -21,7 +21,8 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import NamedThing
+from . core import Id, NamedThing
+from . crossReference import CrossReferenceCrossReferenceId
 from . informationContentEntity import AuthorReference, InformationContentEntity
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
@@ -35,7 +36,7 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 DOI = CurieNamespace('DOI', 'http://identifiers.org/doi/')
 FB = CurieNamespace('FB', 'http://identifiers.org/fb/')
 MGI = CurieNamespace('MGI', 'http://identifiers.org/mgi/')
-NLMID = CurieNamespace('NLMID', 'http://example.org/UNKNOWN/NLMID/')
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 PMC = CurieNamespace('PMC', 'http://identifiers.org/pmc/')
 PMID = CurieNamespace('PMID', 'http://www.ncbi.nlm.nih.gov/pubmed/')
 RGD = CurieNamespace('RGD', 'http://identifiers.org/rgd/')
@@ -43,7 +44,10 @@ SGD = CurieNamespace('SGD', 'http://identifiers.org/sgd/')
 WB = CurieNamespace('WB', 'http://identifiers.org/wb/')
 ZFIN = CurieNamespace('ZFIN', 'http://identifiers.org/zfin/')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/')
 
 
@@ -84,7 +88,7 @@ class Reference(InformationContentEntity):
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
     tags: Optional[Union[str, List[str]]] = empty_list()
     topics: Optional[Union[str, URIorCURIE]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
     publisher: Optional[Union[dict, InformationContentEntity]] = None
     keywords: Optional[Union[str, List[str]]] = empty_list()
 
@@ -170,7 +174,7 @@ class Reference(InformationContentEntity):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
 
         if self.publisher is not None and not isinstance(self.publisher, InformationContentEntity):
             self.publisher = InformationContentEntity(**self.publisher)
@@ -250,3 +254,6 @@ slots.alliance_category = Slot(uri=DEFAULT_.alliance_category, name="alliance ca
 
 slots.keywords = Slot(uri=DEFAULT_.keywords, name="keywords", curie=DEFAULT_.curie('keywords'),
                    model_uri=DEFAULT_.keywords, domain=InformationContentEntity, range=Optional[Union[str, List[str]]])
+
+slots.reference_id = Slot(uri=DEFAULT_.id, name="reference_id", curie=DEFAULT_.curie('id'),
+                   model_uri=DEFAULT_.reference_id, domain=Reference, range=Union[str, ReferenceId])

@@ -1,5 +1,5 @@
 # Auto generated from resource.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 15:50
 # Schema: resource
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource
@@ -36,12 +36,17 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 DOI = CurieNamespace('DOI', 'http://identifiers.org/doi/')
 FB = CurieNamespace('FB', 'http://identifiers.org/fb/')
 MGI = CurieNamespace('MGI', 'http://identifiers.org/mgi/')
-NLMID = CurieNamespace('NLMID', 'http://example.org/UNKNOWN/NLMID/')
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 PMID = CurieNamespace('PMID', 'http://www.ncbi.nlm.nih.gov/pubmed/')
 RGD = CurieNamespace('RGD', 'http://identifiers.org/rgd/')
 SGD = CurieNamespace('SGD', 'http://identifiers.org/sgd/')
 WB = CurieNamespace('WB', 'http://identifiers.org/wb/')
 ZFIN = CurieNamespace('ZFIN', 'http://identifiers.org/zfin/')
+ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/')
 
 

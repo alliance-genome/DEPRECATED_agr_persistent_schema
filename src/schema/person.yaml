@@ -23,15 +23,19 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  schema: 'http://schema.org/'
+  foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
-
-  person:
+  # TODO: decide on a convention for class, slot names
+  Person:
     slots:
       - last name
       - first name
       - orcid
-
+    exact_mappings:
+      - schema:person
+      - foaf:Person
 slots:
 
   orcid:

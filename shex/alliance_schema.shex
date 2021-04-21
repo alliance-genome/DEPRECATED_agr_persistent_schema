@@ -2,6 +2,7 @@ BASE <http://alliancegenome.org/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
 
 
 linkml:String xsd:string
@@ -38,7 +39,13 @@ linkml:Nodeidentifier NONLITERAL
     (  $<http://alliancegenome.orgAllele_tes> (  &<http://alliancegenome.orgNamedThing_tes> ;
           rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
        ) ;
-       rdf:type [ <http://alliancegenome.orgAllele> ] ?
+       rdf:type [ <http://alliancegenome.orgAllele> ]
+    )
+}
+
+<http://alliancegenome.orgAnnotation> {
+    (  $<http://alliancegenome.orgAnnotation_tes> rdf:type . * ;
+       rdf:type [ <http://alliancegenome.orgAnnotation> ] ?
     )
 }
 
@@ -47,20 +54,7 @@ linkml:Nodeidentifier NONLITERAL
           &<http://alliancegenome.orgNamedThing_tes> ;
           rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
        ) ;
-       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> ] ?
-    )
-}
-
-<http://alliancegenome.orgAssociation> CLOSED {
-    (  $<http://alliancegenome.orgAssociation_tes> (  &<http://alliancegenome.orgEntity_tes> ;
-          rdf:type [ <http://alliancegenome.orgEntity> ] ? ;
-          <http://alliancegenome.orgsubject> @<http://alliancegenome.orgNamedThing> ;
-          <http://alliancegenome.orgpredicate> @linkml:String ;
-          <http://alliancegenome.orgobject> @<http://alliancegenome.orgNamedThing> ;
-          <http://alliancegenome.orgnegated> @linkml:Boolean ? ;
-          <http://alliancegenome.orgqualifiers> @<http://alliancegenome.orgEntity> ?
-       ) ;
-       rdf:type [ <http://alliancegenome.orgAssociation> ] ?
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> ]
     )
 }
 
@@ -69,9 +63,10 @@ linkml:Nodeidentifier NONLITERAL
           @<http://alliancegenome.orgInformationContentEntity> ? ;
           <http://alliancegenome.orgfirst_name> @<http://alliancegenome.orgInformationContentEntity> ? ;
           <http://alliancegenome.orgmiddle_names> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orglast_name> @<http://alliancegenome.orgInformationContentEntity> ? ;
+          foaf:familyName @<http://alliancegenome.orgInformationContentEntity> ? ;
           <http://alliancegenome.orginitials> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String *
+          <http://alliancegenome.orgcross_references>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> *
        ) ;
        rdf:type [ <http://alliancegenome.orgAuthorReference> ] ?
     )
@@ -82,7 +77,7 @@ linkml:Nodeidentifier NONLITERAL
           &<http://alliancegenome.orgNamedThing_tes> ;
           rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
        ) ;
-       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ] ?
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ]
     )
 }
 
@@ -96,34 +91,19 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<http://alliancegenome.orgEditorResource> CLOSED {
-    (  $<http://alliancegenome.orgEditorResource_tes> (  &<http://alliancegenome.orgInformationContentEntity_tes> ;
-          rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ? ;
-          <http://alliancegenome.orgfirst_name> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orgmiddle_names> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orglast_name> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orginitials> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String *
-       ) ;
-       rdf:type [ <http://alliancegenome.orgEditorResource> ] ?
-    )
-}
-
 <http://alliancegenome.orgEntity>  (
-    @<http://alliancegenome.orgAssociation> OR @<http://alliancegenome.orgNamedThing>
+    {
+       (  $<http://alliancegenome.orgEntity_tes> <http://alliancegenome.orgname> @linkml:String ? ;
+          rdf:type [ <http://alliancegenome.orgEntity> ]
+       )
+    } OR @<http://alliancegenome.orgNamedThing>
 )
-
-<http://alliancegenome.orgEntity_struct> {
-    (  $<http://alliancegenome.orgEntity_tes> rdf:type . * ;
-       rdf:type [ <http://alliancegenome.orgEntity> ] ?
-    )
-}
 
 <http://alliancegenome.orgGene> CLOSED {
     (  $<http://alliancegenome.orgGene_tes> (  &<http://alliancegenome.orgNamedThing_tes> ;
           rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
        ) ;
-       rdf:type [ <http://alliancegenome.orgGene> ] ?
+       rdf:type [ <http://alliancegenome.orgGene> ]
     )
 }
 
@@ -131,12 +111,11 @@ linkml:Nodeidentifier NONLITERAL
     (  $<http://alliancegenome.orgGenomicEntity_tes> (  &<http://alliancegenome.orgNamedThing_tes> ;
           rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
        ) ;
-       rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ?
+       rdf:type [ <http://alliancegenome.orgGenomicEntity> ]
     )
 }
 
 <http://alliancegenome.orgInformationContentEntity>  (
-    @<http://alliancegenome.orgEditorResource> OR @<http://alliancegenome.orgPublisherResource> OR
     @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> OR
     @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource>
 )
@@ -152,7 +131,7 @@ linkml:Nodeidentifier NONLITERAL
        (  $<http://alliancegenome.orgNamedThing_tes> (  &<http://alliancegenome.orgEntity_tes> ;
              rdf:type [ <http://alliancegenome.orgEntity> ] ?
           ) ;
-          rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
+          rdf:type [ <http://alliancegenome.orgNamedThing> ]
        )
     } OR @<http://alliancegenome.orgAllele> OR
     @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> OR
@@ -160,19 +139,6 @@ linkml:Nodeidentifier NONLITERAL
     OR @<http://alliancegenome.orgGenomicEntity> OR @<http://alliancegenome.orgTranscript> OR
     @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant>
 )
-
-<http://alliancegenome.orgPublisherResource> CLOSED {
-    (  $<http://alliancegenome.orgPublisherResource_tes> (  &<http://alliancegenome.orgInformationContentEntity_tes> ;
-          rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ? ;
-          <http://alliancegenome.orgfirst_name> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orgmiddle_names> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orglast_name> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orginitials> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String *
-       ) ;
-       rdf:type [ <http://alliancegenome.orgPublisherResource> ] ?
-    )
-}
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> CLOSED {
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference_tes> ( 
@@ -199,7 +165,8 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/tags> @linkml:String * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/topics> @linkml:Uriorcurie ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String * ;
+          <http://alliancegenome.orgcross_references>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> * ;
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/keywords> @linkml:String *
        ) ;
@@ -241,7 +208,7 @@ linkml:Nodeidentifier NONLITERAL
     (  $<http://alliancegenome.orgTranscript_tes> (  &<http://alliancegenome.orgNamedThing_tes> ;
           rdf:type [ <http://alliancegenome.orgNamedThing> ] ?
        ) ;
-       rdf:type [ <http://alliancegenome.orgTranscript> ] ?
+       rdf:type [ <http://alliancegenome.orgTranscript> ]
     )
 }
 
@@ -274,19 +241,18 @@ linkml:Nodeidentifier NONLITERAL
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/note> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/protein_sequence>
           @<http://alliancegenome.orgBiologicalSequence> ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String *
+          <http://alliancegenome.orgcross_references>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> *
        ) ;
-       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ] ?
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ]
     )
 }
 
-<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequenceAssociation> CLOSED {
-    ( 
-       $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequenceAssociation_tes>
-       (  <http://alliancegenome.orgsubject>
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence_tes> ( 
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/variantId>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
-          <http://alliancegenome.orgpredicate> @linkml:String ;
-          <http://alliancegenome.orgobject> @<http://alliancegenome.orgGene> ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/geneId> @<http://alliancegenome.orgGene> ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/vep_consequence> @linkml:String ?
           ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/vep_impact> @linkml:String ? ;
@@ -296,42 +262,44 @@ linkml:Nodeidentifier NONLITERAL
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/sift_score> @linkml:Float ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/sift_prediction> @linkml:String ?
        ) ;
-       rdf:type [
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequenceAssociation>
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence> ]
+       ?
+    )
+}
+
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence2> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence2_tes> ( 
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/variantId>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/geneId> @<http://alliancegenome.orgGene>
+       ) ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence2>
           ] ?
     )
 }
 
-<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosomeAssociation> CLOSED
-{
-    ( 
-       $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosomeAssociation_tes>
-       (  <http://alliancegenome.orgsubject>
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosome> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosome_tes> ( 
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/variantId>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
-          <http://alliancegenome.orgpredicate> @linkml:String ;
-          <http://alliancegenome.orgobject>
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/chromosomeId>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/has_chromosome>
-          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/has_assembly>
-          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/assemblyId>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/start> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/end> @linkml:String ?
        ) ;
-       rdf:type [
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosomeAssociation>
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosome>
           ] ?
     )
 }
 
-<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequenceAssociation>
-CLOSED {
-    ( 
-       $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequenceAssociation_tes>
-       (  <http://alliancegenome.orgsubject>
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence_tes>
+       (  <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/variantId>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
-          <http://alliancegenome.orgpredicate> @linkml:String ;
-          <http://alliancegenome.orgobject> @<http://alliancegenome.orgTranscript> ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/transcriptId>
+          @<http://alliancegenome.orgTranscript> ;
           <http://alliancegenome.orgamino_acid_reference> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <http://alliancegenome.orgamino_acid_variant> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <http://alliancegenome.orgcodon_reference> @linkml:String ? ;
@@ -348,8 +316,7 @@ CLOSED {
           <http://alliancegenome.orgcns_end> @linkml:String ?
        ) ;
        rdf:type [
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequenceAssociation>
-          ] ?
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence> ] ?
     )
 }
 
