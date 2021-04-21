@@ -14,7 +14,6 @@ prefixes:
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
-  # reference should be Reference
   reference:
     is_a: information content entity
     slots:
