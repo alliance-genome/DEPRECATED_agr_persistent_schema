@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:41
+# Generation date: 2021-04-21 15:51
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -22,6 +22,7 @@ from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import NamedThing
+from . crossReference import CrossReferenceCrossReferenceId
 from . reference import ReferenceId
 from linkml.utils.metamodelcore import XSDDate
 from linkml_model.types import Date, String
@@ -86,7 +87,7 @@ class AuthorReference(YAMLRoot):
     middle_names: Optional[Union[dict, InformationContentEntity]] = None
     last_name: Optional[Union[dict, InformationContentEntity]] = None
     initials: Optional[Union[dict, InformationContentEntity]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.corresponding_author is not None and not isinstance(self.corresponding_author, InformationContentEntity):
@@ -108,7 +109,7 @@ class AuthorReference(YAMLRoot):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
 
         super().__post_init__(**kwargs)
 

@@ -19,8 +19,7 @@ classes:
       - page areas
       - display name
       - prefix
-    identifier: cross reference id
-    defining slots:
+    defining_slots:
       - cross reference id
       - page areas
 
@@ -47,5 +46,6 @@ slots:
     required: true
     multivalued: false
     range: string
+    identifier: true
 
 

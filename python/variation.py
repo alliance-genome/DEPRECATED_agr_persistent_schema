@@ -1,5 +1,5 @@
 # Auto generated from variation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:40
+# Generation date: 2021-04-21 15:50
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation
@@ -22,6 +22,7 @@ from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import AlleleId, BiologicalSequence, GeneId, NamedThing, NamedThingId, TranscriptId
+from . crossReference import CrossReferenceCrossReferenceId
 from . reference import ReferenceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
@@ -76,7 +77,7 @@ class Variant(NamedThing):
     references: Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]] = empty_list()
     note: Optional[str] = None
     protein_sequence: Optional[Union[str, BiologicalSequence]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -142,7 +143,7 @@ class Variant(NamedThing):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
 
         super().__post_init__(**kwargs)
 

@@ -1,5 +1,5 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:41
+# Generation date: 2021-04-21 15:51
 # Schema: Alliance-Schema-Prototype-Core-Types
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
@@ -21,6 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
+from . crossReference import CrossReferenceCrossReferenceId
 from linkml.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 from linkml_model.types import Boolean, Date, String, Uriorcurie
 
@@ -267,7 +268,7 @@ slots.name = Slot(uri=ALLIANCE.name, name="name", curie=ALLIANCE.curie('name'),
                    model_uri=ALLIANCE.name, domain=None, range=Optional[str])
 
 slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross references", curie=ALLIANCE.curie('cross_references'),
-                   model_uri=ALLIANCE.cross_references, domain=NamedThing, range=Optional[Union[str, List[str]]])
+                   model_uri=ALLIANCE.cross_references, domain=NamedThing, range=Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]])
 
 slots.symbol = Slot(uri=ALLIANCE.symbol, name="symbol", curie=ALLIANCE.curie('symbol'),
                    model_uri=ALLIANCE.symbol, domain=NamedThing, range=Optional[str])

@@ -93,11 +93,10 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "display_name": {
+            "cross_reference_id": {
                "type": "string"
             },
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+            "display_name": {
                "type": "string"
             },
             "page_areas": {
@@ -112,7 +111,7 @@
             }
          },
          "required": [
-            "id",
+            "cross_reference_id",
             "page_areas",
             "display_name",
             "prefix"

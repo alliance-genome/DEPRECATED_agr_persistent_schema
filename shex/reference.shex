@@ -56,9 +56,20 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgmiddle_names> @<http://alliancegenome.orgInformationContentEntity> ? ;
           foaf:familyName @<http://alliancegenome.orgInformationContentEntity> ? ;
           <http://alliancegenome.orginitials> @<http://alliancegenome.orgInformationContentEntity> ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String *
+          <http://alliancegenome.orgcross_references>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> *
        ) ;
        rdf:type [ <http://alliancegenome.orgAuthorReference> ] ?
+    )
+}
+
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference_tes> ( 
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/page_areas> @linkml:String + ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/display_name> @linkml:String ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/prefix> @linkml:String
+       ) ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> ]
     )
 }
 
@@ -128,7 +139,8 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
           <tags> @linkml:String * ;
           <topics> @linkml:Uriorcurie ? ;
-          <http://alliancegenome.orgcross_references> @linkml:String * ;
+          <http://alliancegenome.orgcross_references>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference> * ;
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
           <keywords> @linkml:String *
        ) ;
