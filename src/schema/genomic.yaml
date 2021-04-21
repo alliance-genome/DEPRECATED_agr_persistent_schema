@@ -5,6 +5,7 @@ title: Alliance Schema Prototype Variation
 imports:
   - core
   - linkml:types
+  - variation
 
 prefixes:
   alliance: 'http://alliancegenome.org'
@@ -38,3 +39,22 @@ slots:
     exact_mappings:
       - faldo:end
 
+  variantId:
+    required: true
+    range: variant
+
+  geneId:
+    required: true
+    range: gene
+
+  chromosomeId:
+    required: true
+    range: chromosome
+
+  transcriptId:
+    required: true
+    range: transcript
+
+  assemblyId:
+    required: true
+    range: assembly

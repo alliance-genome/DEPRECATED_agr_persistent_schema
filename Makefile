@@ -5,7 +5,7 @@ SCHEMA_NAMES = $(patsubst $(SCHEMA_DIR)/%.yaml, %, $(SOURCE_FILES))
 
 SCHEMA_NAME = alliance_schema
 SCHEMA_SRC = $(SCHEMA_DIR)/$(SCHEMA_NAME).yaml
-TGTS = graphql jsonschema docs shex owl csv graphql python sqlddl
+TGTS = graphql jsonschema docs shex owl csv graphql python #sqlddl
 
 #GEN_OPTS = --no-mergeimports
 GEN_OPTS = 
@@ -68,6 +68,11 @@ target/graphql/%.graphql: $(SCHEMA_DIR)/%.yaml tdir-graphql
 gen-jsonschema: target/jsonschema/$(SCHEMA_NAME).schema.json
 target/jsonschema/%.schema.json: $(SCHEMA_DIR)/%.yaml tdir-jsonschema
 	gen-json-schema $(GEN_OPTS) -t transaction $< > $@
+
+#gen-sqlddl: target/sqlddl/$(SCHEMA_NAME).schema.sql
+#target/sqlddl/%.schema.sql: $(SCHEMA_DIR)/%.yaml tdir-sqlddl
+#	gen-sqlddl $(GEN_OPTS) --dialect mssql+pyodbc $< > $@
+
 
 ###  -- Shex --
 # one file per module

@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 15:41
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -33,9 +33,12 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SKOS = CurieNamespace('skos', 'https://www.w3.org/TR/skos-reference/#')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = ALLIANCE
@@ -110,80 +113,6 @@ class AuthorReference(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
-class EditorResource(InformationContentEntity):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ALLIANCE.EditorResource
-    class_class_curie: ClassVar[str] = "alliance:EditorResource"
-    class_name: ClassVar[str] = "editor resource"
-    class_model_uri: ClassVar[URIRef] = ALLIANCE.EditorResource
-
-    first_name: Optional[Union[dict, InformationContentEntity]] = None
-    middle_names: Optional[Union[dict, InformationContentEntity]] = None
-    last_name: Optional[Union[dict, InformationContentEntity]] = None
-    initials: Optional[Union[dict, InformationContentEntity]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.first_name is not None and not isinstance(self.first_name, InformationContentEntity):
-            self.first_name = InformationContentEntity(**self.first_name)
-
-        if self.middle_names is not None and not isinstance(self.middle_names, InformationContentEntity):
-            self.middle_names = InformationContentEntity(**self.middle_names)
-
-        if self.last_name is not None and not isinstance(self.last_name, InformationContentEntity):
-            self.last_name = InformationContentEntity(**self.last_name)
-
-        if self.initials is not None and not isinstance(self.initials, InformationContentEntity):
-            self.initials = InformationContentEntity(**self.initials)
-
-        if self.cross_references is None:
-            self.cross_references = []
-        if not isinstance(self.cross_references, list):
-            self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass
-class PublisherResource(InformationContentEntity):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ALLIANCE.PublisherResource
-    class_class_curie: ClassVar[str] = "alliance:PublisherResource"
-    class_name: ClassVar[str] = "publisher resource"
-    class_model_uri: ClassVar[URIRef] = ALLIANCE.PublisherResource
-
-    first_name: Optional[Union[dict, InformationContentEntity]] = None
-    middle_names: Optional[Union[dict, InformationContentEntity]] = None
-    last_name: Optional[Union[dict, InformationContentEntity]] = None
-    initials: Optional[Union[dict, InformationContentEntity]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.first_name is not None and not isinstance(self.first_name, InformationContentEntity):
-            self.first_name = InformationContentEntity(**self.first_name)
-
-        if self.middle_names is not None and not isinstance(self.middle_names, InformationContentEntity):
-            self.middle_names = InformationContentEntity(**self.middle_names)
-
-        if self.last_name is not None and not isinstance(self.last_name, InformationContentEntity):
-            self.last_name = InformationContentEntity(**self.last_name)
-
-        if self.initials is not None and not isinstance(self.initials, InformationContentEntity):
-            self.initials = InformationContentEntity(**self.initials)
-
-        if self.cross_references is None:
-            self.cross_references = []
-        if not isinstance(self.cross_references, list):
-            self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
-
-        super().__post_init__(**kwargs)
-
-
 # Enumerations
 
 
@@ -215,7 +144,7 @@ slots.first_name = Slot(uri=ALLIANCE.first_name, name="first name", curie=ALLIAN
 slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle names", curie=ALLIANCE.curie('middle_names'),
                    model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
-slots.last_name = Slot(uri=ALLIANCE.last_name, name="last name", curie=ALLIANCE.curie('last_name'),
+slots.last_name = Slot(uri=FOAF.familyName, name="last name", curie=FOAF.curie('familyName'),
                    model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
 slots.initials = Slot(uri=ALLIANCE.initials, name="initials", curie=ALLIANCE.curie('initials'),

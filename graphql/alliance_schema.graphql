@@ -1,18 +1,17 @@
 type Allele
   {
+    id: Uriorcurie!
+    name: String
+  }
+
+interface Annotation
+  {
   }
 
 type Assembly
   {
-  }
-
-type Association
-  {
-    subject: NamedThing!
-    predicate: String!
-    object: NamedThing!
-    negated: Boolean
-    qualifiers: Entity
+    id: Uriorcurie!
+    name: String
   }
 
 type AuthorReference
@@ -27,6 +26,8 @@ type AuthorReference
 
 type Chromosome
   {
+    id: Uriorcurie!
+    name: String
   }
 
 type CrossReference
@@ -37,26 +38,22 @@ type CrossReference
     prefix: String!
   }
 
-type EditorResource
-  {
-    creationDate: Date
-    firstName: InformationContentEntity
-    middleNames: InformationContentEntity
-    lastName: InformationContentEntity
-    initials: InformationContentEntity
-    crossReferences: [String]
-  }
-
 interface Entity
   {
+    id: Uriorcurie!
+    name: String
   }
 
 type Gene
   {
+    id: Uriorcurie!
+    name: String
   }
 
 type GenomicEntity
   {
+    id: Uriorcurie!
+    name: String
   }
 
 interface InformationContentEntity
@@ -66,16 +63,8 @@ interface InformationContentEntity
 
 type NamedThing
   {
-  }
-
-type PublisherResource
-  {
-    creationDate: Date
-    firstName: InformationContentEntity
-    middleNames: InformationContentEntity
-    lastName: InformationContentEntity
-    initials: InformationContentEntity
-    crossReferences: [String]
+    id: Uriorcurie!
+    name: String
   }
 
 type Reference
@@ -132,10 +121,14 @@ type Species
 
 type Transcript
   {
+    id: Uriorcurie!
+    name: String
   }
 
 type Variant
   {
+    id: Uriorcurie!
+    name: String
     hgvsNomenclature: String
     genomicReferenceSequence: BiologicalSequence
     genomicVariantSequence: BiologicalSequence
@@ -155,11 +148,10 @@ type Variant
     crossReferences: [String]
   }
 
-type VariantGeneConsequenceAssociation
+type VariantGeneConsequence
   {
-    subject: Variant!
-    predicate: String!
-    object: Gene!
+    variantId: Variant!
+    geneId: Gene!
     vepConsequence: String
     vepImpact: String
     polyphenScore: Float
@@ -168,22 +160,25 @@ type VariantGeneConsequenceAssociation
     siftPrediction: String
   }
 
-type VariantToChromosomeAssociation
+type VariantGeneConsequence2
   {
-    subject: Variant!
-    predicate: String!
-    object: Chromosome!
-    hasChromosome: Chromosome
-    hasAssembly: Assembly
+    variantId: Variant!
+    geneId: Gene!
+  }
+
+type VariantToChromosome
+  {
+    variantId: Variant!
+    chromosomeId: Chromosome!
+    assemblyId: Assembly!
     start: String
     end: String
   }
 
-type VariantTranscriptConsequenceAssociation
+type VariantTranscriptConsequence
   {
-    subject: Variant!
-    predicate: String!
-    object: Transcript!
+    variantId: Variant!
+    transcriptId: Transcript!
     aminoAcidReference: BiologicalSequence
     aminoAcidVariant: BiologicalSequence
     codonReference: String

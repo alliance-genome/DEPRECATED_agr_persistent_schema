@@ -1,5 +1,5 @@
 # Auto generated from person.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 15:40
 # Schema: person
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/person
@@ -31,9 +31,11 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SKOS = CurieNamespace('skos', 'https://www.w3.org/TR/skos-reference/#')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = ALLIANCE
@@ -51,7 +53,7 @@ class Person(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Person
     class_class_curie: ClassVar[str] = "alliance:Person"
-    class_name: ClassVar[str] = "person"
+    class_name: ClassVar[str] = "Person"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Person
 
     last_name: Optional[Union[dict, InformationContentEntity]] = None

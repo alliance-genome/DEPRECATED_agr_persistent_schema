@@ -14,36 +14,32 @@ prefixes:
   foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
+
+  variant gene consequence 2:
+    slots:
+      - variantId
+      - geneId
+
+
   variant gene consequence:
     aliases: ['gene level consequence']
     slots:
-      - subject
-      - predicate
-      - object
+      - variantId
+      - geneId
       - vep consequence
       - vep impact
       - polyphen score
       - polyphen prediction
       - sift score
       - sift prediction
-    slot_usage:
-      subject:
-        range: variant
-        description: >-
-          subject should be the variant identifier
-      object:
-        range: gene
-        description: >-
-          object should be the gene identifier
 
   variant transcript consequence:
     aliases: ['transcript level consequence']
     description: >-
       Class for transcript-level VEP results
     slots:
-      - subject
-      - predicate
-      - object
+      - variantId
+      - transcriptId
       - amino acid reference
       - amino acid variant
       - codon reference
@@ -90,14 +86,6 @@ classes:
         description: HGVS protein sequence (HGVSp) name
       hgvs coding nomenclature:
         description: HGVS coding sequence (HGVSc) name
-      subject:
-        required: true
-        description: the variant identifier
-        range: variant
-      object:
-        required: true
-        description: Transcript that is affected by the associated variant
-        range: transcript
 
 
 slots:

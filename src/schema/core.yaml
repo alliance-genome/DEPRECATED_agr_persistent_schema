@@ -47,10 +47,6 @@ classes:
   named thing:
     is_a: entity
     description: "a databased entity or concept/class"
-    slot_usage:
-      category:
-        range: named thing
-        required: true
     exact_mappings:
       - BFO:0000001
       - WIKIDATA:Q35120
@@ -62,7 +58,6 @@ classes:
     slots:
       - id
       - name
-      - has attribute
 
   genomic entity:
     is_a: named thing
@@ -107,32 +102,11 @@ classes:
 
   species:
 
-  association:
-    is_a: entity
-    description: >-
-      A typed association between two entities, supported by evidence
-    slots:
-      - subject
-      - predicate
-      - object
-      - negated
-      - qualifiers
-    exact_mappings:
-      - rdf:Statement
-
   annotation:
     description: >-
       Biolink Model root class for entity annotations.
     abstract: true
 
-  attribute:
-    is_a: annotation
-    description: >-
-      A property or characteristic of an entity.
-      For example, an apple may have properties such as color, shape, age, crispiness.
-      An environmental sample may have attributes such as depth, lat, long, material.
-    slots:
-      - name
 
 ## ------------
 ## SLOTS
@@ -164,58 +138,6 @@ slots:
     domain: named thing
     # TODO: make enumeration
     range: string
-
-  association slot:
-    abstract: true
-    domain: association
-    aliases: ['edge property', 'statement property']
-    description: >-
-      any slot that relates an association to another entity
-    exact_mappings:
-      - biolink:association_slot
-
-  subject:
-    is_a: association slot
-    description: >-
-      connects an association to the subject of the association.
-      For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
-    required: true
-    range: named thing
-    exact_mappings:
-      - owl:annotatedSource
-      - biolink:subject
-
-  object:
-    is_a: association slot
-    description: >-
-      connects an association to the object of the association.
-      For example, in a variant-to-chromosome association, the variant is subject and chromosome is object.
-    required: true
-    range: named thing
-    exact_mappings:
-      - biolink:object
-
-  predicate:
-    is_a: association slot
-    description: >-
-      A high-level grouping for the relationship type. This is analogous to category for nodes.
-      In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the
-      relationship type.
-    domain: association
-    required: true
-    exact_mappings:
-      - biolink:predicate
-
-  has attribute:
-    description: >-
-      connects any entity to an attribute
-    domain: entity
-    range: attribute
-    multivalued: true
-    exact_mappings:
-      - SIO:000008
-      - biolink:has_attribute
-
 
   description:
     aliases: ['definition']

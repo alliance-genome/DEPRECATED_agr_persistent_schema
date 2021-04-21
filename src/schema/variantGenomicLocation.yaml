@@ -19,30 +19,16 @@ classes:
   variant to chromosome:
     aliases: ['genomic location']
     slots:
-      - subject
-      - predicate
-      - object
-      - has chromosome
-      - has assembly
+      - variantId
+      - chromosomeId
+      - assemblyId
       - start
       - end
     slot_usage:
-      subject:
-        description: >-
-          Should be the id of the variant
-        range: variant
-      object:
-        description: >-
-          Should be the id of the chromosome
-        range: chromosome
-      predicate:
-        subproperty_of: located on
     defining_slots:
-      - subject
-      - predicate
-      - object
-      - has chromosome
-      - has assembly
+      - variantId
+      - chromosomeId
+      - assemblyId
       - start
       - end
 
@@ -51,11 +37,3 @@ slots:
   located on:
     domain: named thing
     range: chromosome
-
-  has chromosome:
-    domain: variant to chromosome
-    range: chromosome
-
-  has assembly:
-    domain: variant to chromosome
-    range: assembly
