@@ -15,10 +15,14 @@ classes:
 
   cross reference:
     slots:
-      - id
+      - cross reference id
       - page areas
       - display name
       - prefix
+    identifier: cross reference id
+    defining slots:
+      - cross reference id
+      - page areas
 
 slots:
 
@@ -39,5 +43,9 @@ slots:
     multivalued: false
     range: string
 
+  cross reference id:
+    required: true
+    multivalued: false
+    range: string
 
 

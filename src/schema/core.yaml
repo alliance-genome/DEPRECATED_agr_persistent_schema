@@ -152,6 +152,7 @@ slots:
     singular_name: has cross reference
     description: >-
     domain: named thing
+    range: cross reference
     multivalued: true
 
   symbol:
