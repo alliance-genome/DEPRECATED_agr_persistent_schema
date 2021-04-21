@@ -37,22 +37,22 @@ slots:
     exact_mappings:
       - faldo:end
 
-  variant id:
-    required: true
-    range: variant
-
   gene id:
     required: true
-    range: gene
+    range: string
 
   chromosome id:
     required: true
-    range: chromosome
+    range: string
 
   transcript id:
     required: true
-    range: transcript
+    range: string
 
   assembly id:
     required: true
-    range: assembly
+    range: string
+
+  allele id:
+    required: true
+    range: string

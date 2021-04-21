@@ -41,10 +41,19 @@ classes:
       - cross references
     exact_mappings:
       - SO:0001059
+    slot_usage:
+      variant id:
+        identifier: true
 
 # Slots
 
 slots:
+
+  variant id:
+    domain: variant
+    range: string
+    required: true
+    identifier: true
 
   note:
     range: string

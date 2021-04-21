@@ -22,6 +22,7 @@ imports:
   - linkml:types
   - reference
   - crossReference
+  - genomic
 
 prefixes:
   alliance: 'http://alliancegenome.org'
@@ -64,10 +65,15 @@ classes:
       - SGD
       - WB
       - ZFIN
+    slot_usage:
+      gene id:
+        identifier: true
 
   transcript:
     description: >-
       An RNA synthesized on a DNA or RNA template by an RNA polymerase.
+    slots:
+      - transcript id
     exact_mappings:
       - biolink:Transcript
     id_prefixes:
@@ -78,8 +84,14 @@ classes:
       - RGD
       - SGD
       - ZFIN
+    slot_usage:
+      transcript id:
+        identifier: true
+
 
   allele:
+    slots:
+      - allele id
 
   species:
 
@@ -152,7 +164,7 @@ slots:
 
   qualifiers:
     singular_name: qualifier
-    range: entity
+    domain: information content entity
     description: >-
       This is the MeSH qualifier term that is optionally added to the descriptor term.
 

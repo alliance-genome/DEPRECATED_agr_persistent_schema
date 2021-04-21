@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:50
+# Generation date: 2021-04-21 16:17
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -21,7 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import Id, NamedThing
+from . core import Id
 from . crossReference import CrossReferenceCrossReferenceId
 from . informationContentEntity import AuthorReference, InformationContentEntity
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
@@ -68,6 +68,7 @@ class Reference(InformationContentEntity):
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference")
 
     id: Union[str, ReferenceId] = None
+    reference_id: Optional[str] = None
     title: Optional[str] = None
     alliance_category: Optional[str] = None
     date_published: Optional[Union[str, XSDDate]] = None
@@ -97,6 +98,9 @@ class Reference(InformationContentEntity):
             raise ValueError("id must be supplied")
         if not isinstance(self.id, ReferenceId):
             self.id = ReferenceId(self.id)
+
+        if self.reference_id is not None and not isinstance(self.reference_id, str):
+            self.reference_id = str(self.reference_id)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -195,6 +199,9 @@ class Reference(InformationContentEntity):
 class slots:
     pass
 
+slots.reference_id = Slot(uri=DEFAULT_.reference_id, name="reference id", curie=DEFAULT_.curie('reference_id'),
+                   model_uri=DEFAULT_.reference_id, domain=Reference, range=Optional[str])
+
 slots.topics = Slot(uri=DEFAULT_.topics, name="topics", curie=DEFAULT_.curie('topics'),
                    model_uri=DEFAULT_.topics, domain=None, range=Optional[Union[str, URIorCURIE]])
 
@@ -208,7 +215,7 @@ slots.date_last_modified_in_PubMed = Slot(uri=DEFAULT_.date_last_modified_in_Pub
                    model_uri=DEFAULT_.date_last_modified_in_PubMed, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
 slots.date_last_modified = Slot(uri=DEFAULT_.date_last_modified, name="date last modified", curie=DEFAULT_.curie('date_last_modified'),
-                   model_uri=DEFAULT_.date_last_modified, domain=NamedThing, range=Optional[Union[str, XSDDate]])
+                   model_uri=DEFAULT_.date_last_modified, domain=None, range=Optional[Union[str, XSDDate]])
 
 slots.year_published = Slot(uri=DEFAULT_.year_published, name="year published", curie=DEFAULT_.curie('year_published'),
                    model_uri=DEFAULT_.year_published, domain=InformationContentEntity, range=Optional[str])

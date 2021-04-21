@@ -37,8 +37,16 @@ classes:
     exact_mappings:
       - schema:person
       - foaf:Person
+    slot_usage:
+      person id:
+        identifier: true
+
 slots:
 
   orcid:
     domain: information content entity
     range: string
+
+  person id:
+    range: string
+    required: true

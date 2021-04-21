@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 15:51
+# Generation date: 2021-04-21 16:17
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -21,7 +21,6 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import NamedThing
 from . crossReference import CrossReferenceCrossReferenceId
 from . reference import ReferenceId
 from linkml.utils.metamodelcore import XSDDate
@@ -131,7 +130,7 @@ slots.copyright_date = Slot(uri=ALLIANCE.copyright_date, name="copyright date", 
                    model_uri=ALLIANCE.copyright_date, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
 slots.references = Slot(uri=ALLIANCE.references, name="references", curie=ALLIANCE.curie('references'),
-                   model_uri=ALLIANCE.references, domain=NamedThing, range=Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]])
+                   model_uri=ALLIANCE.references, domain=None, range=Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]])
 
 slots.authors = Slot(uri=ALLIANCE.authors, name="authors", curie=ALLIANCE.curie('authors'),
                    model_uri=ALLIANCE.authors, domain=InformationContentEntity, range=Optional[Union[Union[dict, "AuthorReference"], List[Union[dict, "AuthorReference"]]]])
