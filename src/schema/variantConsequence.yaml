@@ -15,12 +15,6 @@ prefixes:
 
 classes:
 
-  variant gene consequence 2:
-    slots:
-      - variantId
-      - geneId
-
-
   variant gene consequence:
     aliases: ['gene level consequence']
     slots:
