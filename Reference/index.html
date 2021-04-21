@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Class: Reference - {{schema.description}}</title>
+  <title>Class: Reference - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> {{schema.description}}</a>
+        <a href=".." class="icon icon-home"> Alliance Persistence Model</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -68,7 +68,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">{{schema.description}}</a>
+        <a href="..">Alliance Persistence Model</a>
       </nav>
 
       
@@ -93,7 +93,7 @@
               
                 <h1 id="class-reference">Class: Reference</h1>
 <p>URI: <a href="http://alliancegenome.orgReference">alliance:Reference</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;publisher%200..1-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_PubMed:date%20%3F;date_last_modified_in_PubMed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;PubMed_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;mod_reference_types:string%20*;tags:string%20*;topics:uriorcurie%20%3F;cross_references:string%20*;keywords:string%20*;creation_date(i):date%20%3F],[AuthorReference]&lt;authors%200..*-++[Reference],[Resource]-%20references%200..*&gt;[Reference],[Variant]-%20references%200..*&gt;[Reference],[InformationContentEntity]^-[Reference],[Variant],[Resource],[NamedThing],[InformationContentEntity],[AuthorReference]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;publisher%200..1-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_PubMed:date%20%3F;date_last_modified_in_PubMed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;PubMed_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;mod_reference_types:string%20*;tags:string%20*;topics:uriorcurie%20%3F;keywords:string%20*;creation_date(i):date%20%3F],[CrossReference]&lt;cross%20references%200..*-%20[Reference],[AuthorReference]&lt;authors%200..*-++[Reference],[Resource]-%20references%200..*&gt;[Reference],[Variant]-%20references%200..*&gt;[Reference],[InformationContentEntity]^-[Reference],[Variant],[Resource],[NamedThing],[InformationContentEntity],[CrossReference],[AuthorReference]" /></p>
 <h2 id="identifier-prefixes">Identifier prefixes</h2>
 <ul>
 <li>PMID</li>
@@ -141,7 +141,7 @@
 </ul>
 </li>
 <li><a href="../cross_references/">cross references</a>  <sub>0..*</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
+<li>range: <a href="../CrossReference/">CrossReference</a></li>
 </ul>
 </li>
 <li><a href="../date_arrived_in_PubMed/">date arrived in PubMed</a>  <sub>OPT</sub><ul>
@@ -167,11 +167,6 @@
 <li><a href="../day_published/">day published</a>  <sub>OPT</sub><ul>
 <li>Description: Day in which an entity was created.</li>
 <li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
-<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
-<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
 </ul>
 </li>
 <li><a href="../issue_date/">issue date</a>  <sub>OPT</sub><ul>
@@ -205,6 +200,10 @@
 </li>
 <li><a href="../publisher/">publisher</a>  <sub>OPT</sub><ul>
 <li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../reference_id/">reference➞id</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
 </ul>
 </li>
 <li><a href="../tags/">tags</a>  <sub>0..*</sub><ul>

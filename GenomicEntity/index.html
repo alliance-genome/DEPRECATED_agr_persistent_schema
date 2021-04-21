@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Class: GenomicEntity - {{schema.description}}</title>
+  <title>Class: GenomicEntity - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> {{schema.description}}</a>
+        <a href=".." class="icon icon-home"> Alliance Persistence Model</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -68,7 +68,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">{{schema.description}}</a>
+        <a href="..">Alliance Persistence Model</a>
       </nav>
 
       
@@ -93,12 +93,25 @@
               
                 <h1 id="class-genomicentity">Class: GenomicEntity</h1>
 <p>URI: <a href="http://alliancegenome.orgGenomicEntity">alliance:GenomicEntity</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing],[NamedThing]^-[GenomicEntity]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[NamedThing],[NamedThing]^-[GenomicEntity&#124;id(i):uriorcurie;name(i):string%20%3F]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
+<h3 id="inherited-from-named-thing">Inherited from named thing:</h3>
+<ul>
+<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
+<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+<li><a href="../name/">name</a>  <sub>OPT</sub><ul>
+<li>Description: a human-readable name for an entity</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

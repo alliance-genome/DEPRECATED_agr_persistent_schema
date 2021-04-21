@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Class: Variant - {{schema.description}}</title>
+  <title>Class: Variant - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> {{schema.description}}</a>
+        <a href=".." class="icon icon-home"> Alliance Persistence Model</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -68,7 +68,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">{{schema.description}}</a>
+        <a href="..">Alliance Persistence Model</a>
       </nav>
 
       
@@ -94,22 +94,20 @@
                 <h1 id="class-variant">Class: Variant</h1>
 <p>Variant class</p>
 <p>URI: <a href="http://alliancegenome.orgVariant">alliance:Variant</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantTranscriptConsequenceAssociation],[VariantToChromosomeAssociation],[VariantGeneConsequenceAssociation],[Reference]&lt;references%200..*-%20[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;cross_references:string%20*],[Allele]&lt;is%20variant%20of%20allele%200..1-++[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-++[Variant],[Gene]&lt;is%20variant%20of%20gene%200..1-++[Variant],[VariantGeneConsequenceAssociation]++-%20subject%201..1&gt;[Variant],[VariantToChromosomeAssociation]++-%20subject%201..1&gt;[Variant],[VariantTranscriptConsequenceAssociation]++-%20subject%201..1&gt;[Variant],[NamedThing]^-[Variant],[Transcript],[Reference],[NamedThing],[Gene],[Allele]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[CrossReference]&lt;cross%20references%200..*-%20[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;id(i):uriorcurie;name(i):string%20%3F],[Reference]&lt;references%200..*-%20[Variant],[Allele]&lt;is%20variant%20of%20allele%200..1-%20[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-%20[Variant],[Gene]&lt;is%20variant%20of%20gene%200..1-%20[Variant],[VariantGeneConsequence2]-%20variantId%201..1&gt;[Variant],[VariantGeneConsequence]-%20variantId%201..1&gt;[Variant],[VariantTranscriptConsequence]-%20variantId%201..1&gt;[Variant],[VariantToChromosome]-%20variantId%201..1&gt;[Variant],[NamedThing]^-[Variant],[VariantTranscriptConsequence],[VariantToChromosome],[VariantGeneConsequence2],[VariantGeneConsequence],[Transcript],[Reference],[NamedThing],[Gene],[CrossReference],[Allele]" /></p>
 <h2 id="parents">Parents</h2>
 <ul>
 <li>is_a: <a href="../NamedThing/">NamedThing</a> - a databased entity or concept/class</li>
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
-<li><strong><a href="../VariantGeneConsequenceAssociation/">VariantGeneConsequenceAssociation</a></strong> <em><a href="../variant_gene_consequence_association_subject/">variant gene consequence association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
-<li><strong><a href="../VariantToChromosomeAssociation/">VariantToChromosomeAssociation</a></strong> <em><a href="../variant_to_chromosome_association_subject/">variant to chromosome association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
-<li><strong><a href="../VariantTranscriptConsequenceAssociation/">VariantTranscriptConsequenceAssociation</a></strong> <em><a href="../variant_transcript_consequence_association_subject/">variant transcript consequence association➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
+<li><strong>None</strong> <em><a href="../variantId/">variantId</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
 <li><a href="../cross_references/">cross references</a>  <sub>0..*</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
+<li>range: <a href="../CrossReference/">CrossReference</a></li>
 </ul>
 </li>
 <li><a href="../data_provider/">data provider</a>  <sub>0..*</sub><ul>
@@ -183,6 +181,19 @@
 </li>
 <li><a href="../type/">type</a>  <sub>OPT</sub><ul>
 <li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="inherited-from-named-thing">Inherited from named thing:</h3>
+<ul>
+<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
+<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+<li><a href="../name/">name</a>  <sub>OPT</sub><ul>
+<li>Description: a human-readable name for an entity</li>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
 </ul>

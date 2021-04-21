@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Class: AuthorReference - {{schema.description}}</title>
+  <title>Class: AuthorReference - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -38,7 +38,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> {{schema.description}}</a>
+        <a href=".." class="icon icon-home"> Alliance Persistence Model</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -68,7 +68,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">{{schema.description}}</a>
+        <a href="..">Alliance Persistence Model</a>
       </nav>
 
       
@@ -93,7 +93,7 @@
               
                 <h1 id="class-authorreference">Class: AuthorReference</h1>
 <p>URI: <a href="http://alliancegenome.orgAuthorReference">alliance:AuthorReference</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Resource],[InformationContentEntity],[InformationContentEntity]&lt;initials%200..1-++[AuthorReference&#124;cross_references:string%20*],[InformationContentEntity]&lt;last%20name%200..1-++[AuthorReference],[InformationContentEntity]&lt;middle%20names%200..1-++[AuthorReference],[InformationContentEntity]&lt;first%20name%200..1-++[AuthorReference],[InformationContentEntity]&lt;corresponding%20author%200..1-++[AuthorReference],[Reference]++-%20authors%200..*&gt;[AuthorReference],[Resource]++-%20authors%200..*&gt;[AuthorReference],[Resource]++-%20editors%200..*&gt;[AuthorReference],[Reference]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Resource],[InformationContentEntity],[CrossReference],[CrossReference]&lt;cross%20references%200..*-%20[AuthorReference],[InformationContentEntity]&lt;initials%200..1-++[AuthorReference],[InformationContentEntity]&lt;last%20name%200..1-++[AuthorReference],[InformationContentEntity]&lt;middle%20names%200..1-++[AuthorReference],[InformationContentEntity]&lt;first%20name%200..1-++[AuthorReference],[InformationContentEntity]&lt;corresponding%20author%200..1-++[AuthorReference],[Reference]++-%20authors%200..*&gt;[AuthorReference],[Resource]++-%20authors%200..*&gt;[AuthorReference],[Resource]++-%20editors%200..*&gt;[AuthorReference],[Reference]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
 <li><strong><a href="../InformationContentEntity/">InformationContentEntity</a></strong> <em><a href="../authors/">authors</a></em>  <sub>0..<em></sub>  </em><em><a href="./">AuthorReference</a></em>*</li>
@@ -107,7 +107,7 @@
 </ul>
 </li>
 <li><a href="../cross_references/">cross references</a>  <sub>0..*</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
+<li>range: <a href="../CrossReference/">CrossReference</a></li>
 </ul>
 </li>
 <li><a href="../first_name/">first name</a>  <sub>OPT</sub><ul>
