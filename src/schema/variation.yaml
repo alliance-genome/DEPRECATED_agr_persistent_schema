@@ -18,10 +18,10 @@ prefixes:
 classes:
 
   variant:
-    is_a: named thing
     description: >-
       Variant class
     slots:
+      - variant id
       - hgvs nomenclature
       - genomic reference sequence
       - genomic variant sequence

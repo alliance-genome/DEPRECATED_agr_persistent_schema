@@ -18,8 +18,8 @@ classes:
   variant gene consequence:
     aliases: ['gene level consequence']
     slots:
-      - variantId
-      - geneId
+      - variant id
+      - gene id
       - vep consequence
       - vep impact
       - polyphen score
@@ -32,8 +32,8 @@ classes:
     description: >-
       Class for transcript-level VEP results
     slots:
-      - variantId
-      - transcriptId
+      - variant id
+      - transcript id
       - amino acid reference
       - amino acid variant
       - codon reference

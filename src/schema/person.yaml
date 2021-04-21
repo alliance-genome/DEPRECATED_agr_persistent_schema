@@ -30,6 +30,7 @@ classes:
   # TODO: decide on a convention for class, slot names
   Person:
     slots:
+      - person id
       - last name
       - first name
       - orcid

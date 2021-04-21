@@ -17,11 +17,9 @@ prefixes:
 classes:
 
   chromosome:
-    is_a: named thing
     description: The ID of the landmark used to establish the coordinate system for the current feature.
 
   assembly:
-    is_a: named thing
 
 slots:
 
@@ -39,22 +37,22 @@ slots:
     exact_mappings:
       - faldo:end
 
-  variantId:
+  variant id:
     required: true
     range: variant
 
-  geneId:
+  gene id:
     required: true
     range: gene
 
-  chromosomeId:
+  chromosome id:
     required: true
     range: chromosome
 
-  transcriptId:
+  transcript id:
     required: true
     range: transcript
 
-  assemblyId:
+  assembly id:
     required: true
     range: assembly

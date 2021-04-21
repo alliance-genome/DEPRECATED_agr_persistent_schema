@@ -17,7 +17,7 @@ classes:
   reference:
     is_a: information content entity
     slots:
-      - id
+      - reference id
       - title
       - alliance category
       - date published
@@ -61,6 +61,9 @@ classes:
 
 slots:
 
+  reference id:
+    domain: reference
+
   topics:
     singular_name: topic
     range: uriorcurie
@@ -90,7 +93,6 @@ slots:
     description: >-
       Date on which an entity was last modified by the MOD.
     range: date
-    domain: named thing
 
   year published:
     description: >-
