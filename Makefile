@@ -101,10 +101,6 @@ gen-linkml: target/linkml/$(SCHEMA_NAME).yaml
 target/linkml/%.yaml: $(SCHEMA_DIR)/%.yaml tdir-limkml
 	cp $< > $@
 
-gen-sqlddl: target/linkml/$(SCHEMA_NAME).sql
-target/linkml/%.sql: $(SCHEMA_DIR)/%.sql tdir-sqlddl
-	cp $< > $@
-
 # test docs locally.
 docserve:
 	mkdocs serve

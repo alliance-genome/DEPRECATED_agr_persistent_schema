@@ -1,2 +1,3 @@
 git+https://github.com/linkml/linkml.git@sql-ddl-redux
 mkdocs
+sqlalchemy

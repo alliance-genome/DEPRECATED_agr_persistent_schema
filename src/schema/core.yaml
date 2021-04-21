@@ -189,7 +189,7 @@ slots:
     is_a: association slot
     description: >-
       connects an association to the object of the association.
-      For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
+      For example, in a variant-to-chromosome association, the variant is subject and chromosome is object.
     required: true
     range: named thing
     exact_mappings:
@@ -212,9 +212,6 @@ slots:
     domain: entity
     range: attribute
     multivalued: true
-    close_mappings:
-      # RTX term meaning 'specifies value of' tagged as inverse of 'biolink:has attribute'
-      - OBI:0001927
     exact_mappings:
       - SIO:000008
       - biolink:has_attribute

@@ -16,7 +16,7 @@ prefixes:
   foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
-  variant to chromosome association:
+  variant to chromosome:
     aliases: ['genomic location']
     slots:
       - subject
@@ -53,9 +53,9 @@ slots:
     range: chromosome
 
   has chromosome:
-    domain: variant to chromosome association
+    domain: variant to chromosome
     range: chromosome
 
   has assembly:
-    domain: variant to chromosome association
+    domain: variant to chromosome
     range: assembly
