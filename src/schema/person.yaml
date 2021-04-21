@@ -27,7 +27,6 @@ prefixes:
   foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
-  # TODO: decide on a convention for class, slot names
   Person:
     slots:
       - person id
