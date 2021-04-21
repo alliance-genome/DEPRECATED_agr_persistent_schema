@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Class: NamedThing - Alliance Persistence Model</title>
+  <title>Slot: gene_gene_id - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Class: NamedThing";
-    var mkdocs_page_input_path = "NamedThing.md";
+    var mkdocs_page_name = "Slot: gene_gene_id";
+    var mkdocs_page_input_path = "gene_gene_id.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Class: NamedThing</li>
+    <li>Slot: gene_gene_id</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,61 +91,19 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="class-namedthing">Class: NamedThing</h1>
-<p>a databased entity or concept/class</p>
-<p>URI: <a href="http://alliancegenome.orgNamedThing">alliance:NamedThing</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[Transcript],[NamedThing&#124;id(i):uriorcurie;name(i):string%20%3F]^-[Variant],[NamedThing]^-[Transcript],[NamedThing]^-[GenomicEntity],[NamedThing]^-[Gene],[NamedThing]^-[Chromosome],[NamedThing]^-[Assembly],[NamedThing]^-[Allele],[Entity]^-[NamedThing],[GenomicEntity],[Gene],[Entity],[Chromosome],[Assembly],[Allele]" /></p>
+                <h1 id="slot-gene_gene_id">Slot: gene_gene_id</h1>
+<p>URI: <a href="http://alliancegenome.orggene_gene_id">alliance:gene_gene_id</a></p>
+<h2 id="domain-and-range">Domain and Range</h2>
+<p><a href="../Gene/">Gene</a> -&gt;  <sub>REQ</sub> <a href="../types/String/">String</a></p>
 <h2 id="parents">Parents</h2>
 <ul>
-<li>is_a: <a href="../Entity/">Entity</a> - Root Biolink Model class for all things and informational relationships, real or imagined.</li>
+<li>is_a: <a href="../gene_id/">gene id</a></li>
 </ul>
 <h2 id="children">Children</h2>
+<h2 id="used-by">Used by</h2>
 <ul>
-<li><a href="../Allele/">Allele</a></li>
-<li><a href="../Assembly/">Assembly</a></li>
-<li><a href="../Chromosome/">Chromosome</a> - The ID of the landmark used to establish the coordinate system for the current feature.</li>
-<li><a href="../Gene/">Gene</a> - A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.</li>
-<li><a href="../GenomicEntity/">GenomicEntity</a></li>
-<li><a href="../Transcript/">Transcript</a> - An RNA synthesized on a DNA or RNA template by an RNA polymerase.</li>
-<li><a href="../Variant/">Variant</a> - Variant class</li>
+<li><a href="../Gene/">Gene</a></li>
 </ul>
-<h2 id="referenced-by-class">Referenced by class</h2>
-<h2 id="attributes">Attributes</h2>
-<h3 id="inherited-from-entity">Inherited from entity:</h3>
-<ul>
-<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
-<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
-<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
-</ul>
-</li>
-<li><a href="../name/">name</a>  <sub>OPT</sub><ul>
-<li>Description: a human-readable name for an entity</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-</ul>
-<h2 id="other-properties">Other properties</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Exact Mappings:</strong></td>
-<td></td>
-<td>BFO:0000001</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>WIKIDATA:Q35120</td>
-</tr>
-</tbody>
-</table>
               
             </div>
           </div>

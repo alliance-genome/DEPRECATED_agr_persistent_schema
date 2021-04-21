@@ -93,7 +93,7 @@
               
                 <h1 id="class-reference">Class: Reference</h1>
 <p>URI: <a href="http://alliancegenome.orgReference">alliance:Reference</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;publisher%200..1-++[Reference&#124;id:uriorcurie;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_PubMed:date%20%3F;date_last_modified_in_PubMed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;PubMed_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;mod_reference_types:string%20*;tags:string%20*;topics:uriorcurie%20%3F;keywords:string%20*;creation_date(i):date%20%3F],[CrossReference]&lt;cross%20references%200..*-%20[Reference],[AuthorReference]&lt;authors%200..*-++[Reference],[Resource]-%20references%200..*&gt;[Reference],[Variant]-%20references%200..*&gt;[Reference],[InformationContentEntity]^-[Reference],[Variant],[Resource],[NamedThing],[InformationContentEntity],[CrossReference],[AuthorReference]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;publisher%200..1-++[Reference&#124;reference_id:string%20%3F;title:string%20%3F;alliance_category:string%20%3F;date_published:date%20%3F;year_published:string%20%3F;month_published:string%20%3F;day_published:string%20%3F;date_arrived_in_PubMed:date%20%3F;date_last_modified_in_PubMed:date%20%3F;date_last_modified:date%20%3F;volume:string%20%3F;pages:string%20*;abstract:string%20%3F;citation:string%20%3F;PubMed_type:string%20%3F;issue_name:string%20%3F;issue_date:date%20%3F;mod_reference_types:string%20*;tags:string%20*;topics:uriorcurie%20%3F;keywords:string%20*;id:uriorcurie;creation_date(i):date%20%3F],[CrossReference]&lt;cross%20references%200..*-%20[Reference],[AuthorReference]&lt;authors%200..*-++[Reference],[Resource]-%20references%200..*&gt;[Reference],[Variant]-%20references%200..*&gt;[Reference],[InformationContentEntity]^-[Reference],[Variant],[Resource],[InformationContentEntity],[CrossReference],[AuthorReference]" /></p>
 <h2 id="identifier-prefixes">Identifier prefixes</h2>
 <ul>
 <li>PMID</li>
@@ -114,7 +114,7 @@
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
-<li><strong><a href="../NamedThing/">NamedThing</a></strong> <em><a href="../references/">references</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Reference</a></em>*</li>
+<li><strong>None</strong> <em><a href="../references/">references</a></em>  <sub>0..<em></sub>  </em><em><a href="./">Reference</a></em>*</li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
@@ -200,6 +200,10 @@
 </li>
 <li><a href="../publisher/">publisher</a>  <sub>OPT</sub><ul>
 <li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../reference_id/">reference id</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
 <li><a href="../reference_id/">reference➞id</a>  <sub>REQ</sub><ul>

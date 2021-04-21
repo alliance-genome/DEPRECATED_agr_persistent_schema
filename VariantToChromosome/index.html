@@ -93,16 +93,16 @@
               
                 <h1 id="class-varianttochromosome">Class: VariantToChromosome</h1>
 <p>URI: <a href="http://alliancegenome.orgVariantToChromosome">alliance:VariantToChromosome</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Assembly]&lt;assemblyId%201..1-%20[VariantToChromosome&#124;start:string%20%3F;end:string%20%3F],[Chromosome]&lt;chromosomeId%201..1-%20[VariantToChromosome],[Variant]&lt;variantId%201..1-%20[VariantToChromosome],[Variant],[Chromosome],[Assembly]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantToChromosome&#124;variant_id:string;chromosome_id:string;assembly_id:string;start:string%20%3F;end:string%20%3F]" /></p>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
-<li><a href="../assemblyId/">assemblyId</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../Assembly/">Assembly</a></li>
+<li><a href="../assembly_id/">assembly id</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../chromosomeId/">chromosomeId</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../Chromosome/">Chromosome</a></li>
+<li><a href="../chromosome_id/">chromosome id</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
 <li><a href="../end/">end</a>  <sub>OPT</sub><ul>
@@ -115,8 +115,8 @@
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../variantId/">variantId</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../Variant/">Variant</a></li>
+<li><a href="../variant_id/">variant id</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
 </ul>
