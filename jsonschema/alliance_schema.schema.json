@@ -5,16 +5,60 @@
       "Allele": {
          "additionalProperties": false,
          "description": "",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "Allele",
          "type": "object"
       },
       "Assembly": {
          "additionalProperties": false,
          "description": "",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "Assembly",
          "type": "object"
       },
@@ -22,33 +66,62 @@
          "additionalProperties": false,
          "description": "A typed association between two entities, supported by evidence",
          "properties": {
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            },
             "negated": {
                "description": "if set to true, then the association is negated i.e. is not true",
                "type": "boolean"
             },
             "object": {
-               "$ref": "#/definitions/NamedThing",
-               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object."
+               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "type": "string"
             },
             "predicate": {
                "description": "A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.",
                "type": "string"
             },
             "qualifiers": {
-               "$ref": "#/definitions/Entity",
-               "description": "This is the MeSH qualifier term that is optionally added to the descriptor term."
+               "description": "This is the MeSH qualifier term that is optionally added to the descriptor term.",
+               "type": "string"
             },
             "subject": {
-               "$ref": "#/definitions/NamedThing",
-               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object."
+               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "type": "string"
             }
          },
          "required": [
+            "id",
             "subject",
             "predicate",
             "object"
          ],
          "title": "Association",
+         "type": "object"
+      },
+      "Attribute": {
+         "additionalProperties": false,
+         "description": "A property or characteristic of an entity. For example, an apple may have properties such as color, shape, age, crispiness. An environmental sample may have attributes such as depth, lat, long, material.",
+         "properties": {
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [],
+         "title": "Attribute",
          "type": "object"
       },
       "AuthorReference": {
@@ -84,8 +157,30 @@
       "Chromosome": {
          "additionalProperties": false,
          "description": "The ID of the landmark used to establish the coordinate system for the current feature.",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "Chromosome",
          "type": "object"
       },
@@ -120,90 +215,94 @@
          "title": "CrossReference",
          "type": "object"
       },
-      "EditorResource": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "creation_date": {
-               "description": "date on which an entity was created. This can be applied to nodes or edges",
-               "type": "string"
-            },
-            "cross_references": {
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
-            "first_name": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "initials": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "last_name": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "middle_names": {
-               "$ref": "#/definitions/InformationContentEntity"
-            }
-         },
-         "required": [],
-         "title": "EditorResource",
-         "type": "object"
-      },
       "Gene": {
          "additionalProperties": false,
          "description": "A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "Gene",
          "type": "object"
       },
       "GenomicEntity": {
          "additionalProperties": false,
          "description": "",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "GenomicEntity",
          "type": "object"
       },
       "NamedThing": {
          "additionalProperties": false,
          "description": "a databased entity or concept/class",
-         "properties": {},
-         "required": [],
-         "title": "NamedThing",
-         "type": "object"
-      },
-      "PublisherResource": {
-         "additionalProperties": false,
-         "description": "",
          "properties": {
-            "creation_date": {
-               "description": "date on which an entity was created. This can be applied to nodes or edges",
+            "category": {
                "type": "string"
             },
-            "cross_references": {
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
                "items": {
-                  "type": "string"
+                  "$ref": "#/definitions/Attribute"
                },
                "type": "array"
             },
-            "first_name": {
-               "$ref": "#/definitions/InformationContentEntity"
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
             },
-            "initials": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "last_name": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "middle_names": {
-               "$ref": "#/definitions/InformationContentEntity"
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
             }
          },
-         "required": [],
-         "title": "PublisherResource",
+         "required": [
+            "id",
+            "category"
+         ],
+         "title": "NamedThing",
          "type": "object"
       },
       "Reference": {
@@ -260,7 +359,6 @@
                "type": "string"
             },
             "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
                "type": "string"
             },
             "issue_date": {
@@ -408,8 +506,30 @@
       "Transcript": {
          "additionalProperties": false,
          "description": "An RNA synthesized on a DNA or RNA template by an RNA polymerase.",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "category": {
+               "type": "string"
+            },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "Transcript",
          "type": "object"
       },
@@ -417,6 +537,9 @@
          "additionalProperties": false,
          "description": "Variant class",
          "properties": {
+            "category": {
+               "type": "string"
+            },
             "cross_references": {
                "items": {
                   "type": "string"
@@ -442,18 +565,33 @@
                "description": "variant genome sequence at variation position",
                "type": "string"
             },
+            "has_attribute": {
+               "description": "connects any entity to an attribute",
+               "items": {
+                  "$ref": "#/definitions/Attribute"
+               },
+               "type": "array"
+            },
             "hgvs_nomenclature": {
                "description": "HGVSg nomenclature for variant",
                "type": "string"
             },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
             "is_variant_of_allele": {
-               "$ref": "#/definitions/Allele"
+               "type": "string"
             },
             "is_variant_of_gene": {
-               "$ref": "#/definitions/Gene"
+               "type": "string"
             },
             "is_variant_of_transcript": {
-               "$ref": "#/definitions/Transcript"
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
             },
             "note": {
                "type": "string"
@@ -487,7 +625,10 @@
                "type": "string"
             }
          },
-         "required": [],
+         "required": [
+            "id",
+            "category"
+         ],
          "title": "Variant",
          "type": "object"
       },
@@ -496,8 +637,8 @@
          "description": "",
          "properties": {
             "object": {
-               "$ref": "#/definitions/Gene",
-               "description": "object should be the gene identifier"
+               "description": "object should be the gene identifier",
+               "type": "string"
             },
             "polyphen_prediction": {
                "description": "PolyPhen-2 prediction",
@@ -520,8 +661,8 @@
                "type": "number"
             },
             "subject": {
-               "$ref": "#/definitions/Variant",
-               "description": "subject should be the variant identifier"
+               "description": "subject should be the variant identifier",
+               "type": "string"
             },
             "vep_consequence": {
                "type": "string"
@@ -548,14 +689,14 @@
                "type": "string"
             },
             "has_assembly": {
-               "$ref": "#/definitions/Assembly"
+               "type": "string"
             },
             "has_chromosome": {
-               "$ref": "#/definitions/Chromosome"
+               "type": "string"
             },
             "object": {
-               "$ref": "#/definitions/Chromosome",
-               "description": "Should be the id of the chromosome"
+               "description": "Should be the id of the chromosome",
+               "type": "string"
             },
             "predicate": {
                "type": "string"
@@ -565,8 +706,8 @@
                "type": "string"
             },
             "subject": {
-               "$ref": "#/definitions/Variant",
-               "description": "Should be the id of the variant"
+               "description": "Should be the id of the variant",
+               "type": "string"
             }
          },
          "required": [
@@ -630,8 +771,8 @@
                "type": "string"
             },
             "object": {
-               "$ref": "#/definitions/Transcript",
-               "description": "Transcript that is affected by the associated variant"
+               "description": "Transcript that is affected by the associated variant",
+               "type": "string"
             },
             "predicate": {
                "description": "A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.",
@@ -646,8 +787,8 @@
                "type": "integer"
             },
             "subject": {
-               "$ref": "#/definitions/Variant",
-               "description": "the variant identifier"
+               "description": "the variant identifier",
+               "type": "string"
             }
          },
          "required": [

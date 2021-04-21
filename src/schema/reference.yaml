@@ -11,6 +11,7 @@ prefixes:
   biolink: 'https://w3id.org/biolink/vocab/'
   schema: 'http://schema.org/'
   foaf: 'http://xmlns.com/foaf/0.1/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
   # reference should be Reference

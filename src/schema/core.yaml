@@ -46,14 +46,14 @@ classes:
 
   named thing:
     is_a: entity
-      description: "a databased entity or concept/class"
-      slot_usage:
-        category:
-          range: named thing
-          required: true
-      exact_mappings:
-        - BFO:0000001
-        - WIKIDATA:Q35120
+    description: "a databased entity or concept/class"
+    slot_usage:
+      category:
+        range: named thing
+        required: true
+    exact_mappings:
+      - BFO:0000001
+      - WIKIDATA:Q35120
 
   entity:
     description: >-
@@ -119,6 +119,20 @@ classes:
       - qualifiers
     exact_mappings:
       - rdf:Statement
+
+  annotation:
+    description: >-
+      Biolink Model root class for entity annotations.
+    abstract: true
+
+  attribute:
+    is_a: annotation
+    description: >-
+      A property or characteristic of an entity.
+      For example, an apple may have properties such as color, shape, age, crispiness.
+      An environmental sample may have attributes such as depth, lat, long, material.
+    slots:
+      - name
 
 ## ------------
 ## SLOTS
@@ -191,6 +205,20 @@ slots:
     required: true
     exact_mappings:
       - biolink:predicate
+
+  has attribute:
+    description: >-
+      connects any entity to an attribute
+    domain: entity
+    range: attribute
+    multivalued: true
+    close_mappings:
+      # RTX term meaning 'specifies value of' tagged as inverse of 'biolink:has attribute'
+      - OBI:0001927
+    exact_mappings:
+      - SIO:000008
+      - biolink:has_attribute
+
 
   description:
     aliases: ['definition']
