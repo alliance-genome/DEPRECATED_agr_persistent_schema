@@ -38,6 +38,7 @@ GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SKOS = CurieNamespace('skos', 'https://www.w3.org/TR/skos-reference/#')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = ALLIANCE
@@ -85,7 +86,7 @@ class AuthorReference(YAMLRoot):
     middle_names: Optional[Union[dict, InformationContentEntity]] = None
     last_name: Optional[Union[dict, InformationContentEntity]] = None
     initials: Optional[Union[dict, InformationContentEntity]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.corresponding_author is not None and not isinstance(self.corresponding_author, InformationContentEntity):
@@ -140,7 +141,7 @@ slots.first_name = Slot(uri=ALLIANCE.first_name, name="first name", curie=ALLIAN
 slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle names", curie=ALLIANCE.curie('middle_names'),
                    model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
-slots.last_name = Slot(uri=ALLIANCE.last_name, name="last name", curie=ALLIANCE.curie('last_name'),
+slots.last_name = Slot(uri=FOAF.familyName, name="last name", curie=FOAF.curie('familyName'),
                    model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
 slots.initials = Slot(uri=ALLIANCE.initials, name="initials", curie=ALLIANCE.curie('initials'),

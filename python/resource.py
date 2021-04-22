@@ -66,6 +66,7 @@ class Resource(InformationContentEntity):
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource")
 
     id: Union[str, ResourceId] = None
+    resource_id: Optional[str] = None
     title: Optional[str] = None
     iso_abbreviation: Optional[str] = None
     medline_abbreviation: Optional[str] = None
@@ -84,6 +85,9 @@ class Resource(InformationContentEntity):
             raise ValueError("id must be supplied")
         if not isinstance(self.id, ResourceId):
             self.id = ResourceId(self.id)
+
+        if self.resource_id is not None and not isinstance(self.resource_id, str):
+            self.resource_id = str(self.resource_id)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -136,6 +140,9 @@ class Resource(InformationContentEntity):
 # Slots
 class slots:
     pass
+
+slots.resource_id = Slot(uri=DEFAULT_.resource_id, name="resource id", curie=DEFAULT_.curie('resource_id'),
+                   model_uri=DEFAULT_.resource_id, domain=Resource, range=Optional[str])
 
 slots.iso_abbreviation = Slot(uri=DEFAULT_.iso_abbreviation, name="iso abbreviation", curie=DEFAULT_.curie('iso_abbreviation'),
                    model_uri=DEFAULT_.iso_abbreviation, domain=Resource, range=Optional[str])

@@ -14,11 +14,10 @@ prefixes:
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
-  # reference should be Reference
   reference:
     is_a: information content entity
     slots:
-      - id
+      - reference id
       - title
       - alliance category
       - date published
@@ -61,6 +60,9 @@ classes:
         pattern: # check this add a regex - check about resourceDescriptor
 
 slots:
+
+  reference id:
+    domain: reference
 
   topics:
     singular_name: topic

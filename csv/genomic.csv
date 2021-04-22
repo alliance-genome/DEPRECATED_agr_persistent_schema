@@ -1,5 +1,6 @@
 id,mappings,description
 allele,,
+annotation,,Biolink Model root class for entity annotations.
 assembly,,
 author_reference,,
 chromosome,,The ID of the landmark used to establish the coordinate system for the current feature.

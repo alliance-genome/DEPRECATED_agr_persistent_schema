@@ -5,6 +5,7 @@ title: Alliance Schema Prototype Variation
 imports:
   - core
   - linkml:types
+  - variation
 
 prefixes:
   alliance: 'http://alliancegenome.org'
@@ -34,3 +35,22 @@ slots:
     description: The end of the feature in positive 1-based integer coordinates
 
 
+  gene id:
+    required: true
+    range: string
+
+  chromosome id:
+    required: true
+    range: string
+
+  transcript id:
+    required: true
+    range: string
+
+  assembly id:
+    required: true
+    range: string
+
+  allele id:
+    required: true
+    range: string

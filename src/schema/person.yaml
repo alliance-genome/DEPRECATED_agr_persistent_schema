@@ -35,6 +35,11 @@ classes:
       - first name
       - orcid
     exact_mappings:
+      - schema:person
+      - foaf:Person
+    slot_usage:
+      person id:
+        identifier: true
 
 slots:
 

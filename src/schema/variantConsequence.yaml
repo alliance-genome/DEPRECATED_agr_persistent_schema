@@ -26,15 +26,6 @@ classes:
       - polyphen prediction
       - sift score
       - sift prediction
-    slot_usage:
-      subject:
-        range: variant
-        description: >-
-          subject should be the variant identifier
-      object:
-        range: gene
-        description: >-
-          object should be the gene identifier
 
   variant transcript consequence:
     aliases: ['transcript level consequence']
@@ -89,14 +80,6 @@ classes:
         description: HGVS protein sequence (HGVSp) name
       hgvs coding nomenclature:
         description: HGVS coding sequence (HGVSc) name
-      subject:
-        required: true
-        description: the variant identifier
-        range: variant
-      object:
-        required: true
-        description: Transcript that is affected by the associated variant
-        range: transcript
 
 
 slots:

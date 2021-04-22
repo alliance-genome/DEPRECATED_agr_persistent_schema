@@ -16,7 +16,7 @@ classes:
   resource:
     is_a: information content entity
     slots:
-      - id
+      - resource id
       - title
       - iso abbreviation
       - medline abbreviation
@@ -49,6 +49,9 @@ classes:
           the title of the publication
 
 slots:
+
+  resource id:
+    domain: resource
 
   iso abbreviation:
     description: >-

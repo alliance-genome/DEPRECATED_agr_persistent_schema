@@ -48,6 +48,7 @@ BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
 FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
 GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/')
 
 
@@ -68,6 +69,7 @@ class Reference(InformationContentEntity):
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference")
 
     id: Union[str, ReferenceId] = None
+    reference_id: Optional[str] = None
     title: Optional[str] = None
     alliance_category: Optional[str] = None
     date_published: Optional[Union[str, XSDDate]] = None
@@ -88,7 +90,7 @@ class Reference(InformationContentEntity):
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
     tags: Optional[Union[str, List[str]]] = empty_list()
     topics: Optional[Union[str, URIorCURIE]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
     publisher: Optional[Union[dict, InformationContentEntity]] = None
     keywords: Optional[Union[str, List[str]]] = empty_list()
     from_resource: Optional[Union[str, ResourceId]] = None
@@ -98,6 +100,9 @@ class Reference(InformationContentEntity):
             raise ValueError("id must be supplied")
         if not isinstance(self.id, ReferenceId):
             self.id = ReferenceId(self.id)
+
+        if self.reference_id is not None and not isinstance(self.reference_id, str):
+            self.reference_id = str(self.reference_id)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -175,7 +180,7 @@ class Reference(InformationContentEntity):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
 
         if self.publisher is not None and not isinstance(self.publisher, InformationContentEntity):
             self.publisher = InformationContentEntity(**self.publisher)
@@ -198,6 +203,9 @@ class Reference(InformationContentEntity):
 # Slots
 class slots:
     pass
+
+slots.reference_id = Slot(uri=DEFAULT_.reference_id, name="reference id", curie=DEFAULT_.curie('reference_id'),
+                   model_uri=DEFAULT_.reference_id, domain=Reference, range=Optional[str])
 
 slots.topics = Slot(uri=DEFAULT_.topics, name="topics", curie=DEFAULT_.curie('topics'),
                    model_uri=DEFAULT_.topics, domain=None, range=Optional[Union[str, URIorCURIE]])

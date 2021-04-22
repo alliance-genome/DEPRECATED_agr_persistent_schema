@@ -27,16 +27,6 @@ classes:
       - start
       - end
     slot_usage:
-      subject:
-        description: >-
-          Should be the id of the variant
-        range: variant
-      object:
-        description: >-
-          Should be the id of the chromosome
-        range: chromosome
-      predicate:
-        subproperty_of: located on
     defining_slots:
       - subject
       - predicate

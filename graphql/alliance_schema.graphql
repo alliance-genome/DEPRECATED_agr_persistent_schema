@@ -3,7 +3,7 @@ type Allele
     id: Uriorcurie!
   }
 
-type Assembly
+interface Annotation
   {
     id: Uriorcurie!
   }
@@ -15,7 +15,7 @@ type AuthorReference
     middleNames: InformationContentEntity
     lastName: InformationContentEntity
     initials: InformationContentEntity
-    crossReferences: [String]
+    crossReferences: [CrossReference]
   }
 
 type Chromosome
@@ -25,7 +25,7 @@ type Chromosome
 
 type CrossReference
   {
-    id: Uriorcurie!
+    crossReferenceId: String!
     pageAreas: [String]!
     displayName: String!
     prefix: String!
@@ -55,7 +55,7 @@ type Person
 type Reference
   {
     creationDate: Date
-    id: Uriorcurie!
+    referenceId: String
     title: String
     allianceCategory: String
     datePublished: Date
@@ -76,7 +76,7 @@ type Reference
     authors: [AuthorReference]
     tags: [String]
     topics: Uriorcurie
-    crossReferences: [String]
+    crossReferences: [CrossReference]
     publisher: InformationContentEntity
     keywords: [String]
     fromResource: Resource
@@ -85,7 +85,7 @@ type Reference
 type Resource
   {
     creationDate: Date
-    id: Uriorcurie!
+    resourceId: String
     title: String
     isoAbbreviation: String
     medlineAbbreviation: String
@@ -98,6 +98,7 @@ type Resource
     synonyms: String
     authors: [AuthorReference]
     editors: [AuthorReference]
+    id: Uriorcurie!
   }
 
 type Species
@@ -128,7 +129,7 @@ type Variant
     references: [Reference]
     note: String
     proteinSequence: BiologicalSequence
-    crossReferences: [String]
+    crossReferences: [CrossReference]
   }
 
 type VariantGeneConsequence

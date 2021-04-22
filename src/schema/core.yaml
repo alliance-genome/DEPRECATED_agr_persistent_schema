@@ -26,8 +26,6 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
-  gff: 'https://w3id.org/gff'
-  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
@@ -67,6 +65,9 @@ classes:
       - SGD
       - WB
       - ZFIN
+    slot_usage:
+      gene id:
+        identifier: true
 
   transcript:
     description: >-
@@ -80,6 +81,10 @@ classes:
       - RGD
       - SGD
       - ZFIN
+    slot_usage:
+      transcript id:
+        identifier: true
+
 
   allele:
     slots:

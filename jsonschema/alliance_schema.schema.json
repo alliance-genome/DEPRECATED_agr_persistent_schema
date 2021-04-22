@@ -81,11 +81,10 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "display_name": {
+            "cross_reference_id": {
                "type": "string"
             },
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+            "display_name": {
                "type": "string"
             },
             "page_areas": {
@@ -100,7 +99,7 @@
             }
          },
          "required": [
-            "id",
+            "cross_reference_id",
             "page_areas",
             "display_name",
             "prefix"
@@ -242,6 +241,9 @@
             },
             "publisher": {
                "$ref": "#/definitions/InformationContentEntity"
+            },
+            "reference_id": {
+               "type": "string"
             },
             "tags": {
                "description": "Optional ist of controlled vocabulary tags that give categories to each pub (ie: \"can show images\").",
@@ -426,13 +428,16 @@
                "type": "array"
             },
             "release": {
-               "description": "MOD release ID",
+               "description": "MOD release IDg",
                "type": "string"
             },
             "synonyms": {
                "type": "string"
             },
             "type": {
+               "type": "string"
+            },
+            "variant_id": {
                "type": "string"
             }
          },
@@ -489,8 +494,7 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "end": {
-               "description": "The end of the feature in positive 1-based integer coordinates",
+            "assembly_id": {
                "type": "string"
             },
             "has_assembly": {
@@ -500,7 +504,8 @@
                "description": "Should be the id of the chromosome",
                "type": "string"
             },
-            "predicate": {
+            "end": {
+               "description": "The end of the feature in positive 1-based integer coordinates",
                "type": "string"
             },
             "start": {

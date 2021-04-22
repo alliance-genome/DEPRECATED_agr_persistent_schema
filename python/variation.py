@@ -38,6 +38,7 @@ BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
 FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
 GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/')
 
 
@@ -77,7 +78,7 @@ class Variant(YAMLRoot):
     references: Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]] = empty_list()
     note: Optional[str] = None
     protein_sequence: Optional[Union[str, BiologicalSequence]] = None
-    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -143,7 +144,7 @@ class Variant(YAMLRoot):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
 
         super().__post_init__(**kwargs)
 
@@ -154,6 +155,9 @@ class Variant(YAMLRoot):
 # Slots
 class slots:
     pass
+
+slots.variant_id = Slot(uri=DEFAULT_.variant_id, name="variant id", curie=DEFAULT_.curie('variant_id'),
+                   model_uri=DEFAULT_.variant_id, domain=Variant, range=Union[str, VariantVariantId])
 
 slots.note = Slot(uri=DEFAULT_.note, name="note", curie=DEFAULT_.curie('note'),
                    model_uri=DEFAULT_.note, domain=None, range=Optional[str])

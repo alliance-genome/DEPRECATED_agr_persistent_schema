@@ -37,13 +37,15 @@ BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
 FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
 GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/')
 
 
 # Types
 
 # Class references
-
+class VariantToChromosomeVariantId(extended_str):
+    pass
 
 
 @dataclass

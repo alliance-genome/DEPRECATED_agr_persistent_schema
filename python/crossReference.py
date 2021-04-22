@@ -21,8 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from linkml.utils.metamodelcore import URIorCURIE
-from linkml_model.types import String, Uriorcurie
+from linkml_model.types import String
 
 metamodel_version = "1.7.0"
 
@@ -42,7 +41,7 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class CrossReferenceId(URIorCURIE):
+class CrossReferenceCrossReferenceId(extended_str):
     pass
 
 
@@ -55,16 +54,16 @@ class CrossReference(YAMLRoot):
     class_name: ClassVar[str] = "cross reference"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference")
 
-    id: Union[str, CrossReferenceId] = None
+    cross_reference_id: Union[str, CrossReferenceCrossReferenceId] = None
     page_areas: Union[str, List[str]] = None
     display_name: str = None
     prefix: str = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, CrossReferenceId):
-            self.id = CrossReferenceId(self.id)
+        if self.cross_reference_id is None:
+            raise ValueError("cross_reference_id must be supplied")
+        if not isinstance(self.cross_reference_id, CrossReferenceCrossReferenceId):
+            self.cross_reference_id = CrossReferenceCrossReferenceId(self.cross_reference_id)
 
         if self.page_areas is None:
             raise ValueError("page_areas must be supplied")
@@ -102,3 +101,6 @@ slots.page_areas = Slot(uri=DEFAULT_.page_areas, name="page areas", curie=DEFAUL
 
 slots.display_name = Slot(uri=DEFAULT_.display_name, name="display name", curie=DEFAULT_.curie('display_name'),
                    model_uri=DEFAULT_.display_name, domain=None, range=str)
+
+slots.cross_reference_id = Slot(uri=DEFAULT_.cross_reference_id, name="cross reference id", curie=DEFAULT_.curie('cross_reference_id'),
+                   model_uri=DEFAULT_.cross_reference_id, domain=None, range=URIRef)
