@@ -43,6 +43,7 @@ type GenomicEntity
 interface InformationContentEntity
   {
     creationDate: Date
+    id: Uriorcurie!
   }
 
 type Person
@@ -56,7 +57,6 @@ type Person
 type Reference
   {
     creationDate: Date
-    referenceId: String
     title: String
     allianceCategory: String
     datePublished: Date
@@ -75,7 +75,7 @@ type Reference
     issueDate: Date
     modReferenceTypes: [String]
     authors: [AuthorReference]
-    tags: [String]
+    tags: [TagSet]
     topics: Uriorcurie
     crossReferences: [String]
     publisher: InformationContentEntity
@@ -87,7 +87,6 @@ type Reference
 type Resource
   {
     creationDate: Date
-    resourceId: String
     title: String
     isoAbbreviation: String
     medlineAbbreviation: String

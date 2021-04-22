@@ -74,7 +74,7 @@
     rdfs:label "Alliance-Schema-Prototype" ;
     dcterms:license "https://creativecommons.org/publicdomain/zero/1.0/" ;
     skos:definition "Alliance Schema Prototype" ;
-    linkml:generation_date "2021-04-21 18:36" ;
+    linkml:generation_date "2021-04-21 19:00" ;
     linkml:metamodel_version "1.7.0" ;
     linkml:source_file "alliance_schema.yaml" ;
     linkml:source_file_date "Wed Apr 21 18:26:33 2021" ;
@@ -85,11 +85,11 @@
     rdfs:label "cross reference" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/display_name> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/prefix> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/prefix> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/display_name> ;
             owl:qualifiedCardinality 1 ] .
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/cross_reference_id> a owl:ObjectProperty,
@@ -145,6 +145,18 @@
     rdfs:domain <http://alliancegenome.orgInformationContentEntity> ;
     rdfs:range linkml:Date ;
     skos:definition "Date on which an entity was last modified in PubMed or in the MOD." .
+
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/reference_id> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "reference id" ;
+    rdfs:domain <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> ;
+    rdfs:range linkml:String .
+
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/resource_id> a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "resource id" ;
+    rdfs:domain <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ;
+    rdfs:range linkml:String .
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/has_assembly> a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -415,19 +427,19 @@ linkml:variant_transcript_consequence_subject a owl:ObjectProperty,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orgfirst_name> ],
+            owl:onProperty <http://alliancegenome.orglast_name> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty <http://alliancegenome.orgorcid> ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orglast_name> ],
-        [ a owl:Restriction ;
             owl:onClass linkml:String ;
             owl:onProperty linkml:person_id ;
-            owl:qualifiedCardinality 1 ] ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
+            owl:onProperty <http://alliancegenome.orgfirst_name> ] ;
     skos:exactMatch <http://schema.org/person>,
         <http://xmlns.com/foaf/0.1/Person> .
 
@@ -643,16 +655,10 @@ linkml:variant_transcript_consequence_subject a owl:ObjectProperty,
     rdfs:range linkml:String ;
     skos:definition "page number of source referenced for statement or publication" .
 
-<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/reference_id> a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "reference id" ;
-    rdfs:domain <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> ;
-    rdfs:range linkml:String .
-
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/tags> a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "tags" ;
-    rdfs:range linkml:String ;
+    rdfs:range <http://UNKNOWN.org/tag_set> ;
     skos:definition "Optional ist of controlled vocabulary tags that give categories to each pub (ie: \"can show images\")." .
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/topics> a owl:ObjectProperty,
@@ -708,12 +714,6 @@ linkml:variant_transcript_consequence_subject a owl:ObjectProperty,
     rdfs:domain <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ;
     rdfs:range linkml:String ;
     skos:definition "" .
-
-<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/resource_id> a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "resource id" ;
-    rdfs:domain <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ;
-    rdfs:range linkml:String .
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cdna_end> a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -1001,12 +1001,12 @@ linkml:person_id a owl:ObjectProperty,
         linkml:ClassDefinition ;
     rdfs:label "variant genomic location" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
-            owl:onProperty <http://alliancegenome.orgsubject> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
             owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ;
             owl:onProperty <http://alliancegenome.orgobject> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+            owl:onProperty <http://alliancegenome.orgsubject> ;
             owl:qualifiedCardinality 1 ] ;
     skos:altLabel "genomic location" .
 
@@ -1043,7 +1043,7 @@ linkml:Float a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orginitials> ],
+            owl:onProperty <http://alliancegenome.orgfirst_name> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
@@ -1051,15 +1051,15 @@ linkml:Float a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orgcorresponding_author> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
             owl:onProperty <http://alliancegenome.orglast_name> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orgfirst_name> ],
+            owl:onProperty <http://alliancegenome.orgcorresponding_author> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
+            owl:onProperty <http://alliancegenome.orginitials> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty <http://alliancegenome.orgcross_references> ] .
@@ -1083,7 +1083,11 @@ linkml:Float a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/sift_prediction> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/vep_impact> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Float ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/polyphen_score> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
@@ -1093,25 +1097,21 @@ linkml:Float a owl:Class,
             owl:onClass linkml:String ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/polyphen_prediction> ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Float ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/sift_score> ],
+            owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+            owl:onProperty <http://alliancegenome.orgsubject> ;
+            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:onClass <http://alliancegenome.orgGene> ;
             owl:onProperty <http://alliancegenome.orgobject> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/vep_impact> ],
-        [ a owl:Restriction ;
-            owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
-            owl:onProperty <http://alliancegenome.orgsubject> ;
-            owl:qualifiedCardinality 1 ],
+            owl:onClass linkml:Float ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/sift_score> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Float ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/polyphen_score> ] ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/sift_prediction> ] ;
     skos:altLabel "gene level consequence" .
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> a owl:Class,
@@ -1119,50 +1119,78 @@ linkml:Float a owl:Class,
     rdfs:label "reference" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/year_published> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/mod_reference_types> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_arrived_in_PubMed> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://UNKNOWN.org/tag_set> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/tags> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/pages> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <http://alliancegenome.orgcross_references> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
             owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/from_resource> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/day_published> ],
+            owl:onClass linkml:Date ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_date> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/PubMed_type> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/alliance_category> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/tags> ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
+            owl:onProperty <http://alliancegenome.orgpublisher> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <http://alliancegenome.orgtitle> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_name> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/abstract> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orgpublisher> ],
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/citation> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/PubMed_type> ],
         [ a owl:Restriction ;
             owl:allValuesFrom <http://alliancegenome.orgAuthorReference> ;
             owl:onProperty <http://alliancegenome.orgauthors> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/reference_id> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/topics> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/year_published> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/citation> ],
+            owl:onClass linkml:Date ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified_in_PubMed> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Date ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified_in_PubMed> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_published> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/keywords> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
@@ -1170,10 +1198,11 @@ linkml:Float a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/volume> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/day_published> ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty <http://alliancegenome.orgcross_references> ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/topics> ],
         [ a owl:Restriction ;
             owl:onClass linkml:Uriorcurie ;
             owl:onProperty <http://alliancegenome.orgid> ;
@@ -1181,40 +1210,7 @@ linkml:Float a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_name> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/pages> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_published> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/alliance_category> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_arrived_in_PubMed> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_date> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/keywords> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/mod_reference_types> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <http://alliancegenome.orgtitle> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/volume> ],
         <http://alliancegenome.orgInformationContentEntity> .
 
 <http://alliancegenome.orgid> a owl:ObjectProperty,
@@ -1227,39 +1223,13 @@ linkml:Float a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "resource" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom <http://alliancegenome.orgAuthorReference> ;
-            owl:onProperty <http://alliancegenome.orgauthors> ],
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/print_issn> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Date ;
             owl:onProperty <http://alliancegenome.orgcopyright_date> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <http://alliancegenome.orgAuthorReference> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/editors> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/online_issn> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
-            owl:onProperty <http://alliancegenome.orgpublisher> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <http://alliancegenome.orgvolumes> ],
-        [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty <http://alliancegenome.orgid> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/iso_abbreviation> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/print_issn> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
@@ -1271,15 +1241,37 @@ linkml:Float a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/medline_abbreviation> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/online_issn> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgInformationContentEntity> ;
+            owl:onProperty <http://alliancegenome.orgpublisher> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/resource_id> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/iso_abbreviation> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
             owl:onProperty <http://alliancegenome.orgtitle> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <http://alliancegenome.orgvolumes> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://alliancegenome.orgAuthorReference> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/editors> ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty <http://alliancegenome.orgid> ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/medline_abbreviation> ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom <http://alliancegenome.orgAuthorReference> ;
+            owl:onProperty <http://alliancegenome.orgauthors> ],
         <http://alliancegenome.orgInformationContentEntity> .
 
 linkml:topValue a owl:DatatypeProperty ;
@@ -1288,15 +1280,6 @@ linkml:topValue a owl:DatatypeProperty ;
 linkml:TypeDefinition a owl:Class ;
     rdfs:label "type_definition" ;
     skos:definition "A data type definition." .
-
-linkml:Uriorcurie a owl:Class,
-        linkml:TypeDefinition ;
-    rdfs:label "uriorcurie" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:onDataRange xsd:anyURI ;
-            owl:onProperty linkml:topValue ;
-            owl:qualifiedCardinality 1 ] ;
-    skos:definition "a URI or a CURIE" .
 
 <http://alliancegenome.orgBiologicalSequence> a owl:Class,
         linkml:TypeDefinition ;
@@ -1312,58 +1295,19 @@ linkml:Uriorcurie a owl:Class,
             owl:onProperty <http://alliancegenome.orgsynonyms> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_variant_sequence> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <http://alliancegenome.orgrelease> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty <http://alliancegenome.orgtype> ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> ;
-            owl:onProperty <http://alliancegenome.orgreferences> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgGene> ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/computed_gene> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_right> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_left> ],
-        [ a owl:Restriction ;
-            owl:onClass linkml:Uriorcurie ;
-            owl:onProperty <http://alliancegenome.orgid> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgTranscript> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/is_variant_of_transcript> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgAllele> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/is_variant_of_allele> ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty <http://alliancegenome.orgcross_references> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/note> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_reference_sequence> ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Date ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/date_produced> ],
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty <http://alliancegenome.orgid> ;
+            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
@@ -1372,9 +1316,48 @@ linkml:Uriorcurie a owl:Class,
             owl:allValuesFrom linkml:String ;
             owl:onProperty <http://alliancegenome.orgdata_provider> ],
         [ a owl:Restriction ;
+            owl:allValuesFrom <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> ;
+            owl:onProperty <http://alliancegenome.orgreferences> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgTranscript> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/is_variant_of_transcript> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/date_produced> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/note> ],
+        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/protein_sequence> ] ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/protein_sequence> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_left> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_right> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <http://alliancegenome.orgrelease> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgAllele> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/is_variant_of_allele> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty <http://alliancegenome.orgtype> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_variant_sequence> ] ;
     skos:definition "Variant class" ;
     skos:exactMatch <http://purl.obolibrary.org/obo/SO_0001059> .
 
@@ -1386,6 +1369,15 @@ linkml:Integer a owl:Class,
             owl:onProperty linkml:topValue ;
             owl:qualifiedCardinality 1 ] ;
     skos:definition "An integer" .
+
+linkml:Uriorcurie a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:label "uriorcurie" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:anyURI ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "a URI or a CURIE" .
 
 linkml:ClassDefinition a owl:Class ;
     rdfs:label "class_definition" ;
@@ -1405,69 +1397,69 @@ linkml:Date a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "variant transcript consequence" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass <http://alliancegenome.orgTranscript> ;
-            owl:onProperty <http://alliancegenome.orgobject> ;
-            owl:qualifiedCardinality 1 ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Integer ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/protein_start> ],
-        [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Integer ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/protein_end> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty linkml:cns_end ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/amino_acid_reference> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/hgvs_protein_nomenclature> ],
         [ a owl:Restriction ;
             owl:onClass <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
             owl:onProperty <http://alliancegenome.orgsubject> ;
             owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/hgvs_coding_nomenclature> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/amino_acid_variant> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/codon_variant> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Integer ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cdna_end> ],
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cds_start> ],
         [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/hgvs_protein_nomenclature> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty linkml:cnda_end ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:String ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/codon_reference> ],
-        [ a owl:Restriction ;
-            owl:maxQualifiedCardinality 1 ;
-            owl:onClass linkml:Integer ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cds_end> ],
+            owl:onClass <http://alliancegenome.orgTranscript> ;
+            owl:onProperty <http://alliancegenome.orgobject> ;
+            owl:qualifiedCardinality 1 ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Integer ;
             owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cdna_start> ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/amino_acid_variant> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Integer ;
-            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cds_start> ] ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cdna_end> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass <http://alliancegenome.orgBiologicalSequence> ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/amino_acid_reference> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Integer ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/protein_start> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/hgvs_coding_nomenclature> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/codon_variant> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty linkml:cnda_end ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Integer ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/cds_end> ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty linkml:cns_end ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/codon_reference> ] ;
     skos:altLabel "transcript level consequence" ;
     skos:definition "Class for transcript-level VEP results" .
 
@@ -1477,7 +1469,11 @@ linkml:Date a owl:Class,
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:Date ;
-            owl:onProperty <http://alliancegenome.orgcreation_date> ] ;
+            owl:onProperty <http://alliancegenome.orgcreation_date> ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty <http://alliancegenome.orgid> ;
+            owl:qualifiedCardinality 1 ] ;
     skos:altLabel "information",
         "information artifact",
         "information entity" ;

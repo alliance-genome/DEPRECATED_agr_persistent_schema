@@ -18,7 +18,6 @@ classes:
   reference:
     is_a: information content entity
     slots:
-      - reference id
       - title
       - alliance category
       - date published
@@ -128,6 +127,7 @@ slots:
     description: >-
       Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").
     multivalued: true
+    range: tag_set
 
   issue date:
     description: Date on which an entity was issued.
@@ -179,5 +179,10 @@ slots:
     domain: reference
     range: resource
 
+enums:
+  tag_set:
+    permissible_values:
+      image:
+      test:
 
 

@@ -37,7 +37,7 @@
          "description": "",
          "properties": {
             "corresponding_author": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             },
             "cross_references": {
                "items": {
@@ -46,16 +46,16 @@
                "type": "array"
             },
             "first_name": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             },
             "initials": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             },
             "last_name": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             },
             "middle_names": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             }
          },
          "required": [],
@@ -135,10 +135,10 @@
          "description": "",
          "properties": {
             "first_name": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             },
             "last_name": {
-               "$ref": "#/definitions/InformationContentEntity"
+               "type": "string"
             },
             "orcid": {
                "type": "string"
@@ -245,9 +245,6 @@
                "type": "array"
             },
             "publisher": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "reference_id": {
                "type": "string"
             },
             "tags": {
@@ -320,9 +317,6 @@
                "type": "string"
             },
             "publisher": {
-               "$ref": "#/definitions/InformationContentEntity"
-            },
-            "resource_id": {
                "type": "string"
             },
             "summary": {
