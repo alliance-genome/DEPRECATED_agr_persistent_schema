@@ -3,7 +3,7 @@ type Allele
     id: Uriorcurie!
   }
 
-interface Annotation
+type Assembly
   {
     id: Uriorcurie!
   }
@@ -15,7 +15,7 @@ type AuthorReference
     middleNames: InformationContentEntity
     lastName: InformationContentEntity
     initials: InformationContentEntity
-    crossReferences: [CrossReference]
+    crossReferences: [String]
   }
 
 type Chromosome
@@ -50,6 +50,7 @@ type Person
     lastName: InformationContentEntity
     firstName: InformationContentEntity
     orcid: String
+    personId: String!
   }
 
 type Reference
@@ -76,10 +77,11 @@ type Reference
     authors: [AuthorReference]
     tags: [String]
     topics: Uriorcurie
-    crossReferences: [CrossReference]
+    crossReferences: [String]
     publisher: InformationContentEntity
     keywords: [String]
     fromResource: Resource
+    id: Uriorcurie!
   }
 
 type Resource
@@ -129,13 +131,13 @@ type Variant
     references: [Reference]
     note: String
     proteinSequence: BiologicalSequence
-    crossReferences: [CrossReference]
+    crossReferences: [String]
   }
 
 type VariantGeneConsequence
   {
-    subject: Variant!
-    object: Gene!
+    subject: String!
+    object: String!
     vepConsequence: String
     vepImpact: String
     polyphenScore: Float
@@ -146,9 +148,9 @@ type VariantGeneConsequence
 
 type VariantGenomicLocation
   {
-    subject: Variant!
+    subject: String!
     predicate: String!
-    object: Chromosome!
+    object: String!
     hasAssembly: Assembly!
     start: String
     end: String
@@ -156,8 +158,8 @@ type VariantGenomicLocation
 
 type VariantTranscriptConsequence
   {
-    subject: Variant!
-    object: Transcript!
+    subject: String!
+    object: String!
     aminoAcidReference: BiologicalSequence
     aminoAcidVariant: BiologicalSequence
     codonReference: String

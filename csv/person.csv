@@ -1,7 +1,7 @@
 id,mappings,description
 allele,,
 author_reference,,
-gene,,"A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions."
+gene,,
 genomic_entity,,
 information_content_entity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
 person,,

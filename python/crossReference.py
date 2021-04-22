@@ -1,5 +1,5 @@
 # Auto generated from crossReference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:09
+# Generation date: 2021-04-21 18:28
 # Schema: crossReference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference
@@ -35,6 +35,7 @@ BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
 FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
 GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/')
 
 

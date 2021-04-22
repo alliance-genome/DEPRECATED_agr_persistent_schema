@@ -26,8 +26,11 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  schema: 'http://schema.org/'
 
 ## ------------
 ## TYPES
@@ -50,10 +53,6 @@ classes:
 
   gene:
     description: >-
-      A region (or regions) that includes all of the sequence elements
-      necessary to encode a functional transcript. A gene locus may include
-      regulatory regions, transcribed regions and/or other
-      functional sequence regions.
     slots:
       - id
     id_prefixes:
@@ -65,9 +64,6 @@ classes:
       - SGD
       - WB
       - ZFIN
-    slot_usage:
-      gene id:
-        identifier: true
 
   transcript:
     description: >-
@@ -81,9 +77,6 @@ classes:
       - RGD
       - SGD
       - ZFIN
-    slot_usage:
-      transcript id:
-        identifier: true
 
 
   allele:

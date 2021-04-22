@@ -1,5 +1,5 @@
 # Auto generated from variantConsequence.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:08
+# Generation date: 2021-04-21 18:27
 # Schema: variantConsequence
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence
@@ -21,8 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import BiologicalSequence, GeneId, TranscriptId
-from . variation import VariantId
+from . core import BiologicalSequence
 from linkml_model.types import Float, Integer, String
 
 metamodel_version = "1.7.0"
@@ -44,12 +43,7 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class VariantGeneConsequenceVariantId(extended_str):
-    pass
 
-
-class VariantTranscriptConsequenceVariantId(extended_str):
-    pass
 
 
 @dataclass
@@ -61,8 +55,8 @@ class VariantGeneConsequence(YAMLRoot):
     class_name: ClassVar[str] = "variant gene consequence"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence")
 
-    subject: Union[str, VariantId] = None
-    object: Union[str, GeneId] = None
+    subject: str = None
+    object: str = None
     vep_consequence: Optional[str] = None
     vep_impact: Optional[str] = None
     polyphen_score: Optional[float] = None
@@ -73,13 +67,13 @@ class VariantGeneConsequence(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.subject is None:
             raise ValueError("subject must be supplied")
-        if not isinstance(self.subject, VariantId):
-            self.subject = VariantId(self.subject)
+        if not isinstance(self.subject, str):
+            self.subject = str(self.subject)
 
         if self.object is None:
             raise ValueError("object must be supplied")
-        if not isinstance(self.object, GeneId):
-            self.object = GeneId(self.object)
+        if not isinstance(self.object, str):
+            self.object = str(self.object)
 
         if self.vep_consequence is not None and not isinstance(self.vep_consequence, str):
             self.vep_consequence = str(self.vep_consequence)
@@ -114,8 +108,8 @@ class VariantTranscriptConsequence(YAMLRoot):
     class_name: ClassVar[str] = "variant transcript consequence"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence")
 
-    subject: Union[str, VariantId] = None
-    object: Union[str, TranscriptId] = None
+    subject: str = None
+    object: str = None
     amino_acid_reference: Optional[Union[str, BiologicalSequence]] = None
     amino_acid_variant: Optional[Union[str, BiologicalSequence]] = None
     codon_reference: Optional[str] = None
@@ -134,13 +128,13 @@ class VariantTranscriptConsequence(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.subject is None:
             raise ValueError("subject must be supplied")
-        if not isinstance(self.subject, VariantId):
-            self.subject = VariantId(self.subject)
+        if not isinstance(self.subject, str):
+            self.subject = str(self.subject)
 
         if self.object is None:
             raise ValueError("object must be supplied")
-        if not isinstance(self.object, TranscriptId):
-            self.object = TranscriptId(self.object)
+        if not isinstance(self.object, str):
+            self.object = str(self.object)
 
         if self.amino_acid_reference is not None and not isinstance(self.amino_acid_reference, BiologicalSequence):
             self.amino_acid_reference = BiologicalSequence(self.amino_acid_reference)
@@ -254,12 +248,6 @@ slots.cnda_end = Slot(uri=DEFAULT_.cnda_end, name="cnda end", curie=DEFAULT_.cur
 slots.cns_end = Slot(uri=DEFAULT_.cns_end, name="cns end", curie=DEFAULT_.curie('cns_end'),
                    model_uri=DEFAULT_.cns_end, domain=None, range=Optional[str])
 
-slots.variant_gene_consequence_subject = Slot(uri=DEFAULT_.subject, name="variant gene consequence_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_gene_consequence_subject, domain=VariantGeneConsequence, range=Union[str, VariantId])
-
-slots.variant_gene_consequence_object = Slot(uri=DEFAULT_.object, name="variant gene consequence_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_gene_consequence_object, domain=VariantGeneConsequence, range=Union[str, GeneId])
-
 slots.variant_transcript_consequence_amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="variant transcript consequence_amino acid reference", curie=DEFAULT_.curie('amino_acid_reference'),
                    model_uri=DEFAULT_.variant_transcript_consequence_amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
 
@@ -295,9 +283,3 @@ slots.variant_transcript_consequence_hgvs_protein_nomenclature = Slot(uri=DEFAUL
 
 slots.variant_transcript_consequence_hgvs_coding_nomenclature = Slot(uri=DEFAULT_.hgvs_coding_nomenclature, name="variant transcript consequence_hgvs coding nomenclature", curie=DEFAULT_.curie('hgvs_coding_nomenclature'),
                    model_uri=DEFAULT_.variant_transcript_consequence_hgvs_coding_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
-
-slots.variant_transcript_consequence_subject = Slot(uri=DEFAULT_.subject, name="variant transcript consequence_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_subject, domain=VariantTranscriptConsequence, range=Union[str, VariantId])
-
-slots.variant_transcript_consequence_object = Slot(uri=DEFAULT_.object, name="variant transcript consequence_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_object, domain=VariantTranscriptConsequence, range=Union[str, TranscriptId])

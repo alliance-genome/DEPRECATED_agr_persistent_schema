@@ -109,7 +109,7 @@
       },
       "Gene": {
          "additionalProperties": false,
-         "description": "A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions.",
+         "description": "",
          "properties": {
             "id": {
                "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
@@ -142,9 +142,14 @@
             },
             "orcid": {
                "type": "string"
+            },
+            "person_id": {
+               "type": "string"
             }
          },
-         "required": [],
+         "required": [
+            "person_id"
+         ],
          "title": "Person",
          "type": "object"
       },
@@ -317,6 +322,9 @@
             "publisher": {
                "$ref": "#/definitions/InformationContentEntity"
             },
+            "resource_id": {
+               "type": "string"
+            },
             "summary": {
                "type": "string"
             },
@@ -428,16 +436,13 @@
                "type": "array"
             },
             "release": {
-               "description": "MOD release IDg",
+               "description": "MOD release ID",
                "type": "string"
             },
             "synonyms": {
                "type": "string"
             },
             "type": {
-               "type": "string"
-            },
-            "variant_id": {
                "type": "string"
             }
          },
@@ -452,7 +457,7 @@
          "description": "",
          "properties": {
             "object": {
-               "description": "object should be the gene identifier",
+               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
                "type": "string"
             },
             "polyphen_prediction": {
@@ -472,7 +477,7 @@
                "type": "number"
             },
             "subject": {
-               "description": "subject should be the variant identifier",
+               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
                "type": "string"
             },
             "vep_consequence": {
@@ -494,18 +499,19 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "assembly_id": {
+            "end": {
+               "description": "The end of the feature in positive 1-based integer coordinates",
                "type": "string"
             },
             "has_assembly": {
                "type": "string"
             },
             "object": {
-               "description": "Should be the id of the chromosome",
+               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
                "type": "string"
             },
-            "end": {
-               "description": "The end of the feature in positive 1-based integer coordinates",
+            "predicate": {
+               "description": "A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.",
                "type": "string"
             },
             "start": {
@@ -513,7 +519,7 @@
                "type": "string"
             },
             "subject": {
-               "description": "Should be the id of the variant",
+               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
                "type": "string"
             }
          },
@@ -579,7 +585,7 @@
                "type": "string"
             },
             "object": {
-               "description": "Transcript that is affected by the associated variant",
+               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
                "type": "string"
             },
             "protein_end": {
@@ -591,7 +597,7 @@
                "type": "integer"
             },
             "subject": {
-               "description": "the variant identifier",
+               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
                "type": "string"
             }
          },

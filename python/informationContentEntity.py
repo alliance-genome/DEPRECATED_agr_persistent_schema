@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:09
+# Generation date: 2021-04-21 18:28
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -86,7 +86,7 @@ class AuthorReference(YAMLRoot):
     middle_names: Optional[Union[dict, InformationContentEntity]] = None
     last_name: Optional[Union[dict, InformationContentEntity]] = None
     initials: Optional[Union[dict, InformationContentEntity]] = None
-    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
+    cross_references: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.corresponding_author is not None and not isinstance(self.corresponding_author, InformationContentEntity):
@@ -141,7 +141,7 @@ slots.first_name = Slot(uri=ALLIANCE.first_name, name="first name", curie=ALLIAN
 slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle names", curie=ALLIANCE.curie('middle_names'),
                    model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
-slots.last_name = Slot(uri=FOAF.familyName, name="last name", curie=FOAF.curie('familyName'),
+slots.last_name = Slot(uri=ALLIANCE.last_name, name="last name", curie=ALLIANCE.curie('last_name'),
                    model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
 slots.initials = Slot(uri=ALLIANCE.initials, name="initials", curie=ALLIANCE.curie('initials'),

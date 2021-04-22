@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:09
+# Generation date: 2021-04-21 18:28
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -90,7 +90,7 @@ class Reference(InformationContentEntity):
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
     tags: Optional[Union[str, List[str]]] = empty_list()
     topics: Optional[Union[str, URIorCURIE]] = None
-    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
+    cross_references: Optional[Union[str, List[str]]] = empty_list()
     publisher: Optional[Union[dict, InformationContentEntity]] = None
     keywords: Optional[Union[str, List[str]]] = empty_list()
     from_resource: Optional[Union[str, ResourceId]] = None
@@ -180,7 +180,7 @@ class Reference(InformationContentEntity):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
 
         if self.publisher is not None and not isinstance(self.publisher, InformationContentEntity):
             self.publisher = InformationContentEntity(**self.publisher)

@@ -14,6 +14,7 @@ prefixes:
   faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  schema: 'http://schema.org/'
 
 # Classes
 
@@ -43,19 +44,10 @@ classes:
       - cross references
     exact_mappings:
       - SO:0001059
-    slot_usage:
-      variant id:
-        identifier: true
 
 # Slots
 
 slots:
-
-  variant id:
-    domain: variant
-    range: string
-    required: true
-    identifier: true
 
   note:
     range: string
