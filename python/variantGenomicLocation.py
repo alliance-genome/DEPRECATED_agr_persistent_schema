@@ -1,5 +1,5 @@
 # Auto generated from variantGenomicLocation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:28
+# Generation date: 2021-04-21 18:36
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation
@@ -22,6 +22,7 @@ from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . genomic import AssemblyId, ChromosomeId
+from . variation import VariantId
 from linkml_model.types import String
 
 metamodel_version = "1.7.0"
@@ -55,9 +56,9 @@ class VariantGenomicLocation(YAMLRoot):
     class_name: ClassVar[str] = "variant genomic location"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
 
-    subject: str = None
+    subject: Union[str, VariantId] = None
     predicate: str = None
-    object: str = None
+    object: Union[str, ChromosomeId] = None
     has_assembly: Union[str, AssemblyId] = None
     start: Optional[str] = None
     end: Optional[str] = None
@@ -65,8 +66,8 @@ class VariantGenomicLocation(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.subject is None:
             raise ValueError("subject must be supplied")
-        if not isinstance(self.subject, str):
-            self.subject = str(self.subject)
+        if not isinstance(self.subject, VariantId):
+            self.subject = VariantId(self.subject)
 
         if self.predicate is None:
             raise ValueError("predicate must be supplied")
@@ -75,8 +76,8 @@ class VariantGenomicLocation(YAMLRoot):
 
         if self.object is None:
             raise ValueError("object must be supplied")
-        if not isinstance(self.object, str):
-            self.object = str(self.object)
+        if not isinstance(self.object, ChromosomeId):
+            self.object = ChromosomeId(self.object)
 
         if self.has_assembly is None:
             raise ValueError("has_assembly must be supplied")
@@ -104,3 +105,9 @@ slots.located_on = Slot(uri=DEFAULT_.located_on, name="located on", curie=DEFAUL
 
 slots.has_assembly = Slot(uri=DEFAULT_.has_assembly, name="has assembly", curie=DEFAULT_.curie('has_assembly'),
                    model_uri=DEFAULT_.has_assembly, domain=VariantGenomicLocation, range=Union[str, AssemblyId])
+
+slots.variant_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="variant genomic location_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.variant_genomic_location_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])
+
+slots.variant_genomic_location_object = Slot(uri=DEFAULT_.object, name="variant genomic location_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.variant_genomic_location_object, domain=VariantGenomicLocation, range=Union[str, ChromosomeId])

@@ -136,8 +136,8 @@ type Variant
 
 type VariantGeneConsequence
   {
-    subject: String!
-    object: String!
+    subject: Variant!
+    object: Gene!
     vepConsequence: String
     vepImpact: String
     polyphenScore: Float
@@ -148,9 +148,9 @@ type VariantGeneConsequence
 
 type VariantGenomicLocation
   {
-    subject: String!
+    subject: Variant!
     predicate: String!
-    object: String!
+    object: Chromosome!
     hasAssembly: Assembly!
     start: String
     end: String
@@ -158,8 +158,8 @@ type VariantGenomicLocation
 
 type VariantTranscriptConsequence
   {
-    subject: String!
-    object: String!
+    subject: Variant!
+    object: Transcript!
     aminoAcidReference: BiologicalSequence
     aminoAcidVariant: BiologicalSequence
     codonReference: String

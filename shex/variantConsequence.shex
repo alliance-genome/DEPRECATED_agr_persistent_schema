@@ -193,8 +193,9 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <VariantGeneConsequence> CLOSED {
-    (  $<VariantGeneConsequence_tes> (  <http://alliancegenome.orgsubject> @linkml:String ;
-          <http://alliancegenome.orgobject> @linkml:String ;
+    (  $<VariantGeneConsequence_tes> (  <subject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+          <object> @<http://alliancegenome.orgGene> ;
           <vep_consequence> @linkml:String ? ;
           <vep_impact> @linkml:String ? ;
           <polyphen_score> @linkml:Float ? ;
@@ -207,8 +208,9 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <VariantTranscriptConsequence> CLOSED {
-    (  $<VariantTranscriptConsequence_tes> (  <http://alliancegenome.orgsubject> @linkml:String ;
-          <http://alliancegenome.orgobject> @linkml:String ;
+    (  $<VariantTranscriptConsequence_tes> (  <subject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+          <object> @<http://alliancegenome.orgTranscript> ;
           <amino_acid_reference> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <amino_acid_variant> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <codon_reference> @linkml:String ? ;

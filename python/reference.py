@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:28
+# Generation date: 2021-04-21 18:36
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference

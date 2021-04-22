@@ -193,9 +193,10 @@ linkml:Nodeidentifier NONLITERAL
 }
 
 <VariantGenomicLocation> CLOSED {
-    (  $<VariantGenomicLocation_tes> (  <http://alliancegenome.orgsubject> @linkml:String ;
+    (  $<VariantGenomicLocation_tes> (  <subject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
           <http://alliancegenome.orgpredicate> @linkml:String ;
-          <http://alliancegenome.orgobject> @linkml:String ;
+          <object> @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ;
           <has_assembly> @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/start> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/end> @linkml:String ?

@@ -214,8 +214,9 @@ linkml:Nodeidentifier NONLITERAL
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence> CLOSED {
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence_tes> ( 
-          <http://alliancegenome.orgsubject> @linkml:String ;
-          <http://alliancegenome.orgobject> @linkml:String ;
+          <http://alliancegenome.orgsubject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+          <http://alliancegenome.orgobject> @<http://alliancegenome.orgGene> ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/vep_consequence> @linkml:String ?
           ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/vep_impact> @linkml:String ? ;
@@ -232,9 +233,11 @@ linkml:Nodeidentifier NONLITERAL
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation> CLOSED {
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation_tes> ( 
-          <http://alliancegenome.orgsubject> @linkml:String ;
+          <http://alliancegenome.orgsubject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
           <http://alliancegenome.orgpredicate> @linkml:String ;
-          <http://alliancegenome.orgobject> @linkml:String ;
+          <http://alliancegenome.orgobject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/has_assembly>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly> ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/start> @linkml:String ? ;
@@ -247,8 +250,9 @@ linkml:Nodeidentifier NONLITERAL
 
 <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence> CLOSED {
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence_tes>
-       (  <http://alliancegenome.orgsubject> @linkml:String ;
-          <http://alliancegenome.orgobject> @linkml:String ;
+       (  <http://alliancegenome.orgsubject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+          <http://alliancegenome.orgobject> @<http://alliancegenome.orgTranscript> ;
           <http://alliancegenome.orgamino_acid_reference> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <http://alliancegenome.orgamino_acid_variant> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <http://alliancegenome.orgcodon_reference> @linkml:String ? ;

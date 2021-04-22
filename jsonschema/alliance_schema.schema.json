@@ -457,7 +457,7 @@
          "description": "",
          "properties": {
             "object": {
-               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "description": "object should be the gene identifier",
                "type": "string"
             },
             "polyphen_prediction": {
@@ -477,7 +477,7 @@
                "type": "number"
             },
             "subject": {
-               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "description": "subject should be the variant identifier",
                "type": "string"
             },
             "vep_consequence": {
@@ -507,7 +507,7 @@
                "type": "string"
             },
             "object": {
-               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "description": "object should be the chromosome identifier",
                "type": "string"
             },
             "predicate": {
@@ -519,7 +519,7 @@
                "type": "string"
             },
             "subject": {
-               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "description": "subject should be the variant identifier",
                "type": "string"
             }
          },
@@ -585,7 +585,7 @@
                "type": "string"
             },
             "object": {
-               "description": "connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "description": "object should be the transcript identifier",
                "type": "string"
             },
             "protein_end": {
@@ -597,7 +597,7 @@
                "type": "integer"
             },
             "subject": {
-               "description": "connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.",
+               "description": "subject should be the variant identifier",
                "type": "string"
             }
          },
