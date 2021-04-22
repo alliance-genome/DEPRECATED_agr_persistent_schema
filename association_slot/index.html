@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Class: VariantToChromosome - Alliance Persistence Model</title>
+  <title>Slot: association_slot - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Class: VariantToChromosome";
-    var mkdocs_page_input_path = "VariantToChromosome.md";
+    var mkdocs_page_name = "Slot: association_slot";
+    var mkdocs_page_input_path = "association_slot.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Class: VariantToChromosome</li>
+    <li>Slot: association_slot</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,35 +91,17 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="class-varianttochromosome">Class: VariantToChromosome</h1>
-<p>URI: <a href="http://alliancegenome.orgVariantToChromosome">alliance:VariantToChromosome</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantToChromosome&#124;variant_id:string;chromosome_id:string;assembly_id:string;start:string%20%3F;end:string%20%3F]" /></p>
-<h2 id="attributes">Attributes</h2>
-<h3 id="own">Own</h3>
+                <h1 id="slot-association_slot">Slot: association_slot</h1>
+<p>any slot that relates an association to another entity</p>
+<p>URI: <a href="http://alliancegenome.orgassociation_slot">alliance:association_slot</a></p>
+<h2 id="domain-and-range">Domain and Range</h2>
+<p>None -&gt;  <sub>OPT</sub> <a href="../types/String/">String</a></p>
+<h2 id="parents">Parents</h2>
+<h2 id="children">Children</h2>
 <ul>
-<li><a href="../assembly_id/">assembly id</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
+<li><a href="../subject/">subject</a></li>
 </ul>
-</li>
-<li><a href="../chromosome_id/">chromosome id</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../end/">end</a>  <sub>OPT</sub><ul>
-<li>Description: The end of the feature in positive 1-based integer coordinates</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../start/">start</a>  <sub>OPT</sub><ul>
-<li>Description: The start of the feature in positive 1-based integer coordinates</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../variant_id/">variant id</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-</ul>
+<h2 id="used-by">Used by</h2>
 <h2 id="other-properties">Other properties</h2>
 <table>
 <thead>
@@ -133,7 +115,17 @@
 <tr>
 <td><strong>Aliases:</strong></td>
 <td></td>
-<td>genomic location</td>
+<td>edge property</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>statement property</td>
+</tr>
+<tr>
+<td><strong>Exact Mappings:</strong></td>
+<td></td>
+<td>biolink:association_slot</td>
 </tr>
 </tbody>
 </table>

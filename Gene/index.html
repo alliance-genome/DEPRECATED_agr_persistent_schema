@@ -93,7 +93,7 @@
               
                 <h1 id="class-gene">Class: Gene</h1>
 <p>URI: <a href="http://alliancegenome.orgGene">alliance:Gene</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[Variant]-%20is%20variant%20of%20gene%200..1&gt;[Gene&#124;gene_id:string;name:string%20%3F]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[Variant]-%20computed%20gene%200..1&gt;[Gene&#124;id:uriorcurie]" /></p>
 <h2 id="identifier-prefixes">Identifier prefixes</h2>
 <ul>
 <li>ENSEMBL</li>
@@ -107,43 +107,17 @@
 </ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
-<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../is_variant_of_gene/">is variant of gene</a></em>  <sub>OPT</sub>  <strong><a href="./">Gene</a></strong></li>
+<li><strong><a href="../Variant/">Variant</a></strong> <em><a href="../computed_gene/">computed gene</a></em>  <sub>OPT</sub>  <strong><a href="./">Gene</a></strong></li>
 </ul>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
-<li><a href="../gene_gene_id/">gene➞gene id</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../name/">name</a>  <sub>OPT</sub><ul>
-<li>Description: a human-readable name for an entity</li>
-<li>range: <a href="../types/String/">String</a></li>
+<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
+<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="other-properties">Other properties</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Aliases:</strong></td>
-<td></td>
-<td>locus</td>
-</tr>
-<tr>
-<td><strong>Exact Mappings:</strong></td>
-<td></td>
-<td>biolink:Gene</td>
-</tr>
-</tbody>
-</table>
               
             </div>
           </div>

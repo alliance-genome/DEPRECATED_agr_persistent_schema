@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Slot: variant_variant_id - Alliance Persistence Model</title>
+  <title>Class: VariantGenomicLocation - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Slot: variant_variant_id";
-    var mkdocs_page_input_path = "variant_variant_id.md";
+    var mkdocs_page_name = "Class: VariantGenomicLocation";
+    var mkdocs_page_input_path = "VariantGenomicLocation.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Slot: variant_variant_id</li>
+    <li>Class: VariantGenomicLocation</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,19 +91,60 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="slot-variant_variant_id">Slot: variant_variant_id</h1>
-<p>URI: <a href="http://alliancegenome.orgvariant_variant_id">alliance:variant_variant_id</a></p>
-<h2 id="domain-and-range">Domain and Range</h2>
-<p><a href="../Variant/">Variant</a> -&gt;  <sub>REQ</sub> <a href="../types/String/">String</a></p>
-<h2 id="parents">Parents</h2>
+                <h1 id="class-variantgenomiclocation">Class: VariantGenomicLocation</h1>
+<p>URI: <a href="http://alliancegenome.orgVariantGenomicLocation">alliance:VariantGenomicLocation</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Assembly]&lt;has%20assembly%201..1-%20[VariantGenomicLocation&#124;subject:string;predicate:string;object:string;start:string%20%3F;end:string%20%3F],[Assembly]" /></p>
+<h2 id="referenced-by-class">Referenced by class</h2>
+<h2 id="attributes">Attributes</h2>
+<h3 id="own">Own</h3>
 <ul>
-<li>is_a: <a href="../variant_id/">variant id</a></li>
+<li><a href="../end/">end</a>  <sub>OPT</sub><ul>
+<li>Description: The end of the feature in positive 1-based integer coordinates</li>
+<li>range: <a href="../types/String/">String</a></li>
 </ul>
-<h2 id="children">Children</h2>
-<h2 id="used-by">Used by</h2>
-<ul>
-<li><a href="../Variant/">Variant</a></li>
+</li>
+<li><a href="../has_assembly/">has assembly</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../Assembly/">Assembly</a></li>
 </ul>
+</li>
+<li><a href="../object/">object</a>  <sub>REQ</sub><ul>
+<li>Description: connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../predicate/">predicate</a>  <sub>REQ</sub><ul>
+<li>Description: A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../start/">start</a>  <sub>OPT</sub><ul>
+<li>Description: The start of the feature in positive 1-based integer coordinates</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../subject/">subject</a>  <sub>REQ</sub><ul>
+<li>Description: connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="other-properties">Other properties</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Aliases:</strong></td>
+<td></td>
+<td>genomic location</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

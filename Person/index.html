@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Slot: allele_id - Alliance Persistence Model</title>
+  <title>Class: Person - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Slot: allele_id";
-    var mkdocs_page_input_path = "allele_id.md";
+    var mkdocs_page_name = "Class: Person";
+    var mkdocs_page_input_path = "Person.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Slot: allele_id</li>
+    <li>Class: Person</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,13 +91,52 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="slot-allele_id">Slot: allele_id</h1>
-<p>URI: <a href="http://alliancegenome.orgallele_id">alliance:allele_id</a></p>
-<h2 id="domain-and-range">Domain and Range</h2>
-<p>None -&gt;  <sub>REQ</sub> <a href="../types/String/">String</a></p>
-<h2 id="parents">Parents</h2>
-<h2 id="children">Children</h2>
-<h2 id="used-by">Used by</h2>
+                <h1 id="class-person">Class: Person</h1>
+<p>URI: <a href="http://alliancegenome.orgPerson">alliance:Person</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[InformationContentEntity]&lt;first%20name%200..1-++[Person&#124;orcid:string%20%3F;person_id:string],[InformationContentEntity]&lt;last%20name%200..1-++[Person],[InformationContentEntity]" /></p>
+<h2 id="referenced-by-class">Referenced by class</h2>
+<h2 id="attributes">Attributes</h2>
+<h3 id="own">Own</h3>
+<ul>
+<li><a href="../first_name/">first name</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../last_name/">last name</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../InformationContentEntity/">InformationContentEntity</a></li>
+</ul>
+</li>
+<li><a href="../orcid/">orcid</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../person_person_id/">person➞person id</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="other-properties">Other properties</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Exact Mappings:</strong></td>
+<td></td>
+<td>schema:person</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>foaf:Person</td>
+</tr>
+</tbody>
+</table>
               
             </div>
           </div>

@@ -92,9 +92,8 @@
             <div class="section">
               
                 <h1 id="class-transcript">Class: Transcript</h1>
-<p>An RNA synthesized on a DNA or RNA template by an RNA polymerase.</p>
 <p>URI: <a href="http://alliancegenome.orgTranscript">alliance:Transcript</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[Variant]-%20is%20variant%20of%20transcript%200..1&gt;[Transcript&#124;transcript_id:string]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[Variant]-%20is%20variant%20of%20transcript%200..1&gt;[Transcript&#124;id:uriorcurie]" /></p>
 <h2 id="identifier-prefixes">Identifier prefixes</h2>
 <ul>
 <li>ENSEMBL</li>
@@ -112,28 +111,12 @@
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
-<li><a href="../transcript_transcript_id/">transcript➞transcript id</a>  <sub>REQ</sub><ul>
-<li>range: <a href="../types/String/">String</a></li>
+<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
+<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="other-properties">Other properties</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Exact Mappings:</strong></td>
-<td></td>
-<td>biolink:Transcript</td>
-</tr>
-</tbody>
-</table>
               
             </div>
           </div>
