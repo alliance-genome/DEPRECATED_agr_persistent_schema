@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
+# Generation date: 2021-04-21 18:36
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -22,8 +22,8 @@ from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import Id
-from . crossReference import CrossReferenceCrossReferenceId
 from . informationContentEntity import AuthorReference, InformationContentEntity
+from . resource import ResourceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
 
@@ -45,7 +45,8 @@ WB = CurieNamespace('WB', 'http://identifiers.org/wb/')
 ZFIN = CurieNamespace('ZFIN', 'http://identifiers.org/zfin/')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/')
@@ -89,9 +90,10 @@ class Reference(InformationContentEntity):
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
     tags: Optional[Union[str, List[str]]] = empty_list()
     topics: Optional[Union[str, URIorCURIE]] = None
-    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
+    cross_references: Optional[Union[str, List[str]]] = empty_list()
     publisher: Optional[Union[dict, InformationContentEntity]] = None
     keywords: Optional[Union[str, List[str]]] = empty_list()
+    from_resource: Optional[Union[str, ResourceId]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -178,7 +180,7 @@ class Reference(InformationContentEntity):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
 
         if self.publisher is not None and not isinstance(self.publisher, InformationContentEntity):
             self.publisher = InformationContentEntity(**self.publisher)
@@ -188,6 +190,9 @@ class Reference(InformationContentEntity):
         if not isinstance(self.keywords, list):
             self.keywords = [self.keywords]
         self.keywords = [v if isinstance(v, str) else str(v) for v in self.keywords]
+
+        if self.from_resource is not None and not isinstance(self.from_resource, ResourceId):
+            self.from_resource = ResourceId(self.from_resource)
 
         super().__post_init__(**kwargs)
 
@@ -261,6 +266,9 @@ slots.alliance_category = Slot(uri=DEFAULT_.alliance_category, name="alliance ca
 
 slots.keywords = Slot(uri=DEFAULT_.keywords, name="keywords", curie=DEFAULT_.curie('keywords'),
                    model_uri=DEFAULT_.keywords, domain=InformationContentEntity, range=Optional[Union[str, List[str]]])
+
+slots.from_resource = Slot(uri=DEFAULT_.from_resource, name="from resource", curie=DEFAULT_.curie('from_resource'),
+                   model_uri=DEFAULT_.from_resource, domain=Reference, range=Optional[Union[str, ResourceId]])
 
 slots.reference_id = Slot(uri=DEFAULT_.id, name="reference_id", curie=DEFAULT_.curie('id'),
                    model_uri=DEFAULT_.reference_id, domain=Reference, range=Union[str, ReferenceId])

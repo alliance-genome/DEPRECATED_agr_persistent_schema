@@ -1,5 +1,5 @@
 # Auto generated from alliance_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
+# Generation date: 2021-04-21 18:36
 # Schema: Alliance-Schema-Prototype
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/alliance_schema
@@ -29,9 +29,11 @@ metamodel_version = "1.7.0"
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
@@ -60,3 +62,6 @@ slots.cnda_end = Slot(uri=ALLIANCE.cnda_end, name="cnda end", curie=ALLIANCE.cur
 
 slots.cns_end = Slot(uri=ALLIANCE.cns_end, name="cns end", curie=ALLIANCE.curie('cns_end'),
                    model_uri=ALLIANCE.cns_end, domain=None, range=Optional[str])
+
+slots.person_id = Slot(uri=ALLIANCE.person_id, name="person id", curie=ALLIANCE.curie('person_id'),
+                   model_uri=ALLIANCE.person_id, domain=None, range=URIRef)

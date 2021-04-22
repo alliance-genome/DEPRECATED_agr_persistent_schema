@@ -1,5 +1,5 @@
 # Auto generated from variantGenomicLocation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
+# Generation date: 2021-04-21 18:36
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation
@@ -21,7 +21,8 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . genomic import Chromosome
+from . genomic import AssemblyId, ChromosomeId
+from . variation import VariantId
 from linkml_model.types import String
 
 metamodel_version = "1.7.0"
@@ -30,9 +31,11 @@ metamodel_version = "1.7.0"
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/')
@@ -41,40 +44,45 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class VariantToChromosomeVariantId(extended_str):
-    pass
+
 
 
 @dataclass
-class VariantToChromosome(YAMLRoot):
+class VariantGenomicLocation(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosome")
+    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant to chromosome"
-    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantToChromosome")
+    class_name: ClassVar[str] = "variant genomic location"
+    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
 
-    variant_id: Union[str, VariantToChromosomeVariantId] = None
-    chromosome_id: str = None
-    assembly_id: str = None
+    subject: Union[str, VariantId] = None
+    predicate: str = None
+    object: Union[str, ChromosomeId] = None
+    has_assembly: Union[str, AssemblyId] = None
     start: Optional[str] = None
     end: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.variant_id is None:
-            raise ValueError("variant_id must be supplied")
-        if not isinstance(self.variant_id, VariantToChromosomeVariantId):
-            self.variant_id = VariantToChromosomeVariantId(self.variant_id)
+        if self.subject is None:
+            raise ValueError("subject must be supplied")
+        if not isinstance(self.subject, VariantId):
+            self.subject = VariantId(self.subject)
 
-        if self.chromosome_id is None:
-            raise ValueError("chromosome_id must be supplied")
-        if not isinstance(self.chromosome_id, str):
-            self.chromosome_id = str(self.chromosome_id)
+        if self.predicate is None:
+            raise ValueError("predicate must be supplied")
+        if not isinstance(self.predicate, str):
+            self.predicate = str(self.predicate)
 
-        if self.assembly_id is None:
-            raise ValueError("assembly_id must be supplied")
-        if not isinstance(self.assembly_id, str):
-            self.assembly_id = str(self.assembly_id)
+        if self.object is None:
+            raise ValueError("object must be supplied")
+        if not isinstance(self.object, ChromosomeId):
+            self.object = ChromosomeId(self.object)
+
+        if self.has_assembly is None:
+            raise ValueError("has_assembly must be supplied")
+        if not isinstance(self.has_assembly, AssemblyId):
+            self.has_assembly = AssemblyId(self.has_assembly)
 
         if self.start is not None and not isinstance(self.start, str):
             self.start = str(self.start)
@@ -93,4 +101,13 @@ class slots:
     pass
 
 slots.located_on = Slot(uri=DEFAULT_.located_on, name="located on", curie=DEFAULT_.curie('located_on'),
-                   model_uri=DEFAULT_.located_on, domain=None, range=Optional[Union[dict, Chromosome]])
+                   model_uri=DEFAULT_.located_on, domain=None, range=Optional[Union[str, ChromosomeId]])
+
+slots.has_assembly = Slot(uri=DEFAULT_.has_assembly, name="has assembly", curie=DEFAULT_.curie('has_assembly'),
+                   model_uri=DEFAULT_.has_assembly, domain=VariantGenomicLocation, range=Union[str, AssemblyId])
+
+slots.variant_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="variant genomic location_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.variant_genomic_location_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])
+
+slots.variant_genomic_location_object = Slot(uri=DEFAULT_.object, name="variant genomic location_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.variant_genomic_location_object, domain=VariantGenomicLocation, range=Union[str, ChromosomeId])

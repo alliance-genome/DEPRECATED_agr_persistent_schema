@@ -5,13 +5,16 @@ title: Alliance Schema Prototype Variation
 imports:
   - core
   - linkml:types
+  - informationContentEntity
 
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
   schema: 'http://schema.org/'
-  foaf: 'http://xmlns.com/foaf/0.1/'
 
 # Classes
 
@@ -21,7 +24,7 @@ classes:
     description: >-
       Variant class
     slots:
-      - variant id
+      - id
       - hgvs nomenclature
       - genomic reference sequence
       - genomic variant sequence
@@ -30,7 +33,7 @@ classes:
       - date produced
       - release
       - data provider
-      - is variant of gene
+      - computed gene
       - is variant of transcript
       - is variant of allele
       - synonyms
@@ -41,19 +44,10 @@ classes:
       - cross references
     exact_mappings:
       - SO:0001059
-    slot_usage:
-      variant id:
-        identifier: true
 
 # Slots
 
 slots:
-
-  variant id:
-    domain: variant
-    range: string
-    required: true
-    identifier: true
 
   note:
     range: string
@@ -97,7 +91,7 @@ slots:
     domain: variant
     range: biological sequence
 
-  is variant of gene:
+  computed gene:
     domain: variant
     range: gene
 

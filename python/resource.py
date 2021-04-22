@@ -1,5 +1,5 @@
 # Auto generated from resource.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
+# Generation date: 2021-04-21 18:36
 # Schema: resource
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource
@@ -23,7 +23,6 @@ from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import Id
 from . informationContentEntity import AuthorReference, InformationContentEntity
-from . reference import ReferenceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
 
@@ -44,7 +43,8 @@ WB = CurieNamespace('WB', 'http://identifiers.org/wb/')
 ZFIN = CurieNamespace('ZFIN', 'http://identifiers.org/zfin/')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/')
@@ -78,7 +78,6 @@ class Resource(InformationContentEntity):
     volumes: Optional[str] = None
     summary: Optional[str] = None
     synonyms: Optional[str] = None
-    references: Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]] = empty_list()
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
     editors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
 
@@ -120,12 +119,6 @@ class Resource(InformationContentEntity):
 
         if self.synonyms is not None and not isinstance(self.synonyms, str):
             self.synonyms = str(self.synonyms)
-
-        if self.references is None:
-            self.references = []
-        if not isinstance(self.references, list):
-            self.references = [self.references]
-        self.references = [v if isinstance(v, ReferenceId) else ReferenceId(v) for v in self.references]
 
         if self.authors is None:
             self.authors = []

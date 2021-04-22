@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
+# Generation date: 2021-04-21 18:37
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -21,8 +21,6 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . crossReference import CrossReferenceCrossReferenceId
-from . reference import ReferenceId
 from linkml.utils.metamodelcore import XSDDate
 from linkml_model.types import Date, String
 
@@ -32,9 +30,11 @@ metamodel_version = "1.7.0"
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
@@ -86,7 +86,7 @@ class AuthorReference(YAMLRoot):
     middle_names: Optional[Union[dict, InformationContentEntity]] = None
     last_name: Optional[Union[dict, InformationContentEntity]] = None
     initials: Optional[Union[dict, InformationContentEntity]] = None
-    cross_references: Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]] = empty_list()
+    cross_references: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.corresponding_author is not None and not isinstance(self.corresponding_author, InformationContentEntity):
@@ -108,7 +108,7 @@ class AuthorReference(YAMLRoot):
             self.cross_references = []
         if not isinstance(self.cross_references, list):
             self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, CrossReferenceCrossReferenceId) else CrossReferenceCrossReferenceId(v) for v in self.cross_references]
+        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
 
         super().__post_init__(**kwargs)
 
@@ -129,9 +129,6 @@ slots.summary = Slot(uri=ALLIANCE.summary, name="summary", curie=ALLIANCE.curie(
 slots.copyright_date = Slot(uri=ALLIANCE.copyright_date, name="copyright date", curie=ALLIANCE.curie('copyright_date'),
                    model_uri=ALLIANCE.copyright_date, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
-slots.references = Slot(uri=ALLIANCE.references, name="references", curie=ALLIANCE.curie('references'),
-                   model_uri=ALLIANCE.references, domain=None, range=Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]])
-
 slots.authors = Slot(uri=ALLIANCE.authors, name="authors", curie=ALLIANCE.curie('authors'),
                    model_uri=ALLIANCE.authors, domain=InformationContentEntity, range=Optional[Union[Union[dict, "AuthorReference"], List[Union[dict, "AuthorReference"]]]])
 
@@ -144,7 +141,7 @@ slots.first_name = Slot(uri=ALLIANCE.first_name, name="first name", curie=ALLIAN
 slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle names", curie=ALLIANCE.curie('middle_names'),
                    model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
-slots.last_name = Slot(uri=FOAF.familyName, name="last name", curie=FOAF.curie('familyName'),
+slots.last_name = Slot(uri=ALLIANCE.last_name, name="last name", curie=ALLIANCE.curie('last_name'),
                    model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[dict, "InformationContentEntity"]])
 
 slots.initials = Slot(uri=ALLIANCE.initials, name="initials", curie=ALLIANCE.curie('initials'),

@@ -6,12 +6,13 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "allele_id": {
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
                "type": "string"
             }
          },
          "required": [
-            "allele_id"
+            "id"
          ],
          "title": "Allele",
          "type": "object"
@@ -19,8 +20,15 @@
       "Assembly": {
          "additionalProperties": false,
          "description": "",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
          "title": "Assembly",
          "type": "object"
       },
@@ -57,8 +65,15 @@
       "Chromosome": {
          "additionalProperties": false,
          "description": "The ID of the landmark used to establish the coordinate system for the current feature.",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
          "title": "Chromosome",
          "type": "object"
       },
@@ -96,16 +111,13 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "gene_id": {
-               "type": "string"
-            },
-            "name": {
-               "description": "a human-readable name for an entity",
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
                "type": "string"
             }
          },
          "required": [
-            "gene_id"
+            "id"
          ],
          "title": "Gene",
          "type": "object"
@@ -116,6 +128,29 @@
          "properties": {},
          "required": [],
          "title": "GenomicEntity",
+         "type": "object"
+      },
+      "Person": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "first_name": {
+               "$ref": "#/definitions/InformationContentEntity"
+            },
+            "last_name": {
+               "$ref": "#/definitions/InformationContentEntity"
+            },
+            "orcid": {
+               "type": "string"
+            },
+            "person_id": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "person_id"
+         ],
+         "title": "Person",
          "type": "object"
       },
       "Reference": {
@@ -169,6 +204,9 @@
             },
             "day_published": {
                "description": "Day in which an entity was created.",
+               "type": "string"
+            },
+            "from_resource": {
                "type": "string"
             },
             "id": {
@@ -284,13 +322,6 @@
             "publisher": {
                "$ref": "#/definitions/InformationContentEntity"
             },
-            "references": {
-               "description": "holds between a named thing and a reference",
-               "items": {
-                  "type": "string"
-               },
-               "type": "array"
-            },
             "resource_id": {
                "type": "string"
             },
@@ -324,14 +355,15 @@
       },
       "Transcript": {
          "additionalProperties": false,
-         "description": "An RNA synthesized on a DNA or RNA template by an RNA polymerase.",
+         "description": "",
          "properties": {
-            "transcript_id": {
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
                "type": "string"
             }
          },
          "required": [
-            "transcript_id"
+            "id"
          ],
          "title": "Transcript",
          "type": "object"
@@ -340,6 +372,9 @@
          "additionalProperties": false,
          "description": "Variant class",
          "properties": {
+            "computed_gene": {
+               "type": "string"
+            },
             "cross_references": {
                "items": {
                   "type": "string"
@@ -369,10 +404,11 @@
                "description": "HGVSg nomenclature for variant",
                "type": "string"
             },
-            "is_variant_of_allele": {
-               "$ref": "#/definitions/Allele"
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
             },
-            "is_variant_of_gene": {
+            "is_variant_of_allele": {
                "type": "string"
             },
             "is_variant_of_transcript": {
@@ -393,14 +429,14 @@
                "type": "string"
             },
             "references": {
-               "description": "holds between a named thing and a reference",
+               "description": "holds between an object and a reference",
                "items": {
                   "type": "string"
                },
                "type": "array"
             },
             "release": {
-               "description": "MOD release IDg",
+               "description": "MOD release ID",
                "type": "string"
             },
             "synonyms": {
@@ -408,13 +444,10 @@
             },
             "type": {
                "type": "string"
-            },
-            "variant_id": {
-               "type": "string"
             }
          },
          "required": [
-            "variant_id"
+            "id"
          ],
          "title": "Variant",
          "type": "object"
@@ -423,7 +456,8 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "gene_id": {
+            "object": {
+               "description": "object should be the gene identifier",
                "type": "string"
             },
             "polyphen_prediction": {
@@ -442,7 +476,8 @@
                "description": "SIFT score between 0 and 1",
                "type": "number"
             },
-            "variant_id": {
+            "subject": {
+               "description": "subject should be the variant identifier",
                "type": "string"
             },
             "vep_consequence": {
@@ -454,40 +489,47 @@
             }
          },
          "required": [
-            "variant_id",
-            "gene_id"
+            "subject",
+            "object"
          ],
          "title": "VariantGeneConsequence",
          "type": "object"
       },
-      "VariantToChromosome": {
+      "VariantGenomicLocation": {
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "assembly_id": {
-               "type": "string"
-            },
-            "chromosome_id": {
-               "type": "string"
-            },
             "end": {
                "description": "The end of the feature in positive 1-based integer coordinates",
+               "type": "string"
+            },
+            "has_assembly": {
+               "type": "string"
+            },
+            "object": {
+               "description": "object should be the chromosome identifier",
+               "type": "string"
+            },
+            "predicate": {
+               "description": "A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.",
                "type": "string"
             },
             "start": {
                "description": "The start of the feature in positive 1-based integer coordinates",
                "type": "string"
             },
-            "variant_id": {
+            "subject": {
+               "description": "subject should be the variant identifier",
                "type": "string"
             }
          },
          "required": [
-            "variant_id",
-            "chromosome_id",
-            "assembly_id"
+            "subject",
+            "predicate",
+            "object",
+            "has_assembly"
          ],
-         "title": "VariantToChromosome",
+         "title": "VariantGenomicLocation",
          "type": "object"
       },
       "VariantTranscriptConsequence": {
@@ -542,6 +584,10 @@
                "description": "HGVS protein sequence (HGVSp) name",
                "type": "string"
             },
+            "object": {
+               "description": "object should be the transcript identifier",
+               "type": "string"
+            },
             "protein_end": {
                "description": "End position of variant in amino acid sequence",
                "type": "integer"
@@ -550,16 +596,14 @@
                "description": "Start position of variant in amino acid sequence",
                "type": "integer"
             },
-            "transcript_id": {
-               "type": "string"
-            },
-            "variant_id": {
+            "subject": {
+               "description": "subject should be the variant identifier",
                "type": "string"
             }
          },
          "required": [
-            "variant_id",
-            "transcript_id"
+            "subject",
+            "object"
          ],
          "title": "VariantTranscriptConsequence",
          "type": "object"

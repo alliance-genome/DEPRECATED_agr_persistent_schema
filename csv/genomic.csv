@@ -1,15 +1,14 @@
 id,mappings,description
 allele,,
-annotation,,Biolink Model root class for entity annotations.
 assembly,,
 author_reference,,
 chromosome,,The ID of the landmark used to establish the coordinate system for the current feature.
-cross_reference,,
 gene,,
 genomic_entity,,
 information_content_entity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
 reference,,
+resource,,
 species,,
-transcript,,An RNA synthesized on a DNA or RNA template by an RNA polymerase.
+transcript,,
 variant,,Variant class
 

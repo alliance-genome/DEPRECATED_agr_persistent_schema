@@ -10,32 +10,31 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
   schema: 'http://schema.org/'
-  foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
 
   chromosome:
     description: The ID of the landmark used to establish the coordinate system for the current feature.
+    slots:
+      - id
 
   assembly:
+    slots:
+      - id
 
 slots:
 
   start:
     description: The start of the feature in positive 1-based integer coordinates
-    close_mappings:
-      - biolink:start_interbase_coordinate
-    exact_mappings:
-      - faldo:begin
 
   end:
     description: The end of the feature in positive 1-based integer coordinates
-    close_mappings:
-      - biolink:end_interbase_coordinate
-    exact_mappings:
-      - faldo:end
+
 
   gene id:
     required: true

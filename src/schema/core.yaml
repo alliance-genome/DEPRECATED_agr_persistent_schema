@@ -1,6 +1,6 @@
 id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
-name: Alliance-Schema-Prototype-Core-Types
-title: Alliance Schema Prototype Core Types
+name: Alliance-Schema-Prototype-Core
+title: Alliance Schema Prototype Core
 description: Alliance Schema Prototype with LinkML
 
 default_prefix: alliance
@@ -21,15 +21,16 @@ emit_prefixes:
 imports:
   - linkml:types
   - reference
-  - crossReference
-  - genomic
+  - resource
 
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
   schema: 'http://schema.org/'
-  foaf: 'http://xmlns.com/foaf/0.1/'
 
 ## ------------
 ## TYPES
@@ -47,15 +48,13 @@ types:
 classes:
 
 
+
   genomic entity:
 
   gene:
-    aliases: ['locus']
+    description: >-
     slots:
-      - gene id
-      - name
-    exact_mappings:
-      - biolink:Gene
+      - id
     id_prefixes:
       - ENSEMBL
       - HGNC
@@ -65,17 +64,11 @@ classes:
       - SGD
       - WB
       - ZFIN
-    slot_usage:
-      gene id:
-        identifier: true
 
   transcript:
     description: >-
-      An RNA synthesized on a DNA or RNA template by an RNA polymerase.
     slots:
-      - transcript id
-    exact_mappings:
-      - biolink:Transcript
+      - id
     id_prefixes:
       - ENSEMBL
       - FB
@@ -84,21 +77,13 @@ classes:
       - RGD
       - SGD
       - ZFIN
-    slot_usage:
-      transcript id:
-        identifier: true
 
 
   allele:
     slots:
-      - allele id
+      - id
 
   species:
-
-  annotation:
-    description: >-
-      Biolink Model root class for entity annotations.
-    abstract: true
 
 
 ## ------------
@@ -120,14 +105,48 @@ slots:
     range: date
 
   release:
-    description: MOD release IDg
+    description: MOD release ID
     range: string
 
   data provider:
     description: MOD that provided data
     multivalued: true
-    # TODO: make enumeration
     range: string
+
+  association slot:
+    abstract: true
+    aliases: ['edge property', 'statement property']
+    description: >-
+      any slot that relates an association to another entity
+    exact_mappings:
+      - biolink:association_slot
+
+  subject:
+    is_a: association slot
+    description: >-
+      connects an association to the subject of the association.
+      For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
+    required: true
+    exact_mappings:
+      - owl:annotatedSource
+      - biolink:subject
+
+  object:
+    description: >-
+      connects an association to the object of the association.
+      For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
+    required: true
+    exact_mappings:
+      - biolink:object
+
+  predicate:
+    description: >-
+      A high-level grouping for the relationship type. This is analogous to category for nodes.
+      In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the
+      relationship type.
+    required: true
+    exact_mappings:
+      - biolink:predicate
 
   description:
     aliases: ['definition']
@@ -141,7 +160,6 @@ slots:
   cross references:
     singular_name: has cross reference
     description: >-
-    range: cross reference
     multivalued: true
 
   symbol:
@@ -164,7 +182,6 @@ slots:
 
   qualifiers:
     singular_name: qualifier
-    domain: information content entity
     description: >-
       This is the MeSH qualifier term that is optionally added to the descriptor term.
 
@@ -172,3 +189,9 @@ slots:
 
   type:
     range: uriorcurie
+
+  references:
+    description: holds between an object and a reference
+    multivalued: true
+    domain: resource
+    range: reference

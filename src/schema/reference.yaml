@@ -8,10 +8,11 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
-  schema: 'http://schema.org/'
-  foaf: 'http://xmlns.com/foaf/0.1/'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  schema: 'http://schema.org/'
 
 classes:
   reference:
@@ -25,8 +26,7 @@ classes:
       - month published
       - day published
       - date arrived in PubMed
-      # date arrived in source - can take other sources here that will be more important.
-      # enumerate 'date arrived in' field pubmed, etc.
+      # date arrived in source enumeration
       - date last modified in PubMed
       - date last modified
       - volume
@@ -43,6 +43,7 @@ classes:
       - cross references
       - publisher
       - keywords
+      - from resource
     id_prefixes:
       - PMID
       - NLMID
@@ -173,6 +174,10 @@ slots:
     description: keywords tagging a publication
     domain: information content entity
     range: string
+
+  from resource:
+    domain: reference
+    range: resource
 
 
 

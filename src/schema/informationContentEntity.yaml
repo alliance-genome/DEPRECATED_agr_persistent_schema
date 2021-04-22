@@ -22,9 +22,11 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
   schema: 'http://schema.org/'
-  foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
 
@@ -69,11 +71,6 @@ slots:
     domain: information content entity
     range: date
 
-  references:
-    description: holds between a named thing and a reference
-    multivalued: true
-    range: reference
-
   authors:
     multivalued: true
     domain: information content entity
@@ -99,13 +96,7 @@ slots:
     description: >-
     domain: information content entity
     range: information content entity
-    slot_uri: foaf:familyName # look up these
-    # rdf label
-    # consider not having slot_uris or not
-    # slot uri to schema.org will be compelling (https://schema.org/familyName)
-    # https://schema.org/Person
-    exact_mappings:
-      schema:familyName
+
 
   initials:
     description: >-
@@ -135,3 +126,4 @@ slots:
       the particulars of the place where someone or an organization is situated.  For now, this slot is a
       simple text "blob" containing all relevant details of the given location for fitness of purpose.
       For the moment, this "address" can include other contact details such as email and phone number(?).
+

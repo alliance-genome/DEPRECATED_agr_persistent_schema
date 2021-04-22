@@ -1,5 +1,5 @@
 # Auto generated from person.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
+# Generation date: 2021-04-21 18:36
 # Schema: person
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/person
@@ -30,8 +30,11 @@ metamodel_version = "1.7.0"
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
@@ -54,7 +57,7 @@ class Person(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Person
     class_class_curie: ClassVar[str] = "alliance:Person"
-    class_name: ClassVar[str] = "Person"
+    class_name: ClassVar[str] = "person"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Person
 
     person_id: Union[str, PersonPersonId] = None
@@ -91,7 +94,7 @@ slots.orcid = Slot(uri=ALLIANCE.orcid, name="orcid", curie=ALLIANCE.curie('orcid
                    model_uri=ALLIANCE.orcid, domain=InformationContentEntity, range=Optional[str])
 
 slots.person_id = Slot(uri=ALLIANCE.person_id, name="person id", curie=ALLIANCE.curie('person_id'),
-                   model_uri=ALLIANCE.person_id, domain=None, range=str)
+                   model_uri=ALLIANCE.person_id, domain=None, range=URIRef)
 
-slots.Person_person_id = Slot(uri=ALLIANCE.person_id, name="Person_person id", curie=ALLIANCE.curie('person_id'),
-                   model_uri=ALLIANCE.Person_person_id, domain=Person, range=Union[str, PersonPersonId])
+slots.person_person_id = Slot(uri=ALLIANCE.person_id, name="person_person id", curie=ALLIANCE.curie('person_id'),
+                   model_uri=ALLIANCE.person_person_id, domain=Person, range=Union[str, PersonPersonId])

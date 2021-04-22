@@ -1,6 +1,6 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 16:17
-# Schema: Alliance-Schema-Prototype-Core-Types
+# Generation date: 2021-04-21 18:36
+# Schema: Alliance-Schema-Prototype-Core
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
 # description: Alliance Schema Prototype with LinkML
@@ -21,8 +21,8 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . crossReference import CrossReferenceCrossReferenceId
-from . informationContentEntity import InformationContentEntity
+from . reference import ReferenceId
+from . resource import Resource
 from linkml.utils.metamodelcore import Bool, URIorCURIE, XSDDate
 from linkml_model.types import Boolean, Date, String, Uriorcurie
 
@@ -36,13 +36,15 @@ ENSEMBL = CurieNamespace('ENSEMBL', 'http://identifiers.org/ensembl/')
 FB = CurieNamespace('FB', 'http://identifiers.org/fb/')
 HGNC = CurieNamespace('HGNC', 'http://identifiers.org/hgnc/')
 MGI = CurieNamespace('MGI', 'http://identifiers.org/mgi/')
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 RGD = CurieNamespace('RGD', 'http://identifiers.org/rgd/')
 SGD = CurieNamespace('SGD', 'http://identifiers.org/sgd/')
 WB = CurieNamespace('WB', 'http://identifiers.org/wb/')
 ZFIN = CurieNamespace('ZFIN', 'http://identifiers.org/zfin/')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
-FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
@@ -61,11 +63,15 @@ class BiologicalSequence(String):
 
 
 # Class references
-class GeneGeneId(extended_str):
+class GeneId(URIorCURIE):
     pass
 
 
-class TranscriptTranscriptId(extended_str):
+class TranscriptId(URIorCURIE):
+    pass
+
+
+class AlleleId(URIorCURIE):
     pass
 
 
@@ -87,26 +93,19 @@ class Gene(YAMLRoot):
     class_name: ClassVar[str] = "gene"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Gene
 
-    gene_id: Union[str, GeneGeneId] = None
-    name: Optional[str] = None
+    id: Union[str, GeneId] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.gene_id is None:
-            raise ValueError("gene_id must be supplied")
-        if not isinstance(self.gene_id, GeneGeneId):
-            self.gene_id = GeneGeneId(self.gene_id)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, GeneId):
+            self.id = GeneId(self.id)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass
 class Transcript(YAMLRoot):
-    """
-    An RNA synthesized on a DNA or RNA template by an RNA polymerase.
-    """
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Transcript
@@ -114,13 +113,13 @@ class Transcript(YAMLRoot):
     class_name: ClassVar[str] = "transcript"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Transcript
 
-    transcript_id: Union[str, TranscriptTranscriptId] = None
+    id: Union[str, TranscriptId] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.transcript_id is None:
-            raise ValueError("transcript_id must be supplied")
-        if not isinstance(self.transcript_id, TranscriptTranscriptId):
-            self.transcript_id = TranscriptTranscriptId(self.transcript_id)
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, TranscriptId):
+            self.id = TranscriptId(self.id)
 
         super().__post_init__(**kwargs)
 
@@ -134,13 +133,13 @@ class Allele(YAMLRoot):
     class_name: ClassVar[str] = "allele"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Allele
 
-    allele_id: str = None
+    id: Union[str, AlleleId] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.allele_id is None:
-            raise ValueError("allele_id must be supplied")
-        if not isinstance(self.allele_id, str):
-            self.allele_id = str(self.allele_id)
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, AlleleId):
+            self.id = AlleleId(self.id)
 
         super().__post_init__(**kwargs)
 
@@ -152,18 +151,6 @@ class Species(YAMLRoot):
     class_class_curie: ClassVar[str] = "alliance:Species"
     class_name: ClassVar[str] = "species"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Species
-
-
-class Annotation(YAMLRoot):
-    """
-    Biolink Model root class for entity annotations.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ALLIANCE.Annotation
-    class_class_curie: ClassVar[str] = "alliance:Annotation"
-    class_name: ClassVar[str] = "annotation"
-    class_model_uri: ClassVar[URIRef] = ALLIANCE.Annotation
 
 
 # Enumerations
@@ -185,6 +172,18 @@ slots.release = Slot(uri=ALLIANCE.release, name="release", curie=ALLIANCE.curie(
 slots.data_provider = Slot(uri=ALLIANCE.data_provider, name="data provider", curie=ALLIANCE.curie('data_provider'),
                    model_uri=ALLIANCE.data_provider, domain=None, range=Optional[Union[str, List[str]]])
 
+slots.association_slot = Slot(uri=ALLIANCE.association_slot, name="association slot", curie=ALLIANCE.curie('association_slot'),
+                   model_uri=ALLIANCE.association_slot, domain=None, range=Optional[str])
+
+slots.subject = Slot(uri=ALLIANCE.subject, name="subject", curie=ALLIANCE.curie('subject'),
+                   model_uri=ALLIANCE.subject, domain=None, range=str)
+
+slots.object = Slot(uri=ALLIANCE.object, name="object", curie=ALLIANCE.curie('object'),
+                   model_uri=ALLIANCE.object, domain=None, range=str)
+
+slots.predicate = Slot(uri=ALLIANCE.predicate, name="predicate", curie=ALLIANCE.curie('predicate'),
+                   model_uri=ALLIANCE.predicate, domain=None, range=str)
+
 slots.description = Slot(uri=ALLIANCE.description, name="description", curie=ALLIANCE.curie('description'),
                    model_uri=ALLIANCE.description, domain=None, range=Optional[str])
 
@@ -192,7 +191,7 @@ slots.name = Slot(uri=ALLIANCE.name, name="name", curie=ALLIANCE.curie('name'),
                    model_uri=ALLIANCE.name, domain=None, range=Optional[str])
 
 slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross references", curie=ALLIANCE.curie('cross_references'),
-                   model_uri=ALLIANCE.cross_references, domain=None, range=Optional[Union[Union[str, CrossReferenceCrossReferenceId], List[Union[str, CrossReferenceCrossReferenceId]]]])
+                   model_uri=ALLIANCE.cross_references, domain=None, range=Optional[Union[str, List[str]]])
 
 slots.symbol = Slot(uri=ALLIANCE.symbol, name="symbol", curie=ALLIANCE.curie('symbol'),
                    model_uri=ALLIANCE.symbol, domain=None, range=Optional[str])
@@ -207,7 +206,7 @@ slots.negated = Slot(uri=ALLIANCE.negated, name="negated", curie=ALLIANCE.curie(
                    model_uri=ALLIANCE.negated, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.qualifiers = Slot(uri=ALLIANCE.qualifiers, name="qualifiers", curie=ALLIANCE.curie('qualifiers'),
-                   model_uri=ALLIANCE.qualifiers, domain=InformationContentEntity, range=Optional[str])
+                   model_uri=ALLIANCE.qualifiers, domain=None, range=Optional[str])
 
 slots.synonyms = Slot(uri=ALLIANCE.synonyms, name="synonyms", curie=ALLIANCE.curie('synonyms'),
                    model_uri=ALLIANCE.synonyms, domain=None, range=Optional[str])
@@ -215,8 +214,5 @@ slots.synonyms = Slot(uri=ALLIANCE.synonyms, name="synonyms", curie=ALLIANCE.cur
 slots.type = Slot(uri=ALLIANCE.type, name="type", curie=ALLIANCE.curie('type'),
                    model_uri=ALLIANCE.type, domain=None, range=Optional[Union[str, URIorCURIE]])
 
-slots.gene_gene_id = Slot(uri=ALLIANCE.gene_id, name="gene_gene id", curie=ALLIANCE.curie('gene_id'),
-                   model_uri=ALLIANCE.gene_gene_id, domain=Gene, range=Union[str, GeneGeneId])
-
-slots.transcript_transcript_id = Slot(uri=ALLIANCE.transcript_id, name="transcript_transcript id", curie=ALLIANCE.curie('transcript_id'),
-                   model_uri=ALLIANCE.transcript_transcript_id, domain=Transcript, range=Union[str, TranscriptTranscriptId])
+slots.references = Slot(uri=ALLIANCE.references, name="references", curie=ALLIANCE.curie('references'),
+                   model_uri=ALLIANCE.references, domain=Resource, range=Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]])

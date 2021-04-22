@@ -11,24 +11,36 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
   biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
   schema: 'http://schema.org/'
-  foaf: 'http://xmlns.com/foaf/0.1/'
 
 classes:
-  variant to chromosome:
+  variant genomic location:
     aliases: ['genomic location']
     slots:
-      - variant id
-      - chromosome id
-      - assembly id
+      - subject
+      - predicate
+      - object
+      - has assembly
       - start
       - end
     slot_usage:
+      subject:
+        range: variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: chromosome
+        description: >-
+          object should be the chromosome identifier
     defining_slots:
-      - variant id
-      - chromosome id
-      - assembly id
+      - subject
+      - predicate
+      - object
+      - has assembly
       - start
       - end
 
@@ -36,3 +48,8 @@ slots:
 
   located on:
     range: chromosome
+
+  has assembly:
+    domain: variant genomic location
+    range: assembly
+    required: true
