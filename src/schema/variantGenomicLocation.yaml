@@ -11,15 +11,18 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
-  variant to chromosome association:
+  variant genomic location:
     aliases: ['genomic location']
     slots:
       - subject
       - predicate
       - object
-      - has chromosome
       - has assembly
       - start
       - end
@@ -38,7 +41,6 @@ classes:
       - subject
       - predicate
       - object
-      - has chromosome
       - has assembly
       - start
       - end
@@ -46,13 +48,9 @@ classes:
 slots:
 
   located on:
-    domain: named thing
-    range: chromosome
-
-  has chromosome:
-    domain: variant to chromosome association
     range: chromosome
 
   has assembly:
-    domain: variant to chromosome association
+    domain: variant genomic location
     range: assembly
+    required: true

@@ -1,5 +1,5 @@
 # Auto generated from genomic.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 18:08
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
@@ -21,8 +21,8 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import NamedThing
-from linkml_model.types import String
+from linkml.utils.metamodelcore import URIorCURIE
+from linkml_model.types import String, Uriorcurie
 
 metamodel_version = "1.7.0"
 
@@ -30,7 +30,11 @@ metamodel_version = "1.7.0"
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/')
 
@@ -38,10 +42,16 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
+class ChromosomeId(URIorCURIE):
+    pass
 
 
+class AssemblyId(URIorCURIE):
+    pass
 
-class Chromosome(NamedThing):
+
+@dataclass
+class Chromosome(YAMLRoot):
     """
     The ID of the landmark used to establish the coordinate system for the current feature.
     """
@@ -52,14 +62,35 @@ class Chromosome(NamedThing):
     class_name: ClassVar[str] = "chromosome"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
 
+    id: Union[str, ChromosomeId] = None
 
-class Assembly(NamedThing):
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, ChromosomeId):
+            self.id = ChromosomeId(self.id)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass
+class Assembly(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
     class_class_curie: ClassVar[str] = None
     class_name: ClassVar[str] = "assembly"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
+
+    id: Union[str, AssemblyId] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, AssemblyId):
+            self.id = AssemblyId(self.id)
+
+        super().__post_init__(**kwargs)
 
 
 # Enumerations

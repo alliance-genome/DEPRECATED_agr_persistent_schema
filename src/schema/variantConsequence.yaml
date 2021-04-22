@@ -9,13 +9,16 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
-  variant gene consequence association:
+  variant gene consequence:
     aliases: ['gene level consequence']
     slots:
       - subject
-      - predicate
       - object
       - vep consequence
       - vep impact
@@ -33,13 +36,12 @@ classes:
         description: >-
           object should be the gene identifier
 
-  variant transcript consequence association:
+  variant transcript consequence:
     aliases: ['transcript level consequence']
     description: >-
       Class for transcript-level VEP results
     slots:
       - subject
-      - predicate
       - object
       - amino acid reference
       - amino acid variant
@@ -101,35 +103,35 @@ slots:
 
   vep impact:
     description: VEP predicted impact of variation on molecule
-    domain: variant gene consequence association
+    domain: variant gene consequence
 
   polyphen score:
     description: PolyPhen-2 score between 0 and 1
-    domain: variant gene consequence association
+    domain: variant gene consequence
     range: float
 
   polyphen prediction:
     description: PolyPhen-2 prediction
-    domain: variant gene consequence association
+    domain: variant gene consequence
 
   sift score:
     description: SIFT score between 0 and 1
-    domain: variant gene consequence association
+    domain: variant gene consequence
     range: float
 
   sift prediction:
     description: SIFT prediction
-    domain: variant gene consequence association
+    domain: variant gene consequence
 
 
   amino acid reference:
     description: reference genome amino acid sequence at variant position
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: biological sequence
 
   amino acid variant:
     description: variant amino acid sequence at variant position
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: biological sequence
 
   codon reference:
@@ -137,51 +139,51 @@ slots:
       reference sequence of codon(s) affected by variation - bases
       outside of the variant region are in lower case, those within are in
       upper case (e.g. cTa)
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
 
   codon variant:
     description: >-
       variant sequence of codon(s) affected by variation - bases
       outside of the variant region are in lower case, those within are in
       upper case (e.g. cAa)
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
 
   cdna start:
     description: start position of variation in cDNA coordinates
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: integer
 
   cdna end:
     description: end position of variation in cDNA coordinates
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: integer
 
   cds start:
     description: start position of variation in CDS coordinates
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: integer
 
   cds end:
     description: end position of variation in CDS coordinates
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: integer
 
   protein start:
     description: start position of variation in protein amino acid coordinates
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: integer
 
   protein end:
     description: end position of variation in protein amino acid coordinates
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
     range: integer
 
   hgvs protein nomenclature:
     description: HGVSp nomenclature for variation in protein
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
 
   hgvs coding nomenclature:
     description: HGVSc nomenclature for variation in coding sequence
-    domain: variant transcript consequence association
+    domain: variant transcript consequence
 
   vep consequence:

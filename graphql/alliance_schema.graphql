@@ -1,18 +1,11 @@
 type Allele
   {
+    id: Uriorcurie!
   }
 
 type Assembly
   {
-  }
-
-type Association
-  {
-    subject: NamedThing!
-    predicate: String!
-    object: NamedThing!
-    negated: Boolean
-    qualifiers: Entity
+    id: Uriorcurie!
   }
 
 type AuthorReference
@@ -27,6 +20,7 @@ type AuthorReference
 
 type Chromosome
   {
+    id: Uriorcurie!
   }
 
 type CrossReference
@@ -37,22 +31,9 @@ type CrossReference
     prefix: String!
   }
 
-type EditorResource
-  {
-    creationDate: Date
-    firstName: InformationContentEntity
-    middleNames: InformationContentEntity
-    lastName: InformationContentEntity
-    initials: InformationContentEntity
-    crossReferences: [String]
-  }
-
-interface Entity
-  {
-  }
-
 type Gene
   {
+    id: Uriorcurie!
   }
 
 type GenomicEntity
@@ -64,18 +45,11 @@ interface InformationContentEntity
     creationDate: Date
   }
 
-type NamedThing
+type Person
   {
-  }
-
-type PublisherResource
-  {
-    creationDate: Date
-    firstName: InformationContentEntity
-    middleNames: InformationContentEntity
     lastName: InformationContentEntity
-    initials: InformationContentEntity
-    crossReferences: [String]
+    firstName: InformationContentEntity
+    orcid: String
   }
 
 type Reference
@@ -105,6 +79,7 @@ type Reference
     crossReferences: [String]
     publisher: InformationContentEntity
     keywords: [String]
+    fromResource: Resource
   }
 
 type Resource
@@ -121,7 +96,6 @@ type Resource
     volumes: String
     summary: String
     synonyms: String
-    references: [Reference]
     authors: [AuthorReference]
     editors: [AuthorReference]
   }
@@ -132,10 +106,12 @@ type Species
 
 type Transcript
   {
+    id: Uriorcurie!
   }
 
 type Variant
   {
+    id: Uriorcurie!
     hgvsNomenclature: String
     genomicReferenceSequence: BiologicalSequence
     genomicVariantSequence: BiologicalSequence
@@ -144,7 +120,7 @@ type Variant
     dateProduced: Date
     release: String
     dataProvider: [String]
-    isVariantOfGene: Gene
+    computedGene: Gene
     isVariantOfTranscript: Transcript
     isVariantOfAllele: Allele
     synonyms: String
@@ -155,10 +131,9 @@ type Variant
     crossReferences: [String]
   }
 
-type VariantGeneConsequenceAssociation
+type VariantGeneConsequence
   {
     subject: Variant!
-    predicate: String!
     object: Gene!
     vepConsequence: String
     vepImpact: String
@@ -168,21 +143,19 @@ type VariantGeneConsequenceAssociation
     siftPrediction: String
   }
 
-type VariantToChromosomeAssociation
+type VariantGenomicLocation
   {
     subject: Variant!
     predicate: String!
     object: Chromosome!
-    hasChromosome: Chromosome
-    hasAssembly: Assembly
+    hasAssembly: Assembly!
     start: String
     end: String
   }
 
-type VariantTranscriptConsequenceAssociation
+type VariantTranscriptConsequence
   {
     subject: Variant!
-    predicate: String!
     object: Transcript!
     aminoAcidReference: BiologicalSequence
     aminoAcidVariant: BiologicalSequence

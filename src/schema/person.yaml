@@ -23,13 +23,16 @@ imports:
 prefixes:
   alliance: 'http://alliancegenome.org'
   linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
 
 classes:
-  # TODO: decide on a convention for class, slot names
-  Person:
+  person:
     slots:
-      - last_name
-      - first_name
+      - last name
+      - first name
       - orcid
     exact_mappings:
 
@@ -37,4 +40,4 @@ slots:
 
   orcid:
     domain: information content entity
-    range: String
+    range: string

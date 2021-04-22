@@ -1,16 +1,12 @@
 id,mappings,description
 allele,,
-association,,"A typed association between two entities, supported by evidence"
 author_reference,,
-editor_resource,,
-entity,,"Root Biolink Model class for all things and informational relationships, real or imagined."
 gene,,"A region (or regions) that includes all of the sequence elements necessary to encode a functional transcript. A gene locus may include regulatory regions, transcribed regions and/or other functional sequence regions."
 genomic_entity,,
 information_content_entity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
-named_thing,,a databased entity or concept/class
 person,,
-publisher_resource,,
 reference,,
+resource,,
 species,,
-transcript,,An RNA synthesized on a DNA or RNA template by an RNA polymerase.
+transcript,,
 

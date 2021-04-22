@@ -1,5 +1,5 @@
 # Auto generated from alliance_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 18:08
 # Schema: Alliance-Schema-Prototype
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/alliance_schema
@@ -29,7 +29,11 @@ metamodel_version = "1.7.0"
 dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')

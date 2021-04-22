@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-14 16:48
+# Generation date: 2021-04-21 18:09
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -21,8 +21,9 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import NamedThing
+from . core import Id
 from . informationContentEntity import AuthorReference, InformationContentEntity
+from . resource import ResourceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
 
@@ -35,7 +36,7 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 DOI = CurieNamespace('DOI', 'http://identifiers.org/doi/')
 FB = CurieNamespace('FB', 'http://identifiers.org/fb/')
 MGI = CurieNamespace('MGI', 'http://identifiers.org/mgi/')
-NLMID = CurieNamespace('NLMID', 'http://example.org/UNKNOWN/NLMID/')
+NLMID = CurieNamespace('NLMID', 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term=')
 PMC = CurieNamespace('PMC', 'http://identifiers.org/pmc/')
 PMID = CurieNamespace('PMID', 'http://www.ncbi.nlm.nih.gov/pubmed/')
 RGD = CurieNamespace('RGD', 'http://identifiers.org/rgd/')
@@ -43,6 +44,9 @@ SGD = CurieNamespace('SGD', 'http://identifiers.org/sgd/')
 WB = CurieNamespace('WB', 'http://identifiers.org/wb/')
 ZFIN = CurieNamespace('ZFIN', 'http://identifiers.org/zfin/')
 ALLIANCE = CurieNamespace('alliance', 'http://alliancegenome.org')
+BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
+FALDO = CurieNamespace('faldo', 'http://biohackathon.org/resource/faldo#')
+GFF = CurieNamespace('gff', 'https://w3id.org/gff')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/')
 
@@ -87,6 +91,7 @@ class Reference(InformationContentEntity):
     cross_references: Optional[Union[str, List[str]]] = empty_list()
     publisher: Optional[Union[dict, InformationContentEntity]] = None
     keywords: Optional[Union[str, List[str]]] = empty_list()
+    from_resource: Optional[Union[str, ResourceId]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -181,6 +186,9 @@ class Reference(InformationContentEntity):
             self.keywords = [self.keywords]
         self.keywords = [v if isinstance(v, str) else str(v) for v in self.keywords]
 
+        if self.from_resource is not None and not isinstance(self.from_resource, ResourceId):
+            self.from_resource = ResourceId(self.from_resource)
+
         super().__post_init__(**kwargs)
 
 
@@ -204,7 +212,7 @@ slots.date_last_modified_in_PubMed = Slot(uri=DEFAULT_.date_last_modified_in_Pub
                    model_uri=DEFAULT_.date_last_modified_in_PubMed, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
 slots.date_last_modified = Slot(uri=DEFAULT_.date_last_modified, name="date last modified", curie=DEFAULT_.curie('date_last_modified'),
-                   model_uri=DEFAULT_.date_last_modified, domain=NamedThing, range=Optional[Union[str, XSDDate]])
+                   model_uri=DEFAULT_.date_last_modified, domain=None, range=Optional[Union[str, XSDDate]])
 
 slots.year_published = Slot(uri=DEFAULT_.year_published, name="year published", curie=DEFAULT_.curie('year_published'),
                    model_uri=DEFAULT_.year_published, domain=InformationContentEntity, range=Optional[str])
@@ -250,3 +258,9 @@ slots.alliance_category = Slot(uri=DEFAULT_.alliance_category, name="alliance ca
 
 slots.keywords = Slot(uri=DEFAULT_.keywords, name="keywords", curie=DEFAULT_.curie('keywords'),
                    model_uri=DEFAULT_.keywords, domain=InformationContentEntity, range=Optional[Union[str, List[str]]])
+
+slots.from_resource = Slot(uri=DEFAULT_.from_resource, name="from resource", curie=DEFAULT_.curie('from_resource'),
+                   model_uri=DEFAULT_.from_resource, domain=Reference, range=Optional[Union[str, ResourceId]])
+
+slots.reference_id = Slot(uri=DEFAULT_.id, name="reference_id", curie=DEFAULT_.curie('id'),
+                   model_uri=DEFAULT_.reference_id, domain=Reference, range=Union[str, ReferenceId])
