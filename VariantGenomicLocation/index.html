@@ -93,7 +93,7 @@
               
                 <h1 id="class-variantgenomiclocation">Class: VariantGenomicLocation</h1>
 <p>URI: <a href="http://alliancegenome.orgVariantGenomicLocation">alliance:VariantGenomicLocation</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Assembly]&lt;has%20assembly%201..1-%20[VariantGenomicLocation&#124;subject:string;predicate:string;object:string;start:string%20%3F;end:string%20%3F],[Assembly]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Assembly]&lt;has%20assembly%201..1-%20[VariantGenomicLocation&#124;predicate:string;start:string%20%3F;end:string%20%3F],[Chromosome]&lt;object%201..1-%20[VariantGenomicLocation],[Variant]&lt;subject%201..1-%20[VariantGenomicLocation],[Variant],[Chromosome],[Assembly]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
@@ -107,11 +107,6 @@
 <li>range: <a href="../Assembly/">Assembly</a></li>
 </ul>
 </li>
-<li><a href="../object/">object</a>  <sub>REQ</sub><ul>
-<li>Description: connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
 <li><a href="../predicate/">predicate</a>  <sub>REQ</sub><ul>
 <li>Description: A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.</li>
 <li>range: <a href="../types/String/">String</a></li>
@@ -122,9 +117,14 @@
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
-<li><a href="../subject/">subject</a>  <sub>REQ</sub><ul>
-<li>Description: connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li>range: <a href="../types/String/">String</a></li>
+<li><a href="../variant_genomic_location_object/">variant genomic location➞object</a>  <sub>REQ</sub><ul>
+<li>Description: object should be the chromosome identifier</li>
+<li>range: <a href="../Chromosome/">Chromosome</a></li>
+</ul>
+</li>
+<li><a href="../variant_genomic_location_subject/">variant genomic location➞subject</a>  <sub>REQ</sub><ul>
+<li>Description: subject should be the variant identifier</li>
+<li>range: <a href="../Variant/">Variant</a></li>
 </ul>
 </li>
 </ul>

@@ -93,16 +93,11 @@
               
                 <h1 id="class-variantgeneconsequence">Class: VariantGeneConsequence</h1>
 <p>URI: <a href="http://alliancegenome.orgVariantGeneConsequence">alliance:VariantGeneConsequence</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantGeneConsequence&#124;subject:string;object:string;vep_consequence:string%20%3F;vep_impact:string%20%3F;polyphen_score:float%20%3F;polyphen_prediction:string%20%3F;sift_score:float%20%3F;sift_prediction:string%20%3F]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Gene]&lt;object%201..1-%20[VariantGeneConsequence&#124;vep_consequence:string%20%3F;vep_impact:string%20%3F;polyphen_score:float%20%3F;polyphen_prediction:string%20%3F;sift_score:float%20%3F;sift_prediction:string%20%3F],[Variant]&lt;subject%201..1-%20[VariantGeneConsequence],[Variant],[Gene]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
 <ul>
-<li><a href="../object/">object</a>  <sub>REQ</sub><ul>
-<li>Description: connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
 <li><a href="../polyphen_prediction/">polyphen prediction</a>  <sub>OPT</sub><ul>
 <li>Description: PolyPhen-2 prediction</li>
 <li>range: <a href="../types/String/">String</a></li>
@@ -123,9 +118,14 @@
 <li>range: <a href="../types/Float/">Float</a></li>
 </ul>
 </li>
-<li><a href="../subject/">subject</a>  <sub>REQ</sub><ul>
-<li>Description: connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li>range: <a href="../types/String/">String</a></li>
+<li><a href="../variant_gene_consequence_object/">variant gene consequence➞object</a>  <sub>REQ</sub><ul>
+<li>Description: object should be the gene identifier</li>
+<li>range: <a href="../Gene/">Gene</a></li>
+</ul>
+</li>
+<li><a href="../variant_gene_consequence_subject/">variant gene consequence➞subject</a>  <sub>REQ</sub><ul>
+<li>Description: subject should be the variant identifier</li>
+<li>range: <a href="../Variant/">Variant</a></li>
 </ul>
 </li>
 <li><a href="../vep_consequence/">vep consequence</a>  <sub>OPT</sub><ul>

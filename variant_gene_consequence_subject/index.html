@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Slot: subject - Alliance Persistence Model</title>
+  <title>Slot: variant_gene_consequence_subject - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Slot: subject";
-    var mkdocs_page_input_path = "subject.md";
+    var mkdocs_page_name = "Slot: variant_gene_consequence_subject";
+    var mkdocs_page_input_path = "variant_gene_consequence_subject.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Slot: subject</li>
+    <li>Slot: variant_gene_consequence_subject</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,44 +91,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="slot-subject">Slot: subject</h1>
-<p>connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</p>
-<p>URI: <a href="http://alliancegenome.orgsubject">alliance:subject</a></p>
+                <h1 id="slot-variant_gene_consequence_subject">Slot: variant_gene_consequence_subject</h1>
+<p>subject should be the variant identifier</p>
+<p>URI: <a href="http://alliancegenome.orgvariant_gene_consequence_subject">alliance:variant_gene_consequence_subject</a></p>
 <h2 id="domain-and-range">Domain and Range</h2>
-<p>None -&gt;  <sub>REQ</sub> <a href="../types/String/">String</a></p>
+<p><a href="../VariantGeneConsequence/">VariantGeneConsequence</a> -&gt;  <sub>REQ</sub> <a href="../Variant/">Variant</a></p>
 <h2 id="parents">Parents</h2>
 <ul>
-<li>is_a: <a href="../association_slot/">association slot</a></li>
+<li>is_a: <a href="../subject/">subject</a></li>
 </ul>
 <h2 id="children">Children</h2>
-<ul>
-<li><a href="../variant_gene_consequence_subject/">variant gene consequence➞subject</a></li>
-<li><a href="../variant_genomic_location_subject/">variant genomic location➞subject</a></li>
-<li><a href="../variant_transcript_consequence_subject/">variant transcript consequence➞subject</a></li>
-</ul>
 <h2 id="used-by">Used by</h2>
-<h2 id="other-properties">Other properties</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Exact Mappings:</strong></td>
-<td></td>
-<td>owl:annotatedSource</td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td>biolink:subject</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li><a href="../VariantGeneConsequence/">VariantGeneConsequence</a></li>
+</ul>
               
             </div>
           </div>

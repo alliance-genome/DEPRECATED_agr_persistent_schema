@@ -149,7 +149,12 @@
 </li>
 <li><a href="assembly_id/">assembly id</a></li>
 <li><a href="association_slot/">association slot</a> - any slot that relates an association to another entity<ul>
-<li><a href="subject/">subject</a> - connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+<li><a href="subject/">subject</a> - connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.<ul>
+<li><a href="variant_gene_consequence_subject/">variant gene consequence➞subject</a> - subject should be the variant identifier</li>
+<li><a href="variant_genomic_location_subject/">variant genomic location➞subject</a> - subject should be the variant identifier</li>
+<li><a href="variant_transcript_consequence_subject/">variant transcript consequence➞subject</a> - subject should be the variant identifier</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="authors/">authors</a></li>
@@ -237,7 +242,12 @@
 <li><a href="name/">name</a> - a human-readable name for an entity</li>
 <li><a href="negated/">negated</a> - if set to true, then the association is negated i.e. is not true</li>
 <li><a href="note/">note</a></li>
-<li><a href="object/">object</a> - connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
+<li><a href="object/">object</a> - connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.<ul>
+<li><a href="variant_gene_consequence_object/">variant gene consequence➞object</a> - object should be the gene identifier</li>
+<li><a href="variant_genomic_location_object/">variant genomic location➞object</a> - object should be the chromosome identifier</li>
+<li><a href="variant_transcript_consequence_object/">variant transcript consequence➞object</a> - object should be the transcript identifier</li>
+</ul>
+</li>
 <li><a href="online_issn/">online issn</a></li>
 <li><a href="orcid/">orcid</a></li>
 <li><a href="padding_left/">padding left</a> - flanking sequence upstream of the variation position on the sense strand of the reference genome</li>
@@ -381,5 +391,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-04-22 01:34:03.969708+00:00
+Build Date UTC : 2021-04-22 01:37:08.432943+00:00
 -->

@@ -94,7 +94,7 @@
                 <h1 id="class-varianttranscriptconsequence">Class: VariantTranscriptConsequence</h1>
 <p>Class for transcript-level VEP results</p>
 <p>URI: <a href="http://alliancegenome.orgVariantTranscriptConsequence">alliance:VariantTranscriptConsequence</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantTranscriptConsequence&#124;subject:string;object:string;amino_acid_reference:biological_sequence%20%3F;amino_acid_variant:biological_sequence%20%3F;codon_reference:string%20%3F;codon_variant:string%20%3F;cdna_start:integer%20%3F;cdna_end:integer%20%3F;cds_start:integer%20%3F;cds_end:integer%20%3F;protein_start:integer%20%3F;protein_end:integer%20%3F;hgvs_protein_nomenclature:string%20%3F;hgvs_coding_nomenclature:string%20%3F;cnda_end:string%20%3F;cns_end:string%20%3F]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Transcript]&lt;object%201..1-%20[VariantTranscriptConsequence&#124;amino_acid_reference:biological_sequence%20%3F;amino_acid_variant:biological_sequence%20%3F;codon_reference:string%20%3F;codon_variant:string%20%3F;cdna_start:integer%20%3F;cdna_end:integer%20%3F;cds_start:integer%20%3F;cds_end:integer%20%3F;protein_start:integer%20%3F;protein_end:integer%20%3F;hgvs_protein_nomenclature:string%20%3F;hgvs_coding_nomenclature:string%20%3F;cnda_end:string%20%3F;cns_end:string%20%3F],[Variant]&lt;subject%201..1-%20[VariantTranscriptConsequence],[Variant],[Transcript]" /></p>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
 <h3 id="own">Own</h3>
@@ -107,16 +107,6 @@
 <li><a href="../cds_end/">cds end</a>  <sub>OPT</sub><ul>
 <li>Description: end position of variation in CDS coordinates</li>
 <li>range: <a href="../types/Integer/">Integer</a></li>
-</ul>
-</li>
-<li><a href="../object/">object</a>  <sub>REQ</sub><ul>
-<li>Description: connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../subject/">subject</a>  <sub>REQ</sub><ul>
-<li>Description: connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.</li>
-<li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
 <li><a href="../variant_transcript_consequence_amino_acid_reference/">variant transcript consequence➞amino acid reference</a>  <sub>OPT</sub><ul>
@@ -169,6 +159,11 @@
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
+<li><a href="../variant_transcript_consequence_object/">variant transcript consequence➞object</a>  <sub>REQ</sub><ul>
+<li>Description: object should be the transcript identifier</li>
+<li>range: <a href="../Transcript/">Transcript</a></li>
+</ul>
+</li>
 <li><a href="../variant_transcript_consequence_protein_end/">variant transcript consequence➞protein end</a>  <sub>OPT</sub><ul>
 <li>Description: End position of variant in amino acid sequence</li>
 <li>range: <a href="../types/Integer/">Integer</a></li>
@@ -177,6 +172,11 @@
 <li><a href="../variant_transcript_consequence_protein_start/">variant transcript consequence➞protein start</a>  <sub>OPT</sub><ul>
 <li>Description: Start position of variant in amino acid sequence</li>
 <li>range: <a href="../types/Integer/">Integer</a></li>
+</ul>
+</li>
+<li><a href="../variant_transcript_consequence_subject/">variant transcript consequence➞subject</a>  <sub>REQ</sub><ul>
+<li>Description: subject should be the variant identifier</li>
+<li>range: <a href="../Variant/">Variant</a></li>
 </ul>
 </li>
 </ul>
