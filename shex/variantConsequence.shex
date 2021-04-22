@@ -84,7 +84,7 @@ linkml:Nodeidentifier NONLITERAL
 
 <http://alliancegenome.orgInformationContentEntity_struct> {
     (  $<http://alliancegenome.orgInformationContentEntity_tes> <http://alliancegenome.orgcreation_date> @linkml:Date ? ;
-       rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ?
+       rdf:type [ <http://alliancegenome.orgInformationContentEntity> ]
     )
 }
 
@@ -92,7 +92,6 @@ linkml:Nodeidentifier NONLITERAL
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference_tes> ( 
           &<http://alliancegenome.orgInformationContentEntity_tes> ;
           rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/reference_id> @linkml:String ? ;
           <http://alliancegenome.orgtitle> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/alliance_category> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_published> @linkml:Date ? ;
@@ -112,7 +111,8 @@ linkml:Nodeidentifier NONLITERAL
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_date> @linkml:Date ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/mod_reference_types> @linkml:String * ;
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/tags> @linkml:String * ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/tags>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/TagSet> * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/topics> @linkml:Uriorcurie ? ;
           <http://alliancegenome.orgcross_references> @linkml:String * ;
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
@@ -128,7 +128,6 @@ linkml:Nodeidentifier NONLITERAL
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource_tes> ( 
           &<http://alliancegenome.orgInformationContentEntity_tes> ;
           rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/resource_id> @linkml:String ? ;
           <title> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/iso_abbreviation> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/medline_abbreviation> @linkml:String ? ;

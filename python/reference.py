@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:36
+# Generation date: 2021-04-21 19:00
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -22,7 +22,7 @@ from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import Id
-from . informationContentEntity import AuthorReference, InformationContentEntity
+from . informationContentEntity import AuthorReference, InformationContentEntity, InformationContentEntityId
 from . resource import ResourceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
@@ -55,7 +55,7 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class ReferenceId(URIorCURIE):
+class ReferenceId(InformationContentEntityId):
     pass
 
 
@@ -69,7 +69,6 @@ class Reference(InformationContentEntity):
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference")
 
     id: Union[str, ReferenceId] = None
-    reference_id: Optional[str] = None
     title: Optional[str] = None
     alliance_category: Optional[str] = None
     date_published: Optional[Union[str, XSDDate]] = None
@@ -88,10 +87,10 @@ class Reference(InformationContentEntity):
     issue_date: Optional[Union[str, XSDDate]] = None
     mod_reference_types: Optional[Union[str, List[str]]] = empty_list()
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
-    tags: Optional[Union[str, List[str]]] = empty_list()
+    tags: Optional[Union[Union[str, "TagSet"], List[Union[str, "TagSet"]]]] = empty_list()
     topics: Optional[Union[str, URIorCURIE]] = None
     cross_references: Optional[Union[str, List[str]]] = empty_list()
-    publisher: Optional[Union[dict, InformationContentEntity]] = None
+    publisher: Optional[Union[str, InformationContentEntityId]] = None
     keywords: Optional[Union[str, List[str]]] = empty_list()
     from_resource: Optional[Union[str, ResourceId]] = None
 
@@ -100,9 +99,6 @@ class Reference(InformationContentEntity):
             raise ValueError("id must be supplied")
         if not isinstance(self.id, ReferenceId):
             self.id = ReferenceId(self.id)
-
-        if self.reference_id is not None and not isinstance(self.reference_id, str):
-            self.reference_id = str(self.reference_id)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -171,7 +167,7 @@ class Reference(InformationContentEntity):
             self.tags = []
         if not isinstance(self.tags, list):
             self.tags = [self.tags]
-        self.tags = [v if isinstance(v, str) else str(v) for v in self.tags]
+        self.tags = [v if isinstance(v, TagSet) else TagSet(v) for v in self.tags]
 
         if self.topics is not None and not isinstance(self.topics, URIorCURIE):
             self.topics = URIorCURIE(self.topics)
@@ -182,8 +178,8 @@ class Reference(InformationContentEntity):
             self.cross_references = [self.cross_references]
         self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
 
-        if self.publisher is not None and not isinstance(self.publisher, InformationContentEntity):
-            self.publisher = InformationContentEntity(**self.publisher)
+        if self.publisher is not None and not isinstance(self.publisher, InformationContentEntityId):
+            self.publisher = InformationContentEntityId(self.publisher)
 
         if self.keywords is None:
             self.keywords = []
@@ -198,7 +194,14 @@ class Reference(InformationContentEntity):
 
 
 # Enumerations
+class TagSet(EnumDefinitionImpl):
 
+    image = PermissibleValue(text="image")
+    test = PermissibleValue(text="test")
+
+    _defn = EnumDefinition(
+        name="TagSet",
+    )
 
 # Slots
 class slots:
@@ -238,7 +241,7 @@ slots.mod_reference_types = Slot(uri=DEFAULT_.mod_reference_types, name="mod ref
                    model_uri=DEFAULT_.mod_reference_types, domain=None, range=Optional[Union[str, List[str]]])
 
 slots.tags = Slot(uri=DEFAULT_.tags, name="tags", curie=DEFAULT_.curie('tags'),
-                   model_uri=DEFAULT_.tags, domain=None, range=Optional[Union[str, List[str]]])
+                   model_uri=DEFAULT_.tags, domain=None, range=Optional[Union[Union[str, "TagSet"], List[Union[str, "TagSet"]]]])
 
 slots.issue_date = Slot(uri=DEFAULT_.issue_date, name="issue date", curie=DEFAULT_.curie('issue_date'),
                    model_uri=DEFAULT_.issue_date, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])

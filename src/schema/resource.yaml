@@ -17,7 +17,6 @@ classes:
   resource:
     is_a: information content entity
     slots:
-      - resource id
       - title
       - iso abbreviation
       - medline abbreviation

@@ -1,5 +1,5 @@
 # Auto generated from person.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:36
+# Generation date: 2021-04-21 19:00
 # Schema: person
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/person
@@ -21,7 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . informationContentEntity import InformationContentEntity
+from . informationContentEntity import InformationContentEntity, InformationContentEntityId
 from linkml_model.types import String
 
 metamodel_version = "1.7.0"
@@ -61,8 +61,8 @@ class Person(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Person
 
     person_id: Union[str, PersonPersonId] = None
-    last_name: Optional[Union[dict, InformationContentEntity]] = None
-    first_name: Optional[Union[dict, InformationContentEntity]] = None
+    last_name: Optional[Union[str, InformationContentEntityId]] = None
+    first_name: Optional[Union[str, InformationContentEntityId]] = None
     orcid: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -71,11 +71,11 @@ class Person(YAMLRoot):
         if not isinstance(self.person_id, PersonPersonId):
             self.person_id = PersonPersonId(self.person_id)
 
-        if self.last_name is not None and not isinstance(self.last_name, InformationContentEntity):
-            self.last_name = InformationContentEntity(**self.last_name)
+        if self.last_name is not None and not isinstance(self.last_name, InformationContentEntityId):
+            self.last_name = InformationContentEntityId(self.last_name)
 
-        if self.first_name is not None and not isinstance(self.first_name, InformationContentEntity):
-            self.first_name = InformationContentEntity(**self.first_name)
+        if self.first_name is not None and not isinstance(self.first_name, InformationContentEntityId):
+            self.first_name = InformationContentEntityId(self.first_name)
 
         if self.orcid is not None and not isinstance(self.orcid, str):
             self.orcid = str(self.orcid)

@@ -39,6 +39,7 @@ classes:
       alternate CURIE otherwise.
     slots:
       - creation date
+      - id
     exact_mappings:
       - IAO:0000030
 

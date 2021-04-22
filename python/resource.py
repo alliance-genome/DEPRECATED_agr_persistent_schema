@@ -1,5 +1,5 @@
 # Auto generated from resource.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 18:36
+# Generation date: 2021-04-21 19:00
 # Schema: resource
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource
@@ -22,7 +22,7 @@ from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
 from . core import Id
-from . informationContentEntity import AuthorReference, InformationContentEntity
+from . informationContentEntity import AuthorReference, InformationContentEntity, InformationContentEntityId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
 
@@ -53,7 +53,7 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class ResourceId(URIorCURIE):
+class ResourceId(InformationContentEntityId):
     pass
 
 
@@ -67,14 +67,13 @@ class Resource(InformationContentEntity):
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource")
 
     id: Union[str, ResourceId] = None
-    resource_id: Optional[str] = None
     title: Optional[str] = None
     iso_abbreviation: Optional[str] = None
     medline_abbreviation: Optional[str] = None
     copyright_date: Optional[Union[str, XSDDate]] = None
     print_issn: Optional[str] = None
     online_issn: Optional[str] = None
-    publisher: Optional[Union[dict, InformationContentEntity]] = None
+    publisher: Optional[Union[str, InformationContentEntityId]] = None
     volumes: Optional[str] = None
     summary: Optional[str] = None
     synonyms: Optional[str] = None
@@ -86,9 +85,6 @@ class Resource(InformationContentEntity):
             raise ValueError("id must be supplied")
         if not isinstance(self.id, ResourceId):
             self.id = ResourceId(self.id)
-
-        if self.resource_id is not None and not isinstance(self.resource_id, str):
-            self.resource_id = str(self.resource_id)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -108,8 +104,8 @@ class Resource(InformationContentEntity):
         if self.online_issn is not None and not isinstance(self.online_issn, str):
             self.online_issn = str(self.online_issn)
 
-        if self.publisher is not None and not isinstance(self.publisher, InformationContentEntity):
-            self.publisher = InformationContentEntity(**self.publisher)
+        if self.publisher is not None and not isinstance(self.publisher, InformationContentEntityId):
+            self.publisher = InformationContentEntityId(self.publisher)
 
         if self.volumes is not None and not isinstance(self.volumes, str):
             self.volumes = str(self.volumes)

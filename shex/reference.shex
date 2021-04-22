@@ -71,14 +71,13 @@ linkml:Nodeidentifier NONLITERAL
 
 <http://alliancegenome.orgInformationContentEntity_struct> {
     (  $<http://alliancegenome.orgInformationContentEntity_tes> <http://alliancegenome.orgcreation_date> @linkml:Date ? ;
-       rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ?
+       rdf:type [ <http://alliancegenome.orgInformationContentEntity> ]
     )
 }
 
 <Reference> CLOSED {
     (  $<Reference_tes> (  &<http://alliancegenome.orgInformationContentEntity_tes> ;
           rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ? ;
-          <reference_id> @linkml:String ? ;
           <http://alliancegenome.orgtitle> @linkml:String ? ;
           <alliance_category> @linkml:String ? ;
           <date_published> @linkml:Date ? ;
@@ -97,7 +96,7 @@ linkml:Nodeidentifier NONLITERAL
           <issue_date> @linkml:Date ? ;
           <mod_reference_types> @linkml:String * ;
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
-          <tags> @linkml:String * ;
+          <tags> @<TagSet> * ;
           <topics> @linkml:Uriorcurie ? ;
           <http://alliancegenome.orgcross_references> @linkml:String * ;
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
@@ -112,7 +111,6 @@ linkml:Nodeidentifier NONLITERAL
     (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource_tes> ( 
           &<http://alliancegenome.orgInformationContentEntity_tes> ;
           rdf:type [ <http://alliancegenome.orgInformationContentEntity> ] ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/resource_id> @linkml:String ? ;
           <title> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/iso_abbreviation> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/medline_abbreviation> @linkml:String ? ;
