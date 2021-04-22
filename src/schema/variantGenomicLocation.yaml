@@ -28,6 +28,14 @@ classes:
       - start
       - end
     slot_usage:
+      subject:
+        range: variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: chromosome
+        description: >-
+          object should be the chromosome identifier
     defining_slots:
       - subject
       - predicate

@@ -27,6 +27,15 @@ classes:
       - polyphen prediction
       - sift score
       - sift prediction
+    slot_usage:
+      subject:
+        range: variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: gene
+        description: >-
+          object should be the gene identifier
 
   variant transcript consequence:
     aliases: ['transcript level consequence']
@@ -48,6 +57,14 @@ classes:
       - hgvs protein nomenclature
       - hgvs coding nomenclature
     slot_usage:
+      subject:
+        range: variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: transcript
+        description: >-
+          object should be the transcript identifier
       amino acid reference:
         description: >-
           Amino acid sequence encoded by codon(s) in reference genome sequence
