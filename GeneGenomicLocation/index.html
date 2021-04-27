@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Slot: assembly_id - Alliance Persistence Model</title>
+  <title>Class: GeneGenomicLocation - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Slot: assembly_id";
-    var mkdocs_page_input_path = "assembly_id.md";
+    var mkdocs_page_name = "Class: GeneGenomicLocation";
+    var mkdocs_page_input_path = "GeneGenomicLocation.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Slot: assembly_id</li>
+    <li>Class: GeneGenomicLocation</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,13 +91,46 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="slot-assembly_id">Slot: assembly_id</h1>
-<p>URI: <a href="http://alliancegenome.orgassembly_id">alliance:assembly_id</a></p>
-<h2 id="domain-and-range">Domain and Range</h2>
-<p>None -&gt;  <sub>REQ</sub> <a href="../types/String/">String</a></p>
-<h2 id="parents">Parents</h2>
-<h2 id="children">Children</h2>
-<h2 id="used-by">Used by</h2>
+                <h1 id="class-genegenomiclocation">Class: GeneGenomicLocation</h1>
+<p>URI: <a href="http://alliancegenome.orgGeneGenomicLocation">alliance:GeneGenomicLocation</a></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[GenomicEntity],[Chromosome]&lt;object%201..1-%20[GeneGenomicLocation&#124;predicate:string;assembly:string;start:string%20%3F;end:string%20%3F],[Variant]&lt;subject%201..1-%20[GeneGenomicLocation],[GenomicEntity]++-%20genomic%20locations%200..*&gt;[GeneGenomicLocation],[Chromosome]" /></p>
+<h2 id="referenced-by-class">Referenced by class</h2>
+<ul>
+<li><strong><a href="../GenomicEntity/">GenomicEntity</a></strong> <em><a href="../genomic_locations/">genomic locations</a></em>  <sub>0..<em></sub>  </em><em><a href="./">GeneGenomicLocation</a></em>*</li>
+</ul>
+<h2 id="attributes">Attributes</h2>
+<h3 id="own">Own</h3>
+<ul>
+<li><a href="../assembly/">assembly</a>  <sub>REQ</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../end/">end</a>  <sub>OPT</sub><ul>
+<li>Description: The end of the feature in positive 1-based integer coordinates</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../gene_genomic_location_object/">gene genomic location➞object</a>  <sub>REQ</sub><ul>
+<li>Description: object should be the chromosome identifier</li>
+<li>range: <a href="../Chromosome/">Chromosome</a></li>
+</ul>
+</li>
+<li><a href="../gene_genomic_location_subject/">gene genomic location➞subject</a>  <sub>REQ</sub><ul>
+<li>Description: subject should be the gene identifier</li>
+<li>range: <a href="../Variant/">Variant</a></li>
+</ul>
+</li>
+<li><a href="../predicate/">predicate</a>  <sub>REQ</sub><ul>
+<li>Description: A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../start/">start</a>  <sub>OPT</sub><ul>
+<li>Description: The start of the feature in positive 1-based integer coordinates</li>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

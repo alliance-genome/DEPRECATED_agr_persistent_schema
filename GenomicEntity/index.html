@@ -93,8 +93,55 @@
               
                 <h1 id="class-genomicentity">Class: GenomicEntity</h1>
 <p>URI: <a href="http://alliancegenome.orgGenomicEntity">alliance:GenomicEntity</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[GenomicEntity]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[Variant],[Transcript],[GeneGenomicLocation]&lt;genomic%20locations%200..*-++[GenomicEntity&#124;id:uriorcurie;taxon:uriorcurie%20%3F;synonyms:string%20%3F;secondary_identifiers:string%20*;cross_references:string%20*],[GenomicEntity]^-[Variant],[GenomicEntity]^-[Transcript],[GenomicEntity]^-[Gene],[GenomicEntity]^-[Allele],[GeneGenomicLocation],[Gene],[Allele]" /></p>
+<h2 id="identifier-prefixes">Identifier prefixes</h2>
+<ul>
+<li>ENSEMBL</li>
+<li>HGNC</li>
+<li>FB</li>
+<li>MGI</li>
+<li>RGD</li>
+<li>SGD</li>
+<li>WB</li>
+<li>ZFIN</li>
+</ul>
+<h2 id="children">Children</h2>
+<ul>
+<li><a href="../Allele/">Allele</a></li>
+<li><a href="../Gene/">Gene</a></li>
+<li><a href="../Transcript/">Transcript</a></li>
+<li><a href="../Variant/">Variant</a> - Variant class</li>
+</ul>
+<h2 id="referenced-by-class">Referenced by class</h2>
 <h2 id="attributes">Attributes</h2>
+<h3 id="own">Own</h3>
+<ul>
+<li><a href="../cross_references/">cross references</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../genomic_locations/">genomic locations</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../GeneGenomicLocation/">GeneGenomicLocation</a></li>
+</ul>
+</li>
+<li><a href="../id/">id</a>  <sub>REQ</sub><ul>
+<li>Description: A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI</li>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+<li><a href="../secondary_identifiers/">secondary identifiers</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../synonyms/">synonyms</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../taxon/">taxon</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+</ul>
               
             </div>
           </div>

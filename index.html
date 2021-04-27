@@ -111,22 +111,23 @@
 <p>Alliance Schema Prototype</p>
 <h3 id="classes">Classes</h3>
 <ul>
-<li><a href="Allele/">Allele</a></li>
-<li><a href="Assembly/">Assembly</a></li>
 <li><a href="AuthorReference/">AuthorReference</a></li>
 <li><a href="Chromosome/">Chromosome</a> - The ID of the landmark used to establish the coordinate system for the current feature.</li>
 <li><a href="CrossReference/">CrossReference</a></li>
+<li><a href="GeneGenomicLocation/">GeneGenomicLocation</a></li>
+<li><a href="GenomicEntity/">GenomicEntity</a><ul>
+<li><a href="Allele/">Allele</a></li>
 <li><a href="Gene/">Gene</a></li>
-<li><a href="GenomicEntity/">GenomicEntity</a></li>
+<li><a href="Transcript/">Transcript</a></li>
+<li><a href="Variant/">Variant</a> - Variant class</li>
+</ul>
+</li>
 <li><a href="InformationContentEntity/">InformationContentEntity</a> - a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.<ul>
 <li><a href="Reference/">Reference</a></li>
 <li><a href="Resource/">Resource</a></li>
 </ul>
 </li>
 <li><a href="Person/">Person</a></li>
-<li><a href="Species/">Species</a></li>
-<li><a href="Transcript/">Transcript</a></li>
-<li><a href="Variant/">Variant</a> - Variant class</li>
 <li><a href="VariantGeneConsequence/">VariantGeneConsequence</a></li>
 <li><a href="VariantGenomicLocation/">VariantGenomicLocation</a></li>
 <li><a href="VariantTranscriptConsequence/">VariantTranscriptConsequence</a> - Class for transcript-level VEP results</li>
@@ -137,7 +138,6 @@
 <li><a href="PubMed_type/">PubMed type</a> - Type of information content entity as described by pub med.</li>
 <li><a href="abstract/">abstract</a></li>
 <li><a href="address/">address</a> - the particulars of the place where someone or an organization is situated.  For now, this slot is a simple text "blob" containing all relevant details of the given location for fitness of purpose. For the moment, this "address" can include other contact details such as email and phone number(?).</li>
-<li><a href="allele_id/">allele id</a></li>
 <li><a href="alliance_category/">alliance category</a></li>
 <li><a href="amino_acid_reference/">amino acid reference</a> - reference genome amino acid sequence at variant position<ul>
 <li><a href="variant_transcript_consequence_amino_acid_reference/">variant transcript consequence➞amino acid reference</a> - Amino acid sequence encoded by codon(s) in reference genome sequence altered by the variant</li>
@@ -147,9 +147,10 @@
 <li><a href="variant_transcript_consequence_amino_acid_variant/">variant transcript consequence➞amino acid variant</a> - Amino acid sequence encoded by codon(s) in variant sequence</li>
 </ul>
 </li>
-<li><a href="assembly_id/">assembly id</a></li>
+<li><a href="assembly/">assembly</a></li>
 <li><a href="association_slot/">association slot</a> - any slot that relates an association to another entity<ul>
 <li><a href="subject/">subject</a> - connects an association to the subject of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.<ul>
+<li><a href="gene_genomic_location_subject/">gene genomic location➞subject</a> - subject should be the gene identifier</li>
 <li><a href="variant_gene_consequence_subject/">variant gene consequence➞subject</a> - subject should be the variant identifier</li>
 <li><a href="variant_genomic_location_subject/">variant genomic location➞subject</a> - subject should be the variant identifier</li>
 <li><a href="variant_transcript_consequence_subject/">variant transcript consequence➞subject</a> - subject should be the variant identifier</li>
@@ -168,7 +169,6 @@
 <li><a href="variant_transcript_consequence_cds_start/">variant transcript consequence➞cds start</a> - Start position of variant in CDS coordinates</li>
 </ul>
 </li>
-<li><a href="chromosome_id/">chromosome id</a></li>
 <li><a href="citation/">citation</a></li>
 <li><a href="cnda_end/">cnda end</a> - End position of variant in cDNA coordinates<ul>
 <li><a href="variant_transcript_consequence_cnda_end/">variant transcript consequence➞cnda end</a></li>
@@ -206,11 +206,11 @@
 <li><a href="end/">end</a> - The end of the feature in positive 1-based integer coordinates</li>
 <li><a href="first_name/">first name</a></li>
 <li><a href="from_resource/">from resource</a></li>
-<li><a href="from_species/">from species</a> - holds between a genomic entity and a species</li>
-<li><a href="gene_id/">gene id</a></li>
+<li><a href="gene_synopsis/">gene synopsis</a></li>
+<li><a href="gene_synopsis_URL/">gene synopsis URL</a></li>
+<li><a href="genomic_locations/">genomic locations</a></li>
 <li><a href="genomic_reference_sequence/">genomic reference sequence</a> - reference genome sequence at variation position</li>
 <li><a href="genomic_variant_sequence/">genomic variant sequence</a> - variant genome sequence at variation position</li>
-<li><a href="has_assembly/">has assembly</a></li>
 <li><a href="hgvs_coding_nomenclature/">hgvs coding nomenclature</a> - HGVSc nomenclature for variation in coding sequence<ul>
 <li><a href="variant_transcript_consequence_hgvs_coding_nomenclature/">variant transcript consequence➞hgvs coding nomenclature</a> - HGVS coding sequence (HGVSc) name</li>
 </ul>
@@ -243,6 +243,7 @@
 <li><a href="negated/">negated</a> - if set to true, then the association is negated i.e. is not true</li>
 <li><a href="note/">note</a></li>
 <li><a href="object/">object</a> - connects an association to the object of the association. For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.<ul>
+<li><a href="gene_genomic_location_object/">gene genomic location➞object</a> - object should be the chromosome identifier</li>
 <li><a href="variant_gene_consequence_object/">variant gene consequence➞object</a> - object should be the gene identifier</li>
 <li><a href="variant_genomic_location_object/">variant genomic location➞object</a> - object should be the chromosome identifier</li>
 <li><a href="variant_transcript_consequence_object/">variant transcript consequence➞object</a> - object should be the transcript identifier</li>
@@ -278,6 +279,7 @@
 <li><a href="references/">references</a> - holds between an object and a reference</li>
 <li><a href="release/">release</a> - MOD release ID</li>
 <li><a href="resource_id/">resource id</a></li>
+<li><a href="secondary_identifiers/">secondary identifiers</a></li>
 <li><a href="sift_prediction/">sift prediction</a> - SIFT prediction</li>
 <li><a href="sift_score/">sift score</a> - SIFT score between 0 and 1</li>
 <li><a href="start/">start</a> - The start of the feature in positive 1-based integer coordinates</li>
@@ -286,12 +288,12 @@
 <li><a href="synonym/">synonym</a> - holds between a named thing and a synonym</li>
 <li><a href="synonyms/">synonyms</a></li>
 <li><a href="tags/">tags</a> - Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").</li>
+<li><a href="taxon/">taxon</a></li>
 <li><a href="title/">title</a> - A human readable title for a reference.<ul>
 <li><a href="resource_title/">resource➞title</a> - the title of the publication</li>
 </ul>
 </li>
 <li><a href="topics/">topics</a> - Connects an object to a vocabulary term or ontology that describes some aspect of the entity.</li>
-<li><a href="transcript_id/">transcript id</a></li>
 <li><a href="type/">type</a></li>
 <li><a href="vep_consequence/">vep consequence</a></li>
 <li><a href="vep_impact/">vep impact</a> - VEP predicted impact of variation on molecule</li>
@@ -391,5 +393,5 @@
 
 <!--
 MkDocs version : 1.1.2
-Build Date UTC : 2021-04-22 16:44:06.301027+00:00
+Build Date UTC : 2021-04-27 15:50:23.750093+00:00
 -->

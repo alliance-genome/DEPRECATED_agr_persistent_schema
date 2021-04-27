@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Slot: from_species - Alliance Persistence Model</title>
+  <title>Slot: gene_genomic_location_object - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Slot: from_species";
-    var mkdocs_page_input_path = "from_species.md";
+    var mkdocs_page_name = "Slot: gene_genomic_location_object";
+    var mkdocs_page_input_path = "gene_genomic_location_object.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Slot: from_species</li>
+    <li>Slot: gene_genomic_location_object</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,14 +91,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="slot-from_species">Slot: from_species</h1>
-<p>holds between a genomic entity and a species</p>
-<p>URI: <a href="http://alliancegenome.orgfrom_species">alliance:from_species</a></p>
+                <h1 id="slot-gene_genomic_location_object">Slot: gene_genomic_location_object</h1>
+<p>object should be the chromosome identifier</p>
+<p>URI: <a href="http://alliancegenome.orggene_genomic_location_object">alliance:gene_genomic_location_object</a></p>
 <h2 id="domain-and-range">Domain and Range</h2>
-<p>None -&gt;  <sub>OPT</sub> <a href="../Species/">Species</a></p>
+<p><a href="../GeneGenomicLocation/">GeneGenomicLocation</a> -&gt;  <sub>REQ</sub> <a href="../Chromosome/">Chromosome</a></p>
 <h2 id="parents">Parents</h2>
+<ul>
+<li>is_a: <a href="../object/">object</a></li>
+</ul>
 <h2 id="children">Children</h2>
 <h2 id="used-by">Used by</h2>
+<ul>
+<li><a href="../GeneGenomicLocation/">GeneGenomicLocation</a></li>
+</ul>
               
             </div>
           </div>

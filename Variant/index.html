@@ -94,9 +94,14 @@
                 <h1 id="class-variant">Class: Variant</h1>
 <p>Variant class</p>
 <p>URI: <a href="http://alliancegenome.orgVariant">alliance:Variant</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantTranscriptConsequence],[VariantGenomicLocation],[VariantGeneConsequence],[Reference]&lt;references%200..*-%20[Variant&#124;id:uriorcurie;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;synonyms:string%20%3F;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;cross_references:string%20*],[Allele]&lt;is%20variant%20of%20allele%200..1-%20[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-%20[Variant],[Gene]&lt;computed%20gene%200..1-%20[Variant],[VariantGeneConsequence]-%20subject%201..1&gt;[Variant],[VariantGenomicLocation]-%20subject%201..1&gt;[Variant],[VariantTranscriptConsequence]-%20subject%201..1&gt;[Variant],[Transcript],[Reference],[Gene],[Allele]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantTranscriptConsequence],[VariantGenomicLocation],[VariantGeneConsequence],[Reference]&lt;references%200..*-%20[Variant&#124;hgvs_nomenclature:string%20%3F;genomic_reference_sequence:biological_sequence%20%3F;genomic_variant_sequence:biological_sequence%20%3F;padding_left:biological_sequence%20%3F;padding_right:biological_sequence%20%3F;date_produced:date%20%3F;release:string%20%3F;data_provider:string%20*;type:uriorcurie%20%3F;note:string%20%3F;protein_sequence:biological_sequence%20%3F;id(i):uriorcurie;taxon(i):uriorcurie%20%3F;synonyms(i):string%20%3F;secondary_identifiers(i):string%20*;cross_references(i):string%20*],[Allele]&lt;is%20variant%20of%20allele%200..1-%20[Variant],[Transcript]&lt;is%20variant%20of%20transcript%200..1-%20[Variant],[Gene]&lt;computed%20gene%200..1-%20[Variant],[GeneGenomicLocation]-%20subject%201..1&gt;[Variant],[VariantGeneConsequence]-%20subject%201..1&gt;[Variant],[VariantGenomicLocation]-%20subject%201..1&gt;[Variant],[VariantTranscriptConsequence]-%20subject%201..1&gt;[Variant],[GenomicEntity]^-[Variant],[Transcript],[Reference],[GenomicEntity],[GeneGenomicLocation],[Gene],[Allele]" /></p>
+<h2 id="parents">Parents</h2>
+<ul>
+<li>is_a: <a href="../GenomicEntity/">GenomicEntity</a></li>
+</ul>
 <h2 id="referenced-by-class">Referenced by class</h2>
 <ul>
+<li><strong><a href="../GeneGenomicLocation/">GeneGenomicLocation</a></strong> <em><a href="../gene_genomic_location_subject/">gene genomic location➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
 <li><strong><a href="../VariantGeneConsequence/">VariantGeneConsequence</a></strong> <em><a href="../variant_gene_consequence_subject/">variant gene consequence➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
 <li><strong><a href="../VariantGenomicLocation/">VariantGenomicLocation</a></strong> <em><a href="../variant_genomic_location_subject/">variant genomic location➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
 <li><strong><a href="../VariantTranscriptConsequence/">VariantTranscriptConsequence</a></strong> <em><a href="../variant_transcript_consequence_subject/">variant transcript consequence➞subject</a></em>  <sub>REQ</sub>  <strong><a href="./">Variant</a></strong></li>
@@ -183,6 +188,21 @@
 </ul>
 </li>
 <li><a href="../type/">type</a>  <sub>OPT</sub><ul>
+<li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="inherited-from-genomic-entity">Inherited from genomic entity:</h3>
+<ul>
+<li><a href="../genomic_locations/">genomic locations</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../GeneGenomicLocation/">GeneGenomicLocation</a></li>
+</ul>
+</li>
+<li><a href="../secondary_identifiers/">secondary identifiers</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../types/String/">String</a></li>
+</ul>
+</li>
+<li><a href="../taxon/">taxon</a>  <sub>OPT</sub><ul>
 <li>range: <a href="../types/Uriorcurie/">Uriorcurie</a></li>
 </ul>
 </li>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Slot: chromosome_id - Alliance Persistence Model</title>
+  <title>Slot: gene_genomic_location_subject - Alliance Persistence Model</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Slot: chromosome_id";
-    var mkdocs_page_input_path = "chromosome_id.md";
+    var mkdocs_page_name = "Slot: gene_genomic_location_subject";
+    var mkdocs_page_input_path = "gene_genomic_location_subject.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -80,7 +80,7 @@
     
       
     
-    <li>Slot: chromosome_id</li>
+    <li>Slot: gene_genomic_location_subject</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -91,13 +91,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="slot-chromosome_id">Slot: chromosome_id</h1>
-<p>URI: <a href="http://alliancegenome.orgchromosome_id">alliance:chromosome_id</a></p>
+                <h1 id="slot-gene_genomic_location_subject">Slot: gene_genomic_location_subject</h1>
+<p>subject should be the gene identifier</p>
+<p>URI: <a href="http://alliancegenome.orggene_genomic_location_subject">alliance:gene_genomic_location_subject</a></p>
 <h2 id="domain-and-range">Domain and Range</h2>
-<p>None -&gt;  <sub>REQ</sub> <a href="../types/String/">String</a></p>
+<p><a href="../GeneGenomicLocation/">GeneGenomicLocation</a> -&gt;  <sub>REQ</sub> <a href="../Variant/">Variant</a></p>
 <h2 id="parents">Parents</h2>
+<ul>
+<li>is_a: <a href="../subject/">subject</a></li>
+</ul>
 <h2 id="children">Children</h2>
 <h2 id="used-by">Used by</h2>
+<ul>
+<li><a href="../GeneGenomicLocation/">GeneGenomicLocation</a></li>
+</ul>
               
             </div>
           </div>
