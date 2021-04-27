@@ -23,9 +23,30 @@ classes:
     slots:
       - id
 
-  assembly:
+  gene genomic location:
     slots:
-      - id
+      - subject
+      - predicate
+      - object
+      - assembly
+      - start
+      - end
+    slot_usage:
+      subject:
+        range: variant
+        description: >-
+          subject should be the gene identifier
+      object:
+        range: chromosome
+        description: >-
+          object should be the chromosome identifier
+    defining_slots:
+      - subject
+      - predicate
+      - object
+      - assembly
+      - start
+      - end
 
 slots:
 
@@ -35,23 +56,7 @@ slots:
   end:
     description: The end of the feature in positive 1-based integer coordinates
 
-
-  gene id:
-    required: true
+  assembly:
+    domain: genomic entity
     range: string
-
-  chromosome id:
     required: true
-    range: string
-
-  transcript id:
-    required: true
-    range: string
-
-  assembly id:
-    required: true
-    range: string
-
-  allele id:
-    required: true
-    range: string

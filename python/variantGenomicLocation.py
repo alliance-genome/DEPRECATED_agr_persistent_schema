@@ -1,5 +1,5 @@
 # Auto generated from variantGenomicLocation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 08:49
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation
@@ -21,7 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . genomic import AssemblyId, ChromosomeId
+from . genomic import ChromosomeId
 from . variation import VariantId
 from linkml_model.types import String
 
@@ -59,7 +59,7 @@ class VariantGenomicLocation(YAMLRoot):
     subject: Union[str, VariantId] = None
     predicate: str = None
     object: Union[str, ChromosomeId] = None
-    has_assembly: Union[str, AssemblyId] = None
+    assembly: str = None
     start: Optional[str] = None
     end: Optional[str] = None
 
@@ -79,10 +79,10 @@ class VariantGenomicLocation(YAMLRoot):
         if not isinstance(self.object, ChromosomeId):
             self.object = ChromosomeId(self.object)
 
-        if self.has_assembly is None:
-            raise ValueError("has_assembly must be supplied")
-        if not isinstance(self.has_assembly, AssemblyId):
-            self.has_assembly = AssemblyId(self.has_assembly)
+        if self.assembly is None:
+            raise ValueError("assembly must be supplied")
+        if not isinstance(self.assembly, str):
+            self.assembly = str(self.assembly)
 
         if self.start is not None and not isinstance(self.start, str):
             self.start = str(self.start)
@@ -102,9 +102,6 @@ class slots:
 
 slots.located_on = Slot(uri=DEFAULT_.located_on, name="located on", curie=DEFAULT_.curie('located_on'),
                    model_uri=DEFAULT_.located_on, domain=None, range=Optional[Union[str, ChromosomeId]])
-
-slots.has_assembly = Slot(uri=DEFAULT_.has_assembly, name="has assembly", curie=DEFAULT_.curie('has_assembly'),
-                   model_uri=DEFAULT_.has_assembly, domain=VariantGenomicLocation, range=Union[str, AssemblyId])
 
 slots.variant_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="variant genomic location_subject", curie=DEFAULT_.curie('subject'),
                    model_uri=DEFAULT_.variant_genomic_location_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])

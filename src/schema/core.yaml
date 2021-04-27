@@ -22,6 +22,7 @@ imports:
   - linkml:types
   - reference
   - resource
+  - genomic
 
 prefixes:
   alliance: 'http://alliancegenome.org'
@@ -47,14 +48,34 @@ types:
 
 classes:
 
-
-
   genomic entity:
-
-  gene:
     description: >-
     slots:
       - id
+      - taxon
+      - synonyms
+      - secondary identifiers
+      - cross references
+      - genomic locations
+    id_prefixes:
+      - ENSEMBL
+      - HGNC
+      - FB
+      - MGI
+      - RGD
+      - SGD
+      - WB
+      - ZFIN
+
+  gene:
+    description: >-
+    is_a: genomic entity
+    slots:
+      - name
+      - symbol
+      - gene synopsis
+      - gene synopsis URL
+      - type
     id_prefixes:
       - ENSEMBL
       - HGNC
@@ -66,9 +87,8 @@ classes:
       - ZFIN
 
   transcript:
+    is_a: genomic entity
     description: >-
-    slots:
-      - id
     id_prefixes:
       - ENSEMBL
       - FB
@@ -78,19 +98,32 @@ classes:
       - SGD
       - ZFIN
 
-
   allele:
-    slots:
-      - id
-
-  species:
-
+    is_a: genomic entity
 
 ## ------------
 ## SLOTS
 ## ------------
 
 slots:
+
+  taxon:
+    description: >-
+    range: uriorcurie
+
+  secondary identifiers:
+    multivalued: true
+
+  gene synopsis:
+    description: >-
+
+  gene synopsis URL:
+    description: >-
+
+  genomic locations:
+    domain: genomic entity
+    range: gene genomic location
+    multivalued: true
 
   id:
     identifier: true
@@ -167,10 +200,6 @@ slots:
       Symbol for a particular thing
     exact_mappings:
       - biolink:symbol
-
-  from species:
-    description: holds between a genomic entity and a species
-    range: species
 
   synonym:
     description: holds between a named thing and a synonym

@@ -1,5 +1,5 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 08:49
 # Schema: Alliance-Schema-Prototype-Core
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
@@ -21,6 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
+from . genomic import GeneGenomicLocation
 from . reference import ReferenceId
 from . resource import Resource
 from linkml.utils.metamodelcore import Bool, URIorCURIE, XSDDate
@@ -63,18 +64,23 @@ class BiologicalSequence(String):
 
 
 # Class references
-class GeneId(URIorCURIE):
+class GenomicEntityId(URIorCURIE):
     pass
 
 
-class TranscriptId(URIorCURIE):
+class GeneId(GenomicEntityId):
     pass
 
 
-class AlleleId(URIorCURIE):
+class TranscriptId(GenomicEntityId):
     pass
 
 
+class AlleleId(GenomicEntityId):
+    pass
+
+
+@dataclass
 class GenomicEntity(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -83,9 +89,48 @@ class GenomicEntity(YAMLRoot):
     class_name: ClassVar[str] = "genomic entity"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.GenomicEntity
 
+    id: Union[str, GenomicEntityId] = None
+    taxon: Optional[Union[str, URIorCURIE]] = None
+    synonyms: Optional[str] = None
+    secondary_identifiers: Optional[Union[str, List[str]]] = empty_list()
+    cross_references: Optional[Union[str, List[str]]] = empty_list()
+    genomic_locations: Optional[Union[Union[dict, GeneGenomicLocation], List[Union[dict, GeneGenomicLocation]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, GenomicEntityId):
+            self.id = GenomicEntityId(self.id)
+
+        if self.taxon is not None and not isinstance(self.taxon, URIorCURIE):
+            self.taxon = URIorCURIE(self.taxon)
+
+        if self.synonyms is not None and not isinstance(self.synonyms, str):
+            self.synonyms = str(self.synonyms)
+
+        if self.secondary_identifiers is None:
+            self.secondary_identifiers = []
+        if not isinstance(self.secondary_identifiers, list):
+            self.secondary_identifiers = [self.secondary_identifiers]
+        self.secondary_identifiers = [v if isinstance(v, str) else str(v) for v in self.secondary_identifiers]
+
+        if self.cross_references is None:
+            self.cross_references = []
+        if not isinstance(self.cross_references, list):
+            self.cross_references = [self.cross_references]
+        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
+
+        if self.genomic_locations is None:
+            self.genomic_locations = []
+        if not isinstance(self.genomic_locations, list):
+            self.genomic_locations = [self.genomic_locations]
+        self._normalize_inlined_slot(slot_name="genomic_locations", slot_type=GeneGenomicLocation, key_name="subject", inlined_as_list=True, keyed=False)
+
+        super().__post_init__(**kwargs)
+
 
 @dataclass
-class Gene(YAMLRoot):
+class Gene(GenomicEntity):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Gene
@@ -94,6 +139,11 @@ class Gene(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Gene
 
     id: Union[str, GeneId] = None
+    name: Optional[str] = None
+    symbol: Optional[str] = None
+    gene_synopsis: Optional[str] = None
+    gene_synopsis_URL: Optional[str] = None
+    type: Optional[Union[str, URIorCURIE]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -101,11 +151,26 @@ class Gene(YAMLRoot):
         if not isinstance(self.id, GeneId):
             self.id = GeneId(self.id)
 
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.symbol is not None and not isinstance(self.symbol, str):
+            self.symbol = str(self.symbol)
+
+        if self.gene_synopsis is not None and not isinstance(self.gene_synopsis, str):
+            self.gene_synopsis = str(self.gene_synopsis)
+
+        if self.gene_synopsis_URL is not None and not isinstance(self.gene_synopsis_URL, str):
+            self.gene_synopsis_URL = str(self.gene_synopsis_URL)
+
+        if self.type is not None and not isinstance(self.type, URIorCURIE):
+            self.type = URIorCURIE(self.type)
+
         super().__post_init__(**kwargs)
 
 
 @dataclass
-class Transcript(YAMLRoot):
+class Transcript(GenomicEntity):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Transcript
@@ -125,7 +190,7 @@ class Transcript(YAMLRoot):
 
 
 @dataclass
-class Allele(YAMLRoot):
+class Allele(GenomicEntity):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Allele
@@ -144,21 +209,27 @@ class Allele(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-class Species(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ALLIANCE.Species
-    class_class_curie: ClassVar[str] = "alliance:Species"
-    class_name: ClassVar[str] = "species"
-    class_model_uri: ClassVar[URIRef] = ALLIANCE.Species
-
-
 # Enumerations
 
 
 # Slots
 class slots:
     pass
+
+slots.taxon = Slot(uri=ALLIANCE.taxon, name="taxon", curie=ALLIANCE.curie('taxon'),
+                   model_uri=ALLIANCE.taxon, domain=None, range=Optional[Union[str, URIorCURIE]])
+
+slots.secondary_identifiers = Slot(uri=ALLIANCE.secondary_identifiers, name="secondary identifiers", curie=ALLIANCE.curie('secondary_identifiers'),
+                   model_uri=ALLIANCE.secondary_identifiers, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.gene_synopsis = Slot(uri=ALLIANCE.gene_synopsis, name="gene synopsis", curie=ALLIANCE.curie('gene_synopsis'),
+                   model_uri=ALLIANCE.gene_synopsis, domain=None, range=Optional[str])
+
+slots.gene_synopsis_URL = Slot(uri=ALLIANCE.gene_synopsis_URL, name="gene synopsis URL", curie=ALLIANCE.curie('gene_synopsis_URL'),
+                   model_uri=ALLIANCE.gene_synopsis_URL, domain=None, range=Optional[str])
+
+slots.genomic_locations = Slot(uri=ALLIANCE.genomic_locations, name="genomic locations", curie=ALLIANCE.curie('genomic_locations'),
+                   model_uri=ALLIANCE.genomic_locations, domain=GenomicEntity, range=Optional[Union[Union[dict, GeneGenomicLocation], List[Union[dict, GeneGenomicLocation]]]])
 
 slots.id = Slot(uri=ALLIANCE.id, name="id", curie=ALLIANCE.curie('id'),
                    model_uri=ALLIANCE.id, domain=None, range=URIRef)
@@ -195,9 +266,6 @@ slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross referen
 
 slots.symbol = Slot(uri=ALLIANCE.symbol, name="symbol", curie=ALLIANCE.curie('symbol'),
                    model_uri=ALLIANCE.symbol, domain=None, range=Optional[str])
-
-slots.from_species = Slot(uri=ALLIANCE.from_species, name="from species", curie=ALLIANCE.curie('from_species'),
-                   model_uri=ALLIANCE.from_species, domain=None, range=Optional[Union[dict, Species]])
 
 slots.synonym = Slot(uri=ALLIANCE.synonym, name="synonym", curie=ALLIANCE.curie('synonym'),
                    model_uri=ALLIANCE.synonym, domain=None, range=Optional[Union[str, List[str]]])

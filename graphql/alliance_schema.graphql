@@ -1,11 +1,11 @@
 type Allele
   {
     id: Uriorcurie!
-  }
-
-type Assembly
-  {
-    id: Uriorcurie!
+    taxon: Uriorcurie
+    synonyms: String
+    secondaryIdentifiers: [String]
+    crossReferences: [String]
+    genomicLocations: [GeneGenomicLocation]
   }
 
 type AuthorReference
@@ -34,10 +34,36 @@ type CrossReference
 type Gene
   {
     id: Uriorcurie!
+    taxon: Uriorcurie
+    synonyms: String
+    secondaryIdentifiers: [String]
+    crossReferences: [String]
+    genomicLocations: [GeneGenomicLocation]
+    name: String
+    symbol: String
+    geneSynopsis: String
+    geneSynopsisURL: String
+    type: Uriorcurie
+  }
+
+type GeneGenomicLocation
+  {
+    subject: Variant!
+    predicate: String!
+    object: Chromosome!
+    assembly: String!
+    start: String
+    end: String
   }
 
 type GenomicEntity
   {
+    id: Uriorcurie!
+    taxon: Uriorcurie
+    synonyms: String
+    secondaryIdentifiers: [String]
+    crossReferences: [String]
+    genomicLocations: [GeneGenomicLocation]
   }
 
 interface InformationContentEntity
@@ -102,17 +128,21 @@ type Resource
     id: Uriorcurie!
   }
 
-type Species
-  {
-  }
-
 type Transcript
   {
     id: Uriorcurie!
+    taxon: Uriorcurie
+    synonyms: String
+    secondaryIdentifiers: [String]
+    crossReferences: [String]
+    genomicLocations: [GeneGenomicLocation]
   }
 
 type Variant
   {
+    taxon: Uriorcurie
+    secondaryIdentifiers: [String]
+    genomicLocations: [GeneGenomicLocation]
     id: Uriorcurie!
     hgvsNomenclature: String
     genomicReferenceSequence: BiologicalSequence
@@ -150,7 +180,7 @@ type VariantGenomicLocation
     subject: Variant!
     predicate: String!
     object: Chromosome!
-    hasAssembly: Assembly!
+    assembly: String!
     start: String
     end: String
   }

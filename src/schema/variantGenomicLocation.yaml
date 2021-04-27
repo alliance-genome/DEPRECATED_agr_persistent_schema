@@ -24,7 +24,7 @@ classes:
       - subject
       - predicate
       - object
-      - has assembly
+      - assembly
       - start
       - end
     slot_usage:
@@ -40,7 +40,7 @@ classes:
       - subject
       - predicate
       - object
-      - has assembly
+      - assembly
       - start
       - end
 
@@ -48,8 +48,3 @@ slots:
 
   located on:
     range: chromosome
-
-  has assembly:
-    domain: variant genomic location
-    range: assembly
-    required: true

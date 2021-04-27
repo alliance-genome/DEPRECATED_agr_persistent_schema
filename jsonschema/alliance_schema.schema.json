@@ -6,8 +6,32 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
+            "cross_references": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "genomic_locations": {
+               "items": {
+                  "$ref": "#/definitions/GeneGenomicLocation"
+               },
+               "type": "array"
+            },
             "id": {
                "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "secondary_identifiers": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "synonyms": {
+               "type": "string"
+            },
+            "taxon": {
                "type": "string"
             }
          },
@@ -15,21 +39,6 @@
             "id"
          ],
          "title": "Allele",
-         "type": "object"
-      },
-      "Assembly": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {
-            "id": {
-               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
-               "type": "string"
-            }
-         },
-         "required": [
-            "id"
-         ],
-         "title": "Assembly",
          "type": "object"
       },
       "AuthorReference": {
@@ -111,8 +120,49 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
+            "cross_references": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "gene_synopsis": {
+               "type": "string"
+            },
+            "gene_synopsis_URL": {
+               "type": "string"
+            },
+            "genomic_locations": {
+               "items": {
+                  "$ref": "#/definitions/GeneGenomicLocation"
+               },
+               "type": "array"
+            },
             "id": {
                "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "name": {
+               "description": "a human-readable name for an entity",
+               "type": "string"
+            },
+            "secondary_identifiers": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "symbol": {
+               "description": "Symbol for a particular thing",
+               "type": "string"
+            },
+            "synonyms": {
+               "type": "string"
+            },
+            "taxon": {
+               "type": "string"
+            },
+            "type": {
                "type": "string"
             }
          },
@@ -122,11 +172,79 @@
          "title": "Gene",
          "type": "object"
       },
+      "GeneGenomicLocation": {
+         "additionalProperties": false,
+         "description": "",
+         "properties": {
+            "assembly": {
+               "type": "string"
+            },
+            "end": {
+               "description": "The end of the feature in positive 1-based integer coordinates",
+               "type": "string"
+            },
+            "object": {
+               "description": "object should be the chromosome identifier",
+               "type": "string"
+            },
+            "predicate": {
+               "description": "A high-level grouping for the relationship type. This is analogous to category for nodes. In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the relationship type.",
+               "type": "string"
+            },
+            "start": {
+               "description": "The start of the feature in positive 1-based integer coordinates",
+               "type": "string"
+            },
+            "subject": {
+               "description": "subject should be the gene identifier",
+               "type": "string"
+            }
+         },
+         "required": [
+            "subject",
+            "predicate",
+            "object",
+            "assembly"
+         ],
+         "title": "GeneGenomicLocation",
+         "type": "object"
+      },
       "GenomicEntity": {
          "additionalProperties": false,
          "description": "",
-         "properties": {},
-         "required": [],
+         "properties": {
+            "cross_references": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "genomic_locations": {
+               "items": {
+                  "$ref": "#/definitions/GeneGenomicLocation"
+               },
+               "type": "array"
+            },
+            "id": {
+               "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "secondary_identifiers": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "synonyms": {
+               "type": "string"
+            },
+            "taxon": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "id"
+         ],
          "title": "GenomicEntity",
          "type": "object"
       },
@@ -339,20 +457,36 @@
          "title": "Resource",
          "type": "object"
       },
-      "Species": {
-         "additionalProperties": false,
-         "description": "",
-         "properties": {},
-         "required": [],
-         "title": "Species",
-         "type": "object"
-      },
       "Transcript": {
          "additionalProperties": false,
          "description": "",
          "properties": {
+            "cross_references": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "genomic_locations": {
+               "items": {
+                  "$ref": "#/definitions/GeneGenomicLocation"
+               },
+               "type": "array"
+            },
             "id": {
                "description": "A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI",
+               "type": "string"
+            },
+            "secondary_identifiers": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            "synonyms": {
+               "type": "string"
+            },
+            "taxon": {
                "type": "string"
             }
          },
@@ -385,6 +519,12 @@
             "date_produced": {
                "description": "Date on which an entity was produced.",
                "type": "string"
+            },
+            "genomic_locations": {
+               "items": {
+                  "$ref": "#/definitions/GeneGenomicLocation"
+               },
+               "type": "array"
             },
             "genomic_reference_sequence": {
                "description": "reference genome sequence at variation position",
@@ -433,7 +573,16 @@
                "description": "MOD release ID",
                "type": "string"
             },
+            "secondary_identifiers": {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
             "synonyms": {
+               "type": "string"
+            },
+            "taxon": {
                "type": "string"
             },
             "type": {
@@ -493,11 +642,11 @@
          "additionalProperties": false,
          "description": "",
          "properties": {
-            "end": {
-               "description": "The end of the feature in positive 1-based integer coordinates",
+            "assembly": {
                "type": "string"
             },
-            "has_assembly": {
+            "end": {
+               "description": "The end of the feature in positive 1-based integer coordinates",
                "type": "string"
             },
             "object": {
@@ -521,7 +670,7 @@
             "subject",
             "predicate",
             "object",
-            "has_assembly"
+            "assembly"
          ],
          "title": "VariantGenomicLocation",
          "type": "object"
