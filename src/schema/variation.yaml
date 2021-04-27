@@ -21,6 +21,7 @@ prefixes:
 classes:
 
   variant:
+    is_a: genomic entity
     description: >-
       Variant class
     slots:

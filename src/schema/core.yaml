@@ -47,14 +47,34 @@ types:
 
 classes:
 
-
-
   genomic entity:
+    descripton: >-
+    slots:
+      - id
+      - taxon
+      - synonyms
+      - secondary identifiers
+      - cross references
+      - genomic locations
+    id_prefixes:
+      - ENSEMBL
+      - HGNC
+      - FB
+      - MGI
+      - RGD
+      - SGD
+      - WB
+      - ZFIN
 
   gene:
     description: >-
+    is_a: genomic entity
     slots:
-      - id
+      - name
+      - symbol
+      - gene synopsis
+      - gene synopsis URL
+      - type
     id_prefixes:
       - ENSEMBL
       - HGNC
@@ -66,9 +86,8 @@ classes:
       - ZFIN
 
   transcript:
+    is_a: genomic entity
     description: >-
-    slots:
-      - id
     id_prefixes:
       - ENSEMBL
       - FB
@@ -78,19 +97,31 @@ classes:
       - SGD
       - ZFIN
 
-
   allele:
-    slots:
-      - id
-
-  species:
-
+    is_a: genomic entity
 
 ## ------------
 ## SLOTS
 ## ------------
 
 slots:
+
+  taxon:
+    description: >-
+    range: uriorurie
+
+  secondary identifiers:
+    multivalued: true
+
+  gene synopsis:
+    description: >-
+
+  gene synopsis URL:
+    description: >-
+      
+  genomic locations:
+    domain: genomic entity
+    multivalued: true
 
   id:
     identifier: true
