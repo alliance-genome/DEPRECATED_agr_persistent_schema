@@ -307,45 +307,28 @@ enums:
 
   database_statuses:
     permissible_values:
-      Live:
-        text: Live
-      Dead:
-        text: Dead
-      Suppressed:
-        text: Suppressed
-      History:
-        text: History
-      Private:
-        text: Private
-      Approved:
-        text: Approved
-
+      live:
+      dead:
+      suppressed:
+      history:
+      private:
+      approved:
 
   reference_association_types:
     permissible_values:
-      Molecular:
-        text: Molecular
-      Other:
-        text: Other
+      molecular:
+      other:
 
   note_association_types:
     permissible_values:
-      Origin:
-        text: Origin
-      Cytology:
-        text: Cytology
-      Private:
-        text: Private
-      Curator_comments:
-        text: Curator_comments
+      origin:
+      cytology:
+      private:
+      curator_comments:
 
   modes_of_inheritence:
     permissible_values:
-      Dominant:
-        text: Dominant
-      Recessive:
-        text: Recessive
-      Semi_dominant:
-        text: Semi_dominant
-      Unknown:
-        text: Unknown
+      dominant:
+      recessive:
+      semi_dominant:
+      unknown:

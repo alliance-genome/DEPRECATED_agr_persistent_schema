@@ -1,5 +1,5 @@
 # Auto generated from allele.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 11:07
+# Generation date: 2021-04-27 11:14
 # Schema: Alliance-Schema-Prototype-Allele
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele
@@ -374,12 +374,12 @@ class Image(YAMLRoot):
 # Enumerations
 class DatabaseStatuses(EnumDefinitionImpl):
 
-    Live = PermissibleValue(text="Live")
-    Dead = PermissibleValue(text="Dead")
-    Suppressed = PermissibleValue(text="Suppressed")
-    History = PermissibleValue(text="History")
-    Private = PermissibleValue(text="Private")
-    Approved = PermissibleValue(text="Approved")
+    live = PermissibleValue(text="live")
+    dead = PermissibleValue(text="dead")
+    suppressed = PermissibleValue(text="suppressed")
+    history = PermissibleValue(text="history")
+    private = PermissibleValue(text="private")
+    approved = PermissibleValue(text="approved")
 
     _defn = EnumDefinition(
         name="DatabaseStatuses",
@@ -387,8 +387,8 @@ class DatabaseStatuses(EnumDefinitionImpl):
 
 class ReferenceAssociationTypes(EnumDefinitionImpl):
 
-    Molecular = PermissibleValue(text="Molecular")
-    Other = PermissibleValue(text="Other")
+    molecular = PermissibleValue(text="molecular")
+    other = PermissibleValue(text="other")
 
     _defn = EnumDefinition(
         name="ReferenceAssociationTypes",
@@ -396,10 +396,10 @@ class ReferenceAssociationTypes(EnumDefinitionImpl):
 
 class NoteAssociationTypes(EnumDefinitionImpl):
 
-    Origin = PermissibleValue(text="Origin")
-    Cytology = PermissibleValue(text="Cytology")
-    Private = PermissibleValue(text="Private")
-    Curator_comments = PermissibleValue(text="Curator_comments")
+    origin = PermissibleValue(text="origin")
+    cytology = PermissibleValue(text="cytology")
+    private = PermissibleValue(text="private")
+    curator_comments = PermissibleValue(text="curator_comments")
 
     _defn = EnumDefinition(
         name="NoteAssociationTypes",
@@ -407,10 +407,10 @@ class NoteAssociationTypes(EnumDefinitionImpl):
 
 class ModesOfInheritence(EnumDefinitionImpl):
 
-    Dominant = PermissibleValue(text="Dominant")
-    Recessive = PermissibleValue(text="Recessive")
-    Semi_dominant = PermissibleValue(text="Semi_dominant")
-    Unknown = PermissibleValue(text="Unknown")
+    dominant = PermissibleValue(text="dominant")
+    recessive = PermissibleValue(text="recessive")
+    semi_dominant = PermissibleValue(text="semi_dominant")
+    unknown = PermissibleValue(text="unknown")
 
     _defn = EnumDefinition(
         name="ModesOfInheritence",
