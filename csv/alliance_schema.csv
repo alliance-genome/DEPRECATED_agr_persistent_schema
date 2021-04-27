@@ -1,19 +1,19 @@
 id,mappings,description
-allele,,
-assembly,,
-author_reference,,
-chromosome,,The ID of the landmark used to establish the coordinate system for the current feature.
-cross_reference,,
-gene,,
-genomic_entity,,
-information_content_entity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
-person,,
-reference,,
-resource,,
-species,,
-transcript,,
-variant,,Variant class
-variant_gene_consequence,,
-variant_genomic_location,,
-variant_transcript_consequence,,Class for transcript-level VEP results
+Allele,,
+Assembly,,
+AuthorReference,,
+Chromosome,,The ID of the landmark used to establish the coordinate system for the current feature.
+CrossReference,,
+Gene,,
+GenomicEntity,,
+InformationContentEntity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
+Person,,
+Reference,,
+Resource,,
+Species,,
+Transcript,,
+Variant,,Variant class
+VariantGeneConsequence,,
+VariantGenomicLocation,,
+VariantTranscriptConsequence,,Class for transcript-level VEP results
 

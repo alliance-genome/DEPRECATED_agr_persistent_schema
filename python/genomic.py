@@ -1,5 +1,5 @@
 # Auto generated from genomic.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
@@ -60,7 +60,7 @@ class Chromosome(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "chromosome"
+    class_name: ClassVar[str] = "Chromosome"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
 
     id: Union[str, ChromosomeId] = None
@@ -80,7 +80,7 @@ class Assembly(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "assembly"
+    class_name: ClassVar[str] = "Assembly"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
 
     id: Union[str, AssemblyId] = None
@@ -107,17 +107,17 @@ slots.start = Slot(uri=DEFAULT_.start, name="start", curie=DEFAULT_.curie('start
 slots.end = Slot(uri=DEFAULT_.end, name="end", curie=DEFAULT_.curie('end'),
                    model_uri=DEFAULT_.end, domain=None, range=Optional[str])
 
-slots.gene_id = Slot(uri=DEFAULT_.gene_id, name="gene id", curie=DEFAULT_.curie('gene_id'),
+slots.gene_id = Slot(uri=DEFAULT_.gene_id, name="gene_id", curie=DEFAULT_.curie('gene_id'),
                    model_uri=DEFAULT_.gene_id, domain=None, range=str)
 
-slots.chromosome_id = Slot(uri=DEFAULT_.chromosome_id, name="chromosome id", curie=DEFAULT_.curie('chromosome_id'),
+slots.chromosome_id = Slot(uri=DEFAULT_.chromosome_id, name="chromosome_id", curie=DEFAULT_.curie('chromosome_id'),
                    model_uri=DEFAULT_.chromosome_id, domain=None, range=str)
 
-slots.transcript_id = Slot(uri=DEFAULT_.transcript_id, name="transcript id", curie=DEFAULT_.curie('transcript_id'),
+slots.transcript_id = Slot(uri=DEFAULT_.transcript_id, name="transcript_id", curie=DEFAULT_.curie('transcript_id'),
                    model_uri=DEFAULT_.transcript_id, domain=None, range=str)
 
-slots.assembly_id = Slot(uri=DEFAULT_.assembly_id, name="assembly id", curie=DEFAULT_.curie('assembly_id'),
+slots.assembly_id = Slot(uri=DEFAULT_.assembly_id, name="assembly_id", curie=DEFAULT_.curie('assembly_id'),
                    model_uri=DEFAULT_.assembly_id, domain=None, range=str)
 
-slots.allele_id = Slot(uri=DEFAULT_.allele_id, name="allele id", curie=DEFAULT_.curie('allele_id'),
+slots.allele_id = Slot(uri=DEFAULT_.allele_id, name="allele_id", curie=DEFAULT_.curie('allele_id'),
                    model_uri=DEFAULT_.allele_id, domain=None, range=str)

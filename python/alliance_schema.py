@@ -1,5 +1,5 @@
 # Auto generated from alliance_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: Alliance-Schema-Prototype
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/alliance_schema
@@ -57,11 +57,8 @@ DEFAULT_ = ALLIANCE
 class slots:
     pass
 
-slots.cnda_end = Slot(uri=ALLIANCE.cnda_end, name="cnda end", curie=ALLIANCE.curie('cnda_end'),
+slots.cnda_end = Slot(uri=ALLIANCE.cnda_end, name="cnda_end", curie=ALLIANCE.curie('cnda_end'),
                    model_uri=ALLIANCE.cnda_end, domain=None, range=Optional[str])
-
-slots.cns_end = Slot(uri=ALLIANCE.cns_end, name="cns end", curie=ALLIANCE.curie('cns_end'),
-                   model_uri=ALLIANCE.cns_end, domain=None, range=Optional[str])
 
 slots.person_id = Slot(uri=ALLIANCE.person_id, name="person id", curie=ALLIANCE.curie('person_id'),
                    model_uri=ALLIANCE.person_id, domain=None, range=URIRef)

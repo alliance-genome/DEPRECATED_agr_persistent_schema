@@ -1,5 +1,5 @@
 # Auto generated from crossReference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: crossReference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference
@@ -52,7 +52,7 @@ class CrossReference(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "cross reference"
+    class_name: ClassVar[str] = "CrossReference"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference")
 
     cross_reference_id: Union[str, CrossReferenceCrossReferenceId] = None
@@ -97,11 +97,11 @@ class slots:
 slots.prefix = Slot(uri=DEFAULT_.prefix, name="prefix", curie=DEFAULT_.curie('prefix'),
                    model_uri=DEFAULT_.prefix, domain=None, range=str)
 
-slots.page_areas = Slot(uri=DEFAULT_.page_areas, name="page areas", curie=DEFAULT_.curie('page_areas'),
+slots.page_areas = Slot(uri=DEFAULT_.page_areas, name="page_areas", curie=DEFAULT_.curie('page_areas'),
                    model_uri=DEFAULT_.page_areas, domain=None, range=Union[str, List[str]])
 
-slots.display_name = Slot(uri=DEFAULT_.display_name, name="display name", curie=DEFAULT_.curie('display_name'),
+slots.display_name = Slot(uri=DEFAULT_.display_name, name="display_name", curie=DEFAULT_.curie('display_name'),
                    model_uri=DEFAULT_.display_name, domain=None, range=str)
 
-slots.cross_reference_id = Slot(uri=DEFAULT_.cross_reference_id, name="cross reference id", curie=DEFAULT_.curie('cross_reference_id'),
+slots.cross_reference_id = Slot(uri=DEFAULT_.cross_reference_id, name="cross_reference_id", curie=DEFAULT_.curie('cross_reference_id'),
                    model_uri=DEFAULT_.cross_reference_id, domain=None, range=URIRef)

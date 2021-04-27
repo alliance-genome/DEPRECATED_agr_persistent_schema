@@ -1,5 +1,5 @@
 # Auto generated from variantGenomicLocation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation
@@ -53,13 +53,13 @@ class VariantGenomicLocation(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant genomic location"
+    class_name: ClassVar[str] = "VariantGenomicLocation"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
 
     subject: Union[str, VariantId] = None
     predicate: str = None
     object: Union[str, ChromosomeId] = None
-    has_assembly: Union[str, AssemblyId] = None
+    assembly: Union[str, AssemblyId] = None
     start: Optional[str] = None
     end: Optional[str] = None
 
@@ -79,10 +79,10 @@ class VariantGenomicLocation(YAMLRoot):
         if not isinstance(self.object, ChromosomeId):
             self.object = ChromosomeId(self.object)
 
-        if self.has_assembly is None:
-            raise ValueError("has_assembly must be supplied")
-        if not isinstance(self.has_assembly, AssemblyId):
-            self.has_assembly = AssemblyId(self.has_assembly)
+        if self.assembly is None:
+            raise ValueError("assembly must be supplied")
+        if not isinstance(self.assembly, AssemblyId):
+            self.assembly = AssemblyId(self.assembly)
 
         if self.start is not None and not isinstance(self.start, str):
             self.start = str(self.start)
@@ -103,11 +103,11 @@ class slots:
 slots.located_on = Slot(uri=DEFAULT_.located_on, name="located on", curie=DEFAULT_.curie('located_on'),
                    model_uri=DEFAULT_.located_on, domain=None, range=Optional[Union[str, ChromosomeId]])
 
-slots.has_assembly = Slot(uri=DEFAULT_.has_assembly, name="has assembly", curie=DEFAULT_.curie('has_assembly'),
-                   model_uri=DEFAULT_.has_assembly, domain=VariantGenomicLocation, range=Union[str, AssemblyId])
+slots.assembly = Slot(uri=DEFAULT_.assembly, name="assembly", curie=DEFAULT_.curie('assembly'),
+                   model_uri=DEFAULT_.assembly, domain=VariantGenomicLocation, range=Union[str, AssemblyId])
 
-slots.variant_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="variant genomic location_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_genomic_location_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])
+slots.VariantGenomicLocation_subject = Slot(uri=DEFAULT_.subject, name="VariantGenomicLocation_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.VariantGenomicLocation_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])
 
-slots.variant_genomic_location_object = Slot(uri=DEFAULT_.object, name="variant genomic location_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_genomic_location_object, domain=VariantGenomicLocation, range=Union[str, ChromosomeId])
+slots.VariantGenomicLocation_object = Slot(uri=DEFAULT_.object, name="VariantGenomicLocation_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.VariantGenomicLocation_object, domain=VariantGenomicLocation, range=Union[str, ChromosomeId])

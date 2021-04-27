@@ -16,175 +16,177 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  variant gene consequence:
-    aliases: ['gene level consequence']
+
+  VariantGeneConsequence:
+    aliases: ['GeneLevelConsequence']
     slots:
       - subject
       - object
-      - vep consequence
-      - vep impact
-      - polyphen score
-      - polyphen prediction
-      - sift score
-      - sift prediction
+      - vep_consequence
+      - vep_impact
+      - polyphen_score
+      - polyphen_prediction
+      - sift_score
+      - sift_prediction
     slot_usage:
       subject:
-        range: variant
+        range: Variant
         description: >-
           subject should be the variant identifier
       object:
-        range: gene
+        range: Gene
         description: >-
           object should be the gene identifier
 
-  variant transcript consequence:
-    aliases: ['transcript level consequence']
+  VariantTranscriptConsequence:
+    aliases: ['TranscriptLevelConsequence']
     description: >-
       Class for transcript-level VEP results
     slots:
       - subject
       - object
-      - amino acid reference
-      - amino acid variant
-      - codon reference
-      - codon variant
-      - cdna start
-      - cdna end
-      - cds start
-      - cds end
-      - protein start
-      - protein end
-      - hgvs protein nomenclature
-      - hgvs coding nomenclature
+      - amino_acid_reference
+      - amino_acid_variant
+      - codon_reference
+      - codon_variant
+      - cdna_start
+      - cdna_end
+      - cds_start
+      - cds_end
+      - protein_start
+      - protein_end
+      - hgvs_protein_nomenclature
+      - hgvs_coding_nomenclature
     slot_usage:
       subject:
-        range: variant
+        range: Variant
         description: >-
           subject should be the variant identifier
       object:
-        range: transcript
+        range: Transcript
         description: >-
           object should be the transcript identifier
-      amino acid reference:
+      amino_acid_reference:
         description: >-
           Amino acid sequence encoded by codon(s) in reference genome sequence
           altered by the variant
-      amino acid variant:
+      amino_acid_variant:
         description: >-
           Amino acid sequence encoded by codon(s) in variant sequence
-      codon reference:
+      codon_reference:
         description: >-
           Reference genome sequence of codon(s) altered by the variant.  Bases
           affected by the variant are given in upper case, bases flanking the
           variation are given in lower case
-      codon variant:
+      codon_variant:
         description: >-
           Sequence of codon(s) in variant sequence altered by the variant.
           Bases affected by the variant are given in upper case, bases flanking
           the variation are given in lower case
-      cdna start:
+      cdna_start:
         description: Start position of variant in cDNA coordinates
-      cnda end:
+      cnda_end:
         description: End position of variant in cDNA coordinates
-      cds start:
+      cds_start:
         description: Start position of variant in CDS coordinates
-      cns end:
+      cds_end:
         description: End position of variant in CDS coordinates
-      protein start:
+      protein_start:
         description: Start position of variant in amino acid sequence
-      protein end:
+      protein_end:
         description: End position of variant in amino acid sequence
-      hgvs protein nomenclature:
+      hgvs_protein_nomenclature:
         description: HGVS protein sequence (HGVSp) name
-      hgvs coding nomenclature:
+      hgvs_coding_nomenclature:
         description: HGVS coding sequence (HGVSc) name
 
 
 slots:
 
-  vep impact:
+  vep_impact:
     description: VEP predicted impact of variation on molecule
-    domain: variant gene consequence
+    domain: VariantGeneConsequence
 
-  polyphen score:
+  polyphen_score:
     description: PolyPhen-2 score between 0 and 1
-    domain: variant gene consequence
+    domain: VariantGeneConsequence
     range: float
 
-  polyphen prediction:
+  polyphen_prediction:
     description: PolyPhen-2 prediction
-    domain: variant gene consequence
+    domain: VariantGeneConsequence
 
-  sift score:
+  sift_score:
     description: SIFT score between 0 and 1
-    domain: variant gene consequence
+    domain: VariantGeneConsequence
     range: float
 
-  sift prediction:
+  sift_prediction:
     description: SIFT prediction
-    domain: variant gene consequence
+    domain: VariantGeneConsequence
 
-
-  amino acid reference:
+  amino_acid_reference:
     description: reference genome amino acid sequence at variant position
-    domain: variant transcript consequence
-    range: biological sequence
+    domain: VariantTranscriptConsequence
+    range: biological_sequence
 
-  amino acid variant:
+  amino_acid_variant:
     description: variant amino acid sequence at variant position
-    domain: variant transcript consequence
-    range: biological sequence
+    domain: VariantTranscriptConsequence
+    range: biological_sequence
 
-  codon reference:
+  codon_reference:
     description: >-
       reference sequence of codon(s) affected by variation - bases
       outside of the variant region are in lower case, those within are in
       upper case (e.g. cTa)
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
 
-  codon variant:
+  codon_variant:
     description: >-
       variant sequence of codon(s) affected by variation - bases
       outside of the variant region are in lower case, those within are in
       upper case (e.g. cAa)
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
 
-  cdna start:
+  cdna_start:
     description: start position of variation in cDNA coordinates
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
     range: integer
 
-  cdna end:
+  cdna_end:
     description: end position of variation in cDNA coordinates
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
     range: integer
 
-  cds start:
+  cds_start:
     description: start position of variation in CDS coordinates
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
     range: integer
 
-  cds end:
+  cds_end:
     description: end position of variation in CDS coordinates
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
     range: integer
 
-  protein start:
+  protein_start:
     description: start position of variation in protein amino acid coordinates
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
     range: integer
 
-  protein end:
+  protein_end:
     description: end position of variation in protein amino acid coordinates
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
     range: integer
 
-  hgvs protein nomenclature:
+  hgvs_protein_nomenclature:
     description: HGVSp nomenclature for variation in protein
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
 
-  hgvs coding nomenclature:
+  hgvs_coding_nomenclature:
     description: HGVSc nomenclature for variation in coding sequence
-    domain: variant transcript consequence
+    domain: VariantTranscriptConsequence
 
-  vep consequence:
+  vep_consequence:
+    description: VEP consequence
+    range: string

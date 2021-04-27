@@ -1,5 +1,5 @@
 # Auto generated from variation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation
@@ -21,7 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import AlleleId, BiologicalSequence, GeneId, TranscriptId
+from . core import BiologicalSequence, GeneId, TranscriptId
 from . reference import ReferenceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
@@ -58,7 +58,7 @@ class Variant(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant"
+    class_name: ClassVar[str] = "Variant"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant")
 
     id: Union[str, VariantId] = None
@@ -71,9 +71,9 @@ class Variant(YAMLRoot):
     release: Optional[str] = None
     data_provider: Optional[Union[str, List[str]]] = empty_list()
     computed_gene: Optional[Union[str, GeneId]] = None
-    is_variant_of_transcript: Optional[Union[str, TranscriptId]] = None
-    is_variant_of_allele: Optional[Union[str, AlleleId]] = None
-    synonyms: Optional[str] = None
+    variant_of_transcript: Optional[Union[str, TranscriptId]] = None
+    variant_of_allele: Optional[Union[dict, "Allele"]] = None
+    synonyms: Optional[Union[str, List[str]]] = empty_list()
     type: Optional[Union[str, URIorCURIE]] = None
     references: Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]] = empty_list()
     note: Optional[str] = None
@@ -116,14 +116,17 @@ class Variant(YAMLRoot):
         if self.computed_gene is not None and not isinstance(self.computed_gene, GeneId):
             self.computed_gene = GeneId(self.computed_gene)
 
-        if self.is_variant_of_transcript is not None and not isinstance(self.is_variant_of_transcript, TranscriptId):
-            self.is_variant_of_transcript = TranscriptId(self.is_variant_of_transcript)
+        if self.variant_of_transcript is not None and not isinstance(self.variant_of_transcript, TranscriptId):
+            self.variant_of_transcript = TranscriptId(self.variant_of_transcript)
 
-        if self.is_variant_of_allele is not None and not isinstance(self.is_variant_of_allele, AlleleId):
-            self.is_variant_of_allele = AlleleId(self.is_variant_of_allele)
+        if self.variant_of_allele is not None and not isinstance(self.variant_of_allele, Allele):
+            self.variant_of_allele = Allele()
 
-        if self.synonyms is not None and not isinstance(self.synonyms, str):
-            self.synonyms = str(self.synonyms)
+        if self.synonyms is None:
+            self.synonyms = []
+        if not isinstance(self.synonyms, list):
+            self.synonyms = [self.synonyms]
+        self.synonyms = [v if isinstance(v, str) else str(v) for v in self.synonyms]
 
         if self.type is not None and not isinstance(self.type, URIorCURIE):
             self.type = URIorCURIE(self.type)
@@ -149,6 +152,15 @@ class Variant(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
+class Allele(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Allele")
+    class_class_curie: ClassVar[str] = None
+    class_name: ClassVar[str] = "Allele"
+    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Allele")
+
+
 # Enumerations
 
 
@@ -159,32 +171,29 @@ class slots:
 slots.note = Slot(uri=DEFAULT_.note, name="note", curie=DEFAULT_.curie('note'),
                    model_uri=DEFAULT_.note, domain=None, range=Optional[str])
 
-slots.date_produced = Slot(uri=DEFAULT_.date_produced, name="date produced", curie=DEFAULT_.curie('date_produced'),
-                   model_uri=DEFAULT_.date_produced, domain=Variant, range=Optional[Union[str, XSDDate]])
-
-slots.hgvs_nomenclature = Slot(uri=DEFAULT_.hgvs_nomenclature, name="hgvs nomenclature", curie=DEFAULT_.curie('hgvs_nomenclature'),
+slots.hgvs_nomenclature = Slot(uri=DEFAULT_.hgvs_nomenclature, name="hgvs_nomenclature", curie=DEFAULT_.curie('hgvs_nomenclature'),
                    model_uri=DEFAULT_.hgvs_nomenclature, domain=Variant, range=Optional[str])
 
-slots.genomic_reference_sequence = Slot(uri=DEFAULT_.genomic_reference_sequence, name="genomic reference sequence", curie=DEFAULT_.curie('genomic_reference_sequence'),
+slots.genomic_reference_sequence = Slot(uri=DEFAULT_.genomic_reference_sequence, name="genomic_reference_sequence", curie=DEFAULT_.curie('genomic_reference_sequence'),
                    model_uri=DEFAULT_.genomic_reference_sequence, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
 
-slots.genomic_variant_sequence = Slot(uri=DEFAULT_.genomic_variant_sequence, name="genomic variant sequence", curie=DEFAULT_.curie('genomic_variant_sequence'),
+slots.genomic_variant_sequence = Slot(uri=DEFAULT_.genomic_variant_sequence, name="genomic_variant_sequence", curie=DEFAULT_.curie('genomic_variant_sequence'),
                    model_uri=DEFAULT_.genomic_variant_sequence, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
 
-slots.padding_left = Slot(uri=DEFAULT_.padding_left, name="padding left", curie=DEFAULT_.curie('padding_left'),
+slots.padding_left = Slot(uri=DEFAULT_.padding_left, name="padding_left", curie=DEFAULT_.curie('padding_left'),
                    model_uri=DEFAULT_.padding_left, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
 
-slots.padding_right = Slot(uri=DEFAULT_.padding_right, name="padding right", curie=DEFAULT_.curie('padding_right'),
+slots.padding_right = Slot(uri=DEFAULT_.padding_right, name="padding_right", curie=DEFAULT_.curie('padding_right'),
                    model_uri=DEFAULT_.padding_right, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
 
-slots.protein_sequence = Slot(uri=DEFAULT_.protein_sequence, name="protein sequence", curie=DEFAULT_.curie('protein_sequence'),
+slots.protein_sequence = Slot(uri=DEFAULT_.protein_sequence, name="protein_sequence", curie=DEFAULT_.curie('protein_sequence'),
                    model_uri=DEFAULT_.protein_sequence, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
 
-slots.computed_gene = Slot(uri=DEFAULT_.computed_gene, name="computed gene", curie=DEFAULT_.curie('computed_gene'),
+slots.computed_gene = Slot(uri=DEFAULT_.computed_gene, name="computed_gene", curie=DEFAULT_.curie('computed_gene'),
                    model_uri=DEFAULT_.computed_gene, domain=Variant, range=Optional[Union[str, GeneId]])
 
-slots.is_variant_of_transcript = Slot(uri=DEFAULT_.is_variant_of_transcript, name="is variant of transcript", curie=DEFAULT_.curie('is_variant_of_transcript'),
-                   model_uri=DEFAULT_.is_variant_of_transcript, domain=Variant, range=Optional[Union[str, TranscriptId]])
+slots.variant_of_transcript = Slot(uri=DEFAULT_.variant_of_transcript, name="variant_of_transcript", curie=DEFAULT_.curie('variant_of_transcript'),
+                   model_uri=DEFAULT_.variant_of_transcript, domain=Variant, range=Optional[Union[str, TranscriptId]])
 
-slots.is_variant_of_allele = Slot(uri=DEFAULT_.is_variant_of_allele, name="is variant of allele", curie=DEFAULT_.curie('is_variant_of_allele'),
-                   model_uri=DEFAULT_.is_variant_of_allele, domain=Variant, range=Optional[Union[str, AlleleId]])
+slots.variant_of_allele = Slot(uri=DEFAULT_.variant_of_allele, name="variant_of_allele", curie=DEFAULT_.curie('variant_of_allele'),
+                   model_uri=DEFAULT_.variant_of_allele, domain=Variant, range=Optional[Union[dict, "Allele"]])

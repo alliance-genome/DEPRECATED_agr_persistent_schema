@@ -1,5 +1,5 @@
 # Auto generated from reference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: reference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference
@@ -65,7 +65,7 @@ class Reference(InformationContentEntity):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "reference"
+    class_name: ClassVar[str] = "Reference"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference")
 
     id: Union[str, ReferenceId] = None
@@ -75,14 +75,14 @@ class Reference(InformationContentEntity):
     year_published: Optional[str] = None
     month_published: Optional[str] = None
     day_published: Optional[str] = None
-    date_arrived_in_PubMed: Optional[Union[str, XSDDate]] = None
-    date_last_modified_in_PubMed: Optional[Union[str, XSDDate]] = None
+    date_arrived_in_pubmed: Optional[Union[str, XSDDate]] = None
+    date_last_modified_in_pubmed: Optional[Union[str, XSDDate]] = None
     date_last_modified: Optional[Union[str, XSDDate]] = None
     volume: Optional[str] = None
     pages: Optional[Union[str, List[str]]] = empty_list()
     abstract: Optional[str] = None
     citation: Optional[str] = None
-    PubMed_type: Optional[str] = None
+    pubmed_type: Optional[str] = None
     issue_name: Optional[str] = None
     issue_date: Optional[Union[str, XSDDate]] = None
     mod_reference_types: Optional[Union[str, List[str]]] = empty_list()
@@ -118,11 +118,11 @@ class Reference(InformationContentEntity):
         if self.day_published is not None and not isinstance(self.day_published, str):
             self.day_published = str(self.day_published)
 
-        if self.date_arrived_in_PubMed is not None and not isinstance(self.date_arrived_in_PubMed, XSDDate):
-            self.date_arrived_in_PubMed = XSDDate(self.date_arrived_in_PubMed)
+        if self.date_arrived_in_pubmed is not None and not isinstance(self.date_arrived_in_pubmed, XSDDate):
+            self.date_arrived_in_pubmed = XSDDate(self.date_arrived_in_pubmed)
 
-        if self.date_last_modified_in_PubMed is not None and not isinstance(self.date_last_modified_in_PubMed, XSDDate):
-            self.date_last_modified_in_PubMed = XSDDate(self.date_last_modified_in_PubMed)
+        if self.date_last_modified_in_pubmed is not None and not isinstance(self.date_last_modified_in_pubmed, XSDDate):
+            self.date_last_modified_in_pubmed = XSDDate(self.date_last_modified_in_pubmed)
 
         if self.date_last_modified is not None and not isinstance(self.date_last_modified, XSDDate):
             self.date_last_modified = XSDDate(self.date_last_modified)
@@ -142,8 +142,8 @@ class Reference(InformationContentEntity):
         if self.citation is not None and not isinstance(self.citation, str):
             self.citation = str(self.citation)
 
-        if self.PubMed_type is not None and not isinstance(self.PubMed_type, str):
-            self.PubMed_type = str(self.PubMed_type)
+        if self.pubmed_type is not None and not isinstance(self.pubmed_type, str):
+            self.pubmed_type = str(self.pubmed_type)
 
         if self.issue_name is not None and not isinstance(self.issue_name, str):
             self.issue_name = str(self.issue_name)
@@ -207,46 +207,46 @@ class TagSet(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.reference_id = Slot(uri=DEFAULT_.reference_id, name="reference id", curie=DEFAULT_.curie('reference_id'),
+slots.reference_id = Slot(uri=DEFAULT_.reference_id, name="reference_id", curie=DEFAULT_.curie('reference_id'),
                    model_uri=DEFAULT_.reference_id, domain=Reference, range=Optional[str])
 
 slots.topics = Slot(uri=DEFAULT_.topics, name="topics", curie=DEFAULT_.curie('topics'),
                    model_uri=DEFAULT_.topics, domain=None, range=Optional[Union[str, URIorCURIE]])
 
-slots.PubMed_type = Slot(uri=DEFAULT_.PubMed_type, name="PubMed type", curie=DEFAULT_.curie('PubMed_type'),
-                   model_uri=DEFAULT_.PubMed_type, domain=InformationContentEntity, range=Optional[str])
+slots.pubmed_type = Slot(uri=DEFAULT_.pubmed_type, name="pubmed_type", curie=DEFAULT_.curie('pubmed_type'),
+                   model_uri=DEFAULT_.pubmed_type, domain=InformationContentEntity, range=Optional[str])
 
-slots.date_published = Slot(uri=DEFAULT_.date_published, name="date published", curie=DEFAULT_.curie('date_published'),
+slots.date_published = Slot(uri=DEFAULT_.date_published, name="date_published", curie=DEFAULT_.curie('date_published'),
                    model_uri=DEFAULT_.date_published, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
-slots.date_last_modified_in_PubMed = Slot(uri=DEFAULT_.date_last_modified_in_PubMed, name="date last modified in PubMed", curie=DEFAULT_.curie('date_last_modified_in_PubMed'),
-                   model_uri=DEFAULT_.date_last_modified_in_PubMed, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
+slots.date_last_modified_in_pubmed = Slot(uri=DEFAULT_.date_last_modified_in_pubmed, name="date_last_modified_in_pubmed", curie=DEFAULT_.curie('date_last_modified_in_pubmed'),
+                   model_uri=DEFAULT_.date_last_modified_in_pubmed, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
-slots.date_last_modified = Slot(uri=DEFAULT_.date_last_modified, name="date last modified", curie=DEFAULT_.curie('date_last_modified'),
+slots.date_last_modified = Slot(uri=DEFAULT_.date_last_modified, name="date_last_modified", curie=DEFAULT_.curie('date_last_modified'),
                    model_uri=DEFAULT_.date_last_modified, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.year_published = Slot(uri=DEFAULT_.year_published, name="year published", curie=DEFAULT_.curie('year_published'),
+slots.year_published = Slot(uri=DEFAULT_.year_published, name="year_published", curie=DEFAULT_.curie('year_published'),
                    model_uri=DEFAULT_.year_published, domain=InformationContentEntity, range=Optional[str])
 
-slots.month_published = Slot(uri=DEFAULT_.month_published, name="month published", curie=DEFAULT_.curie('month_published'),
+slots.month_published = Slot(uri=DEFAULT_.month_published, name="month_published", curie=DEFAULT_.curie('month_published'),
                    model_uri=DEFAULT_.month_published, domain=InformationContentEntity, range=Optional[str])
 
-slots.day_published = Slot(uri=DEFAULT_.day_published, name="day published", curie=DEFAULT_.curie('day_published'),
+slots.day_published = Slot(uri=DEFAULT_.day_published, name="day_published", curie=DEFAULT_.curie('day_published'),
                    model_uri=DEFAULT_.day_published, domain=InformationContentEntity, range=Optional[str])
 
-slots.date_arrived_in_PubMed = Slot(uri=DEFAULT_.date_arrived_in_PubMed, name="date arrived in PubMed", curie=DEFAULT_.curie('date_arrived_in_PubMed'),
-                   model_uri=DEFAULT_.date_arrived_in_PubMed, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
+slots.date_arrived_in_pubmed = Slot(uri=DEFAULT_.date_arrived_in_pubmed, name="date_arrived_in_pubmed", curie=DEFAULT_.curie('date_arrived_in_pubmed'),
+                   model_uri=DEFAULT_.date_arrived_in_pubmed, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
-slots.mod_reference_types = Slot(uri=DEFAULT_.mod_reference_types, name="mod reference types", curie=DEFAULT_.curie('mod_reference_types'),
+slots.mod_reference_types = Slot(uri=DEFAULT_.mod_reference_types, name="mod_reference_types", curie=DEFAULT_.curie('mod_reference_types'),
                    model_uri=DEFAULT_.mod_reference_types, domain=None, range=Optional[Union[str, List[str]]])
 
 slots.tags = Slot(uri=DEFAULT_.tags, name="tags", curie=DEFAULT_.curie('tags'),
                    model_uri=DEFAULT_.tags, domain=None, range=Optional[Union[Union[str, "TagSet"], List[Union[str, "TagSet"]]]])
 
-slots.issue_date = Slot(uri=DEFAULT_.issue_date, name="issue date", curie=DEFAULT_.curie('issue_date'),
+slots.issue_date = Slot(uri=DEFAULT_.issue_date, name="issue_date", curie=DEFAULT_.curie('issue_date'),
                    model_uri=DEFAULT_.issue_date, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
-slots.last_modified = Slot(uri=DEFAULT_.last_modified, name="last modified", curie=DEFAULT_.curie('last_modified'),
+slots.last_modified = Slot(uri=DEFAULT_.last_modified, name="last_modified", curie=DEFAULT_.curie('last_modified'),
                    model_uri=DEFAULT_.last_modified, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
 slots.volume = Slot(uri=DEFAULT_.volume, name="volume", curie=DEFAULT_.curie('volume'),
@@ -261,17 +261,17 @@ slots.abstract = Slot(uri=DEFAULT_.abstract, name="abstract", curie=DEFAULT_.cur
 slots.citation = Slot(uri=DEFAULT_.citation, name="citation", curie=DEFAULT_.curie('citation'),
                    model_uri=DEFAULT_.citation, domain=Reference, range=Optional[str])
 
-slots.issue_name = Slot(uri=DEFAULT_.issue_name, name="issue name", curie=DEFAULT_.curie('issue_name'),
+slots.issue_name = Slot(uri=DEFAULT_.issue_name, name="issue_name", curie=DEFAULT_.curie('issue_name'),
                    model_uri=DEFAULT_.issue_name, domain=Reference, range=Optional[str])
 
-slots.alliance_category = Slot(uri=DEFAULT_.alliance_category, name="alliance category", curie=DEFAULT_.curie('alliance_category'),
+slots.alliance_category = Slot(uri=DEFAULT_.alliance_category, name="alliance_category", curie=DEFAULT_.curie('alliance_category'),
                    model_uri=DEFAULT_.alliance_category, domain=Reference, range=Optional[str])
 
 slots.keywords = Slot(uri=DEFAULT_.keywords, name="keywords", curie=DEFAULT_.curie('keywords'),
                    model_uri=DEFAULT_.keywords, domain=InformationContentEntity, range=Optional[Union[str, List[str]]])
 
-slots.from_resource = Slot(uri=DEFAULT_.from_resource, name="from resource", curie=DEFAULT_.curie('from_resource'),
+slots.from_resource = Slot(uri=DEFAULT_.from_resource, name="from_resource", curie=DEFAULT_.curie('from_resource'),
                    model_uri=DEFAULT_.from_resource, domain=Reference, range=Optional[Union[str, ResourceId]])
 
-slots.reference_id = Slot(uri=DEFAULT_.id, name="reference_id", curie=DEFAULT_.curie('id'),
-                   model_uri=DEFAULT_.reference_id, domain=Reference, range=Union[str, ReferenceId])
+slots.Reference_id = Slot(uri=DEFAULT_.id, name="Reference_id", curie=DEFAULT_.curie('id'),
+                   model_uri=DEFAULT_.Reference_id, domain=Reference, range=Union[str, ReferenceId])

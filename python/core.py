@@ -1,5 +1,5 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: Alliance-Schema-Prototype-Core
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
@@ -58,7 +58,7 @@ DEFAULT_ = ALLIANCE
 class BiologicalSequence(String):
     type_class_uri = XSD.string
     type_class_curie = "xsd:string"
-    type_name = "biological sequence"
+    type_name = "biological_sequence"
     type_model_uri = ALLIANCE.BiologicalSequence
 
 
@@ -71,16 +71,12 @@ class TranscriptId(URIorCURIE):
     pass
 
 
-class AlleleId(URIorCURIE):
-    pass
-
-
 class GenomicEntity(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.GenomicEntity
     class_class_curie: ClassVar[str] = "alliance:GenomicEntity"
-    class_name: ClassVar[str] = "genomic entity"
+    class_name: ClassVar[str] = "GenomicEntity"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.GenomicEntity
 
 
@@ -90,7 +86,7 @@ class Gene(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Gene
     class_class_curie: ClassVar[str] = "alliance:Gene"
-    class_name: ClassVar[str] = "gene"
+    class_name: ClassVar[str] = "Gene"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Gene
 
     id: Union[str, GeneId] = None
@@ -110,7 +106,7 @@ class Transcript(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Transcript
     class_class_curie: ClassVar[str] = "alliance:Transcript"
-    class_name: ClassVar[str] = "transcript"
+    class_name: ClassVar[str] = "Transcript"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Transcript
 
     id: Union[str, TranscriptId] = None
@@ -124,32 +120,12 @@ class Transcript(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-@dataclass
-class Allele(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = ALLIANCE.Allele
-    class_class_curie: ClassVar[str] = "alliance:Allele"
-    class_name: ClassVar[str] = "allele"
-    class_model_uri: ClassVar[URIRef] = ALLIANCE.Allele
-
-    id: Union[str, AlleleId] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, AlleleId):
-            self.id = AlleleId(self.id)
-
-        super().__post_init__(**kwargs)
-
-
 class Species(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Species
     class_class_curie: ClassVar[str] = "alliance:Species"
-    class_name: ClassVar[str] = "species"
+    class_name: ClassVar[str] = "Species"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Species
 
 
@@ -169,10 +145,10 @@ slots.date_produced = Slot(uri=ALLIANCE.date_produced, name="date_produced", cur
 slots.release = Slot(uri=ALLIANCE.release, name="release", curie=ALLIANCE.curie('release'),
                    model_uri=ALLIANCE.release, domain=None, range=Optional[str])
 
-slots.data_provider = Slot(uri=ALLIANCE.data_provider, name="data provider", curie=ALLIANCE.curie('data_provider'),
+slots.data_provider = Slot(uri=ALLIANCE.data_provider, name="data_provider", curie=ALLIANCE.curie('data_provider'),
                    model_uri=ALLIANCE.data_provider, domain=None, range=Optional[Union[str, List[str]]])
 
-slots.association_slot = Slot(uri=ALLIANCE.association_slot, name="association slot", curie=ALLIANCE.curie('association_slot'),
+slots.association_slot = Slot(uri=ALLIANCE.association_slot, name="association_slot", curie=ALLIANCE.curie('association_slot'),
                    model_uri=ALLIANCE.association_slot, domain=None, range=Optional[str])
 
 slots.subject = Slot(uri=ALLIANCE.subject, name="subject", curie=ALLIANCE.curie('subject'),
@@ -190,26 +166,23 @@ slots.description = Slot(uri=ALLIANCE.description, name="description", curie=ALL
 slots.name = Slot(uri=ALLIANCE.name, name="name", curie=ALLIANCE.curie('name'),
                    model_uri=ALLIANCE.name, domain=None, range=Optional[str])
 
-slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross references", curie=ALLIANCE.curie('cross_references'),
+slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross_references", curie=ALLIANCE.curie('cross_references'),
                    model_uri=ALLIANCE.cross_references, domain=None, range=Optional[Union[str, List[str]]])
 
-slots.symbol = Slot(uri=ALLIANCE.symbol, name="symbol", curie=ALLIANCE.curie('symbol'),
-                   model_uri=ALLIANCE.symbol, domain=None, range=Optional[str])
+slots.symbols = Slot(uri=ALLIANCE.symbols, name="symbols", curie=ALLIANCE.curie('symbols'),
+                   model_uri=ALLIANCE.symbols, domain=None, range=Optional[str])
 
-slots.from_species = Slot(uri=ALLIANCE.from_species, name="from species", curie=ALLIANCE.curie('from_species'),
+slots.from_species = Slot(uri=ALLIANCE.from_species, name="from_species", curie=ALLIANCE.curie('from_species'),
                    model_uri=ALLIANCE.from_species, domain=None, range=Optional[Union[dict, Species]])
 
-slots.synonym = Slot(uri=ALLIANCE.synonym, name="synonym", curie=ALLIANCE.curie('synonym'),
-                   model_uri=ALLIANCE.synonym, domain=None, range=Optional[Union[str, List[str]]])
+slots.synonyms = Slot(uri=ALLIANCE.synonyms, name="synonyms", curie=ALLIANCE.curie('synonyms'),
+                   model_uri=ALLIANCE.synonyms, domain=None, range=Optional[Union[str, List[str]]])
 
 slots.negated = Slot(uri=ALLIANCE.negated, name="negated", curie=ALLIANCE.curie('negated'),
                    model_uri=ALLIANCE.negated, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.qualifiers = Slot(uri=ALLIANCE.qualifiers, name="qualifiers", curie=ALLIANCE.curie('qualifiers'),
                    model_uri=ALLIANCE.qualifiers, domain=None, range=Optional[str])
-
-slots.synonyms = Slot(uri=ALLIANCE.synonyms, name="synonyms", curie=ALLIANCE.curie('synonyms'),
-                   model_uri=ALLIANCE.synonyms, domain=None, range=Optional[str])
 
 slots.type = Slot(uri=ALLIANCE.type, name="type", curie=ALLIANCE.curie('type'),
                    model_uri=ALLIANCE.type, domain=None, range=Optional[Union[str, URIorCURIE]])

@@ -18,12 +18,12 @@ prefixes:
 
 classes:
 
-  chromosome:
+  Chromosome:
     description: The ID of the landmark used to establish the coordinate system for the current feature.
     slots:
       - id
 
-  assembly:
+  Assembly:
     slots:
       - id
 
@@ -36,22 +36,22 @@ slots:
     description: The end of the feature in positive 1-based integer coordinates
 
 
-  gene id:
+  gene_id:
     required: true
     range: string
 
-  chromosome id:
+  chromosome_id:
     required: true
     range: string
 
-  transcript id:
+  transcript_id:
     required: true
     range: string
 
-  assembly id:
+  assembly_id:
     required: true
     range: string
 
-  allele id:
+  allele_id:
     required: true
     range: string

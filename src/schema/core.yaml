@@ -38,7 +38,7 @@ prefixes:
 
 types:
 
-  biological sequence:
+  biological_sequence:
     typeof: string
 
 ## ------------
@@ -47,11 +47,9 @@ types:
 
 classes:
 
+  GenomicEntity:
 
-
-  genomic entity:
-
-  gene:
+  Gene:
     description: >-
     slots:
       - id
@@ -65,7 +63,7 @@ classes:
       - WB
       - ZFIN
 
-  transcript:
+  Transcript:
     description: >-
     slots:
       - id
@@ -78,12 +76,7 @@ classes:
       - SGD
       - ZFIN
 
-
-  allele:
-    slots:
-      - id
-
-  species:
+  Species:
 
 
 ## ------------
@@ -108,12 +101,12 @@ slots:
     description: MOD release ID
     range: string
 
-  data provider:
+  data_provider:
     description: MOD that provided data
     multivalued: true
     range: string
 
-  association slot:
+  association_slot:
     abstract: true
     aliases: ['edge property', 'statement property']
     description: >-
@@ -122,7 +115,7 @@ slots:
       - biolink:association_slot
 
   subject:
-    is_a: association slot
+    is_a: association_slot
     description: >-
       connects an association to the subject of the association.
       For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
@@ -157,22 +150,24 @@ slots:
     description: >-
       a human-readable name for an entity
 
-  cross references:
-    singular_name: has cross reference
+  cross_references:
+    singular_name: cross_reference
     description: >-
     multivalued: true
 
-  symbol:
+  symbols:
+    singular_name: symbol
     description: >-
       Symbol for a particular thing
     exact_mappings:
       - biolink:symbol
 
-  from species:
+  from_species:
     description: holds between a genomic entity and a species
-    range: species
+    range: Species
 
-  synonym:
+  synonyms:
+    singular_name: synonym
     description: holds between a named thing and a synonym
     multivalued: true
 
@@ -185,13 +180,12 @@ slots:
     description: >-
       This is the MeSH qualifier term that is optionally added to the descriptor term.
 
-  synonyms:
-
   type:
     range: uriorcurie
 
   references:
+    singular_name: reference
     description: holds between an object and a reference
     multivalued: true
-    domain: resource
-    range: reference
+    domain: Resource
+    range: Reference

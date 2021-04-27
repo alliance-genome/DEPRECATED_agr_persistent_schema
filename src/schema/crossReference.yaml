@@ -14,15 +14,15 @@ prefixes:
 
 classes:
 
-  cross reference:
+  CrossReference:
     slots:
-      - cross reference id
-      - page areas
-      - display name
+      - cross_reference_id
+      - page_areas
+      - display_name
       - prefix
     defining_slots:
-      - cross reference id
-      - page areas
+      - cross_reference_id
+      - page_areas
 
 slots:
 
@@ -33,20 +33,18 @@ slots:
       Denormalization to help with classifying types of crossReferences,
       distinguishing DOIs from PMC ids, etc.
 
-  page areas:
+  page_areas:
     required: true
     multivalued: true
     range: string
 
-  display name:
+  display_name:
     required: true
     multivalued: false
     range: string
 
-  cross reference id:
+  cross_reference_id:
     required: true
     multivalued: false
     range: string
     identifier: true
-
-

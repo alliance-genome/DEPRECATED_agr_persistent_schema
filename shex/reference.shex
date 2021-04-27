@@ -34,12 +34,6 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
-<http://alliancegenome.orgAllele> CLOSED {
-    (  $<http://alliancegenome.orgAllele_tes> rdf:type . * ;
-       rdf:type [ <http://alliancegenome.orgAllele> ]
-    )
-}
-
 <http://alliancegenome.orgAuthorReference> CLOSED {
     (  $<http://alliancegenome.orgAuthorReference_tes> (  <http://alliancegenome.orgcorresponding_author>
           @<http://alliancegenome.orgInformationContentEntity> ? ;
@@ -84,14 +78,14 @@ linkml:Nodeidentifier NONLITERAL
           <year_published> @linkml:String ? ;
           <month_published> @linkml:String ? ;
           <day_published> @linkml:String ? ;
-          <date_arrived_in_PubMed> @linkml:Date ? ;
-          <date_last_modified_in_PubMed> @linkml:Date ? ;
+          <date_arrived_in_pubmed> @linkml:Date ? ;
+          <date_last_modified_in_pubmed> @linkml:Date ? ;
           <date_last_modified> @linkml:Date ? ;
           <volume> @linkml:String ? ;
           <pages> @linkml:String * ;
           <abstract> @linkml:String ? ;
           <citation> @linkml:String ? ;
-          <PubMed_type> @linkml:String ? ;
+          <pubmed_type> @linkml:String ? ;
           <issue_name> @linkml:String ? ;
           <issue_date> @linkml:Date ? ;
           <mod_reference_types> @linkml:String * ;
@@ -120,7 +114,7 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
           <http://alliancegenome.orgvolumes> @linkml:String ? ;
           <http://alliancegenome.orgsummary> @linkml:String ? ;
-          <http://alliancegenome.orgsynonyms> @linkml:String ? ;
+          <http://alliancegenome.orgsynonyms> @linkml:String * ;
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/editors>
           @<http://alliancegenome.orgAuthorReference> *

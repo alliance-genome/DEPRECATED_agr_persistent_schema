@@ -20,30 +20,32 @@ prefixes:
 
 classes:
 
-  variant:
+  Variant:
     description: >-
       Variant class
     slots:
       - id
-      - hgvs nomenclature
-      - genomic reference sequence
-      - genomic variant sequence
-      - padding left
-      - padding right
-      - date produced
+      - hgvs_nomenclature
+      - genomic_reference_sequence
+      - genomic_variant_sequence
+      - padding_left
+      - padding_right
+      - date_produced
       - release
-      - data provider
-      - computed gene
-      - is variant of transcript
-      - is variant of allele
+      - data_provider
+      - computed_gene
+      - variant_of_transcript
+      - variant_of_allele
       - synonyms
       - type
       - references
       - note
-      - protein sequence
-      - cross references
+      - protein_sequence
+      - cross_references
     exact_mappings:
       - SO:0001059
+
+  Allele: 
 
 # Slots
 
@@ -53,52 +55,46 @@ slots:
     range: string
     multivalued: false
 
-  date produced:
-    description: >-
-      Date on which an entity was produced.
-    domain: variant
-    range: date
-
-  hgvs nomenclature:
+  hgvs_nomenclature:
     description: HGVSg nomenclature for variant
-    domain: variant
+    domain: Variant
 
-  genomic reference sequence:
+  genomic_reference_sequence:
     description: reference genome sequence at variation position
-    domain: variant
-    range: biological sequence
+    domain: Variant
+    range: biological_sequence
 
-  genomic variant sequence:
+  genomic_variant_sequence:
     description: variant genome sequence at variation position
-    domain: variant
-    range: biological sequence
+    domain: Variant
+    range: biological_sequence
 
-  padding left:
+  padding_left:
     description: >-
       flanking sequence upstream of the variation position
       on the sense strand of the reference genome
-    domain: variant
-    range: biological sequence
+    domain: Variant
+    range: biological_sequence
 
-  padding right:
+  padding_right:
     description: >-
       flanking sequence downstream of the variation position
       on the sense strand of the reference genome
-    domain: variant
-    range: biological sequence
+    domain: Variant
+    range: biological_sequence
 
-  protein sequence:
-    domain: variant
-    range: biological sequence
+  protein_sequence:
+    domain: Variant
+    range: biological_sequence
 
-  computed gene:
-    domain: variant
-    range: gene
+  computed_gene:
+    domain: Variant
+    range: Gene
 
-  is variant of transcript:
-    domain: variant
-    range: transcript
+  variant_of_transcript:
+    domain: Variant
+    range: Transcript
 
-  is variant of allele:
-    domain: variant
-    range: allele
+  variant_of_allele:
+    domain: Variant
+    range: Allele

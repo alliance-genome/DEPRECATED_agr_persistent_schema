@@ -1,5 +1,5 @@
 # Auto generated from resource.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: resource
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource
@@ -63,7 +63,7 @@ class Resource(InformationContentEntity):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "resource"
+    class_name: ClassVar[str] = "Resource"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource")
 
     id: Union[str, ResourceId] = None
@@ -76,7 +76,7 @@ class Resource(InformationContentEntity):
     publisher: Optional[Union[str, InformationContentEntityId]] = None
     volumes: Optional[str] = None
     summary: Optional[str] = None
-    synonyms: Optional[str] = None
+    synonyms: Optional[Union[str, List[str]]] = empty_list()
     authors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
     editors: Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]] = empty_list()
 
@@ -113,8 +113,11 @@ class Resource(InformationContentEntity):
         if self.summary is not None and not isinstance(self.summary, str):
             self.summary = str(self.summary)
 
-        if self.synonyms is not None and not isinstance(self.synonyms, str):
-            self.synonyms = str(self.synonyms)
+        if self.synonyms is None:
+            self.synonyms = []
+        if not isinstance(self.synonyms, list):
+            self.synonyms = [self.synonyms]
+        self.synonyms = [v if isinstance(v, str) else str(v) for v in self.synonyms]
 
         if self.authors is None:
             self.authors = []
@@ -141,23 +144,23 @@ class slots:
 slots.resource_id = Slot(uri=DEFAULT_.resource_id, name="resource id", curie=DEFAULT_.curie('resource_id'),
                    model_uri=DEFAULT_.resource_id, domain=Resource, range=Optional[str])
 
-slots.iso_abbreviation = Slot(uri=DEFAULT_.iso_abbreviation, name="iso abbreviation", curie=DEFAULT_.curie('iso_abbreviation'),
+slots.iso_abbreviation = Slot(uri=DEFAULT_.iso_abbreviation, name="iso_abbreviation", curie=DEFAULT_.curie('iso_abbreviation'),
                    model_uri=DEFAULT_.iso_abbreviation, domain=Resource, range=Optional[str])
 
-slots.medline_abbreviation = Slot(uri=DEFAULT_.medline_abbreviation, name="medline abbreviation", curie=DEFAULT_.curie('medline_abbreviation'),
+slots.medline_abbreviation = Slot(uri=DEFAULT_.medline_abbreviation, name="medline_abbreviation", curie=DEFAULT_.curie('medline_abbreviation'),
                    model_uri=DEFAULT_.medline_abbreviation, domain=Resource, range=Optional[str])
 
-slots.print_issn = Slot(uri=DEFAULT_.print_issn, name="print issn", curie=DEFAULT_.curie('print_issn'),
+slots.print_issn = Slot(uri=DEFAULT_.print_issn, name="print_issn", curie=DEFAULT_.curie('print_issn'),
                    model_uri=DEFAULT_.print_issn, domain=Resource, range=Optional[str])
 
-slots.online_issn = Slot(uri=DEFAULT_.online_issn, name="online issn", curie=DEFAULT_.curie('online_issn'),
+slots.online_issn = Slot(uri=DEFAULT_.online_issn, name="online_issn", curie=DEFAULT_.curie('online_issn'),
                    model_uri=DEFAULT_.online_issn, domain=Resource, range=Optional[str])
 
 slots.editors = Slot(uri=DEFAULT_.editors, name="editors", curie=DEFAULT_.curie('editors'),
                    model_uri=DEFAULT_.editors, domain=Resource, range=Optional[Union[Union[dict, AuthorReference], List[Union[dict, AuthorReference]]]])
 
-slots.resource_id = Slot(uri=DEFAULT_.id, name="resource_id", curie=DEFAULT_.curie('id'),
-                   model_uri=DEFAULT_.resource_id, domain=Resource, range=Union[str, ResourceId])
+slots.Resource_id = Slot(uri=DEFAULT_.id, name="Resource_id", curie=DEFAULT_.curie('id'),
+                   model_uri=DEFAULT_.Resource_id, domain=Resource, range=Union[str, ResourceId])
 
-slots.resource_title = Slot(uri=DEFAULT_.title, name="resource_title", curie=DEFAULT_.curie('title'),
-                   model_uri=DEFAULT_.resource_title, domain=Resource, range=Optional[str])
+slots.Resource_title = Slot(uri=DEFAULT_.title, name="Resource_title", curie=DEFAULT_.curie('title'),
+                   model_uri=DEFAULT_.Resource_title, domain=Resource, range=Optional[str])

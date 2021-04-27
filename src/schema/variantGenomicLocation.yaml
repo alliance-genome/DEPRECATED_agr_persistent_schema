@@ -18,38 +18,39 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  variant genomic location:
+
+  VariantGenomicLocation:
     aliases: ['genomic location']
     slots:
       - subject
       - predicate
       - object
-      - has assembly
+      - assembly
       - start
       - end
     slot_usage:
       subject:
-        range: variant
+        range: Variant
         description: >-
           subject should be the variant identifier
       object:
-        range: chromosome
+        range: Chromosome
         description: >-
           object should be the chromosome identifier
     defining_slots:
       - subject
       - predicate
       - object
-      - has assembly
+      - assembly
       - start
       - end
 
 slots:
 
   located on:
-    range: chromosome
+    range: Chromosome
 
-  has assembly:
-    domain: variant genomic location
-    range: assembly
+  assembly:
+    domain: VariantGenomicLocation
+    range: Assembly
     required: true

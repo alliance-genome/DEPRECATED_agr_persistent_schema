@@ -34,9 +34,9 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
-<http://alliancegenome.orgAllele> CLOSED {
-    (  $<http://alliancegenome.orgAllele_tes> rdf:type . * ;
-       rdf:type [ <http://alliancegenome.orgAllele> ]
+<Allele> CLOSED {
+    (  $<Allele_tes> rdf:type . * ;
+       rdf:type [ <Allele> ] ?
     )
 }
 
@@ -86,15 +86,15 @@ linkml:Nodeidentifier NONLITERAL
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/year_published> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/month_published> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/day_published> @linkml:String ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_arrived_in_PubMed> @linkml:Date ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified_in_PubMed> @linkml:Date
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_arrived_in_pubmed> @linkml:Date ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified_in_pubmed> @linkml:Date
           ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/date_last_modified> @linkml:Date ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/volume> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/pages> @linkml:String * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/abstract> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/citation> @linkml:String ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/PubMed_type> @linkml:String ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/pubmed_type> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_name> @linkml:String ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/issue_date> @linkml:Date ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/mod_reference_types> @linkml:String * ;
@@ -125,7 +125,7 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
           <http://alliancegenome.orgvolumes> @linkml:String ? ;
           <http://alliancegenome.orgsummary> @linkml:String ? ;
-          <http://alliancegenome.orgsynonyms> @linkml:String ? ;
+          <http://alliancegenome.orgsynonyms> @linkml:String * ;
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/editors>
           @<http://alliancegenome.orgAuthorReference> *
@@ -152,13 +152,13 @@ linkml:Nodeidentifier NONLITERAL
           <genomic_variant_sequence> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <padding_left> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <padding_right> @<http://alliancegenome.orgBiologicalSequence> ? ;
-          <date_produced> @linkml:Date ? ;
+          <http://alliancegenome.orgdate_produced> @linkml:Date ? ;
           <http://alliancegenome.orgrelease> @linkml:String ? ;
           <http://alliancegenome.orgdata_provider> @linkml:String * ;
           <computed_gene> @<http://alliancegenome.orgGene> ? ;
-          <is_variant_of_transcript> @<http://alliancegenome.orgTranscript> ? ;
-          <is_variant_of_allele> @<http://alliancegenome.orgAllele> ? ;
-          <http://alliancegenome.orgsynonyms> @linkml:String ? ;
+          <variant_of_transcript> @<http://alliancegenome.orgTranscript> ? ;
+          <variant_of_allele> @<Allele> ? ;
+          <http://alliancegenome.orgsynonyms> @linkml:String * ;
           <http://alliancegenome.orgtype> @linkml:Uriorcurie ? ;
           <http://alliancegenome.orgreferences>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> * ;

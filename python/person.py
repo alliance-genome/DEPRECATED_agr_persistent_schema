@@ -1,5 +1,5 @@
 # Auto generated from person.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 10:26
 # Schema: person
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/person
@@ -57,7 +57,7 @@ class Person(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Person
     class_class_curie: ClassVar[str] = "alliance:Person"
-    class_name: ClassVar[str] = "person"
+    class_name: ClassVar[str] = "Person"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Person
 
     person_id: Union[str, PersonPersonId] = None
@@ -96,5 +96,5 @@ slots.orcid = Slot(uri=ALLIANCE.orcid, name="orcid", curie=ALLIANCE.curie('orcid
 slots.person_id = Slot(uri=ALLIANCE.person_id, name="person id", curie=ALLIANCE.curie('person_id'),
                    model_uri=ALLIANCE.person_id, domain=None, range=URIRef)
 
-slots.person_person_id = Slot(uri=ALLIANCE.person_id, name="person_person id", curie=ALLIANCE.curie('person_id'),
-                   model_uri=ALLIANCE.person_person_id, domain=Person, range=Union[str, PersonPersonId])
+slots.Person_person_id = Slot(uri=ALLIANCE.person_id, name="Person_person id", curie=ALLIANCE.curie('person_id'),
+                   model_uri=ALLIANCE.Person_person_id, domain=Person, range=Union[str, PersonPersonId])
