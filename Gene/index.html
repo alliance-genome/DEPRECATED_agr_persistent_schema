@@ -93,7 +93,7 @@
               
                 <h1 id="class-gene">Class: Gene</h1>
 <p>URI: <a href="http://alliancegenome.orgGene">alliance:Gene</a></p>
-<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantGeneConsequence],[Variant],[GenomicEntity],[GeneGenomicLocation],[Variant]-%20computed%20gene%200..1&gt;[Gene&#124;name:string%20%3F;symbol:string%20%3F;gene_synopsis:string%20%3F;gene_synopsis_URL:string%20%3F;type:uriorcurie%20%3F;id(i):uriorcurie;taxon(i):uriorcurie%20%3F;synonyms(i):string%20%3F;secondary_identifiers(i):string%20*;cross_references(i):string%20*],[VariantGeneConsequence]-%20object%201..1&gt;[Gene],[GenomicEntity]^-[Gene]" /></p>
+<p><img alt="img" src="http://yuml.me/diagram/nofunky;dir:TB/class/[VariantGeneConsequence],[Variant],[GenomicEntity],[GeneGenomicLocation],[GeneGenomicLocation]&lt;genomic%20locations(i)%200..*-++[Gene&#124;name:string%20%3F;symbol:string%20%3F;gene_synopsis:string%20%3F;gene_synopsis_URL:string%20%3F;type:uriorcurie%20%3F;id(i):uriorcurie;taxon(i):uriorcurie%20%3F;synonyms(i):string%20%3F;secondary_identifiers(i):string%20*;cross_references(i):string%20*],[Variant]-%20computed%20gene%200..1&gt;[Gene],[VariantGeneConsequence]-%20object%201..1&gt;[Gene],[GenomicEntity]^-[Gene]" /></p>
 <h2 id="identifier-prefixes">Identifier prefixes</h2>
 <ul>
 <li>ENSEMBL</li>
@@ -125,6 +125,10 @@
 <li>range: <a href="../types/String/">String</a></li>
 </ul>
 </li>
+<li><a href="../genomic_locations/">genomic locations</a>  <sub>0..*</sub><ul>
+<li>range: <a href="../GeneGenomicLocation/">GeneGenomicLocation</a></li>
+</ul>
+</li>
 <li><a href="../name/">name</a>  <sub>OPT</sub><ul>
 <li>Description: a human-readable name for an entity</li>
 <li>range: <a href="../types/String/">String</a></li>
@@ -144,10 +148,6 @@
 <ul>
 <li><a href="../cross_references/">cross references</a>  <sub>0..*</sub><ul>
 <li>range: <a href="../types/String/">String</a></li>
-</ul>
-</li>
-<li><a href="../genomic_locations/">genomic locations</a>  <sub>0..*</sub><ul>
-<li>range: <a href="../GeneGenomicLocation/">GeneGenomicLocation</a></li>
 </ul>
 </li>
 <li><a href="../id/">id</a>  <sub>REQ</sub><ul>
