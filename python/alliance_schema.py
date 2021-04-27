@@ -1,5 +1,5 @@
 # Auto generated from alliance_schema.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 10:26
+# Generation date: 2021-04-27 11:07
 # Schema: Alliance-Schema-Prototype
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/alliance_schema

@@ -1,16 +1,24 @@
 id,mappings,description
-Allele,,
+Allele,,Allele class
 Assembly,,
 AuthorReference,,
+CellLine,,Dummy cell line class
 Chromosome,,The ID of the landmark used to establish the coordinate system for the current feature.
+Construct,,Dummy construct class
 CrossReference,,
+DiseaseAssociation,,Dummy disease association class
 Gene,,
 GenomicEntity,,
+Image,,Dummy image class
 InformationContentEntity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
+NoteType,,Describes the relation between a note and an object
 Person,,
+PhenotypeAssociation,,Dummy phenotype association class
 Reference,,
+ReferenceType,,Describes the relation between a reference and an object
 Resource,,
 Species,,
+Strain,,Dummy strain/stock class
 Transcript,,
 Variant,,Variant class
 VariantGeneConsequence,,

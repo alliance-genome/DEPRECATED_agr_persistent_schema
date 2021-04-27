@@ -4,6 +4,7 @@ title: Alliance Schema Prototype Variation
 
 imports:
   - core
+  - allele
   - linkml:types
   - informationContentEntity
 
@@ -39,21 +40,21 @@ classes:
       - synonyms
       - type
       - references
-      - note
+      - notes
       - protein_sequence
       - cross_references
     exact_mappings:
       - SO:0001059
 
-  Allele: 
 
 # Slots
 
 slots:
 
-  note:
+  notes:
+    singular_name: note
     range: string
-    multivalued: false
+    multivalued: true
 
   hgvs_nomenclature:
     description: HGVSg nomenclature for variant
