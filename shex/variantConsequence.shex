@@ -195,12 +195,12 @@ linkml:Nodeidentifier NONLITERAL
     (  $<VariantGeneConsequence_tes> (  <subject>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
           <object> @<http://alliancegenome.orgGene> ;
-          <vep_consequence> @linkml:String ? ;
+          <vep_consequence> @<VepConsequenceLevels> ? ;
           <vep_impact> @linkml:String ? ;
           <polyphen_score> @linkml:Float ? ;
-          <polyphen_prediction> @linkml:String ? ;
+          <polyphen_prediction> @<PolyphenPredictionLevels> ? ;
           <sift_score> @linkml:Float ? ;
-          <sift_prediction> @linkml:String ?
+          <sift_prediction> @<SiftPredictionLevels> ?
        ) ;
        rdf:type [ <VariantGeneConsequence> ] ?
     )
@@ -210,12 +210,12 @@ linkml:Nodeidentifier NONLITERAL
     (  $<VariantTranscriptConsequence_tes> (  <subject>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
           <object> @<http://alliancegenome.orgTranscript> ;
-          <vep_consequence> @linkml:String ? ;
+          <vep_consequence> @<VepConsequenceLevels> ? ;
           <vep_impact> @linkml:String ? ;
           <polyphen_score> @linkml:Float ? ;
-          <polyphen_prediction> @linkml:String ? ;
+          <polyphen_prediction> @<PolyphenPredictionLevels> ? ;
           <sift_score> @linkml:Float ? ;
-          <sift_prediction> @linkml:String ? ;
+          <sift_prediction> @<SiftPredictionLevels> ? ;
           <amino_acid_reference> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <amino_acid_variant> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <codon_reference> @linkml:String ? ;

@@ -116,7 +116,7 @@ slots:
 
   vep_consequence:
     description: VEP consequence
-    range: string
+    range: vep_consequence_levels
 
   polyphen_score:
     description: PolyPhen-2 score between 0 and 1
@@ -124,7 +124,7 @@ slots:
 
   polyphen_prediction:
     description: PolyPhen-2 prediction
-    range: string
+    range: polyphen_prediction_levels
 
   sift_score:
     description: SIFT score between 0 and 1
@@ -132,7 +132,7 @@ slots:
 
   sift_prediction:
     description: SIFT prediction
-    range: string
+    range: sift_prediction_levels
 
   amino_acid_reference:
     description: reference genome amino acid sequence at variant position
@@ -195,3 +195,23 @@ slots:
   hgvs_coding_nomenclature:
     description: HGVSc nomenclature for variation in coding sequence
     domain: VariantTranscriptConsequence
+
+enums:
+
+  vep_consequence_levels:
+    permissible_values:
+      high:
+      moderate:
+      low:
+      modifier:
+
+  sift_prediction_levels:
+    permissible_values:
+      deleterious:
+      tolerated:
+
+  polyphen_prediction_levels:
+    permissible_values:
+      possibly_damaging:
+      probably_damaging:
+      benign:

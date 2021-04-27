@@ -1,5 +1,5 @@
 # Auto generated from variantConsequence.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 10:36
+# Generation date: 2021-04-27 10:55
 # Schema: variantConsequence
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence
@@ -58,12 +58,12 @@ class VariantGeneConsequence(YAMLRoot):
 
     subject: Union[str, VariantId] = None
     object: Union[str, GeneId] = None
-    vep_consequence: Optional[str] = None
+    vep_consequence: Optional[Union[str, "VepConsequenceLevels"]] = None
     vep_impact: Optional[str] = None
     polyphen_score: Optional[float] = None
-    polyphen_prediction: Optional[str] = None
+    polyphen_prediction: Optional[Union[str, "PolyphenPredictionLevels"]] = None
     sift_score: Optional[float] = None
-    sift_prediction: Optional[str] = None
+    sift_prediction: Optional[Union[str, "SiftPredictionLevels"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.subject is None:
@@ -76,8 +76,8 @@ class VariantGeneConsequence(YAMLRoot):
         if not isinstance(self.object, GeneId):
             self.object = GeneId(self.object)
 
-        if self.vep_consequence is not None and not isinstance(self.vep_consequence, str):
-            self.vep_consequence = str(self.vep_consequence)
+        if self.vep_consequence is not None and not isinstance(self.vep_consequence, VepConsequenceLevels):
+            self.vep_consequence = VepConsequenceLevels(self.vep_consequence)
 
         if self.vep_impact is not None and not isinstance(self.vep_impact, str):
             self.vep_impact = str(self.vep_impact)
@@ -85,14 +85,14 @@ class VariantGeneConsequence(YAMLRoot):
         if self.polyphen_score is not None and not isinstance(self.polyphen_score, float):
             self.polyphen_score = float(self.polyphen_score)
 
-        if self.polyphen_prediction is not None and not isinstance(self.polyphen_prediction, str):
-            self.polyphen_prediction = str(self.polyphen_prediction)
+        if self.polyphen_prediction is not None and not isinstance(self.polyphen_prediction, PolyphenPredictionLevels):
+            self.polyphen_prediction = PolyphenPredictionLevels(self.polyphen_prediction)
 
         if self.sift_score is not None and not isinstance(self.sift_score, float):
             self.sift_score = float(self.sift_score)
 
-        if self.sift_prediction is not None and not isinstance(self.sift_prediction, str):
-            self.sift_prediction = str(self.sift_prediction)
+        if self.sift_prediction is not None and not isinstance(self.sift_prediction, SiftPredictionLevels):
+            self.sift_prediction = SiftPredictionLevels(self.sift_prediction)
 
         super().__post_init__(**kwargs)
 
@@ -111,12 +111,12 @@ class VariantTranscriptConsequence(YAMLRoot):
 
     subject: Union[str, VariantId] = None
     object: Union[str, TranscriptId] = None
-    vep_consequence: Optional[str] = None
+    vep_consequence: Optional[Union[str, "VepConsequenceLevels"]] = None
     vep_impact: Optional[str] = None
     polyphen_score: Optional[float] = None
-    polyphen_prediction: Optional[str] = None
+    polyphen_prediction: Optional[Union[str, "PolyphenPredictionLevels"]] = None
     sift_score: Optional[float] = None
-    sift_prediction: Optional[str] = None
+    sift_prediction: Optional[Union[str, "SiftPredictionLevels"]] = None
     amino_acid_reference: Optional[Union[str, BiologicalSequence]] = None
     amino_acid_variant: Optional[Union[str, BiologicalSequence]] = None
     codon_reference: Optional[str] = None
@@ -142,8 +142,8 @@ class VariantTranscriptConsequence(YAMLRoot):
         if not isinstance(self.object, TranscriptId):
             self.object = TranscriptId(self.object)
 
-        if self.vep_consequence is not None and not isinstance(self.vep_consequence, str):
-            self.vep_consequence = str(self.vep_consequence)
+        if self.vep_consequence is not None and not isinstance(self.vep_consequence, VepConsequenceLevels):
+            self.vep_consequence = VepConsequenceLevels(self.vep_consequence)
 
         if self.vep_impact is not None and not isinstance(self.vep_impact, str):
             self.vep_impact = str(self.vep_impact)
@@ -151,14 +151,14 @@ class VariantTranscriptConsequence(YAMLRoot):
         if self.polyphen_score is not None and not isinstance(self.polyphen_score, float):
             self.polyphen_score = float(self.polyphen_score)
 
-        if self.polyphen_prediction is not None and not isinstance(self.polyphen_prediction, str):
-            self.polyphen_prediction = str(self.polyphen_prediction)
+        if self.polyphen_prediction is not None and not isinstance(self.polyphen_prediction, PolyphenPredictionLevels):
+            self.polyphen_prediction = PolyphenPredictionLevels(self.polyphen_prediction)
 
         if self.sift_score is not None and not isinstance(self.sift_score, float):
             self.sift_score = float(self.sift_score)
 
-        if self.sift_prediction is not None and not isinstance(self.sift_prediction, str):
-            self.sift_prediction = str(self.sift_prediction)
+        if self.sift_prediction is not None and not isinstance(self.sift_prediction, SiftPredictionLevels):
+            self.sift_prediction = SiftPredictionLevels(self.sift_prediction)
 
         if self.amino_acid_reference is not None and not isinstance(self.amino_acid_reference, BiologicalSequence):
             self.amino_acid_reference = BiologicalSequence(self.amino_acid_reference)
@@ -203,7 +203,35 @@ class VariantTranscriptConsequence(YAMLRoot):
 
 
 # Enumerations
+class VepConsequenceLevels(EnumDefinitionImpl):
 
+    high = PermissibleValue(text="high")
+    moderate = PermissibleValue(text="moderate")
+    low = PermissibleValue(text="low")
+    modifier = PermissibleValue(text="modifier")
+
+    _defn = EnumDefinition(
+        name="VepConsequenceLevels",
+    )
+
+class SiftPredictionLevels(EnumDefinitionImpl):
+
+    deleterious = PermissibleValue(text="deleterious")
+    tolerated = PermissibleValue(text="tolerated")
+
+    _defn = EnumDefinition(
+        name="SiftPredictionLevels",
+    )
+
+class PolyphenPredictionLevels(EnumDefinitionImpl):
+
+    possibly_damaging = PermissibleValue(text="possibly_damaging")
+    probably_damaging = PermissibleValue(text="probably_damaging")
+    benign = PermissibleValue(text="benign")
+
+    _defn = EnumDefinition(
+        name="PolyphenPredictionLevels",
+    )
 
 # Slots
 class slots:
@@ -213,19 +241,19 @@ slots.vep_impact = Slot(uri=DEFAULT_.vep_impact, name="vep_impact", curie=DEFAUL
                    model_uri=DEFAULT_.vep_impact, domain=None, range=Optional[str])
 
 slots.vep_consequence = Slot(uri=DEFAULT_.vep_consequence, name="vep_consequence", curie=DEFAULT_.curie('vep_consequence'),
-                   model_uri=DEFAULT_.vep_consequence, domain=None, range=Optional[str])
+                   model_uri=DEFAULT_.vep_consequence, domain=None, range=Optional[Union[str, "VepConsequenceLevels"]])
 
 slots.polyphen_score = Slot(uri=DEFAULT_.polyphen_score, name="polyphen_score", curie=DEFAULT_.curie('polyphen_score'),
                    model_uri=DEFAULT_.polyphen_score, domain=None, range=Optional[float])
 
 slots.polyphen_prediction = Slot(uri=DEFAULT_.polyphen_prediction, name="polyphen_prediction", curie=DEFAULT_.curie('polyphen_prediction'),
-                   model_uri=DEFAULT_.polyphen_prediction, domain=None, range=Optional[str])
+                   model_uri=DEFAULT_.polyphen_prediction, domain=None, range=Optional[Union[str, "PolyphenPredictionLevels"]])
 
 slots.sift_score = Slot(uri=DEFAULT_.sift_score, name="sift_score", curie=DEFAULT_.curie('sift_score'),
                    model_uri=DEFAULT_.sift_score, domain=None, range=Optional[float])
 
 slots.sift_prediction = Slot(uri=DEFAULT_.sift_prediction, name="sift_prediction", curie=DEFAULT_.curie('sift_prediction'),
-                   model_uri=DEFAULT_.sift_prediction, domain=None, range=Optional[str])
+                   model_uri=DEFAULT_.sift_prediction, domain=None, range=Optional[Union[str, "SiftPredictionLevels"]])
 
 slots.amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="amino_acid_reference", curie=DEFAULT_.curie('amino_acid_reference'),
                    model_uri=DEFAULT_.amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
