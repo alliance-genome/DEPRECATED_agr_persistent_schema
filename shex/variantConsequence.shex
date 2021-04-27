@@ -210,6 +210,12 @@ linkml:Nodeidentifier NONLITERAL
     (  $<VariantTranscriptConsequence_tes> (  <subject>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
           <object> @<http://alliancegenome.orgTranscript> ;
+          <vep_consequence> @linkml:String ? ;
+          <vep_impact> @linkml:String ? ;
+          <polyphen_score> @linkml:Float ? ;
+          <polyphen_prediction> @linkml:String ? ;
+          <sift_score> @linkml:Float ? ;
+          <sift_prediction> @linkml:String ? ;
           <amino_acid_reference> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <amino_acid_variant> @<http://alliancegenome.orgBiologicalSequence> ? ;
           <codon_reference> @linkml:String ? ;

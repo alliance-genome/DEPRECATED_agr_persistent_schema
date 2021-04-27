@@ -45,6 +45,12 @@ classes:
     slots:
       - subject
       - object
+      - vep_consequence
+      - vep_impact
+      - polyphen_score
+      - polyphen_prediction
+      - sift_score
+      - sift_prediction
       - amino_acid_reference
       - amino_acid_variant
       - codon_reference
@@ -105,25 +111,28 @@ slots:
 
   vep_impact:
     description: VEP predicted impact of variation on molecule
-    domain: VariantGeneConsequence
+    range: string
+
+
+  vep_consequence:
+    description: VEP consequence
+    range: string
 
   polyphen_score:
     description: PolyPhen-2 score between 0 and 1
-    domain: VariantGeneConsequence
     range: float
 
   polyphen_prediction:
     description: PolyPhen-2 prediction
-    domain: VariantGeneConsequence
+    range: string
 
   sift_score:
     description: SIFT score between 0 and 1
-    domain: VariantGeneConsequence
     range: float
 
   sift_prediction:
     description: SIFT prediction
-    domain: VariantGeneConsequence
+    range: string
 
   amino_acid_reference:
     description: reference genome amino acid sequence at variant position
@@ -186,7 +195,3 @@ slots:
   hgvs_coding_nomenclature:
     description: HGVSc nomenclature for variation in coding sequence
     domain: VariantTranscriptConsequence
-
-  vep_consequence:
-    description: VEP consequence
-    range: string

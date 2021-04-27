@@ -1,5 +1,5 @@
 # Auto generated from variantConsequence.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 10:26
+# Generation date: 2021-04-27 10:36
 # Schema: variantConsequence
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence
@@ -111,6 +111,12 @@ class VariantTranscriptConsequence(YAMLRoot):
 
     subject: Union[str, VariantId] = None
     object: Union[str, TranscriptId] = None
+    vep_consequence: Optional[str] = None
+    vep_impact: Optional[str] = None
+    polyphen_score: Optional[float] = None
+    polyphen_prediction: Optional[str] = None
+    sift_score: Optional[float] = None
+    sift_prediction: Optional[str] = None
     amino_acid_reference: Optional[Union[str, BiologicalSequence]] = None
     amino_acid_variant: Optional[Union[str, BiologicalSequence]] = None
     codon_reference: Optional[str] = None
@@ -135,6 +141,24 @@ class VariantTranscriptConsequence(YAMLRoot):
             raise ValueError("object must be supplied")
         if not isinstance(self.object, TranscriptId):
             self.object = TranscriptId(self.object)
+
+        if self.vep_consequence is not None and not isinstance(self.vep_consequence, str):
+            self.vep_consequence = str(self.vep_consequence)
+
+        if self.vep_impact is not None and not isinstance(self.vep_impact, str):
+            self.vep_impact = str(self.vep_impact)
+
+        if self.polyphen_score is not None and not isinstance(self.polyphen_score, float):
+            self.polyphen_score = float(self.polyphen_score)
+
+        if self.polyphen_prediction is not None and not isinstance(self.polyphen_prediction, str):
+            self.polyphen_prediction = str(self.polyphen_prediction)
+
+        if self.sift_score is not None and not isinstance(self.sift_score, float):
+            self.sift_score = float(self.sift_score)
+
+        if self.sift_prediction is not None and not isinstance(self.sift_prediction, str):
+            self.sift_prediction = str(self.sift_prediction)
 
         if self.amino_acid_reference is not None and not isinstance(self.amino_acid_reference, BiologicalSequence):
             self.amino_acid_reference = BiologicalSequence(self.amino_acid_reference)
@@ -186,19 +210,22 @@ class slots:
     pass
 
 slots.vep_impact = Slot(uri=DEFAULT_.vep_impact, name="vep_impact", curie=DEFAULT_.curie('vep_impact'),
-                   model_uri=DEFAULT_.vep_impact, domain=VariantGeneConsequence, range=Optional[str])
+                   model_uri=DEFAULT_.vep_impact, domain=None, range=Optional[str])
+
+slots.vep_consequence = Slot(uri=DEFAULT_.vep_consequence, name="vep_consequence", curie=DEFAULT_.curie('vep_consequence'),
+                   model_uri=DEFAULT_.vep_consequence, domain=None, range=Optional[str])
 
 slots.polyphen_score = Slot(uri=DEFAULT_.polyphen_score, name="polyphen_score", curie=DEFAULT_.curie('polyphen_score'),
-                   model_uri=DEFAULT_.polyphen_score, domain=VariantGeneConsequence, range=Optional[float])
+                   model_uri=DEFAULT_.polyphen_score, domain=None, range=Optional[float])
 
 slots.polyphen_prediction = Slot(uri=DEFAULT_.polyphen_prediction, name="polyphen_prediction", curie=DEFAULT_.curie('polyphen_prediction'),
-                   model_uri=DEFAULT_.polyphen_prediction, domain=VariantGeneConsequence, range=Optional[str])
+                   model_uri=DEFAULT_.polyphen_prediction, domain=None, range=Optional[str])
 
 slots.sift_score = Slot(uri=DEFAULT_.sift_score, name="sift_score", curie=DEFAULT_.curie('sift_score'),
-                   model_uri=DEFAULT_.sift_score, domain=VariantGeneConsequence, range=Optional[float])
+                   model_uri=DEFAULT_.sift_score, domain=None, range=Optional[float])
 
 slots.sift_prediction = Slot(uri=DEFAULT_.sift_prediction, name="sift_prediction", curie=DEFAULT_.curie('sift_prediction'),
-                   model_uri=DEFAULT_.sift_prediction, domain=VariantGeneConsequence, range=Optional[str])
+                   model_uri=DEFAULT_.sift_prediction, domain=None, range=Optional[str])
 
 slots.amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="amino_acid_reference", curie=DEFAULT_.curie('amino_acid_reference'),
                    model_uri=DEFAULT_.amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
@@ -235,9 +262,6 @@ slots.hgvs_protein_nomenclature = Slot(uri=DEFAULT_.hgvs_protein_nomenclature, n
 
 slots.hgvs_coding_nomenclature = Slot(uri=DEFAULT_.hgvs_coding_nomenclature, name="hgvs_coding_nomenclature", curie=DEFAULT_.curie('hgvs_coding_nomenclature'),
                    model_uri=DEFAULT_.hgvs_coding_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
-
-slots.vep_consequence = Slot(uri=DEFAULT_.vep_consequence, name="vep_consequence", curie=DEFAULT_.curie('vep_consequence'),
-                   model_uri=DEFAULT_.vep_consequence, domain=None, range=Optional[str])
 
 slots.cnda_end = Slot(uri=DEFAULT_.cnda_end, name="cnda_end", curie=DEFAULT_.curie('cnda_end'),
                    model_uri=DEFAULT_.cnda_end, domain=None, range=Optional[str])
