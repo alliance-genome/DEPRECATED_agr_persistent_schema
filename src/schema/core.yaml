@@ -76,6 +76,7 @@ classes:
       - gene synopsis
       - gene synopsis URL
       - type
+      - genomic locations
     id_prefixes:
       - ENSEMBL
       - HGNC

@@ -1,5 +1,5 @@
 # Auto generated from resource.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-04-27 08:58
 # Schema: resource
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource

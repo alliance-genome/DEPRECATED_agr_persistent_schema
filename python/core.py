@@ -1,5 +1,5 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-04-27 08:58
 # Schema: Alliance-Schema-Prototype-Core
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
@@ -144,6 +144,7 @@ class Gene(GenomicEntity):
     gene_synopsis: Optional[str] = None
     gene_synopsis_URL: Optional[str] = None
     type: Optional[Union[str, URIorCURIE]] = None
+    genomic_locations: Optional[Union[Union[dict, GeneGenomicLocation], List[Union[dict, GeneGenomicLocation]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.id is None:
@@ -165,6 +166,12 @@ class Gene(GenomicEntity):
 
         if self.type is not None and not isinstance(self.type, URIorCURIE):
             self.type = URIorCURIE(self.type)
+
+        if self.genomic_locations is None:
+            self.genomic_locations = []
+        if not isinstance(self.genomic_locations, list):
+            self.genomic_locations = [self.genomic_locations]
+        self._normalize_inlined_slot(slot_name="genomic_locations", slot_type=GeneGenomicLocation, key_name="subject", inlined_as_list=True, keyed=False)
 
         super().__post_init__(**kwargs)
 
