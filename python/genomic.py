@@ -1,5 +1,5 @@
 # Auto generated from genomic.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 08:49
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
@@ -21,6 +21,8 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
+from . core import GenomicEntity
+from . variation import VariantId
 from linkml.utils.metamodelcore import URIorCURIE
 from linkml_model.types import String, Uriorcurie
 
@@ -44,10 +46,6 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 
 # Class references
 class ChromosomeId(URIorCURIE):
-    pass
-
-
-class AssemblyId(URIorCURIE):
     pass
 
 
@@ -75,21 +73,47 @@ class Chromosome(YAMLRoot):
 
 
 @dataclass
-class Assembly(YAMLRoot):
+class GeneGenomicLocation(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
+    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "assembly"
-    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
+    class_name: ClassVar[str] = "gene genomic location"
+    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation")
 
-    id: Union[str, AssemblyId] = None
+    subject: Union[str, VariantId] = None
+    predicate: str = None
+    object: Union[str, ChromosomeId] = None
+    assembly: str = None
+    start: Optional[str] = None
+    end: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, AssemblyId):
-            self.id = AssemblyId(self.id)
+        if self.subject is None:
+            raise ValueError("subject must be supplied")
+        if not isinstance(self.subject, VariantId):
+            self.subject = VariantId(self.subject)
+
+        if self.predicate is None:
+            raise ValueError("predicate must be supplied")
+        if not isinstance(self.predicate, str):
+            self.predicate = str(self.predicate)
+
+        if self.object is None:
+            raise ValueError("object must be supplied")
+        if not isinstance(self.object, ChromosomeId):
+            self.object = ChromosomeId(self.object)
+
+        if self.assembly is None:
+            raise ValueError("assembly must be supplied")
+        if not isinstance(self.assembly, str):
+            self.assembly = str(self.assembly)
+
+        if self.start is not None and not isinstance(self.start, str):
+            self.start = str(self.start)
+
+        if self.end is not None and not isinstance(self.end, str):
+            self.end = str(self.end)
 
         super().__post_init__(**kwargs)
 
@@ -107,17 +131,11 @@ slots.start = Slot(uri=DEFAULT_.start, name="start", curie=DEFAULT_.curie('start
 slots.end = Slot(uri=DEFAULT_.end, name="end", curie=DEFAULT_.curie('end'),
                    model_uri=DEFAULT_.end, domain=None, range=Optional[str])
 
-slots.gene_id = Slot(uri=DEFAULT_.gene_id, name="gene id", curie=DEFAULT_.curie('gene_id'),
-                   model_uri=DEFAULT_.gene_id, domain=None, range=str)
+slots.assembly = Slot(uri=DEFAULT_.assembly, name="assembly", curie=DEFAULT_.curie('assembly'),
+                   model_uri=DEFAULT_.assembly, domain=GenomicEntity, range=str)
 
-slots.chromosome_id = Slot(uri=DEFAULT_.chromosome_id, name="chromosome id", curie=DEFAULT_.curie('chromosome_id'),
-                   model_uri=DEFAULT_.chromosome_id, domain=None, range=str)
+slots.gene_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="gene genomic location_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.gene_genomic_location_subject, domain=GeneGenomicLocation, range=Union[str, VariantId])
 
-slots.transcript_id = Slot(uri=DEFAULT_.transcript_id, name="transcript id", curie=DEFAULT_.curie('transcript_id'),
-                   model_uri=DEFAULT_.transcript_id, domain=None, range=str)
-
-slots.assembly_id = Slot(uri=DEFAULT_.assembly_id, name="assembly id", curie=DEFAULT_.curie('assembly_id'),
-                   model_uri=DEFAULT_.assembly_id, domain=None, range=str)
-
-slots.allele_id = Slot(uri=DEFAULT_.allele_id, name="allele id", curie=DEFAULT_.curie('allele_id'),
-                   model_uri=DEFAULT_.allele_id, domain=None, range=str)
+slots.gene_genomic_location_object = Slot(uri=DEFAULT_.object, name="gene genomic location_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.gene_genomic_location_object, domain=GeneGenomicLocation, range=Union[str, ChromosomeId])

@@ -1,5 +1,5 @@
 # Auto generated from variation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-21 19:00
+# Generation date: 2021-04-27 08:49
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation
@@ -21,7 +21,8 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import AlleleId, BiologicalSequence, GeneId, TranscriptId
+from . core import AlleleId, BiologicalSequence, GeneId, GenomicEntity, GenomicEntityId, TranscriptId
+from . genomic import GeneGenomicLocation
 from . reference import ReferenceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
 from linkml_model.types import Date, String, Uriorcurie
@@ -45,12 +46,12 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class VariantId(URIorCURIE):
+class VariantId(GenomicEntityId):
     pass
 
 
 @dataclass
-class Variant(YAMLRoot):
+class Variant(GenomicEntity):
     """
     Variant class
     """

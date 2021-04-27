@@ -48,8 +48,3 @@ slots:
 
   located on:
     range: chromosome
-
-  assembly:
-    domain: genomic entity
-    range: assembly
-    required: true

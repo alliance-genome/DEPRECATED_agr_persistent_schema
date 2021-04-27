@@ -35,7 +35,9 @@ linkml:Objectidentifier IRI
 linkml:Nodeidentifier NONLITERAL
 
 <http://alliancegenome.orgAllele> CLOSED {
-    (  $<http://alliancegenome.orgAllele_tes> rdf:type . * ;
+    (  $<http://alliancegenome.orgAllele_tes> (  &<http://alliancegenome.orgGenomicEntity_tes> ;
+          rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ?
+       ) ;
        rdf:type [ <http://alliancegenome.orgAllele> ]
     )
 }
@@ -53,17 +55,52 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome_tes> rdf:type . * ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ]
+    )
+}
+
 <http://alliancegenome.orgGene> CLOSED {
-    (  $<http://alliancegenome.orgGene_tes> rdf:type . * ;
+    (  $<http://alliancegenome.orgGene_tes> (  &<http://alliancegenome.orgGenomicEntity_tes> ;
+          rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ? ;
+          <http://alliancegenome.orgname> @linkml:String ? ;
+          <http://alliancegenome.orgsymbol> @linkml:String ? ;
+          <http://alliancegenome.orggene_synopsis> @linkml:String ? ;
+          <http://alliancegenome.orggene_synopsis_URL> @linkml:String ? ;
+          <http://alliancegenome.orgtype> @linkml:Uriorcurie ?
+       ) ;
        rdf:type [ <http://alliancegenome.orgGene> ]
     )
 }
 
-<http://alliancegenome.orgGenomicEntity> CLOSED {
-    (  $<http://alliancegenome.orgGenomicEntity_tes> rdf:type . * ;
-       rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ?
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation_tes> (  <subject>
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ;
+          <http://alliancegenome.orgpredicate> @linkml:String ;
+          <object> @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome> ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/assembly> @linkml:String ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/start> @linkml:String ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/end> @linkml:String ?
+       ) ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation> ] ?
     )
 }
+
+<http://alliancegenome.orgGenomicEntity>  (
+    CLOSED {
+       (  $<http://alliancegenome.orgGenomicEntity_tes> (  <http://alliancegenome.orgtaxon> @linkml:Uriorcurie ? ;
+             <http://alliancegenome.orgsynonyms> @linkml:String ? ;
+             <http://alliancegenome.orgsecondary_identifiers> @linkml:String * ;
+             <http://alliancegenome.orgcross_references> @linkml:String * ;
+             <http://alliancegenome.orggenomic_locations>
+             @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation> *
+          ) ;
+          rdf:type [ <http://alliancegenome.orgGenomicEntity> ]
+       )
+    } OR @<http://alliancegenome.orgAllele> OR @<http://alliancegenome.orgGene> OR @<http://alliancegenome.orgTranscript> OR
+    @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant>
+)
 
 <http://alliancegenome.orgInformationContentEntity>  (
     @<Reference> OR @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource>
@@ -129,15 +166,43 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<http://alliancegenome.orgSpecies> CLOSED {
-    (  $<http://alliancegenome.orgSpecies_tes> rdf:type . * ;
-       rdf:type [ <http://alliancegenome.orgSpecies> ] ?
+<http://alliancegenome.orgTranscript> CLOSED {
+    (  $<http://alliancegenome.orgTranscript_tes> (  &<http://alliancegenome.orgGenomicEntity_tes> ;
+          rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ?
+       ) ;
+       rdf:type [ <http://alliancegenome.orgTranscript> ]
     )
 }
 
-<http://alliancegenome.orgTranscript> CLOSED {
-    (  $<http://alliancegenome.orgTranscript_tes> rdf:type . * ;
-       rdf:type [ <http://alliancegenome.orgTranscript> ]
+<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant_tes> ( 
+          &<http://alliancegenome.orgGenomicEntity_tes> ;
+          rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/hgvs_nomenclature> @linkml:String ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_reference_sequence>
+          @<http://alliancegenome.orgBiologicalSequence> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_variant_sequence>
+          @<http://alliancegenome.orgBiologicalSequence> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_left>
+          @<http://alliancegenome.orgBiologicalSequence> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_right>
+          @<http://alliancegenome.orgBiologicalSequence> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/date_produced> @linkml:Date ? ;
+          <http://alliancegenome.orgrelease> @linkml:String ? ;
+          <http://alliancegenome.orgdata_provider> @linkml:String * ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/computed_gene>
+          @<http://alliancegenome.orgGene> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/is_variant_of_transcript>
+          @<http://alliancegenome.orgTranscript> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/is_variant_of_allele>
+          @<http://alliancegenome.orgAllele> ? ;
+          <http://alliancegenome.orgtype> @linkml:Uriorcurie ? ;
+          <http://alliancegenome.orgreferences> @<Reference> * ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/note> @linkml:String ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/protein_sequence>
+          @<http://alliancegenome.orgBiologicalSequence> ?
+       ) ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ]
     )
 }
 

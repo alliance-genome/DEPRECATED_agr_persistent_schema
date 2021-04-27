@@ -22,6 +22,7 @@ imports:
   - linkml:types
   - reference
   - resource
+  - genomic
 
 prefixes:
   alliance: 'http://alliancegenome.org'
@@ -48,7 +49,7 @@ types:
 classes:
 
   genomic entity:
-    descripton: >-
+    description: >-
     slots:
       - id
       - taxon
@@ -108,7 +109,7 @@ slots:
 
   taxon:
     description: >-
-    range: uriorurie
+    range: uriorcurie
 
   secondary identifiers:
     multivalued: true
@@ -118,9 +119,10 @@ slots:
 
   gene synopsis URL:
     description: >-
-      
+
   genomic locations:
     domain: genomic entity
+    range: gene genomic location
     multivalued: true
 
   id:
@@ -198,10 +200,6 @@ slots:
       Symbol for a particular thing
     exact_mappings:
       - biolink:symbol
-
-  from species:
-    description: holds between a genomic entity and a species
-    range: species
 
   synonym:
     description: holds between a named thing and a synonym

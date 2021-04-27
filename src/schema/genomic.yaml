@@ -23,12 +23,7 @@ classes:
     slots:
       - id
 
-  assembly:
-    slots:
-      - id
-
   gene genomic location:
-    multivalued: true
     slots:
       - subject
       - predicate
@@ -60,3 +55,8 @@ slots:
 
   end:
     description: The end of the feature in positive 1-based integer coordinates
+
+  assembly:
+    domain: genomic entity
+    range: string
+    required: true
