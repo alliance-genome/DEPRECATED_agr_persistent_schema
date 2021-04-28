@@ -155,8 +155,7 @@ slots:
     description: >-
     multivalued: true
 
-  symbols:
-    singular_name: symbol
+  symbol:
     description: >-
       Symbol for a particular thing
     exact_mappings:

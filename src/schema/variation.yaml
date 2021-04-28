@@ -23,7 +23,9 @@ classes:
 
   Variant:
     description: >-
-      Variant class
+      A DNA sequence that differs relative to a designated
+      reference sequence.  The sequence occurs at a single
+      position or in contiguous nucleotides.
     slots:
       - id
       - hgvs_nomenclature

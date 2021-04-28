@@ -7,6 +7,7 @@ imports:
   - variation
   - linkml:types
   - informationContentEntity
+  - affectedGenomicModel
 
 prefixes:
   alliance: 'http://alliancegenome.org'
@@ -22,20 +23,20 @@ prefixes:
 classes:
 
   Allele:
+    # is_a: GenomicEntity
     description: >-
-      Allele class
+      One of multiple possible forms of a functional genomic
+      element (most often described as a locus or gene),
+      differing from the reference DNA sequence.  The genomic
+      element can be endogenous or constructed.
     slots:
-      - local_id
-      - global_id
-      - uuid
       - name
-      - symbols
+      - symbol
       - description
       - taxon_id
-      - date_produced
-      - data_provider
+      - date_produced # mixin?
+      - data_provider # mixin?
       - release
-      - mod_xrefs
       - cross_references
       - synonyms
       - affected_genes
@@ -54,7 +55,6 @@ classes:
       - embryonic_stem_cell_lines
       - images
       - feature_type
-      - cross_references
       - carried_by
       - origins
       - database_status
@@ -108,30 +108,9 @@ classes:
 
 slots:
 
-  local_id:
-    description: >-
-        ID in the format used locally at the MODs
-        e.g. FBal0129684
-    range: string
-
-  global_id:
-    description: ID in AGR global format e.g. FB:FBal0129684
-    range: string
-
-  uuid:
-    description: >-
-      universally unique identifier
-      e.g. 25fcb722-194e-46d2-ae25-fc12acd0c362
-
   taxon_id:
     description: NCBI taxid
     range: integer
-
-  mod_xrefs:
-    singular_name: mod_xref
-    description:
-      Xref to MOD resource
-    range: uriorcurie
 
   affected_genes:
     description:
@@ -321,6 +300,7 @@ enums:
 
   note_association_types:
     permissible_values:
+      molecular:
       origin:
       cytology:
       private:
