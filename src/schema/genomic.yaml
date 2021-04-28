@@ -21,11 +21,11 @@ classes:
   Chromosome:
     description: The ID of the landmark used to establish the coordinate system for the current feature.
     slots:
-      - id
+      - curie
 
   Assembly:
     slots:
-      - id
+      - curie
 
 slots:
 

@@ -1,8 +1,12 @@
 id,mappings,description
 AuthorReference,,
+Disease,,
+DiseaseAssociation,,Dummy disease association class
 Gene,,
 GenomicEntity,,
 InformationContentEntity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
+Phenotype,,
+PhenotypeAssociation,,Dummy phenotype association class
 Reference,,
 Resource,,
 Species,,

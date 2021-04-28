@@ -27,7 +27,7 @@ classes:
       reference sequence.  The sequence occurs at a single
       position or in contiguous nucleotides.
     slots:
-      - id
+      - curie
       - hgvs_nomenclature
       - genomic_reference_sequence
       - genomic_variant_sequence

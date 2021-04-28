@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 10:26
+# Generation date: 2021-04-28 15:35
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -47,7 +47,7 @@ DEFAULT_ = ALLIANCE
 # Types
 
 # Class references
-class InformationContentEntityId(URIorCURIE):
+class InformationContentEntityCurie(URIorCURIE):
     pass
 
 
@@ -64,14 +64,14 @@ class InformationContentEntity(YAMLRoot):
     class_name: ClassVar[str] = "InformationContentEntity"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.InformationContentEntity
 
-    id: Union[str, InformationContentEntityId] = None
+    curie: Union[str, InformationContentEntityCurie] = None
     creation_date: Optional[Union[str, XSDDate]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, InformationContentEntityId):
-            self.id = InformationContentEntityId(self.id)
+        if self.curie is None:
+            raise ValueError("curie must be supplied")
+        if not isinstance(self.curie, InformationContentEntityCurie):
+            self.curie = InformationContentEntityCurie(self.curie)
 
         if self.creation_date is not None and not isinstance(self.creation_date, XSDDate):
             self.creation_date = XSDDate(self.creation_date)
@@ -88,28 +88,28 @@ class AuthorReference(YAMLRoot):
     class_name: ClassVar[str] = "AuthorReference"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.AuthorReference
 
-    corresponding_author: Optional[Union[str, InformationContentEntityId]] = None
-    first_name: Optional[Union[str, InformationContentEntityId]] = None
-    middle_names: Optional[Union[str, InformationContentEntityId]] = None
-    last_name: Optional[Union[str, InformationContentEntityId]] = None
-    initials: Optional[Union[str, InformationContentEntityId]] = None
+    corresponding_author: Optional[Union[str, InformationContentEntityCurie]] = None
+    first_name: Optional[Union[str, InformationContentEntityCurie]] = None
+    middle_names: Optional[Union[str, InformationContentEntityCurie]] = None
+    last_name: Optional[Union[str, InformationContentEntityCurie]] = None
+    initials: Optional[Union[str, InformationContentEntityCurie]] = None
     cross_references: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.corresponding_author is not None and not isinstance(self.corresponding_author, InformationContentEntityId):
-            self.corresponding_author = InformationContentEntityId(self.corresponding_author)
+        if self.corresponding_author is not None and not isinstance(self.corresponding_author, InformationContentEntityCurie):
+            self.corresponding_author = InformationContentEntityCurie(self.corresponding_author)
 
-        if self.first_name is not None and not isinstance(self.first_name, InformationContentEntityId):
-            self.first_name = InformationContentEntityId(self.first_name)
+        if self.first_name is not None and not isinstance(self.first_name, InformationContentEntityCurie):
+            self.first_name = InformationContentEntityCurie(self.first_name)
 
-        if self.middle_names is not None and not isinstance(self.middle_names, InformationContentEntityId):
-            self.middle_names = InformationContentEntityId(self.middle_names)
+        if self.middle_names is not None and not isinstance(self.middle_names, InformationContentEntityCurie):
+            self.middle_names = InformationContentEntityCurie(self.middle_names)
 
-        if self.last_name is not None and not isinstance(self.last_name, InformationContentEntityId):
-            self.last_name = InformationContentEntityId(self.last_name)
+        if self.last_name is not None and not isinstance(self.last_name, InformationContentEntityCurie):
+            self.last_name = InformationContentEntityCurie(self.last_name)
 
-        if self.initials is not None and not isinstance(self.initials, InformationContentEntityId):
-            self.initials = InformationContentEntityId(self.initials)
+        if self.initials is not None and not isinstance(self.initials, InformationContentEntityCurie):
+            self.initials = InformationContentEntityCurie(self.initials)
 
         if self.cross_references is None:
             self.cross_references = []
@@ -140,19 +140,19 @@ slots.authors = Slot(uri=ALLIANCE.authors, name="authors", curie=ALLIANCE.curie(
                    model_uri=ALLIANCE.authors, domain=InformationContentEntity, range=Optional[Union[Union[dict, "AuthorReference"], List[Union[dict, "AuthorReference"]]]])
 
 slots.corresponding_author = Slot(uri=ALLIANCE.corresponding_author, name="corresponding_author", curie=ALLIANCE.curie('corresponding_author'),
-                   model_uri=ALLIANCE.corresponding_author, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
+                   model_uri=ALLIANCE.corresponding_author, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityCurie]])
 
 slots.first_name = Slot(uri=ALLIANCE.first_name, name="first_name", curie=ALLIANCE.curie('first_name'),
-                   model_uri=ALLIANCE.first_name, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
+                   model_uri=ALLIANCE.first_name, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityCurie]])
 
 slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle_names", curie=ALLIANCE.curie('middle_names'),
-                   model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
+                   model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityCurie]])
 
 slots.last_name = Slot(uri=ALLIANCE.last_name, name="last_name", curie=ALLIANCE.curie('last_name'),
-                   model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
+                   model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityCurie]])
 
 slots.initials = Slot(uri=ALLIANCE.initials, name="initials", curie=ALLIANCE.curie('initials'),
-                   model_uri=ALLIANCE.initials, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
+                   model_uri=ALLIANCE.initials, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityCurie]])
 
 slots.title = Slot(uri=ALLIANCE.title, name="title", curie=ALLIANCE.curie('title'),
                    model_uri=ALLIANCE.title, domain=InformationContentEntity, range=Optional[str])
@@ -161,7 +161,10 @@ slots.volumes = Slot(uri=ALLIANCE.volumes, name="volumes", curie=ALLIANCE.curie(
                    model_uri=ALLIANCE.volumes, domain=InformationContentEntity, range=Optional[str])
 
 slots.publisher = Slot(uri=ALLIANCE.publisher, name="publisher", curie=ALLIANCE.curie('publisher'),
-                   model_uri=ALLIANCE.publisher, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
+                   model_uri=ALLIANCE.publisher, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityCurie]])
 
 slots.address = Slot(uri=ALLIANCE.address, name="address", curie=ALLIANCE.curie('address'),
                    model_uri=ALLIANCE.address, domain=None, range=Optional[str])
+
+slots.id = Slot(uri=ALLIANCE.id, name="id", curie=ALLIANCE.curie('id'),
+                   model_uri=ALLIANCE.id, domain=None, range=Optional[str])

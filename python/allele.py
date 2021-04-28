@@ -1,5 +1,5 @@
 # Auto generated from allele.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 11:14
+# Generation date: 2021-04-28 15:35
 # Schema: Alliance-Schema-Prototype-Allele
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele
@@ -21,10 +21,11 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import GeneId, Species
-from . reference import ReferenceId
-from linkml.utils.metamodelcore import Bool, URIorCURIE, XSDDate
-from linkml_model.types import Boolean, Date, Integer, String, Uriorcurie
+from . affectedGenomicModel import AffectedGenomicModelCurie
+from . core import DiseaseAssociation, GeneCurie, PhenotypeAssociation, Species
+from . reference import ReferenceCurie
+from linkml.utils.metamodelcore import Bool, XSDDate
+from linkml_model.types import Boolean, Date, Integer, String
 
 metamodel_version = "1.7.0"
 
@@ -51,7 +52,8 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 @dataclass
 class Allele(YAMLRoot):
     """
-    Allele class
+    One of multiple possible forms of a functional genomic element (most often described as a locus or gene),
+    differing from the reference DNA sequence. The genomic element can be endogenous or constructed.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -60,23 +62,19 @@ class Allele(YAMLRoot):
     class_name: ClassVar[str] = "Allele"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/Allele")
 
-    local_id: Optional[str] = None
-    global_id: Optional[str] = None
-    uuid: Optional[str] = None
     name: Optional[str] = None
-    symbols: Optional[str] = None
+    symbol: Optional[str] = None
     description: Optional[str] = None
     taxon_id: Optional[int] = None
     date_produced: Optional[Union[str, XSDDate]] = None
     data_provider: Optional[Union[str, List[str]]] = empty_list()
     release: Optional[str] = None
-    mod_xrefs: Optional[Union[str, URIorCURIE]] = None
     cross_references: Optional[Union[str, List[str]]] = empty_list()
     synonyms: Optional[Union[str, List[str]]] = empty_list()
-    affected_genes: Optional[Union[Union[str, GeneId], List[Union[str, GeneId]]]] = empty_list()
+    affected_genes: Optional[Union[Union[str, GeneCurie], List[Union[str, GeneCurie]]]] = empty_list()
     from_species: Optional[Union[dict, Species]] = None
-    has_phenotype_association: Optional[Union[dict, "PhenotypeAssociation"]] = None
-    has_disease_association: Optional[Union[dict, "DiseaseAssociation"]] = None
+    phenotype_associations: Optional[Union[dict, PhenotypeAssociation]] = None
+    disease_associations: Optional[Union[dict, DiseaseAssociation]] = None
     contains_construct: Optional[Union[dict, "Construct"]] = None
     molecular_mutation: Optional[str] = None
     functional_impact: Optional[str] = None
@@ -89,8 +87,8 @@ class Allele(YAMLRoot):
     embryonic_stem_cell_lines: Optional[str] = None
     images: Optional[Union[dict, "Image"]] = None
     feature_type: Optional[str] = None
-    carried_by: Optional[Union[Union[dict, "Strain"], List[Union[dict, "Strain"]]]] = empty_list()
-    origins: Optional[Union[Union[dict, "Strain"], List[Union[dict, "Strain"]]]] = empty_list()
+    carried_by: Optional[Union[Union[str, AffectedGenomicModelCurie], List[Union[str, AffectedGenomicModelCurie]]]] = empty_list()
+    origins: Optional[Union[Union[str, AffectedGenomicModelCurie], List[Union[str, AffectedGenomicModelCurie]]]] = empty_list()
     database_status: Optional[Union[str, "DatabaseStatuses"]] = None
     inheritence_mode: Optional[Union[str, "ModesOfInheritence"]] = None
     in_collection: Optional[str] = None
@@ -99,20 +97,11 @@ class Allele(YAMLRoot):
     is_extinct: Optional[Union[bool, Bool]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.local_id is not None and not isinstance(self.local_id, str):
-            self.local_id = str(self.local_id)
-
-        if self.global_id is not None and not isinstance(self.global_id, str):
-            self.global_id = str(self.global_id)
-
-        if self.uuid is not None and not isinstance(self.uuid, str):
-            self.uuid = str(self.uuid)
-
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self.symbols is not None and not isinstance(self.symbols, str):
-            self.symbols = str(self.symbols)
+        if self.symbol is not None and not isinstance(self.symbol, str):
+            self.symbol = str(self.symbol)
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -132,9 +121,6 @@ class Allele(YAMLRoot):
         if self.release is not None and not isinstance(self.release, str):
             self.release = str(self.release)
 
-        if self.mod_xrefs is not None and not isinstance(self.mod_xrefs, URIorCURIE):
-            self.mod_xrefs = URIorCURIE(self.mod_xrefs)
-
         if self.cross_references is None:
             self.cross_references = []
         if not isinstance(self.cross_references, list):
@@ -151,16 +137,16 @@ class Allele(YAMLRoot):
             self.affected_genes = []
         if not isinstance(self.affected_genes, list):
             self.affected_genes = [self.affected_genes]
-        self.affected_genes = [v if isinstance(v, GeneId) else GeneId(v) for v in self.affected_genes]
+        self.affected_genes = [v if isinstance(v, GeneCurie) else GeneCurie(v) for v in self.affected_genes]
 
         if self.from_species is not None and not isinstance(self.from_species, Species):
             self.from_species = Species()
 
-        if self.has_phenotype_association is not None and not isinstance(self.has_phenotype_association, PhenotypeAssociation):
-            self.has_phenotype_association = PhenotypeAssociation()
+        if self.phenotype_associations is not None and not isinstance(self.phenotype_associations, PhenotypeAssociation):
+            self.phenotype_associations = PhenotypeAssociation()
 
-        if self.has_disease_association is not None and not isinstance(self.has_disease_association, DiseaseAssociation):
-            self.has_disease_association = DiseaseAssociation()
+        if self.disease_associations is not None and not isinstance(self.disease_associations, DiseaseAssociation):
+            self.disease_associations = DiseaseAssociation()
 
         if self.contains_construct is not None and not isinstance(self.contains_construct, Construct):
             self.contains_construct = Construct()
@@ -204,23 +190,17 @@ class Allele(YAMLRoot):
         if self.feature_type is not None and not isinstance(self.feature_type, str):
             self.feature_type = str(self.feature_type)
 
-        if self.cross_references is None:
-            self.cross_references = []
-        if not isinstance(self.cross_references, list):
-            self.cross_references = [self.cross_references]
-        self.cross_references = [v if isinstance(v, str) else str(v) for v in self.cross_references]
-
         if self.carried_by is None:
             self.carried_by = []
         if not isinstance(self.carried_by, list):
             self.carried_by = [self.carried_by]
-        self.carried_by = [v if isinstance(v, Strain) else Strain(**v) for v in self.carried_by]
+        self.carried_by = [v if isinstance(v, AffectedGenomicModelCurie) else AffectedGenomicModelCurie(v) for v in self.carried_by]
 
         if self.origins is None:
             self.origins = []
         if not isinstance(self.origins, list):
             self.origins = [self.origins]
-        self.origins = [v if isinstance(v, Strain) else Strain(**v) for v in self.origins]
+        self.origins = [v if isinstance(v, AffectedGenomicModelCurie) else AffectedGenomicModelCurie(v) for v in self.origins]
 
         if self.database_status is not None and not isinstance(self.database_status, DatabaseStatuses):
             self.database_status = DatabaseStatuses(self.database_status)
@@ -256,7 +236,7 @@ class ReferenceType(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/ReferenceType")
 
     reference_association: Optional[Union[str, "ReferenceAssociationTypes"]] = None
-    references: Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]] = empty_list()
+    references: Optional[Union[Union[str, ReferenceCurie], List[Union[str, ReferenceCurie]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.reference_association is not None and not isinstance(self.reference_association, ReferenceAssociationTypes):
@@ -266,7 +246,7 @@ class ReferenceType(YAMLRoot):
             self.references = []
         if not isinstance(self.references, list):
             self.references = [self.references]
-        self.references = [v if isinstance(v, ReferenceId) else ReferenceId(v) for v in self.references]
+        self.references = [v if isinstance(v, ReferenceCurie) else ReferenceCurie(v) for v in self.references]
 
         super().__post_init__(**kwargs)
 
@@ -299,30 +279,6 @@ class NoteType(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
-class DiseaseAssociation(YAMLRoot):
-    """
-    Dummy disease association class
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/DiseaseAssociation")
-    class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "DiseaseAssociation"
-    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/DiseaseAssociation")
-
-
-class PhenotypeAssociation(YAMLRoot):
-    """
-    Dummy phenotype association class
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/PhenotypeAssociation")
-    class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "PhenotypeAssociation"
-    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/PhenotypeAssociation")
-
-
 class Construct(YAMLRoot):
     """
     Dummy construct class
@@ -333,18 +289,6 @@ class Construct(YAMLRoot):
     class_class_curie: ClassVar[str] = None
     class_name: ClassVar[str] = "Construct"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/Construct")
-
-
-class Strain(YAMLRoot):
-    """
-    Dummy strain/stock class
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/Strain")
-    class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "Strain"
-    class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/allele/Strain")
 
 
 class CellLine(YAMLRoot):
@@ -396,6 +340,7 @@ class ReferenceAssociationTypes(EnumDefinitionImpl):
 
 class NoteAssociationTypes(EnumDefinitionImpl):
 
+    molecular = PermissibleValue(text="molecular")
     origin = PermissibleValue(text="origin")
     cytology = PermissibleValue(text="cytology")
     private = PermissibleValue(text="private")
@@ -420,29 +365,8 @@ class ModesOfInheritence(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.local_id = Slot(uri=DEFAULT_.local_id, name="local_id", curie=DEFAULT_.curie('local_id'),
-                   model_uri=DEFAULT_.local_id, domain=None, range=Optional[str])
-
-slots.global_id = Slot(uri=DEFAULT_.global_id, name="global_id", curie=DEFAULT_.curie('global_id'),
-                   model_uri=DEFAULT_.global_id, domain=None, range=Optional[str])
-
-slots.uuid = Slot(uri=DEFAULT_.uuid, name="uuid", curie=DEFAULT_.curie('uuid'),
-                   model_uri=DEFAULT_.uuid, domain=None, range=Optional[str])
-
-slots.taxon_id = Slot(uri=DEFAULT_.taxon_id, name="taxon_id", curie=DEFAULT_.curie('taxon_id'),
-                   model_uri=DEFAULT_.taxon_id, domain=None, range=Optional[int])
-
-slots.mod_xrefs = Slot(uri=DEFAULT_.mod_xrefs, name="mod_xrefs", curie=DEFAULT_.curie('mod_xrefs'),
-                   model_uri=DEFAULT_.mod_xrefs, domain=None, range=Optional[Union[str, URIorCURIE]])
-
 slots.affected_genes = Slot(uri=DEFAULT_.affected_genes, name="affected_genes", curie=DEFAULT_.curie('affected_genes'),
-                   model_uri=DEFAULT_.affected_genes, domain=Allele, range=Optional[Union[Union[str, GeneId], List[Union[str, GeneId]]]])
-
-slots.has_phenotype_association = Slot(uri=DEFAULT_.has_phenotype_association, name="has_phenotype_association", curie=DEFAULT_.curie('has_phenotype_association'),
-                   model_uri=DEFAULT_.has_phenotype_association, domain=Allele, range=Optional[Union[dict, "PhenotypeAssociation"]])
-
-slots.has_disease_association = Slot(uri=DEFAULT_.has_disease_association, name="has_disease_association", curie=DEFAULT_.curie('has_disease_association'),
-                   model_uri=DEFAULT_.has_disease_association, domain=Allele, range=Optional[Union[dict, "DiseaseAssociation"]])
+                   model_uri=DEFAULT_.affected_genes, domain=Allele, range=Optional[Union[Union[str, GeneCurie], List[Union[str, GeneCurie]]]])
 
 slots.contains_construct = Slot(uri=DEFAULT_.contains_construct, name="contains_construct", curie=DEFAULT_.curie('contains_construct'),
                    model_uri=DEFAULT_.contains_construct, domain=Allele, range=Optional[Union[dict, "Construct"]])
@@ -463,7 +387,7 @@ slots.reference_association = Slot(uri=DEFAULT_.reference_association, name="ref
                    model_uri=DEFAULT_.reference_association, domain=ReferenceType, range=Optional[Union[str, "ReferenceAssociationTypes"]])
 
 slots.reference = Slot(uri=DEFAULT_.reference, name="reference", curie=DEFAULT_.curie('reference'),
-                   model_uri=DEFAULT_.reference, domain=ReferenceType, range=Optional[Union[str, ReferenceId]])
+                   model_uri=DEFAULT_.reference, domain=ReferenceType, range=Optional[Union[str, ReferenceCurie]])
 
 slots.associated_notes = Slot(uri=DEFAULT_.associated_notes, name="associated_notes", curie=DEFAULT_.curie('associated_notes'),
                    model_uri=DEFAULT_.associated_notes, domain=None, range=Optional[Union[dict, NoteType]])
@@ -475,10 +399,10 @@ slots.feature_type = Slot(uri=DEFAULT_.feature_type, name="feature_type", curie=
                    model_uri=DEFAULT_.feature_type, domain=Allele, range=Optional[str])
 
 slots.carried_by = Slot(uri=DEFAULT_.carried_by, name="carried_by", curie=DEFAULT_.curie('carried_by'),
-                   model_uri=DEFAULT_.carried_by, domain=Allele, range=Optional[Union[Union[dict, "Strain"], List[Union[dict, "Strain"]]]])
+                   model_uri=DEFAULT_.carried_by, domain=Allele, range=Optional[Union[Union[str, AffectedGenomicModelCurie], List[Union[str, AffectedGenomicModelCurie]]]])
 
 slots.origins = Slot(uri=DEFAULT_.origins, name="origins", curie=DEFAULT_.curie('origins'),
-                   model_uri=DEFAULT_.origins, domain=Allele, range=Optional[Union[Union[dict, "Strain"], List[Union[dict, "Strain"]]]])
+                   model_uri=DEFAULT_.origins, domain=Allele, range=Optional[Union[Union[str, AffectedGenomicModelCurie], List[Union[str, AffectedGenomicModelCurie]]]])
 
 slots.germline_transmission_status = Slot(uri=DEFAULT_.germline_transmission_status, name="germline_transmission_status", curie=DEFAULT_.curie('germline_transmission_status'),
                    model_uri=DEFAULT_.germline_transmission_status, domain=Allele, range=Optional[str])
@@ -512,3 +436,6 @@ slots.aberration = Slot(uri=DEFAULT_.aberration, name="aberration", curie=DEFAUL
 
 slots.is_extinct = Slot(uri=DEFAULT_.is_extinct, name="is_extinct", curie=DEFAULT_.curie('is_extinct'),
                    model_uri=DEFAULT_.is_extinct, domain=Allele, range=Optional[Union[bool, Bool]])
+
+slots.id = Slot(uri=DEFAULT_.id, name="id", curie=DEFAULT_.curie('id'),
+                   model_uri=DEFAULT_.id, domain=None, range=Optional[str])

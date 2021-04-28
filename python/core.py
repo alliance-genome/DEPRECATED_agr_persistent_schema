@@ -1,5 +1,5 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 10:26
+# Generation date: 2021-04-28 15:35
 # Schema: Alliance-Schema-Prototype-Core
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
@@ -21,10 +21,10 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . reference import ReferenceId
+from . reference import ReferenceCurie
 from . resource import Resource
 from linkml.utils.metamodelcore import Bool, URIorCURIE, XSDDate
-from linkml_model.types import Boolean, Date, String, Uriorcurie
+from linkml_model.types import Boolean, Date, Integer, String, Uriorcurie
 
 metamodel_version = "1.7.0"
 
@@ -63,11 +63,11 @@ class BiologicalSequence(String):
 
 
 # Class references
-class GeneId(URIorCURIE):
+class GeneCurie(URIorCURIE):
     pass
 
 
-class TranscriptId(URIorCURIE):
+class TranscriptCurie(URIorCURIE):
     pass
 
 
@@ -89,13 +89,13 @@ class Gene(YAMLRoot):
     class_name: ClassVar[str] = "Gene"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Gene
 
-    id: Union[str, GeneId] = None
+    curie: Union[str, GeneCurie] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, GeneId):
-            self.id = GeneId(self.id)
+        if self.curie is None:
+            raise ValueError("curie must be supplied")
+        if not isinstance(self.curie, GeneCurie):
+            self.curie = GeneCurie(self.curie)
 
         super().__post_init__(**kwargs)
 
@@ -109,15 +109,39 @@ class Transcript(YAMLRoot):
     class_name: ClassVar[str] = "Transcript"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Transcript
 
-    id: Union[str, TranscriptId] = None
+    curie: Union[str, TranscriptCurie] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, TranscriptId):
-            self.id = TranscriptId(self.id)
+        if self.curie is None:
+            raise ValueError("curie must be supplied")
+        if not isinstance(self.curie, TranscriptCurie):
+            self.curie = TranscriptCurie(self.curie)
 
         super().__post_init__(**kwargs)
+
+
+class DiseaseAssociation(YAMLRoot):
+    """
+    Dummy disease association class
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ALLIANCE.DiseaseAssociation
+    class_class_curie: ClassVar[str] = "alliance:DiseaseAssociation"
+    class_name: ClassVar[str] = "DiseaseAssociation"
+    class_model_uri: ClassVar[URIRef] = ALLIANCE.DiseaseAssociation
+
+
+class PhenotypeAssociation(YAMLRoot):
+    """
+    Dummy phenotype association class
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ALLIANCE.PhenotypeAssociation
+    class_class_curie: ClassVar[str] = "alliance:PhenotypeAssociation"
+    class_name: ClassVar[str] = "PhenotypeAssociation"
+    class_model_uri: ClassVar[URIRef] = ALLIANCE.PhenotypeAssociation
 
 
 class Species(YAMLRoot):
@@ -129,6 +153,24 @@ class Species(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Species
 
 
+class Disease(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ALLIANCE.Disease
+    class_class_curie: ClassVar[str] = "alliance:Disease"
+    class_name: ClassVar[str] = "Disease"
+    class_model_uri: ClassVar[URIRef] = ALLIANCE.Disease
+
+
+class Phenotype(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = ALLIANCE.Phenotype
+    class_class_curie: ClassVar[str] = "alliance:Phenotype"
+    class_name: ClassVar[str] = "Phenotype"
+    class_model_uri: ClassVar[URIRef] = ALLIANCE.Phenotype
+
+
 # Enumerations
 
 
@@ -136,8 +178,8 @@ class Species(YAMLRoot):
 class slots:
     pass
 
-slots.id = Slot(uri=ALLIANCE.id, name="id", curie=ALLIANCE.curie('id'),
-                   model_uri=ALLIANCE.id, domain=None, range=URIRef)
+slots.curie = Slot(uri=ALLIANCE.curie, name="curie", curie=ALLIANCE.curie('curie'),
+                   model_uri=ALLIANCE.curie, domain=None, range=URIRef)
 
 slots.date_produced = Slot(uri=ALLIANCE.date_produced, name="date_produced", curie=ALLIANCE.curie('date_produced'),
                    model_uri=ALLIANCE.date_produced, domain=None, range=Optional[Union[str, XSDDate]])
@@ -169,8 +211,8 @@ slots.name = Slot(uri=ALLIANCE.name, name="name", curie=ALLIANCE.curie('name'),
 slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross_references", curie=ALLIANCE.curie('cross_references'),
                    model_uri=ALLIANCE.cross_references, domain=None, range=Optional[Union[str, List[str]]])
 
-slots.symbols = Slot(uri=ALLIANCE.symbols, name="symbols", curie=ALLIANCE.curie('symbols'),
-                   model_uri=ALLIANCE.symbols, domain=None, range=Optional[str])
+slots.symbol = Slot(uri=ALLIANCE.symbol, name="symbol", curie=ALLIANCE.curie('symbol'),
+                   model_uri=ALLIANCE.symbol, domain=None, range=Optional[str])
 
 slots.from_species = Slot(uri=ALLIANCE.from_species, name="from_species", curie=ALLIANCE.curie('from_species'),
                    model_uri=ALLIANCE.from_species, domain=None, range=Optional[Union[dict, Species]])
@@ -187,5 +229,17 @@ slots.qualifiers = Slot(uri=ALLIANCE.qualifiers, name="qualifiers", curie=ALLIAN
 slots.type = Slot(uri=ALLIANCE.type, name="type", curie=ALLIANCE.curie('type'),
                    model_uri=ALLIANCE.type, domain=None, range=Optional[Union[str, URIorCURIE]])
 
+slots.taxon_id = Slot(uri=ALLIANCE.taxon_id, name="taxon_id", curie=ALLIANCE.curie('taxon_id'),
+                   model_uri=ALLIANCE.taxon_id, domain=None, range=Optional[int])
+
 slots.references = Slot(uri=ALLIANCE.references, name="references", curie=ALLIANCE.curie('references'),
-                   model_uri=ALLIANCE.references, domain=Resource, range=Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]])
+                   model_uri=ALLIANCE.references, domain=Resource, range=Optional[Union[Union[str, ReferenceCurie], List[Union[str, ReferenceCurie]]]])
+
+slots.phenotype_associations = Slot(uri=ALLIANCE.phenotype_associations, name="phenotype_associations", curie=ALLIANCE.curie('phenotype_associations'),
+                   model_uri=ALLIANCE.phenotype_associations, domain=None, range=Optional[Union[dict, PhenotypeAssociation]])
+
+slots.disease_associations = Slot(uri=ALLIANCE.disease_associations, name="disease_associations", curie=ALLIANCE.curie('disease_associations'),
+                   model_uri=ALLIANCE.disease_associations, domain=None, range=Optional[Union[dict, DiseaseAssociation]])
+
+slots.id = Slot(uri=ALLIANCE.id, name="id", curie=ALLIANCE.curie('id'),
+                   model_uri=ALLIANCE.id, domain=None, range=Optional[str])

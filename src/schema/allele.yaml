@@ -41,8 +41,8 @@ classes:
       - synonyms
       - affected_genes
       - from_species
-      - has_phenotype_association
-      - has_disease_association
+      - phenotype_associations
+      - disease_associations
       - contains_construct
       - molecular_mutation
       - functional_impact
@@ -80,21 +80,9 @@ classes:
       - note_association
       - notes
 
-  DiseaseAssociation:
-    description: >-
-      Dummy disease association class
-
-  PhenotypeAssociation:
-    description: >-
-      Dummy phenotype association class
-
   Construct:
     description: >-
       Dummy construct class
-
-  Strain:
-    description: >-
-      Dummy strain/stock class
 
   CellLine:
     description: >-
@@ -108,24 +96,12 @@ classes:
 
 slots:
 
-  taxon_id:
-    description: NCBI taxid
-    range: integer
-
   affected_genes:
     description:
       Gene(s) altered in allele
     multivalued: true
     domain: Allele
     range: Gene
-
-  has_phenotype_association:
-    domain: Allele
-    range: PhenotypeAssociation
-
-  has_disease_association:
-    domain: Allele
-    range: DiseaseAssociation
 
   contains_construct:
     domain: Allele
@@ -196,18 +172,18 @@ slots:
 
   carried_by:
     description: >-
-      Strains(s) or stock(s) that carry the allele
+      Affected genomic models that carry the allele
     multivalued: true
     domain: Allele
-    range: Strain
+    range: AffectedGenomicModel
 
   origins:
     singular_name: origin
     description: >-
-      Strain(s) or stock(s) the allele was introduced in
+      Affected genomic models that the allele was introduced in
     multivalued: true
     domain: Allele
-    range: Strain
+    range: AffectedGenomicModel
 
   germline_transmission_status:
     description: >-

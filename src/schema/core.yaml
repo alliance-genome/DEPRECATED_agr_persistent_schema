@@ -52,7 +52,7 @@ classes:
   Gene:
     description: >-
     slots:
-      - id
+      - curie
     id_prefixes:
       - ENSEMBL
       - HGNC
@@ -66,7 +66,7 @@ classes:
   Transcript:
     description: >-
     slots:
-      - id
+      - curie
     id_prefixes:
       - ENSEMBL
       - FB
@@ -76,7 +76,19 @@ classes:
       - SGD
       - ZFIN
 
+  DiseaseAssociation:
+    description: >-
+      Dummy disease association class
+
+  PhenotypeAssociation:
+    description: >-
+      Dummy phenotype association class
+
   Species:
+
+  Disease:
+
+  Phenotype:
 
 
 ## ------------
@@ -85,7 +97,7 @@ classes:
 
 slots:
 
-  id:
+  curie:
     identifier: true
     required: true
     multivalued: false
@@ -182,9 +194,21 @@ slots:
   type:
     range: uriorcurie
 
+  taxon_id:
+    description: NCBI taxid
+    range: integer
+
   references:
     singular_name: reference
     description: holds between an object and a reference
     multivalued: true
     domain: Resource
     range: Reference
+
+  phenotype_associations:
+    singular_name: phenotype_association
+    range: PhenotypeAssociation
+
+  disease_associations:
+    singular_name: disease_association
+    range: DiseaseAssociation

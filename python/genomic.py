@@ -1,5 +1,5 @@
 # Auto generated from genomic.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 10:26
+# Generation date: 2021-04-28 15:35
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
@@ -43,11 +43,11 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class ChromosomeId(URIorCURIE):
+class ChromosomeCurie(URIorCURIE):
     pass
 
 
-class AssemblyId(URIorCURIE):
+class AssemblyCurie(URIorCURIE):
     pass
 
 
@@ -63,13 +63,13 @@ class Chromosome(YAMLRoot):
     class_name: ClassVar[str] = "Chromosome"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
 
-    id: Union[str, ChromosomeId] = None
+    curie: Union[str, ChromosomeCurie] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, ChromosomeId):
-            self.id = ChromosomeId(self.id)
+        if self.curie is None:
+            raise ValueError("curie must be supplied")
+        if not isinstance(self.curie, ChromosomeCurie):
+            self.curie = ChromosomeCurie(self.curie)
 
         super().__post_init__(**kwargs)
 
@@ -83,13 +83,13 @@ class Assembly(YAMLRoot):
     class_name: ClassVar[str] = "Assembly"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Assembly")
 
-    id: Union[str, AssemblyId] = None
+    curie: Union[str, AssemblyCurie] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.id is None:
-            raise ValueError("id must be supplied")
-        if not isinstance(self.id, AssemblyId):
-            self.id = AssemblyId(self.id)
+        if self.curie is None:
+            raise ValueError("curie must be supplied")
+        if not isinstance(self.curie, AssemblyCurie):
+            self.curie = AssemblyCurie(self.curie)
 
         super().__post_init__(**kwargs)
 
@@ -121,3 +121,6 @@ slots.assembly_id = Slot(uri=DEFAULT_.assembly_id, name="assembly_id", curie=DEF
 
 slots.allele_id = Slot(uri=DEFAULT_.allele_id, name="allele_id", curie=DEFAULT_.curie('allele_id'),
                    model_uri=DEFAULT_.allele_id, domain=None, range=str)
+
+slots.id = Slot(uri=DEFAULT_.id, name="id", curie=DEFAULT_.curie('id'),
+                   model_uri=DEFAULT_.id, domain=None, range=Optional[str])

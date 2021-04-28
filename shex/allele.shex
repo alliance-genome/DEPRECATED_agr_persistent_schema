@@ -34,24 +34,52 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
+<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModel> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModel_tes> ( 
+          <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/subtype>
+          @<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/SubtypeValues> ? ;
+          <http://alliancegenome.orgtaxon_id> @linkml:Integer ? ;
+          <http://alliancegenome.orgcross_references> @linkml:String * ;
+          <http://alliancegenome.orgsynonyms> @linkml:String * ;
+          <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/components>
+          @<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModelComponent> * ;
+          <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/sequence_targeting_reagents>
+          @linkml:Uriorcurie * ;
+          <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/parental_populations> @linkml:Uriorcurie ?
+          ;
+          <http://alliancegenome.orgdata_provider> @linkml:String * ;
+          <http://alliancegenome.orgdate_produced> @linkml:Date ? ;
+          <http://alliancegenome.orgdisease_associations> @<http://alliancegenome.orgDiseaseAssociation> ? ;
+          <http://alliancegenome.orgphenotype_associations> @<http://alliancegenome.orgPhenotypeAssociation> ?
+       ) ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModel> ]
+    )
+}
+
+<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModelComponent> CLOSED {
+    (  $<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModelComponent_tes> ( 
+          <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/allele> @<Allele> ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/zygosity>
+          @<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/ZygosityValues> ?
+       ) ;
+       rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModelComponent> ] ?
+    )
+}
+
 <Allele> CLOSED {
-    (  $<Allele_tes> (  <local_id> @linkml:String ? ;
-          <global_id> @linkml:String ? ;
-          <uuid> @linkml:String ? ;
-          <http://alliancegenome.orgname> @linkml:String ? ;
-          <http://alliancegenome.orgsymbols> @linkml:String ? ;
+    (  $<Allele_tes> (  <http://alliancegenome.orgname> @linkml:String ? ;
+          <http://alliancegenome.orgsymbol> @linkml:String ? ;
           <http://alliancegenome.orgdescription> @linkml:String ? ;
-          <taxon_id> @linkml:Integer ? ;
+          <http://alliancegenome.orgtaxon_id> @linkml:Integer ? ;
           <http://alliancegenome.orgdate_produced> @linkml:Date ? ;
           <http://alliancegenome.orgdata_provider> @linkml:String * ;
           <http://alliancegenome.orgrelease> @linkml:String ? ;
-          <mod_xrefs> @linkml:Uriorcurie ? ;
           <http://alliancegenome.orgcross_references> @linkml:String * ;
           <http://alliancegenome.orgsynonyms> @linkml:String * ;
           <affected_genes> @<http://alliancegenome.orgGene> * ;
           <http://alliancegenome.orgfrom_species> @<http://alliancegenome.orgSpecies> ? ;
-          <has_phenotype_association> @<PhenotypeAssociation> ? ;
-          <has_disease_association> @<DiseaseAssociation> ? ;
+          <http://alliancegenome.orgphenotype_associations> @<http://alliancegenome.orgPhenotypeAssociation> ? ;
+          <http://alliancegenome.orgdisease_associations> @<http://alliancegenome.orgDiseaseAssociation> ? ;
           <contains_construct> @<Construct> ? ;
           <molecular_mutation> @linkml:String ? ;
           <functional_impact> @linkml:String ? ;
@@ -64,8 +92,8 @@ linkml:Nodeidentifier NONLITERAL
           <embryonic_stem_cell_lines> @linkml:String ? ;
           <images> @<Image> ? ;
           <feature_type> @linkml:String ? ;
-          <carried_by> @<Strain> * ;
-          <origins> @<Strain> * ;
+          <carried_by> @<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModel> * ;
+          <origins> @<https://github.com/alliance-genome/agr_persistent_schema/affectedGenomicModel/AffectedGenomicModel> * ;
           <database_status> @<DatabaseStatuses> ? ;
           <inheritence_mode> @<ModesOfInheritence> ? ;
           <in_collection> @linkml:String ? ;
@@ -102,9 +130,15 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<DiseaseAssociation> CLOSED {
-    (  $<DiseaseAssociation_tes> rdf:type . * ;
-       rdf:type [ <DiseaseAssociation> ] ?
+<http://alliancegenome.orgDisease> CLOSED {
+    (  $<http://alliancegenome.orgDisease_tes> rdf:type . * ;
+       rdf:type [ <http://alliancegenome.orgDisease> ] ?
+    )
+}
+
+<http://alliancegenome.orgDiseaseAssociation> CLOSED {
+    (  $<http://alliancegenome.orgDiseaseAssociation_tes> rdf:type . * ;
+       rdf:type [ <http://alliancegenome.orgDiseaseAssociation> ] ?
     )
 }
 
@@ -145,9 +179,15 @@ linkml:Nodeidentifier NONLITERAL
     )
 }
 
-<PhenotypeAssociation> CLOSED {
-    (  $<PhenotypeAssociation_tes> rdf:type . * ;
-       rdf:type [ <PhenotypeAssociation> ] ?
+<http://alliancegenome.orgPhenotype> CLOSED {
+    (  $<http://alliancegenome.orgPhenotype_tes> rdf:type . * ;
+       rdf:type [ <http://alliancegenome.orgPhenotype> ] ?
+    )
+}
+
+<http://alliancegenome.orgPhenotypeAssociation> CLOSED {
+    (  $<http://alliancegenome.orgPhenotypeAssociation_tes> rdf:type . * ;
+       rdf:type [ <http://alliancegenome.orgPhenotypeAssociation> ] ?
     )
 }
 
@@ -181,7 +221,8 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgpublisher> @<http://alliancegenome.orgInformationContentEntity> ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/keywords> @linkml:String * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/from_resource>
-          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ?
+          @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ? ;
+          <id> @linkml:String ?
        ) ;
        rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> ]
     )
@@ -212,7 +253,8 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgsynonyms> @linkml:String * ;
           <http://alliancegenome.orgauthors> @<http://alliancegenome.orgAuthorReference> * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/editors>
-          @<http://alliancegenome.orgAuthorReference> *
+          @<http://alliancegenome.orgAuthorReference> * ;
+          <id> @linkml:String ?
        ) ;
        rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/resource/Resource> ]
     )
@@ -221,12 +263,6 @@ linkml:Nodeidentifier NONLITERAL
 <http://alliancegenome.orgSpecies> CLOSED {
     (  $<http://alliancegenome.orgSpecies_tes> rdf:type . * ;
        rdf:type [ <http://alliancegenome.orgSpecies> ] ?
-    )
-}
-
-<Strain> CLOSED {
-    (  $<Strain_tes> rdf:type . * ;
-       rdf:type [ <Strain> ] ?
     )
 }
 
