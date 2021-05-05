@@ -46,6 +46,7 @@ classes:
   author reference:
     slots:
       - corresponding author
+      - affiliation
       - first name
       - middle names
       - last name
@@ -81,6 +82,12 @@ slots:
     description: >-
     range: information content entity
     domain: information content entity
+
+  affiliation:
+    description: >-
+    range: information content entity
+    domain: information content entity
+    multivalued: true
 
   first name:
     description: >-
