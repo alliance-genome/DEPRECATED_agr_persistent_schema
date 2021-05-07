@@ -39,6 +39,7 @@ imports:
   - core
   - informationContentEntity
   - person
+  - geneInteraction
 
 
 subsets:
