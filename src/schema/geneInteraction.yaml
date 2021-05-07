@@ -1,0 +1,213 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/geneInteraction.yaml
+name: Alliance-Gene-Interaction-Schema-Prototype
+title: Alliance Gene Interaction Schema Prototype
+description: Alliance Gene Interaction Schema Prototype with LinkML
+
+default_prefix: alliance
+default_range: string
+
+#default_curi_maps:
+#  - obo_context
+#  - idot_context
+#  - semweb_context
+#  - monarch_context
+#
+#emit_prefixes:
+#  - rdf
+#  - rdfs
+#  - xsd
+#  - skos
+
+imports:
+  - linkml:types
+  - core
+  - reference
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  schema: 'http://schema.org/'
+  PSIMICV: 'http://purl.obolibrary.org/obo/MI_'
+
+
+## ----------
+## CLASSES
+## ----------
+
+classes:
+
+  GeneInteraction:
+    description: >-
+      An interaction between two genes or gene products; this may be a physical
+      molecular interaction between gene products (e.g. protein-protein interactions),
+      or may be a genetic interaction between genes (e.g. phenotypic suppression)
+    abstract: true
+    slots:
+      id
+      cross_references
+      subject
+      object
+      source_database
+      evidence
+      interaction_type
+      interactor_A_role
+      interactor_B_role
+      interactor_A_type
+      interactor_B_type
+    slot_usage:
+      subject:
+        range: gene
+      object:
+        range: gene
+
+  GeneMolecularInteraction:
+    description: >-
+      A physical molecular interaction between gene products (e.g. protein-protein
+      interactions or protein-RNA interactions) or between genes and DNA-binding
+      factors (e.g. protein-DNA interactions)
+    is_a: GeneInteraction
+    slots:
+      aggregation_database
+      detection_method
+
+  GeneGeneticInteraction:
+    description: >-
+      A genetic interaction between genes (e.g. phenotypic suppression)
+    is_a: GeneInteraction
+    slots:
+      interactor_A_genetic_perturbation
+      interactor_B_genetic_perturbation
+      phenotype_or_trait
+
+
+## ------------
+## SLOTS
+## ------------
+
+slots:
+  id:
+    identifier: true
+    multivalued: false
+    required: true
+    description: >-
+      The unique primary identifier for the interaction. This is intended
+      to be synonymous with the unique internal identifier currently at the
+      Alliance, as opposed to a cross reference.
+
+  cross_references:
+    singular_name: cross reference
+    multivalued: true
+    description: >-
+      Identifier(s) of the interaction annotation at external databases or resources.
+
+  association slot:
+    abstract: true
+    aliases: ['edge property', 'statement property']
+    description: >-
+      any slot that relates an association to another entity
+    exact_mappings:
+      - biolink:association_slot
+
+  subject:
+    is_a: association slot
+    description: >-
+      connects an association to the subject of the association.
+      For example, in a gene interaction association, gene A is the subject and gene B is the object.
+    required: true
+    exact_mappings:
+      - biolink:subject
+
+  object:
+    is_a: association slot
+    description: >-
+      connects an association to the object of the association.
+      For example, in a gene interaction association, gene A is the subject and gene B is the object.
+    required: true
+    exact_mappings:
+      - biolink:object
+
+  source_database:
+    required: true
+    multivalued: false
+    description: >-
+      The database that curated the interaction. e.g. BioGRID
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0461
+
+  aggregation_database:
+    required: false
+    multivalued: false
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0461
+    description: >-
+      The database that collected the interaction annotation from another resource and
+      aggregated it into a consolidated resource. e.g. IMEx
+
+  evidence:
+    required: true
+    multivalued: false
+    range: reference
+    description: >-
+      The reference from which the interaction was annotated.
+
+  interaction_type:
+    required: true
+    multivalued: false
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0190
+    description: >-
+      The type of interaction between the two genes or gene products. e.g. physical association
+
+  interactor_A_role:
+    required: false
+    multivalued: true
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0495
+
+  interactor_B_role:
+    required: false
+    multivalued: true
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0495
+
+  interactor_A_type:
+    required: true
+    multivalued: false
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0313
+
+  interactor_B_type:
+    required: true
+    multivalued: false
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0313
+
+  detection_method:
+    range: uriorcurie
+    exact_mappings:
+      - PSIMICV:0001
+
+  interactor_A_genetic_perturbation:
+    required: false
+    range: allele
+
+  interactor_B_genetic_perturbation:
+    required: false
+    range: allele
+
+  phenotype_or_trait:
+    required: false
+    multivalued: true
+    range: string
+
