@@ -11,12 +11,13 @@ default_range: string
 #  - idot_context
 #  - semweb_context
 #  - monarch_context
-#
-#emit_prefixes:
-#  - rdf
-#  - rdfs
-#  - xsd
-#  - skos
+
+emit_prefixes:
+  - rdf
+  - rdfs
+  - xsd
+  - skos
+  - owl
 
 imports:
   - linkml:types
@@ -25,14 +26,27 @@ imports:
 
 prefixes:
   alliance: 'http://alliancegenome.org'
-  linkml: 'https://w3id.org/linkml/'
-  gff: 'https://w3id.org/gff'
-  faldo: 'http://biohackathon.org/resource/faldo#'
+  BFO: 'http://purl.obolibrary.org/obo/BFO_'
   biolink: 'https://w3id.org/biolink/vocab/'
+  CTD: 'http://translator.ncats.nih.gov/CTD_'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  gff: 'https://w3id.org/gff'
+  linkml: 'https://w3id.org/linkml/'
+  mi: 'http://purl.obolibrary.org/obo/MI_'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  OBAN: 'http://purl.org/oban/'
+  RO: 'http://purl.obolibrary.org/obo/RO_'
+  RTXKG1: 'http://kg1endpoint.rtx.ai/'
   schema: 'http://schema.org/'
-  PSIMICV: 'http://purl.obolibrary.org/obo/MI_'
-
+  SEMMEDDB: 'https://skr3.nlm.nih.gov/SemMedDB'
+  SIO: 'http://semanticscience.org/resource/SIO_'
+  # The UMLS Semantic types and groups namespaces don't have a directly
+  # resolvable Base URI, but we point to a pair of sensible web documents
+  UMLSSC: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/code#'
+  UMLSSG: 'https://metamap.nlm.nih.gov/Docs/SemGroups_2018.txt/group#'
+  UMLSST: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/type#'
+  WIKIDATA: 'https://www.wikidata.org/wiki/'            # Wikidata Entity
+  WIKIDATA_PROPERTY: 'https://www.wikidata.org/wiki/Property:'  # Wikidata Property - not a conventional namespace prefix
 
 ## ----------
 ## CLASSES
@@ -40,20 +54,131 @@ prefixes:
 
 classes:
 
+  ## ------
+  ## THINGS
+  ## ------
+
+  Entity:                         # this should be generalized in core.yaml
+    description: >-
+      Root Biolink Model class for all things and informational relationships, real or imagined.
+    abstract: true
+    slots:
+      - id
+      - iri
+      - category
+      - type   # rdf:type
+      - name
+      - description
+      - source
+      - provided by
+      - has attribute
+    exact_mappings:
+      - biolink:entity
+
+  NamedThing:                         # this should be generalized in core.yaml
+    is_a: Entity
+    description: >-
+      a databased entity or concept/class
+    slot_usage:
+      category:
+        range: NamedThing
+        required: true
+    exact_mappings:
+      - biolink:named_thing
+      - BFO:0000001
+      - WIKIDATA:Q35120
+      # UMLS Semantic Group "Objects"
+      - UMLSSG:OBJC
+      # Entity
+      - UMLSSC:T071
+      - UMLSST:enty
+
+  BiologicalEntity:                         # this should be generalized in core.yaml
+    is_a: NamedThing
+    abstract: true
+    exact_mappings:
+      - biolink:biological_entity
+    narrow_mappings:
+      - WIKIDATA:Q28845870
+      # UMLS Semantic Type "Experimental Model of Disease"
+      - UMLSSC:T050
+      - UMLSST:emod
+      # SIO term is 'biological entity' but less inclusive than the Biolink scope
+      - SIO:010046
+
+  MolecularEntity:                         # this should be generalized in core.yaml
+    is_a: BiologicalEntity
+    description: >-
+      A gene, gene product, small molecule or macromolecule (including protein complex)"
+    exact_mappings:
+      - CHEBI:24431
+      - biolink:molecular_entity
+
+  ## ------------
+  ## ASSOCIATIONS
+  ## ------------
+
+  Association:                     # this should be generalized in core.yaml
+    is_a: Entity
+    description: >-
+      A typed association between two entities, supported by evidence
+    comments:
+      - This is roughly the model used by biolink and ontobio at the moment
+    slots:
+      - subject
+      - predicate
+      - object
+      - relation
+      - negated
+      - qualifiers
+      - association_publications
+    slot_usage:
+      type:
+        description: rdf:type of biolink:Association should be fixed at rdf:Statement
+      category:
+        range: category type
+        required: false
+    exact_mappings:
+      - OBAN:association
+      - rdf:Statement
+      - owl:Axiom
+      - biolink:association
+
+  GeneToGeneAssociation:
+    description: >-
+      abstract parent class for different kinds of gene-gene or gene product
+      to gene product relationships. Includes homology and interaction.
+    abstract: true
+    is_a: Association
+    defining_slots:
+      - subject
+      - object
+    slot_usage:
+      subject:
+        range: Gene
+        description: >-
+          the subject gene in the association. If the relation is symmetric,
+          subject vs object is arbitrary. We allow a gene product to stand
+          as a proxy for the gene or vice versa.
+      object:
+        range: Gene
+        description: >-
+          the object gene in the association. If the relation is symmetric,
+          subject vs object is arbitrary. We allow a gene product to stand
+          as a proxy for the gene or vice versa.
+    exact_mappings:
+      - biolink:gene_to_gene_association
+
   GeneInteraction:
     description: >-
       An interaction between two genes or gene products; this may be a physical
       molecular interaction between gene products (e.g. protein-protein interactions),
       or may be a genetic interaction between genes (e.g. phenotypic suppression)
+    is_a: GeneToGeneAssociation
     abstract: true
     slots:
-      id
       cross_references
-      subject
-      object
-      predicate
       data_provider
-      evidence
       interaction_type
       interactor_A_role
       interactor_B_role
@@ -86,18 +211,33 @@ classes:
         description: >-
           Additional identifier(s) of the interaction annotation other than the primary id.
       subject:
-        range: gene
-#      predicate:           # stub; need to incorporate more content from biolink
-#        subproperty_of:
+        range: Gene                   # is this declaration needed since it is already made in the parent class?
+        values_from:
+          - alliance
+      predicate:
+        subproperty_of: interacts_with
+        symmetric: true
+      relation:
+        values_from:
+          - RO
+          - mi
       object:
-        range: gene
+        range: Gene                   # is this declaration needed since it is already made in the parent class?
+        values_from:
+          - alliance
       data_provider:
         range: uriorcurie
         description: >-
           The database that curated the interaction. e.g. BioGRID
-        exact_mappings:
-          - PSIMICV:0461
+        values_from:
+          - mi
+#        exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#          - mi:0461
         required: true
+        multivalued: false
+      association_publications:
+        description: >-
+          The reference from which the interaction was annotated.
         multivalued: false
     exact_mappings:
       - biolink:pairwise_gene_to_gene_interaction
@@ -111,6 +251,27 @@ classes:
     slots:
       aggregation_database
       detection_method
+    slot_usage:
+      aggregation_database:
+        values_from:
+          - mi
+#        exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#          - mi:0461
+        description: >-
+          The database that collected the interaction annotation from another resource and
+          aggregated it into a consolidated resource. e.g. IMEx
+      detection_method:
+        values_from:
+          - mi
+#        exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#          - mi:0001
+      predicate:
+        subproperty_of: molecularly_interacts_with
+        symmetric: true
+      relation:
+        values_from:
+          - RO
+          - mi
     exact_mappings:
       - biolink:pairwise_molecular_interaction
 
@@ -122,6 +283,9 @@ classes:
       interactor_A_genetic_perturbation
       interactor_B_genetic_perturbation
       phenotype_or_trait
+    slot_usage:
+      predicate:
+        subproperty_of: genetically_interacts_with
 
 
 ## ------------
@@ -130,75 +294,174 @@ classes:
 
 slots:
 
-  aggregation_database:
+  aggregation_database:         # this should be generalized in core.yaml
     required: false
     multivalued: false
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0461
-    description: >-
-      The database that collected the interaction annotation from another resource and
-      aggregated it into a consolidated resource. e.g. IMEx
 
-  evidence:
-    required: true
-    multivalued: false
-    range: reference
+  association_publications:                     # this should be generalized in core.yaml
+    singular_name: 'association publication'
     description: >-
-      The reference from which the interaction was annotated.
+      connects an association to publications supporting the association
+    is_a: association_slot
+    multivalued: true
+    domain: Association
+    range: Reference
+
+  relation:                     # this should be generalized in core.yaml
+    is_a: association_slot
+    description: >-
+      The relation which describes an association between a subject and
+      an object in a more granular manner. Usually this is a term from
+      Relation Ontology, but it can be any edge CURIE.
+    domain: Association
+    range: uriorcurie
+    required: true
+    id_prefixes:
+      - RO
+      - BSPO
+      - SIO
 
   interaction_type:
     required: true
+    is_a: association_slot
     multivalued: false
+    domain: GeneInteraction
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0190
+#    exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#      - mi:0190
+    values_from:
+      - mi
     description: >-
       The type of interaction between the two genes or gene products. e.g. physical association
 
   interactor_A_role:
+    is_a: association_slot
     required: false
     multivalued: true
+    domain: GeneInteraction
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0495
+    values_from:
+      - mi
+#    exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#      - mi:0495
 
   interactor_B_role:
+    is_a: association_slot
     required: false
     multivalued: true
+    domain: GeneInteraction
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0495
+    values_from:
+      - mi
+#    exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#      - mi:0495
 
   interactor_A_type:
+    is_a: association_slot
     required: true
     multivalued: false
+    domain: GeneInteraction
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0313
+    values_from:
+      - mi
+#    exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#      - mi:0313
 
   interactor_B_type:
+    is_a: association_slot
     required: true
     multivalued: false
+    domain: GeneInteraction
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0313
+    values_from:
+      - mi
+#    exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
+#      - mi:0313
 
-  detection_method:
+  detection_method:                     # this should be generalized in core.yaml
     range: uriorcurie
-    exact_mappings:
-      - PSIMICV:0001
 
   interactor_A_genetic_perturbation:
+    is_a: association_slot
     required: false
-    range: allele
+    domain: GeneGeneticInteraction
+    range: Allele
 
   interactor_B_genetic_perturbation:
+    is_a: association_slot
     required: false
-    range: allele
+    domain: GeneGeneticInteraction
+    range: Allele
 
   phenotype_or_trait:
     required: false
     multivalued: true
+    domain: GeneGeneticInteraction
     range: string
+
+
+## --------------------
+## PREDICATES/RELATIONS
+## --------------------
+
+  related_to:                         # this should be generalized in core.yaml
+    description: >-
+      A relationship that is asserted between two named things
+    domain: NamedThing
+    range: NamedThing
+    multivalued: true
+    inherited: true
+    symmetric: true
+    exact_mappings:
+      - skos:relatedMatch
+      - SEMMEDDB:ASSOCIATED_WITH
+      - SEMMEDDB:associated_with
+#      - UMLS:related_to  # Unclear as to what exact prefix declaration to use
+
+  interacts_with:
+    domain: NamedThing
+    range: NamedThing
+    description: >-
+      holds between any two entities that directly or indirectly interact with each other
+    is_a: related to
+    symmetric: true
+    exact_mappings:
+      - RO:0002434
+      - biolink:interacts_with
+
+  physically_interacts_with:
+    is_a: interacts_with
+    description: >-
+      holds between two entities that make physical contact as part of some interaction
+    symmetric: true
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P129
+      - RTXKG1:physically_interacts_with
+      - biolink:physically_interacts_with
+
+  molecularly_interacts_with:
+    is_a: physically_interacts_with
+    domain: MolecularEntity
+    range: MolecularEntity
+    symmetric: true
+    exact_mappings:
+      - RO:0002436
+      - CTD:molecularly_interacts_with
+      - RTXKG1:targets
+      - biolink:molecularly_interacts_with
+
+  genetically_interacts_with:
+    is_a: interacts_with
+    description: >-
+      holds between two genes whose phenotypic effects are dependent on each
+      other in some way - such that their combined phenotypic effects are the
+      result of some interaction between the activity of their gene products.
+      Examples include epistasis and synthetic lethality.
+    domain: Gene
+    range: Gene
+    symmetric: true
+    exact_mappings:
+      - biolink:genetically_interacts_with
+      - RO:0002435
 
