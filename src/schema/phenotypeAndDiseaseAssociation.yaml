@@ -1,0 +1,302 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/phenotypeAndDiseaseAssociation.yaml
+name: Alliance-Schema-Prototype-Phenotype-&-Disease-Association
+title: Alliance Schema Prototype Phenotype & Disease Association
+description: Alliance Phenotype & Disease Association Schema Prototype with LinkML
+
+default_prefix: alliance
+default_range: string
+
+default_curi_maps:
+  - obo_context
+  - idot_context
+  - semweb_context
+  - monarch_context
+
+emit_prefixes:
+  - rdf
+  - rdfs
+  - xsd
+  - skos
+
+imports:
+  - linkml:types
+  - reference
+  - core                # This presumes the dependency on the Association, NamedThing and BiologicalEntity classes and related_to slot
+  - allele              # Once Mark QT's pull request is merged
+  - affectedGenomicModel      # Once Mark QT's pull request is merged
+
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  DOID: 'http://purl.obolibrary.org/obo/DOID_'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  gff: 'https://w3id.org/gff'
+  linkml: 'https://w3id.org/linkml/'
+  MONDO: 'http://purl.obolibrary.org/obo/MONDO_'
+  NCIT: 'http://purl.obolibrary.org/obo/NCIT_'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  schema: 'http://schema.org/'
+  SIO: 'http://semanticscience.org/resource/SIO_'
+  # The UMLS Semantic types and groups namespaces don't have a directly
+  # resolvable Base URI, but we point to a pair of sensible web documents
+  UMLSSC: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/code#'
+  UMLSSG: 'https://metamap.nlm.nih.gov/Docs/SemGroups_2018.txt/group#'
+  UMLSST: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/type#'
+  WIKIDATA: 'https://www.wikidata.org/wiki/'            # Wikidata Entity
+  WIKIDATA_PROPERTY: 'https://www.wikidata.org/wiki/Property:'  # Wikidata Property - not a conventional namespace prefix
+
+
+
+## ------------
+## CLASSES
+## ------------
+
+classes:
+
+## ------------
+## MIXINS
+## ------------
+
+  ThingWithTaxon:                       # this should be generalized in core.yaml
+    mixin: true
+    description: >-
+      A mixin that can be used on any entity that can be taxonomically classified.
+      This includes individual organisms; genes, their products and other molecular
+      entities; body parts; biological processes
+    slots:
+      - in_taxon
+    exact_mappings:
+      - biolink:ThingWithTaxon
+
+  EntityToDiseaseAssociationMixin:
+    description: >-
+      mixin class for any association whose object (target node) is a disease
+    mixin: true
+    defining_slots:
+      - object
+    slot_usage:
+      object:
+        range: disease
+        description: "disease"
+        examples:
+          - value: DOID:13359
+            description: "Ehlers-Danlos syndrome"
+    exact_mappings:
+      - biolink:EntityToDiseaseAssociationMixin
+
+  GeneToEntityAssociationMixin:
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: gene or gene product
+        description: >-
+          gene that is the subject of the association
+    exact_mappings:
+      - biolink:GeneToEntityAssociationMixin
+
+  EntityToPhenotypeAssociationMixin:
+    mixin: true
+    defining_slots:
+      - object
+    slot_usage:
+      description:
+        description: >-
+          A description of specific aspects of this phenotype, not otherwise
+          covered by the phenotype ontology class
+      object:
+        range: Phenotype
+        description: "phenotypic class"
+        values_from: [ 'upheno', 'hp', 'mp', 'wbphenotype', 'zp', 'apo' ]
+        examples:
+          - value: HP:0002487
+            description: Hyperkinesis
+          - value: WBPhenotype:0000180
+            description: axon morphology variant
+          - value: MP:0001569
+            description: abnormal circulating bilirubin level
+    exact_mappings:
+      - biolink:EntityToPhenotypicFeatureAssociationMixin
+
+## ------------
+## THINGS
+## ------------
+
+  OrganismTaxon:                       # this should be generalized in core.yaml
+    aliases:
+      - taxon
+      - taxonomic classification
+    description: >-
+      A classification of a set of organisms. Example instances:
+      NCBITaxon:9606 (Homo sapiens), NCBITaxon:2 (Bacteria).
+      Can also be used to represent strains or subspecies.
+    is_a: NamedThing
+    values_from:
+      - NCBITaxon
+    exact_mappings:
+      - biolink:OrganismTaxon
+      - WIKIDATA:Q16521
+    id_prefixes:
+      - NCBITaxon
+
+  DiseaseOrPhenotype:
+    is_a: BiologicalEntity
+    description: >-
+      Either one of a disease or an individual phenotype.
+      Some knowledge resources such as Monarch treat these as
+      distinct, others such as MESH conflate.
+    mixins:
+      - ThingWithTaxon
+    union_of:
+      - Disease
+      - Phenotype
+    exact_mappings:
+      biolink:DiseaseOrPhenotypicFeature
+
+  Disease:
+    aliases: ['condition', 'disorder', 'medical condition']
+    is_a: DiseaseOrPhenotype
+    slot_usage:
+      desription: >-
+        The definition of the disease (DO) term
+    exact_mappings:
+      - biolink:Disease
+      - MONDO:0000001
+      - DOID:4
+      - NCIT:C2991
+      - WIKIDATA:Q12136
+      - SIO:010299
+      # UMLS Semantic Group "Disorders"
+      - UMLSSG:DISO
+      # Disease or Syndrome
+      - UMLSSC:T047
+      - UMLSST:dsyn
+    id_prefixes:
+      - DOID
+
+  Phenotype:       # This may be premature until we can fully harmonize phenotype data models (i.e. pre-composed vs. post-composed)
+    aliases: ['symptom', 'phenotypic feature', 'trait']
+    is_a: DiseaseOrPhenotype
+    exact_mappings:
+      - biolink:PhenotypicFeature
+      - UPHENO:0001001
+      - SIO:010056
+      - WIKIDATA:Q104053
+    slots:
+      - phenotype_statement
+    slot_usage:
+      id:
+        required: false          # Can we declare the id be not required if the ancestor slot 'id' is required?
+
+
+## ------------
+## ASSOCIATIONS
+## ------------
+
+  GenePhenotypeAssociation:
+    is_a: Association
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - EntityToPhenotypeAssociationMixin
+      - GeneToEntityAssociationMixin
+    slot_usage:
+      subject:
+        range: Gene
+        description: "gene in which variation is correlated with the phenotypic feature"
+        examples:
+          - value: HGNC:2197
+            description: "COL1A1 (Human)"
+      object:
+        range: Phenotype
+    exact_mappings:
+      biolink:GeneToPhenotypicFeatureAssociation
+
+  AllelePhenotypeAssociation:
+    is_a: Association
+    slot_usage:
+      subject:
+        range: Allele
+      object:
+        range: Phenotype
+
+  AGMPhenotypeAssociation:
+    is_a: Association
+    slot_usage:
+      subject:
+        range: AffectedGenomicModel
+      object:
+        range: Phenotype
+
+  GeneDiseaseAssociation:
+    is_a: Association
+    exact_mappings:
+      - SIO:000983
+      - biolink:GeneToDiseaseAssociation
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - EntityToDiseaseAssociationMixin
+      - GeneToEntityAssociationMixin
+    slot_usage:
+      subject:
+        range: Gene
+        description: >-
+          gene in which variation is correlated with the disease,
+          may be protective or causative or associative, or as a model
+      object:
+        range: Disease
+
+  AlleleDiseaseAssociation:
+    is_a: Association
+    slot_usage:
+      subject:
+        range: Allele
+      object:
+        range: Disease
+
+  AGMDiseaseAssociation:
+    is_a: Association
+    slot_usage:
+      subject:
+        range: AffectedGenomicModel
+      object:
+        range: Disease
+
+
+
+## ------------
+## SLOTS
+## ------------
+
+slots:
+
+## ---------------
+## ATTRIBUTE SLOTS
+## ---------------
+
+  phenotype_statement:
+    description: >-
+      The label of an individual phenotype term from a phenotype ontology
+      or the post-composed statement of the phenotype from a post-composed terminology
+    range: string
+
+## --------------------
+## PREDICATES/RELATIONS
+## --------------------
+
+  in_taxon:                       # this should be generalized in core.yaml
+    aliases:
+      - instance of
+    is_a: related_to
+    domain: ThingWithTaxon
+    range: OrganismTaxon
+    description: >-
+      connects an entity to its taxonomic classification. Only certain kinds
+      of entities can be taxonomically classified; see 'thing with taxon'
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P703
