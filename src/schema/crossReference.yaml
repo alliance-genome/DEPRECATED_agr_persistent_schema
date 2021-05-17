@@ -14,15 +14,16 @@ prefixes:
 
 classes:
 
-  cross reference:
+  CrossReference:
+    is_a: InformationContentEntity
     slots:
-      - cross reference id
-      - page areas
-      - display name
+      - cross_reference_id
+      - page_areas
+      - display_name
       - prefix
     defining_slots:
-      - cross reference id
-      - page areas
+      - cross_reference_id
+      - page_areas
 
 slots:
 

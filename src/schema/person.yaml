@@ -32,8 +32,8 @@ prefixes:
 classes:
   person:
     slots:
-      - last name
-      - first name
+      - last_name
+      - first_name
       - orcid
     exact_mappings:
       - schema:person

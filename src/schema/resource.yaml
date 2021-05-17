@@ -14,7 +14,7 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  resource:
+  Resource:
     is_a: information content entity
     slots:
       - title
@@ -50,25 +50,25 @@ classes:
 
 slots:
 
-  resource id:
+  resource_id:
     domain: resource
 
-  iso abbreviation:
+  iso_abbreviation:
     description: >-
     domain: resource
     range: string
 
-  medline abbreviation:
+  medline_abbreviation:
     description: >-
     domain: resource
     range: string
 
-  print issn:
+  print_issn:
     description: >-
     domain: resource
     range: string
 
-  online issn:
+  online_issn:
     description: >-
     domain: resource
     range: string

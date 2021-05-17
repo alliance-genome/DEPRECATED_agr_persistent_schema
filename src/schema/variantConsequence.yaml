@@ -16,28 +16,28 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  variant gene consequence:
+  VariantGeneConsequence:
     aliases: ['gene level consequence']
     slots:
       - subject
       - object
-      - vep consequence
-      - vep impact
-      - polyphen score
-      - polyphen prediction
-      - sift score
-      - sift prediction
+      - vep_consequence
+      - vep_impact
+      - polyphen_score
+      - polyphen_prediction
+      - sift_score
+      - sift_prediction
     slot_usage:
       subject:
-        range: variant
+        range: Variant
         description: >-
           subject should be the variant identifier
       object:
-        range: gene
+        range: Gene
         description: >-
           object should be the gene identifier
 
-  variant transcript consequence:
+  variant_transcript_consequence:
     aliases: ['transcript level consequence']
     description: >-
       Class for transcript-level VEP results
