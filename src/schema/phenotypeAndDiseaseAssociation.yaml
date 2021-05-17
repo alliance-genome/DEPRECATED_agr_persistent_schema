@@ -17,6 +17,7 @@ emit_prefixes:
   - rdfs
   - xsd
   - skos
+  - owl                     # is this an appropriate emit prefix?
 
 imports:
   - linkml:types
@@ -32,10 +33,14 @@ prefixes:
   DOID: 'http://purl.obolibrary.org/obo/DOID_'
   faldo: 'http://biohackathon.org/resource/faldo#'
   gff: 'https://w3id.org/gff'
+  hetio: 'http://translator.ncats.nih.gov/hetio_'
   linkml: 'https://w3id.org/linkml/'
   MONDO: 'http://purl.obolibrary.org/obo/MONDO_'
   NCIT: 'http://purl.obolibrary.org/obo/NCIT_'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  qud: 'http://qudt.org/1.1/schema/qudt#'
+  RO: 'http://purl.obolibrary.org/obo/RO_'
+  RTXKG1: 'http://kg1endpoint.rtx.ai/'
   schema: 'http://schema.org/'
   SIO: 'http://semanticscience.org/resource/SIO_'
   # The UMLS Semantic types and groups namespaces don't have a directly
@@ -46,7 +51,24 @@ prefixes:
   WIKIDATA: 'https://www.wikidata.org/wiki/'            # Wikidata Entity
   WIKIDATA_PROPERTY: 'https://www.wikidata.org/wiki/Property:'  # Wikidata Property - not a conventional namespace prefix
 
+## ------------
+## TYPES
+## ------------
 
+types:
+
+  narrative_text:                       # this should be generalized in core.yaml
+    typeof: string
+    description: >-
+      A string that provides a human-readable description of something
+
+  unit:                      # this should be generalized in core.yaml
+    typeof: string
+    uri: UO:0000000
+    id_prefixes:
+      - UO
+    exact_mappings:
+      - qud:Unit
 
 ## ------------
 ## CLASSES
@@ -54,9 +76,155 @@ prefixes:
 
 classes:
 
+## ----------
+## ATTRIBUTES
+## ----------
+
+  Annotation:                       # this should be generalized in core.yaml
+    description: >-
+      Biolink Model root class for entity annotations.
+    abstract: true
+    exact_mappings:
+      - biolink:Annotation
+
+  QuantityValue:                       # this should be generalized in core.yaml
+    is_a: Annotation
+    description: >-
+      A value of an attribute that is quantitative and measurable,
+      expressed as a combination of a unit and a numeric value
+    slots:
+      - has_unit
+      - has_numeric_value
+    exact_mappings:
+      - biolink:QuantityValue
+
+  Attribute:                       # this should be generalized in core.yaml
+    is_a: Annotation
+    mixins:
+      - OntologyClass
+    description: >-
+      A property or characteristic of an entity.
+      For example, an apple may have properties such as color, shape, age, crispiness.
+      An environmental sample may have attributes such as depth, lat, long, material.
+    slots:
+      - name                   # 'attribute_name'
+      - has_attribute_type     # 'attribute_type'
+      # 'value', 'value_type', 'value_type_name'
+      # extracted from either of the next two slots
+      - has_quantitative_value
+      - has_qualitative_value
+      - iri                    # 'url'
+      - source                 # 'source'
+    slot_usage:
+      name:
+        description: >-
+          The human-readable 'attribute name' can be set to a string which reflects its context of
+          interpretation, e.g. SEPIO evidence/provenance/confidence annotation or it can default
+          to the name associated with the 'has_attribute_type' slot ontology term.
+    id_prefixes:
+      - EDAM-DATA
+      - EDAM-FORMAT
+      - EDAM-OPERATION
+      - EDAM-TOPIC
+    exact_mappings:
+      - SIO:000614
+      - biolink:Attribute
+
+  BiologicalSex:
+    is_a: Attribute
+    exact_mappings:
+     - PATO:0000047
+     - biolink:BiologicalSex
+
+  PhenotypicSex:
+    is_a: BiologicalSex
+    description: >-
+      An attribute corresponding to the phenotypic sex of the individual,
+      based upon the reproductive organs present.
+    exact_mappings:
+     - PATO:0001894
+     - biolink:PhenotypicSex
+
+  GenotypicSex:
+    is_a: BiologicalSex
+    description: >-
+      An attribute corresponding to the genotypic sex of the individual,
+      based upon genotypic composition of sex chromosomes.
+    exact_mappings:
+     - PATO:0020000
+     - biolink:GenotypicSex
+
+  OrganismAttribute:
+    is_a: Attribute
+    description: >-
+      describes a characteristic of an organismal entity.
+    exact_mappings:
+      - biolink:OrganismAttribute
+      # Organism Attribute
+      - UMLSSC:T032
+      - UMLSST:orga
+
+  PhenotypicQuality:
+    aliases: ['phenotypic properties']
+    is_a: OrganismAttribute
+    description: >-
+      A property of a phenotype
+    mappings:
+      - PATO:0000001
+    exact_mappings:
+      - biolink:PhenotypicQuality
+
+  Inheritance:
+    is_a: OrganismAttribute
+    description: >-
+      The pattern or 'mode' in which a particular genetic trait or disorder is passed from one
+      generation to the next, e.g. autosomal dominant, autosomal recessive, etc.
+    exact_mappings:
+      - biolink:Inheritance
+      - HP:0000005
+      - GENO:0000141
+      - NCIT:C45827
+
+  Zygosity:
+    is_a: Attribute
+    exact_mappings:
+      - GENO:0000133
+    exact_mappings:
+      - biolink:Zygosity
+
 ## ------------
 ## MIXINS
 ## ------------
+
+  OntologyClass:                       # this should be generalized in core.yaml
+    mixin: true
+    description: >-
+      a concept or class in an ontology, vocabulary or thesaurus. Note that nodes in a biolink compatible KG can be considered both
+      instances of biolink classes, and OWL classes in their own right. In general you should not need to use this class directly.
+      Instead, use the appropriate biolink class. For example, for the GO concept of endocytosis (GO:0006897), use bl:BiologicalProcess
+      as the type.
+    exact_mappings:
+      - biolink:OntologyClass
+      - owl:Class
+      - schema:Class
+    comments:
+      - >-
+         This is modeled as a mixin. 'ontology class' should not be the primary type of a node in the KG. Instead you should use an
+         informative bioloink category, such as AnatomicalEntity (for Uberon classes), ChemicalSubstance (for CHEBI or CHEMBL), etc
+      - >-
+         Note that formally this is a metaclass. Instances of this class are instances in the graph, but can be the object of 'type' edges.
+         For example, if we had a node in the graph representing a specific brain of a specific patient (e.g brain001), this could have
+         a category of bl:Sample, and by typed more specifically with an ontology class UBERON:nnn, which has as category bl:AnatomicalEntity
+    see_also:
+      - https://github.com/biolink/biolink-model/issues/486
+    examples:
+      - value: UBERON:0000955
+        description: >-
+          the class 'brain' from the Uberon anatomy ontology
+    id_prefixes:
+      - MESH
+      - UMLS
+      - KEGG.BRITE ## br/ko number
 
   ThingWithTaxon:                       # this should be generalized in core.yaml
     mixin: true
@@ -69,15 +237,67 @@ classes:
     exact_mappings:
       - biolink:ThingWithTaxon
 
-  EntityToDiseaseAssociationMixin:
+  Mixture:
+    mixin: true
     description: >-
-      mixin class for any association whose object (target node) is a disease
+      The physical combination of two or more molecular entities in which
+      the identities are retained and are mixed in the form of solutions,
+      suspensions and colloids.
+    slots:
+      - has_constituent
+
+  DiseaseOrPhenotypeToEntityAssociationMixin:
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: DiseaseOrPhenotype
+        description: "disease or phenotype"
+        examples:
+          - value: MONDO:0017314
+            description: "Ehlers-Danlos syndrome, vascular type"
+          - value: MP:0013229
+            description: "abnormal brain ventricle size"
+    exact_mappings:
+      - biolink:DiseaseOrPhenotypicFeatureToEntityAssociationMixin
+
+  EntityToDiseaseOrPhenotypeAssociationMixin:
     mixin: true
     defining_slots:
       - object
     slot_usage:
       object:
-        range: disease
+        range: DiseaseOrPhenotype
+        description: "disease or phenotype"
+        examples:
+          - value: MONDO:0017314
+            description: "Ehlers-Danlos syndrome, vascular type"
+          - value: MP:0013229
+            description: "abnormal brain ventricle size"
+    exact_mappings:
+      - biolink:EntityToDiseaseOrPhenotypicFeatureAssociationMixin
+
+  GenotypeToEntityAssociationMixin:
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: Genotype
+        description: "genotype that is the subject of the association"
+    exact_mappings:
+      - biolink:GenotypeToEntityAssociationMixin
+
+  EntityToDiseaseAssociationMixin:
+    description: >-
+      mixin class for any association whose object (target node) is a disease
+    mixin: true
+    defining_slots:                     # is it not necessary to declare a 'slots' attribute here?
+      - object
+    slot_usage:
+      object:
+        range: Disease
         description: "disease"
         examples:
           - value: DOID:13359
@@ -91,11 +311,28 @@ classes:
       - subject
     slot_usage:
       subject:
-        range: gene or gene product
+        range: Gene
         description: >-
           gene that is the subject of the association
     exact_mappings:
       - biolink:GeneToEntityAssociationMixin
+
+  VariantToEntityAssociationMixin:
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: Allele
+        description: >-
+          a sequence variant in which the allele state is associated with some other entity
+        examples:
+          - value: ClinVar:38077
+            description: "ClinVar representation of NM_000059.3(BRCA2):c.7007G>A (p.Arg2336His)"
+          - value: ClinGen:CA024716
+            description: "chr13:g.32921033G>C (hg19) in ClinGen"
+    exact_mappings:
+      - biolink:VariantToEntityAssociationMixin
 
   EntityToPhenotypeAssociationMixin:
     mixin: true
@@ -109,7 +346,7 @@ classes:
       object:
         range: Phenotype
         description: "phenotypic class"
-        values_from: [ 'upheno', 'hp', 'mp', 'wbphenotype', 'zp', 'apo' ]
+        values_from: [ 'upheno', 'hp', 'mp', 'wbphenotype', 'zp', 'apo', 'FBcv' ]
         examples:
           - value: HP:0002487
             description: Hyperkinesis
@@ -119,6 +356,72 @@ classes:
             description: abnormal circulating bilirubin level
     exact_mappings:
       - biolink:EntityToPhenotypicFeatureAssociationMixin
+
+  ModelToDiseaseAssociationMixin:
+    description: >-
+      This mixin is used for any association class for which the subject
+      (source node) plays the role of a 'model', in that it recapitulates some
+      features of the disease in a way that is useful for studying the disease
+      outside a patient carrying the disease
+    mixin: true
+    defining_slots:
+      - predicate
+      - object
+    slot_usage:
+      subject:
+        description: >-
+          The entity that serves as the model of the disease. This may be
+          an organism, a strain of organism, a genotype or variant that exhibits
+          similar features, or a gene that when mutated exhibits features of the disease
+      predicate:
+        subproperty_of: model_of
+        description: >-
+          The relationship to the disease
+      object:
+        range: Disease
+    exact_mappings:
+      - biolink:ModelToDiseaseAssociationMixin
+
+  MolecularEntityToEntityAssociationMixin:
+    description: >-
+      An interaction between a molecular entity and another entity
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: MolecularEntity
+        description: "the molecular entity that is an interactor"
+    exact_mappings:
+      - biolink:MolecularEntityToEntityAssociationMixin
+
+  ChemicalToEntityAssociationMixin:
+    description: >-
+      An interaction between a chemical entity and another entity
+    is_a: MolecularEntityToEntityAssociationMixin
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: ChemicalSubstance
+        description: "the chemical substance or entity that is an interactor"
+    exact_mappings:
+      - biolink:ChemicalToEntityAssociationMixin
+
+  DrugToEntityAssociationMixin:
+    description: >-
+      An interaction between a drug and another entity
+    is_a: MolecularEntityToEntityAssociationMixin
+    mixin: true
+    defining_slots:
+      - subject
+    slot_usage:
+      subject:
+        range: Drug
+        description: "the drug that is an interactor"
+    exact_mappings:
+      - biolink:DrugToEntityAssociationMixin
 
 ## ------------
 ## THINGS
@@ -140,6 +443,207 @@ classes:
       - WIKIDATA:Q16521
     id_prefixes:
       - NCBITaxon
+
+  OrganismalEntity:                       # this should be generalized in core.yaml
+    description: >-
+      A named entity that is either a part of an organism, a whole organism,
+      population or clade of organisms, excluding molecular entities
+    abstract: true
+    is_a: BiologicalEntity
+    slot_usage:
+      has_attribute:
+        description: >-
+          may often be an organism attribute
+    exact_mappings:
+      - biolink:OrganismalEntity
+      - WIKIDATA:Q7239
+
+  ChemicalSubstance:                      # this should be generalized in core.yaml or chemical/drug.yaml
+    is_a: MolecularEntity
+    mixins:
+      - OntologyClass
+    description: >-
+      May be a chemical entity or a formulation with a chemical entity as active
+      ingredient, or a complex material with multiple chemical entities as part
+    slots:
+      - is_metabolite
+    broad_mappings:
+      # UMLS Semantic Type "Substance"
+      - UMLSSC:T167
+      - UMLSST:sbst
+    exact_mappings:
+      - SIO:010004
+      - WIKIDATA:Q79529
+      # Chemical
+      - UMLSSC:T103
+      - UMLSST:chem
+    narrow_mappings:
+      - CHEBI:24431
+      # Chemical Viewed Structurally
+      - UMLSSC:T104
+      - UMLSST:chvs
+      # Organic Chemical
+      - UMLSSC:T109
+      - UMLSST:orch
+      # Nucleic Acid, Nucleoside, or Nucleotide
+      - UMLSSC:T114
+      - UMLSST:nnon
+      # Chemical Viewed Functionally
+      - UMLSSC:T120
+      - UMLSST:chvf
+      # Biomedical or Dental Material
+      - UMLSSC:T122
+      - UMLSST:bodm
+      # Indicator, Reagent, or Diagnostic Aid
+      - UMLSSC:T130
+      - UMLSST:irda
+      # Hazardous or Poisonous Substance
+      - UMLSSC:T131
+      - UMLSST:hops
+      # Element, Ion, or Isotope
+      - UMLSSC:T196
+      - UMLSST:elii
+      # Inorganic Chemical
+      - UMLSSC:T197
+      - UMLSST:inch
+    id_prefixes:
+      - PUBCHEM.COMPOUND
+      - CHEMBL.COMPOUND
+      - UNII
+      - CHEBI
+      - DRUGBANK
+      - MESH
+      - CAS
+      - DrugCentral
+      - GTOPDB
+      - HMDB
+      - KEGG.COMPOUND
+      - ChemBank
+      - Aeolus
+      - PUBCHEM.SUBSTANCE
+      - SIDER.DRUG
+      - INCHI
+      - INCHIKEY
+      # - iupac # is not actually a CURIE namespace but only a naming convention for chemistry
+      # - SMILES  # is not actually a CURIE namespace but only a query language for chemistry
+      - KEGG.GLYCAN  ## G number
+      - KEGG.DRUG    ## D number
+      - KEGG.DGROUP  ## DG number
+      - KEGG.ENVIRON ## E number
+
+  Drug:                      # this should be generalized in core.yaml or chemical/drug.yaml
+    is_a: MolecularEntity
+    mixins:
+      - Mixture
+      - OntologyClass
+    description: >-
+      A substance intended for use in the diagnosis, cure,
+      mitigation, treatment, or prevention of disease
+    comments:
+      - The CHEBI ID represents a role rather than a substance
+    broad_mappings:
+      # Pharmacologic Substance: Any natural, endogenously-derived,
+      # synthetic or semi-synthetic compound with pharmacologic activity.
+      - UMLSSC:T121
+      - UMLSST:phsu
+    exact_mappings:
+      - WIKIDATA:Q12140
+      - CHEBI:23888
+      # UMLS Semantic Type "Clinical Drug"
+      - UMLSSC:T200
+      - UMLSST:clnd
+    narrow_mappings:
+      # Antibiotic
+      - UMLSSC:T195
+      - UMLSST:antb
+    id_prefixes:
+      - RXCUI
+      - NDC
+      - PHARMGKB.DRUG
+
+  Treatment:
+    aliases: ['medical action', 'medical intervention']
+    # 'named thing' seems too generic here but not sure what applies better here
+    is_a: NamedThing
+    mixins:
+      - ExposureEvent
+    description: >-
+      A treatment is targeted at a disease or phenotype and may involve
+      multiple drug 'exposures', medical devices and/or procedures
+    slots:
+      - has_drug
+      - has_device
+      - has_procedure
+    exact_mappings:
+      - OGMS:0000090
+      - SIO:001398
+
+  Procedure:
+    is_a: NamedThing
+    mixins:
+      - activity and behavior                   # Το Do: add mixin
+    description: >-
+      A series of actions conducted in a certain order or manner
+    exact_mappings:
+      # Procedures
+      - UMLSSG:PROC
+    narrow_mappings:
+      # Laboratory Procedure
+      - UMLSSC:T059
+      - UMLSST:lbpr
+      # Diagnostic Procedure
+      - UMLSSC:T060
+      - UMLSST:diap
+      # Therapeutic or Preventive Procedure
+      - UMLSSC:T061
+      - UMLSST:topp
+      # Molecular Biology Research Technique
+      - UMLSSC:T063
+      - UMLSST:mbrt
+
+  Genotype:                         # this should be declared in allele.yaml or similar
+    is_a: GenomicEntity
+    description: >-
+      The genetic information carried by an organism. In practice, the genotype
+      could be represented as either complete/known (i.e., the entire nuclear and
+      organellar genome sequences are known) or incomplete (defined over a subset
+      of the genome). In the simplest case, genotype may refer to the information
+      carried at a single locus.
+    slots:
+      - has_zygosity
+    exact_mappings:
+      - biolink:Genotype
+      - GENO:0000536
+      - SIO:001079
+    id_prefixes:
+      - ZFIN
+      - FB   # FlyBase FBba*
+      - WB
+      - MGI
+
+  ReagentTargetedGene:
+    is_a: GenomicEntity
+    description: >-
+      A gene altered in its expression level in the context of some
+      experiment as a result of being targeted by gene-knockdown
+      reagent(s) such as a morpholino or RNAi.
+    exact_mappings:
+      - biolink:ReagentTargetedGene
+      - GENO:0000504
+
+  ExposureEvent:                       # this should be generalized in core.yaml
+    aliases: ['exposure', 'experimental condition']
+    mixin: true
+    description: >-
+      An incidence of a feature of the environment of an organism that
+      influences one or more phenotypic features of that organism, potentially mediated by genes
+    broad_mappings:
+      # Event
+      - UMLSSC:T051
+      - UMLSST:evnt
+    exact_mappings:
+      - biolink:ExposureEvent
+      - XCO:0000000
 
   DiseaseOrPhenotype:
     is_a: BiologicalEntity
@@ -195,6 +699,95 @@ classes:
 ## ASSOCIATIONS
 ## ------------
 
+  GenotypeToGenotypePartAssociation:                # this should be declared in allele.yaml or similar
+    is_a: Association
+    defining_slots:
+      - subject
+      - object
+    description: >-
+      Any association between one genotype and a genotypic entity that is a sub-component of it
+    slot_usage:
+      predicate:
+        subproperty_of: has_variant_part
+      subject:
+        range: Genotype
+        description: >-
+          parent genotype
+      object:
+        range: Genotype
+        description: >-
+          child genotype
+    exact_mappings:
+      - biolink:GenotypeToGenotypePartAssociation
+
+  GenotypeToGeneAssociation:                   # this should be declared in allele.yaml or similar
+    description: >-
+      Any association between a genotype and a gene.
+      The genotype have have multiple variants in that gene or a single one.
+      There is no assumption of cardinality
+    is_a: Association
+    defining_slots:
+      - subject
+      - object
+    slot_usage:
+      predicate:
+        description: >-
+          the relationship type used to connect genotype to gene
+      subject:
+        range: Genotype
+        description: >-
+          parent genotype
+      object:
+        range: Gene
+        description: >-
+          gene implicated in genotype
+    exact_mappings:
+      - biolink:GenotypeToGeneAssociation
+
+  GenotypeToVariantAssociation:                  # this should be declared in allele.yaml or similar
+    description: >-
+      Any association between a genotype and a sequence variant.
+    is_a: Association
+    exact_mappings:
+      biolink:GenotypeToVariantAssociation
+    defining_slots:
+      - subject
+      - object
+    slot_usage:
+      predicate:
+        subproperty_of: has_part            # this subproperty was left with a ? in biolink; may want to revisit
+        description: >-
+          the relationship type used to connect genotype to gene
+      subject:
+        range: Genotype
+        description: >-
+          parent genotype
+      object:
+        range: Allele
+        description: >-
+          gene variant implicated in genotype
+
+  GenotypeToPhenotypeAssociation:
+    is_a: Association
+    defining_slots:
+      - subject
+      - object
+    description: >-
+      Any association between one genotype and a phenotypic feature, where having
+      the genotype confers the phenotype, either in isolation or through environment
+    mixins:
+      - EntityToPhenotypeAssociationMixin
+      - GenotypeToEntityAssociationMixin
+    slot_usage:
+      predicate:
+        subproperty_of: has_phenotype
+      subject:
+        range: Genotype
+        description: >-
+          genotype that is associated with the phenotypic feature
+    exact_mappings:
+      - biolink:GenotypeToPhenotypicFeatureAssociation
+
   GenePhenotypeAssociation:
     is_a: Association
     defining_slots:
@@ -206,7 +799,8 @@ classes:
     slot_usage:
       subject:
         range: Gene
-        description: "gene in which variation is correlated with the phenotypic feature"
+        description: >-
+          Gene in which variation is correlated with the phenotypic feature
         examples:
           - value: HGNC:2197
             description: "COL1A1 (Human)"
@@ -215,15 +809,7 @@ classes:
     exact_mappings:
       biolink:GeneToPhenotypicFeatureAssociation
 
-  AllelePhenotypeAssociation:
-    is_a: Association
-    slot_usage:
-      subject:
-        range: Allele
-      object:
-        range: Phenotype
-
-  AGMPhenotypeAssociation:
+  AGMToPhenotypeAssociation:
     is_a: Association
     slot_usage:
       subject:
@@ -231,7 +817,45 @@ classes:
       object:
         range: Phenotype
 
-  GeneDiseaseAssociation:
+  OrganismalEntityAsAModelOfDiseaseAssociation:
+    is_a: Association
+    exact_mappings:
+      biolink:OrganismalEntityAsAModelOfDiseaseAssociation
+    defining_slots:
+      - subject
+      - predicate
+      - object
+    mixins:
+      - ModelToDiseaseAssociationMixin
+      - EntityToDiseaseAssociationMixin
+    slot_usage:
+      subject:
+        range: OrganismalEntity
+        description: >-
+          An organismal entity (strain, breed) with a predisposition to a disease, or bred/created
+          specifically to model a disease.
+
+  GeneHasVariantThatContributesToDiseaseAssociation:
+    is_a: GeneToDiseaseAssociation
+    exact_mappings:
+      biolink:GeneHasVariantThatContributesToDiseaseAssociation
+    defining_slots:
+      - subject
+      - predicate
+      - object
+    slots:
+      - allele_qualifier
+    slot_usage:
+      subject:
+        range: Gene
+        description: >-
+          A gene that has a role in modeling the disease. This may be
+          a model organism ortholog of a known disease gene, or it may be
+          a gene whose mutants recapitulate core features of the disease.
+      object:
+        range: Disease
+
+  GeneToDiseaseAssociation:
     is_a: Association
     exact_mappings:
       - SIO:000983
@@ -251,22 +875,214 @@ classes:
       object:
         range: Disease
 
-  AlleleDiseaseAssociation:
-    is_a: Association
+  GeneAsAModelOfDiseaseAssociation:
+    is_a: GeneToDiseaseAssociation
+    defining_slots:
+      - subject
+      - predicate
+      - object
+    mixins:
+      - ModelToDiseaseAssociationMixin
+      - EntityToDiseaseAssociationMixin
     slot_usage:
       subject:
-        range: Allele
-      object:
-        range: Disease
+        range: Gene
+        description: >-
+          A gene that has a role in modeling the disease. This may be a model
+          organism ortholog of a known disease gene, or it may be a gene whose
+          mutants recapitulate core features of the disease.
+    exact_mappings:
+      - biolink:GeneAsAModelOfDiseaseAssociation
 
-  AGMDiseaseAssociation:
-    is_a: Association
+  AGMToDiseaseAssociation:
+    is_a: OrganismalEntityAsAModelOfDiseaseAssociation
     slot_usage:
       subject:
         range: AffectedGenomicModel
       object:
         range: Disease
 
+  ChemicalToDiseaseOrPhenotypeAssociation:
+    description: >-
+      An interaction between a chemical entity and a phenotype or disease,
+      where the presence of the chemical gives rise to or exacerbates the phenotype.
+    is_a: Association
+    exact_mappings:
+      - biolink:ChemicalToDiseaseOrPhenotypicFeatureAssociation
+    narrow_mappings:
+      - SIO:000993
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - ChemicalToEntityAssociationMixin
+      - EntityToDiseaseOrPhenotypeAssociationMixin
+    slot_usage:
+      object:
+        range: DiseaseOrPhenotype
+        description: "the disease or phenotype that is affected by the chemical"
+
+  DrugToGeneAssociation:
+    description: >-
+      An interaction between a drug and a gene or gene product.
+    is_a: Association
+    exact_mappings:
+      - biolink:DrugToGeneAssociation
+    related_mappings:
+      - SIO:001257
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - DrugToEntityAssociationMixin
+    slot_usage:
+      object:
+        range: Gene
+        description: "the gene or gene product that is affected by the drug"
+
+  VariantToGeneAssociation:               # this should be declared in allele.yaml or similar
+    description: >-
+      An association between a variant and a gene, where the variant has
+      a genetic association with the gene (i.e. is in linkage disequilibrium)
+    is_a: Association
+    exact_mappings:
+      - biolink:VariantToGeneAssociation
+    defining_slots:
+      - subject
+      - predicate
+      - object
+    mixins:
+      - VariantToEntityAssociationMixin
+    slot_usage:
+      object:
+        range: Gene
+      predicate:
+        subproperty_of: genetic_association
+
+  AlleleToPhenotypeAssociation:
+    is_a: Association
+    exact_mappings:
+      - biolink:VariantToPhenotypicFeatureAssociation
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - VariantToEntityAssociationMixin
+      - EntityToPhenotypeAssociationMixin
+    slot_usage:
+      subject:
+        range: Allele
+        description: >-
+          a sequence variant in which the allele state is
+          associated in some way with the phenotype state
+
+  VariantToDiseaseAssociation:
+    is_a: Association
+    exact_mappings:
+      - biolink:VariantToDiseaseAssociation
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - VariantToEntityAssociationMixin
+      - EntityToDiseaseAssociationMixin
+    slot_usage:
+      subject:
+        description: >-
+          a sequence variant in which the allele state
+          is associated in some way with the disease state
+        range: Allele
+        examples:
+          - value: ClinVar:52241
+            description: "NM_000059.3(BRCA2):c.7007G>C (p.Arg2336Pro)"
+      predicate:
+        description: >-
+          E.g. is pathogenic for
+        subproperty_of: related_condition
+      object:
+        description: >-
+          a disease that is associated with that variant
+        examples:
+          - value: MONDO:0016419
+            description: hereditary breast cancer
+
+  GenotypeToDiseaseAssociation:
+    is_a: Association
+    exact_mappings:
+      - biolink:GenotypeToDiseaseAssociation
+    defining_slots:
+      - subject
+      - object
+    mixins:
+      - GenotypeToEntityAssociationMixin
+      - EntityToDiseaseAssociationMixin
+    slot_usage:
+      subject:
+        description: >-
+          a genotype that is associated in some way with a disease state
+      predicate:
+        description: >-
+          E.g. is pathogenic for
+        subproperty_of: related_condition
+      object:
+        description: >-
+          a disease that is associated with that genotype
+        examples:
+          - value: MONDO:0016419
+            description: hereditary breast cancer
+
+  VariantAsAModelOfDiseaseAssociation:
+    is_a: VariantToDiseaseAssociation
+    exact_mappings:
+      - biolink:VariantAsAModelOfDiseaseAssociation
+    defining_slots:
+      - subject
+      - predicate
+      - object
+    mixins:
+      - ModelToDiseaseAssociationMixin
+      - EntityToDiseaseAssociationMixin
+    slot_usage:
+      subject:
+        range: Allele
+        description: >-
+          A variant that has a role in modeling the disease.
+
+  GenotypeAsAModelOfDiseaseAssociation:
+    is_a: GenotypeToDiseaseAssociation
+    exact_mappings:
+      - biolink:GenotypeAsAModelOfDiseaseAssociation
+    defining_slots:
+      - subject
+      - predicate
+      - object
+    mixins:
+      - ModelToDiseaseAssociationMixin
+      - EntityToDiseaseAssociationMixin
+    slot_usage:
+      subject:
+        range: Genotype
+        description: >-
+          A genotype that has a role in modeling the disease.
+
+  AlleleModulatesTreatmentAssociation:
+    is_a: Association
+    description: >-
+      An association between a sequence variant and a treatment or health intervention.
+      The treatment object itself encompasses both the disease and the drug used.
+    comments:
+      - An alternate way to model the same information could be via a qualifier
+    defining_slots:
+      - subject
+      - object
+    abstract: true
+    slot_usage:
+      subject:
+        range: Allele
+        description: "variant that modulates the treatment of some disease"
+      object:
+        range: Treatment
+        description: "treatment whose efficacy is modulated by the subject variant"
 
 
 ## ------------
@@ -279,11 +1095,141 @@ slots:
 ## ATTRIBUTE SLOTS
 ## ---------------
 
+  has_attribute:                       # this should be generalized in core.yaml
+    description: >-
+      connects any entity to an attribute
+    domain: Entity
+    range: Attribute
+    multivalued: true
+    close_mappings:
+      # RTX term meaning 'specifies value of' tagged as inverse of 'biolink:has_attribute'
+      - OBI:0001927
+    exact_mappings:
+      - biolink:has_attribute
+      - SIO:000008
+
+  has_attribute_type:                      # this should be generalized in core.yaml
+    description: >-
+      connects an attribute to a class that describes it
+    domain: Attribute
+    range: OntologyClass
+    multivalued: false
+    required: true
+    exact_mappings:
+      - biolink:has_attribute_type
+
+  has_qualitative_value:                      # this should be generalized in core.yaml
+    description: >-
+      connects an attribute to a value
+    domain: Attribute
+    range: NamedThing
+    multivalued: false
+    exact_mappings:
+      - biolink:has_qualitative_value
+
+  has_quantitative_value:                      # this should be generalized in core.yaml
+    description: >-
+      connects an attribute to a value
+    domain: Attribute
+    range: QuantityValue
+    multivalued: true
+    exact_mappings:
+      - biolink:has_quantitative_value
+      - qud:quantityValue
+
+  has_numeric_value:                      # this should be generalized in core.yaml
+    description: >-
+      connects a quantity value to a number
+    domain: QuantityValue
+    range: double
+    multivalued: false
+    exact_mappings:
+      - biolink:has_numeric_value
+      - qud:quantityValue
+
+  has_unit:                      # this should be generalized in core.yaml
+    description: >-
+      connects a quantity value to a unit
+    domain: QuantityValue
+    range: unit
+    multivalued: false
+    close_mappings:
+      # These RTX contributed terms mean "is unit of" which is the semantic inverse of this biolink:has_unit term
+      - EFO:0001697
+      - OBO:uo#is_unit_of
+    exact_mappings:
+      - biolink:has_unit
+      - qud:unit
+      - IAO:0000039
+
   phenotype_statement:
     description: >-
       The label of an individual phenotype term from a phenotype ontology
       or the post-composed statement of the phenotype from a post-composed terminology
     range: string
+
+## --------------------
+## NODE PROPERTY SLOTS
+## --------------------
+
+  node_property:                     # this should be generalized in core.yaml
+    description: >-
+      A grouping for any property that holds between a node and a value
+    domain: NamedThing
+
+  is_metabolite:
+    is_a: node_property
+    domain: ChemicalSubstance
+    range: boolean
+    description: >-
+      indicates whether a chemical substance is a metabolite
+    exact_mappings:
+      - CHEBI:25212
+
+  has_constituent:
+    description: >-
+      one or more chemical substances within a mixture
+    is_a: node_property
+    range: ChemicalSubstance
+    multivalued: true
+
+  has_zygosity:
+    is_a: node_property
+    domain: GenomicEntity
+    range: Zygosity
+
+  has_drug:
+    is_a: node_property
+    description: >-
+      connects an entity to one or more drugs
+    range: Drug
+    multivalued: true
+
+  has_device:
+    is_a: node_property
+    description: >-
+      connects an entity to one or more (medical) devices
+    range: Device
+    multivalued: true
+
+  has_procedure:
+    is_a: node_property
+    description: >-
+      connects an entity to one or more (medical) procedures
+    range: Procedure
+    multivalued: true
+
+## -----------------
+## ASSOCIATION SLOTS
+## -----------------
+
+  allele_qualifier:                      # this should be declared in allele.yaml or similar
+    description: >-
+      a qualifier used in an association with the variant
+    is_a: association_slot
+    range: Allele             # original biolink model points to 'sequence variant'; need to consider
+    exact_mappings:
+      - biolink:sequence_variant_qualifier
 
 ## --------------------
 ## PREDICATES/RELATIONS
@@ -299,4 +1245,462 @@ slots:
       connects an entity to its taxonomic classification. Only certain kinds
       of entities can be taxonomically classified; see 'thing with taxon'
     exact_mappings:
+      - biolink:in_taxon
       - WIKIDATA_PROPERTY:P703
+
+  similar_to:                      # this should be generalized in core.yaml
+    is_a: related_to
+    description: >-
+      holds between an entity and some other entity with similar features.
+    symmetric: true
+    exact_mappings:
+      - biolink:similar_to
+      - RO:HOM0000000               #from biolink: I don't understand this identifier, but I think it's equivalent
+      - SO:similar_to               #equivalent
+
+  related_condition:
+    is_a: related_to
+    symmetric: true
+    exact_mappings:
+      - GENO:0000790
+
+  overlaps:                      # this should be generalized in core.yaml
+    is_a: related_to
+    description: >-
+      holds between entities that overlap in their extents (materials or processes)
+    symmetric: true
+    exact_mappings:
+      - biolink:overlaps
+      - RO:0002131
+    narrow_mappings:
+      - BSPO:0005001
+      - CHEMBL.MECHANISM:overlaps_with
+      - RO:0002100
+      - RO:0002102
+      - RO:0002433
+
+  has_part:                      # this should be generalized in core.yaml
+    is_a: overlaps
+    description: >-
+      holds between wholes and their parts (material entities or processes)
+    inverse: part_of
+    exact_mappings:
+      - biolink:has_part
+      - BFO:0000051
+      # term name seems to be 'realizes' but RTX maps this term here
+      - BFO:0000055
+      - WIKIDATA_PROPERTY:P527
+      - RO:0001019
+      - RTXKG1:has_part
+      - RXNORM:consists_of
+      - RXNORM:has_part
+    broad_mappings:
+      # To 'contain' is 'to have something inside or include something as a part'; slightly broader?
+      - RO:0001019
+      - FMA:contains
+      - RXNORM:contains
+    narrow_mappings:
+      - BFO:0000117
+      # RTX term originally mapped to 'biolink:coexists_with'?
+      - FMA:has_constitutional_part
+      - FMA:has_part
+      # Several of the following RTX terms were originally mapped as inverses to 'biolink:part_of'?
+      - FMA:has_member
+      - FOODON:00001563
+      - FOODON:00002420
+      - LOINC:has_component
+      - LOINC:has_member
+      - MEDDRA:has_member
+      - MONDO:disease_has_major_feature
+      - NCIT:complex_has_physical_part
+      - NDDF:has_ingredient
+      - PathWhiz:has_element_in_bound
+      # This RTX contributed term was tagged as 'biolink:has_gene_product' but seems more compositional in nature
+      - NCIT:R50
+      - PDQ:has_component
+      - PathWhiz:has_protein_in_complex
+      - RO:0002104
+      - RO:0002180
+      - RO:0002351
+      - RO:0002473
+      - RO:0002524
+      - RO:0002551
+      - RTXKG1:composed_primarily_of
+      - RTXKG1:contains_process
+      - RTXKG1:has_plasma_membrane_part
+      - RXNORM:has_ingredient
+      - SNOMED:has_component
+      - UMLS:has_component
+
+  part_of:                      # this should be generalized in core.yaml
+    is_a: overlaps
+    description: >-
+      holds between parts and wholes (material entities or processes)
+    inverse: has_part
+    exact_mappings:
+      - biolink:part_of
+      - BFO:0000050
+      - SEMMEDDB:PART_OF
+      - SEMMEDDB:part_of
+      - WIKIDATA_PROPERTY:P361
+      - FMA:part_of
+      - RXNORM:constitutes
+      - RXNORM:part_of
+    broad_mappings:
+      # To 'contain' is 'to have something inside or include something as a part'
+      - RO:0001018
+      - FMA:contained_in
+      - RXNORM:contained_in
+    narrow_mappings:
+      - BSPO:0001106
+      - BSPO:0001108
+      - BSPO:0001113
+      - BSPO:0001115
+      - UBERON_CORE:layer_part_of
+      - UBERON_CORE:subdivision_of
+      - UBERON_CORE:trunk_part_of
+      - CHEBI:is_substituent_group_from
+      - CPT:panel_element_of
+      - CPT:panel_element_of_possibly_included
+      - DRUGBANK:component_of
+      - FMA:constitutional_part_of
+      - FMA:member_of
+      - FMA:regional_part_of
+      - FMA:related_developmental_entity_of
+      - LOINC:component_of
+      - LOINC:has_supersystem
+      - LOINC:member_of
+      - LOINC:multipart_of
+      - MEDDRA:member_of
+      - MONDO:part_of_progression_of_disease
+      - NCIT:R82
+      - NCIT:R27
+      - NCIT:is_component_of_chemotherapy_regimen
+      - NDDF:ingredient_of
+      - PDQ:component_of
+      - RO:0002007
+      - RO:0002350
+      - RO:0002376
+      - RO:0002380
+      - RO:0002571
+      - RO:0002572
+      - RO:0002576
+      - RXNORM:ingredient_of
+      - RXNORM:ingredients_of
+      - RXNORM:precise_ingredient_of
+      - SNOMED:active_ingredient_of
+      - SNOMED:basis_of_strength_substance_of
+      - SNOMED:component_of
+      - SNOMED:direct_substance_of
+      - SNOMED:during
+      - SNOMED:focus_of
+      - SNOMED:has_dependent
+      - SNOMED:part_anatomy_structure_of
+      - SNOMED:precise_active_ingredient_of
+      - UBERON:subdivision_of
+      - UMLS:component_of
+      - UMLS:has_owning_affiliate
+      - UMLS:owning_subsection_of
+      - VANDF:ingredient_of
+
+  has_variant_part:                         # this should be declared in allele.yaml or similar
+    is_a: has_part
+    description: holds between a genomic entity and a genotypic entity that is a sub-component of it
+    exact_mappings:
+      - GENO:0000382
+
+  model_of:
+    is_a: similar_to
+    description: >-
+      holds between a thing and some other thing it approximates
+      for purposes of scientific study, in virtue of its exhibiting
+      similar features of the studied entity.
+    exact_mappings:
+      - biolink:model_of
+      - RO:0003301
+
+  has_phenotype:
+    is_a: related_to
+    description: >-
+      holds between a biological entity and a phenotype, where a phenotype
+      is construed broadly as any kind of quality of an organism part,
+      a collection of these qualities, or a change in quality or qualities
+      (e.g. abnormally increased temperature).
+    domain: BiologicalEntity
+    range: Phenotype
+    inverse: phenotype_of
+    close_mappings:
+      # RTX contributed term tagged as 'inverse'
+      - OMIM:phenotype_of
+    exact_mappings:
+      - biolink:has_phenotype
+      - RO:0002200
+      - RTXKG1:has_phenotype
+      - SNOMED:characterized_by
+    broad_mappings:
+      # Disease–presents–Symptom; symptom or finding may be a phenotype but not necessarily
+      - hetio:PRESENTS_DpS
+      - NCIT:R115
+      - OMIM:has_phenotype
+    narrow_mappings:
+      - NCIT:R89
+      - OBO:doid#has_symptom
+      - RO:0004022
+
+  phenotype_of:
+    is_a: related_to
+    description: >-
+      holds between a phenotype and a biological entity, where a phenotype
+      is construed broadly as any kind of quality of an organism part,
+      a collection of these qualities, or a change in quality or qualities
+      (e.g. abnormally increased temperature).
+    domain: Phenotype
+    range: BiologicalEntity
+    inverse: has_phenotype
+    exact_mappings:
+      - biolink:phenotype_of
+
+  genetic_association:
+    is_a: related_to
+    symmetric: true
+    description: >-
+      Co-occurrence of a certain allele of a genetic marker and the phenotype
+      of interest in the same individuals at above-chance level
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P2293
+
+  gene associated with condition:
+    is_a: genetic_association
+    description: >-
+      holds between a gene and a disease or phenotypic feature that the gene or its alleles/products may influence, contribute to, or correlate with
+    domain: gene
+    range: DiseaseOrPhenotype
+    in_subset:
+      - translator_minimal
+    inverse: condition associated with gene
+    exact_mappings:
+      - RTXKG1:gene_associated_with_condition
+    broad_mappings:
+      # broader than a single gene: 'genotype' pathogenic for condition?
+      - GENO:0000840
+      - GENO:0000841
+    narrow_mappings:
+      # narrower: just diseases, not phenotypic features as well
+      - NCIT:R38
+      - NCIT:R175
+      - NCIT:R48
+
+  condition associated with gene:
+    is_a: genetic_association
+    description: >-
+      holds between a gene and a disease or phenotypic feature that may be influenced, contribute to, or be correlated with the gene or its alleles/products
+    domain: DiseaseOrPhenotype
+    range: gene
+    in_subset:
+      - translator_minimal
+    inverse: gene associated with condition
+    narrow_mappings:
+      # narrower since just diseases, not phenotypic features as well
+      - NCIT:R176
+      - hetio:ASSOCIATES_DaG
+
+  affects risk for:
+    is_a: related_to
+    description: >-
+      holds between two entities where exposure to one entity alters the chance of developing the other
+    in_subset:
+      - translator_minimal
+
+  predisposes:
+    is_a: affects risk for
+    description: >-
+      holds between two entities where exposure to one entity increases the chance of developing the other
+    in_subset:
+      - translator_minimal
+    exact_mappings:
+      - SEMMEDDB:PREDISPOSES
+      - SEMMEDDB:predisposes
+
+  contributes to:
+    is_a: related_to
+    description: >-
+      holds between two entities where the occurrence, existence, or activity of one causes or contributes to the occurrence or generation of the other
+    in_subset:
+      - translator_minimal
+    close_mappings:
+      # RTX contributed mapping tagged as 'inverse' of this Biolink predicate
+      - IDO:0000664
+    exact_mappings:
+      - RO:0002326
+    narrow_mappings:
+      - CTD:marker_mechanism
+      - MONDO:predisposes_towards
+      # RTX mapped this to 'biolink:related_to' but this term seems a more precise mapping
+      - RO:0002255
+      # RTX term 'contributes to condition' mapped to 'biolink:causes' seems more suitable here
+      - RO:0003304
+
+  causes:
+    description: >-
+      holds between two entities where the occurrence, existence, or activity of one causes the occurrence or generation of the other
+    is_a: contributes to
+    in_subset:
+      - translator_minimal
+    inverse: caused by
+    exact_mappings:
+      - RO:0002506
+      - SEMMEDDB:CAUSES
+      - SEMMEDDB:causes
+      - WIKIDATA_PROPERTY:P1542
+      - SNOMED:cause_of
+    broad_mappings:
+      - RO:0002410
+    narrow_mappings:
+      - MONDO:disease_triggers
+      - GOREL:0000040
+      - MONDO:disease_causes_feature
+      - MONDO:disease_triggers
+      - NCIT:allele_has_abnormality
+      - NCIT:biological_process_has_result_biological_process
+      - NCIT:chemical_or_drug_has_physiologic_effect
+      # RTX mapped terms as 'biolink:part_of' but implied sequence of causality suggests 'biolink:causes'?
+      - NCIT:chemical_or_drug_initiates_biological_process
+      - NCIT:process_initiates_biological_process
+      - NCIT:chromosome_mapped_to_disease
+      - NCIT:disease_has_normal_tissue_origin
+      - OBO:nbo#in_response_to
+      - ORPHA:317343
+      - ORPHA:317344
+      - ORPHA:317346
+      - ORPHA:410295
+      - ORPHA:410296
+      # RTX mapped this term to 'biolink:related_to' but this term seems a more precise mapping
+      - RO:0002256
+      - RO:0002315
+      - RO:0002507
+      - RO:0002509
+      - RO:0004001
+      # RTX mapping
+      - RTXKG1:capable_of_part_of
+      - SNOMED:causative_agent_of
+      - SNOMED:has_realization
+      - UMLS:has_physiologic_effect
+
+  caused by:
+    description: >-
+      holds between two entities where the occurrence, existence,
+      or activity of one is caused by the occurrence or generation of the other
+    is_a: related_to
+    in_subset:
+      - translator_minimal
+    inverse: causes
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P828
+    narrow_mappings:
+      - RO:0001022
+      - RO:0002608
+      - RO:0004019
+      - RO:0004020
+      - RO:0004028
+      - RO:0009501
+      - RTXKG1:disease_caused_by_disruption_of
+      - RTXKG1:disease_has_basis_in_dysfunction_of
+      - RTXKG1:realized_in_response_to
+      - RTXKG1:realized_in_response_to_stimulus
+
+  ameliorates:
+    is_a: affects
+    description: >-
+      A relationship between an entity (e.g. a genotype,
+      genetic variation, chemical, or environmental exposure)
+      and a condition (a phenotype or disease), where the
+      presence of the entity reduces or eliminates some or
+      all aspects of the condition.
+    # 'biological entity' currently includes 'exposure event' which covers alot of related ground
+    domain: biological entity
+    range: DiseaseOrPhenotype
+    exact_mappings:
+      - RO:0003307
+      - CTD:therapeutic
+
+  exacerbates:
+    is_a: affects
+    description: >-
+      A relationship between an entity (e.g. a chemical,
+      environmental exposure, or some form of genetic variation)
+      and a condition (a phenotype or disease), where the presence
+      of the entity worsens some or all aspects of the condition.
+    # 'biological entity' currently includes 'exposure event' which covers alot of related ground
+    domain: biological entity
+    range: DiseaseOrPhenotype
+    exact_mappings:
+      - RO:0003309
+
+  correlated with:
+    is_a: related_to
+    description: >-
+      holds between any two named thing entities. For example, correlated_with
+      holds between a disease or phenotypic feature and a measurable molecular
+      entity that is used as an indicator of the presence or state of the disease or feature.
+    domain: named thing
+    range: named thing
+    in_subset:
+      - translator_minimal
+    symmetric: true
+    exact_mappings:
+      - RO:0002610
+      - PATO:correlates_with
+    narrow_mappings:
+      # RTX contributed term: note that association is not always correlation?
+      - LOINC:associated_with
+      - NCIT:is_associated_disease_of
+      # RTX term deemed inverse of this biolink term?
+      - NCIT:is_cytogenetic_abnormality_of_disease
+      - ORPHA:317345
+      - PDQ:associated_disease
+      # RTX mapping for this term was just 'related_to' but there seems to be a stronger correlation implied
+      - RO:0004029
+      - RTXKG1:associated_with_disease
+      - SNOMED:associated_with
+      - SNOMED:has_associated_finding
+
+  has biomarker:
+    is_a: correlated with
+    description: >-
+      holds between a disease or phenotypic feature and a measurable
+      molecular entity that is used as an indicator of the presence
+      or state of the disease or feature.
+    domain: DiseaseOrPhenotype
+    range: molecular entity
+    in_subset:
+      - translator_minimal
+    inverse: biomarker for
+    narrow_mappings:
+      # some RTX terms contributed as inverses of 'biolink:biomarker_for'
+      - NCIT:disease_has_finding
+      - NCIT:disease_has_molecular_abnormality
+      - NCIT:disease_is_marked_by_gene
+
+  biomarker for:
+    is_a: correlated with
+    description: >-
+      holds between a measurable molecular entity and a disease
+      or phenotypic feature, where the entity is used as an indicator
+      of the presence or state of the disease or feature.
+    domain: molecular entity
+    range: DiseaseOrPhenotype
+    in_subset:
+      - translator_minimal
+    inverse: has biomarker
+    exact_mappings:
+      - NCIT:R39
+    broad_mappings:
+      # Generic marker definition not specific to biomarkers per say
+      - RO:0002607
+    narrow_mappings:
+      - NCIT:R47
+      # RTX term was tagged as 'biolink:actively_involved_in' but maps better here?
+      - NCIT:genetic_biomarker_related_to
+      - NCIT:is_molecular_abnormality_of_disease
+      - ORPHA:465410
+      - SEMMEDDB:diagnoses
