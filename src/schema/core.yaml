@@ -47,11 +47,36 @@ types:
 ## ------------
 
 classes:
+  biological entity:
+  molecular entity:
+    is_a: genomic entity
 
+  # we usually have curies for things that have pages - can we make a mixin for "things with a page"
+  # could have 'searchable' = true
+
+#  genomic entity:
+#    mixin: true
+#    slots:
+#      - curie
+#      - taxon
+#
+#  sequence feature:
+#    slots:
+#      - genomic location
+#
+#  gene:
+#    is_a: sequence feature
+#    mixins:
+#      - genomic entity
+#
+#  exon:
+
+  # potentially genomic entity is not the right name for this - ie: exon example can't inherit if it has a curie in all
+  # cases.
   genomic entity:
     description: >-
     slots:
-      - id
+      - curie
       - taxon
       - synonyms
       - secondary identifiers
@@ -86,6 +111,11 @@ classes:
       - SGD
       - WB
       - ZFIN
+    # can we go the other way - all require curies, except exon -- TODO: sierra test
+    slot_usage:
+      curie:
+        required: true
+        identifier: true
 
   transcript:
     is_a: genomic entity
@@ -126,12 +156,14 @@ slots:
     range: gene genomic location
     multivalued: true
 
-  id:
-    identifier: true
-    required: true
+  curie:
+    aliases: ['accession_id','id','primary_id','global_id']
+    #identifier: true
+    #required: true
     multivalued: false
     description: >-
-      A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI
+        # TODO: round out this description for alliance specific usage.
+        A unique identifier for a thing. Must be either a CURIE shorthand for a URI or a complete URI
     range: uriorcurie
 
   date_produced:
