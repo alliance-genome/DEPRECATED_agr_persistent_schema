@@ -92,6 +92,10 @@ classes:
     description: >-
       Dummy image class
 
+  SequenceTargetingReagent:
+    description: >-
+      Dummy sequence targeting reagent class
+
 # Slots
 
 slots:

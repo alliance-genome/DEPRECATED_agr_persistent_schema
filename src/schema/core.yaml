@@ -49,49 +49,37 @@ types:
 classes:
 
   GenomicEntity:
-<<<<<<< HEAD
-
-  Gene:
-    description: >-
-    slots:
-      - curie
-=======
-    description: >-
     slots:
       - id
       - taxon
+
+  Transcript:
+    is_a: GenomicEntity
+    description: >-
+
+    id_prefixes:
+      - ENSEMBL
+      - FB
+      - WB
+      - MGI
+      - RGD
+      - SGD
+      - ZFIN
+
+  Gene:
+    description: >-
+    is_a: GenomicEntity
+    slots:
+      - curie
       - synonyms
       - secondary_identifiers
       - cross_references
       - genomic_locations
->>>>>>> main
-    id_prefixes:
-      - ENSEMBL
-      - HGNC
-      - FB
-      - MGI
-      - RGD
-      - SGD
-      - WB
-      - ZFIN
-
-<<<<<<< HEAD
-  Transcript:
-=======
-  Gene:
->>>>>>> main
-    description: >-
-    is_a: GenomicEntity
-    slots:
-<<<<<<< HEAD
-      - curie
-=======
       - name
       - symbol
       - gene_synopsis
       - gene_synopsis_URL
       - type
->>>>>>> main
     id_prefixes:
       - ENSEMBL
       - HGNC
@@ -102,7 +90,6 @@ classes:
       - WB
       - ZFIN
 
-<<<<<<< HEAD
   DiseaseAssociation:
     description: >-
       Dummy disease association class
@@ -117,32 +104,14 @@ classes:
 
   Phenotype:
 
-=======
-  Transcript:
-    is_a: GenomicEntity
-    description: >-
-    id_prefixes:
-      - ENSEMBL
-      - FB
-      - WB
-      - MGI
-      - RGD
-      - SGD
-      - ZFIN
-
-  Allele:
-    is_a: GenomicEntity
->>>>>>> main
-
 ## ------------
 ## SLOTS
 ## ------------
 
 slots:
 
-<<<<<<< HEAD
   curie:
-=======
+
   taxon:
     description: >-
     range: uriorcurie
@@ -162,7 +131,6 @@ slots:
     multivalued: true
 
   id:
->>>>>>> main
     identifier: true
     required: true
     multivalued: false
@@ -229,11 +197,7 @@ slots:
       a human-readable name for an entity
 
   cross_references:
-<<<<<<< HEAD
     singular_name: cross_reference
-=======
-    singular_name: has cross reference
->>>>>>> main
     description: >-
     multivalued: true
 
@@ -243,16 +207,12 @@ slots:
     exact_mappings:
       - biolink:symbol
 
-<<<<<<< HEAD
   from_species:
     description: holds between a genomic entity and a species
     range: Species
 
   synonyms:
     singular_name: synonym
-=======
-  synonym:
->>>>>>> main
     description: holds between a named thing and a synonym
     multivalued: true
 
@@ -277,7 +237,6 @@ slots:
     description: holds between an object and a reference
     multivalued: true
     domain: Resource
-<<<<<<< HEAD
     range: Reference
 
   phenotype_associations:
@@ -287,6 +246,3 @@ slots:
   disease_associations:
     singular_name: disease_association
     range: DiseaseAssociation
-=======
-    range: Reference
->>>>>>> main

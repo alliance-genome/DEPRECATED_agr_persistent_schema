@@ -22,20 +22,14 @@ prefixes:
 classes:
 
   Variant:
-<<<<<<< HEAD
-=======
     is_a: GenomicEntity
->>>>>>> main
     description: >-
       A DNA sequence that differs relative to a designated
       reference sequence.  The sequence occurs at a single
       position or in contiguous nucleotides.
     slots:
-<<<<<<< HEAD
       - curie
-=======
       - id
->>>>>>> main
       - hgvs_nomenclature
       - genomic_reference_sequence
       - genomic_variant_sequence
@@ -45,21 +39,18 @@ classes:
       - release
       - data_provider
       - computed_gene
-<<<<<<< HEAD
       - variant_of_transcript
       - variant_of_allele
       - synonyms
       - type
       - references
       - notes
-=======
       - is_variant_of_transcript
       - is_variant_of_allele
       - synonyms
       - type
       - references
-      - note
->>>>>>> main
+      - notes
       - protein_sequence
       - cross_references
     exact_mappings:
@@ -73,11 +64,8 @@ slots:
   notes:
     singular_name: note
     range: string
-<<<<<<< HEAD
     multivalued: true
-=======
-    multivalued: false
->>>>>>> main
+
 
   hgvs_nomenclature:
     description: HGVSg nomenclature for variant
@@ -86,56 +74,36 @@ slots:
   genomic_reference_sequence:
     description: reference genome sequence at variation position
     domain: Variant
-<<<<<<< HEAD
-    range: biological_sequence
-=======
     range: string
->>>>>>> main
 
   genomic_variant_sequence:
     description: variant genome sequence at variation position
     domain: Variant
-<<<<<<< HEAD
-    range: biological_sequence
-=======
     range: string
->>>>>>> main
+
 
   padding_left:
     description: >-
       flanking sequence upstream of the variation position
       on the sense strand of the reference genome
     domain: Variant
-<<<<<<< HEAD
-    range: biological_sequence
-=======
     range: string
->>>>>>> main
 
   padding_right:
     description: >-
       flanking sequence downstream of the variation position
       on the sense strand of the reference genome
     domain: Variant
-<<<<<<< HEAD
     range: biological_sequence
 
   protein_sequence:
     domain: Variant
-    range: biological_sequence
-=======
     range: string
-
-  protein_sequence:
-    domain: Variant
-    range: string
->>>>>>> main
 
   computed_gene:
     domain: Variant
     range: Gene
 
-<<<<<<< HEAD
   variant_of_transcript:
     domain: Variant
     range: Transcript
@@ -143,7 +111,7 @@ slots:
   variant_of_allele:
     domain: Variant
     range: Allele
-=======
+
   is_variant_of_transcript:
     domain: Variant
     range: Transcript
@@ -151,4 +119,3 @@ slots:
   is_variant_of_allele:
     domain: Variant
     range: Allele
->>>>>>> main

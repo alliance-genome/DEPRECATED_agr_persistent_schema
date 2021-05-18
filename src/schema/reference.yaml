@@ -15,10 +15,6 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-<<<<<<< HEAD
-  
-=======
->>>>>>> main
   Reference:
     is_a: InformationContentEntity
     slots:
@@ -28,25 +24,15 @@ classes:
       - year_published
       - month_published
       - day_published
-<<<<<<< HEAD
-      - date_arrived_in_pubmed
-      # date arrived in source enumeration
-      - date_last_modified_in_pubmed
-=======
       - date_arrived_in_PubMed
       # date arrived in source enumeration
       - date_last_modified_in_PubMed
->>>>>>> main
       - date_last_modified
       - volume
       - pages
       - abstract
       - citation
-<<<<<<< HEAD
-      - pubmed_type
-=======
       - PubMed_type
->>>>>>> main
       - issue_name
       - issue_date
       - mod_reference_types
@@ -85,11 +71,7 @@ slots:
       - foaf:topic
     description: Connects an object to a vocabulary term or ontology that describes some aspect of the entity.
 
-<<<<<<< HEAD
-  pubmed_type:
-=======
   PubMed_type:
->>>>>>> main
     description: >-
       Type of InformationContentEntity as described by pub med.
     range: string
@@ -101,11 +83,7 @@ slots:
     range: date
     domain: InformationContentEntity
 
-<<<<<<< HEAD
-  date_last_modified_in_pubmed:
-=======
   date_last_modified_in_PubMed:
->>>>>>> main
     description: >-
       Date on which an entity was created.
     range: date
@@ -134,11 +112,8 @@ slots:
     range: string
     domain: InformationContentEntity
 
-<<<<<<< HEAD
-  date_arrived_in_pubmed:
-=======
+
   date_arrived_in_PubMed:
->>>>>>> main
     description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.
     range: date
     domain: InformationContentEntity

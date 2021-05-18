@@ -23,11 +23,10 @@ classes:
     slots:
       - curie
 
-<<<<<<< HEAD
   Assembly:
     slots:
       - curie
-=======
+
   GeneGenomicLocation:
     slots:
       - subject
@@ -52,7 +51,6 @@ classes:
       - assembly
       - start
       - end
->>>>>>> main
 
 slots:
 
@@ -62,30 +60,7 @@ slots:
   end:
     description: The end of the feature in positive 1-based integer coordinates
 
-<<<<<<< HEAD
-
-  gene_id:
-    required: true
-    range: string
-
-  chromosome_id:
-    required: true
-    range: string
-
-  transcript_id:
-    required: true
-    range: string
-
-  assembly_id:
-    required: true
-    range: string
-
-  allele_id:
-    required: true
-    range: string
-=======
   assembly:
     domain: GenomicEntity
-    range: string
     required: true
->>>>>>> main
+    range: Chromosome

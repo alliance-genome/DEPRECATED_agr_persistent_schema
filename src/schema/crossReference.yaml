@@ -15,12 +15,9 @@ prefixes:
 classes:
 
   CrossReference:
-<<<<<<< HEAD
-=======
     is_a: InformationContentEntity
->>>>>>> main
     slots:
-      - cross_reference_id
+      - curie
       - page_areas
       - display_name
       - prefix
@@ -47,13 +44,3 @@ slots:
     multivalued: false
     range: string
 
-  cross_reference_id:
-    required: true
-    multivalued: false
-    range: string
-<<<<<<< HEAD
-    identifier: true
-=======
-
-
->>>>>>> main

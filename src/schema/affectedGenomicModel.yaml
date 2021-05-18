@@ -14,13 +14,12 @@ prefixes:
 classes:
 
   AffectedGenomicModel:
+    is_a: GenomicEntity
     description: >-
       Includes inbred strains, stocks, disease models and
       mutant genotypes
     slots:
-      - curie
       - subtype
-      - taxon_id
       - cross_references
       - synonyms
       - components
@@ -68,7 +67,7 @@ slots:
   sequence_targeting_reagents:
     singular_name: sequence_targeting_reagent
     domain: AffectedGenomicModel
-    range: uriorcurie
+    range: SequenceTargetingReagent
     multivalued: true
 
   parental_populations:
