@@ -1,5 +1,5 @@
 # Auto generated from core.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: Alliance-Schema-Prototype-Core
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/core.yaml
@@ -86,7 +86,7 @@ class GenomicEntity(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.GenomicEntity
     class_class_curie: ClassVar[str] = "alliance:GenomicEntity"
-    class_name: ClassVar[str] = "genomic entity"
+    class_name: ClassVar[str] = "GenomicEntity"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.GenomicEntity
 
     id: Union[str, GenomicEntityId] = None
@@ -135,7 +135,7 @@ class Gene(GenomicEntity):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Gene
     class_class_curie: ClassVar[str] = "alliance:Gene"
-    class_name: ClassVar[str] = "gene"
+    class_name: ClassVar[str] = "Gene"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Gene
 
     id: Union[str, GeneId] = None
@@ -175,7 +175,7 @@ class Transcript(GenomicEntity):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Transcript
     class_class_curie: ClassVar[str] = "alliance:Transcript"
-    class_name: ClassVar[str] = "transcript"
+    class_name: ClassVar[str] = "Transcript"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Transcript
 
     id: Union[str, TranscriptId] = None
@@ -195,7 +195,7 @@ class Allele(GenomicEntity):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.Allele
     class_class_curie: ClassVar[str] = "alliance:Allele"
-    class_name: ClassVar[str] = "allele"
+    class_name: ClassVar[str] = "Allele"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.Allele
 
     id: Union[str, AlleleId] = None
@@ -219,31 +219,31 @@ class slots:
 slots.taxon = Slot(uri=ALLIANCE.taxon, name="taxon", curie=ALLIANCE.curie('taxon'),
                    model_uri=ALLIANCE.taxon, domain=None, range=Optional[Union[str, URIorCURIE]])
 
-slots.secondary_identifiers = Slot(uri=ALLIANCE.secondary_identifiers, name="secondary identifiers", curie=ALLIANCE.curie('secondary_identifiers'),
+slots.secondary_identifiers = Slot(uri=ALLIANCE.secondary_identifiers, name="secondary_identifiers", curie=ALLIANCE.curie('secondary_identifiers'),
                    model_uri=ALLIANCE.secondary_identifiers, domain=None, range=Optional[Union[str, List[str]]])
 
-slots.gene_synopsis = Slot(uri=ALLIANCE.gene_synopsis, name="gene synopsis", curie=ALLIANCE.curie('gene_synopsis'),
+slots.gene_synopsis = Slot(uri=ALLIANCE.gene_synopsis, name="gene_synopsis", curie=ALLIANCE.curie('gene_synopsis'),
                    model_uri=ALLIANCE.gene_synopsis, domain=None, range=Optional[str])
 
-slots.gene_synopsis_URL = Slot(uri=ALLIANCE.gene_synopsis_URL, name="gene synopsis URL", curie=ALLIANCE.curie('gene_synopsis_URL'),
+slots.gene_synopsis_URL = Slot(uri=ALLIANCE.gene_synopsis_URL, name="gene_synopsis_URL", curie=ALLIANCE.curie('gene_synopsis_URL'),
                    model_uri=ALLIANCE.gene_synopsis_URL, domain=None, range=Optional[str])
 
-slots.genomic_locations = Slot(uri=ALLIANCE.genomic_locations, name="genomic locations", curie=ALLIANCE.curie('genomic_locations'),
+slots.genomic_locations = Slot(uri=ALLIANCE.genomic_locations, name="genomic_locations", curie=ALLIANCE.curie('genomic_locations'),
                    model_uri=ALLIANCE.genomic_locations, domain=GenomicEntity, range=Optional[Union[Union[dict, GeneGenomicLocation], List[Union[dict, GeneGenomicLocation]]]])
 
 slots.id = Slot(uri=ALLIANCE.id, name="id", curie=ALLIANCE.curie('id'),
                    model_uri=ALLIANCE.id, domain=None, range=URIRef)
 
 slots.date_produced = Slot(uri=ALLIANCE.date_produced, name="date_produced", curie=ALLIANCE.curie('date_produced'),
-                   model_uri=ALLIANCE.date_produced, domain=None, range=Optional[Union[str, XSDDate]])
+                   model_uri=ALLIANCE.date_produced, domain=GenomicEntity, range=Optional[Union[str, XSDDate]])
 
 slots.release = Slot(uri=ALLIANCE.release, name="release", curie=ALLIANCE.curie('release'),
                    model_uri=ALLIANCE.release, domain=None, range=Optional[str])
 
-slots.data_provider = Slot(uri=ALLIANCE.data_provider, name="data provider", curie=ALLIANCE.curie('data_provider'),
+slots.data_provider = Slot(uri=ALLIANCE.data_provider, name="data_provider", curie=ALLIANCE.curie('data_provider'),
                    model_uri=ALLIANCE.data_provider, domain=None, range=Optional[Union[str, List[str]]])
 
-slots.association_slot = Slot(uri=ALLIANCE.association_slot, name="association slot", curie=ALLIANCE.curie('association_slot'),
+slots.association_slot = Slot(uri=ALLIANCE.association_slot, name="association_slot", curie=ALLIANCE.curie('association_slot'),
                    model_uri=ALLIANCE.association_slot, domain=None, range=Optional[str])
 
 slots.subject = Slot(uri=ALLIANCE.subject, name="subject", curie=ALLIANCE.curie('subject'),
@@ -261,7 +261,7 @@ slots.description = Slot(uri=ALLIANCE.description, name="description", curie=ALL
 slots.name = Slot(uri=ALLIANCE.name, name="name", curie=ALLIANCE.curie('name'),
                    model_uri=ALLIANCE.name, domain=None, range=Optional[str])
 
-slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross references", curie=ALLIANCE.curie('cross_references'),
+slots.cross_references = Slot(uri=ALLIANCE.cross_references, name="cross_references", curie=ALLIANCE.curie('cross_references'),
                    model_uri=ALLIANCE.cross_references, domain=None, range=Optional[Union[str, List[str]]])
 
 slots.symbol = Slot(uri=ALLIANCE.symbol, name="symbol", curie=ALLIANCE.curie('symbol'),

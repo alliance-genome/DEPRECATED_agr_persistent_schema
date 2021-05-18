@@ -18,12 +18,12 @@ prefixes:
 
 classes:
 
-  chromosome:
+  Chromosome:
     description: The ID of the landmark used to establish the coordinate system for the current feature.
     slots:
       - id
 
-  gene genomic location:
+  GeneGenomicLocation:
     slots:
       - subject
       - predicate
@@ -33,11 +33,11 @@ classes:
       - end
     slot_usage:
       subject:
-        range: variant
+        range: Variant
         description: >-
           subject should be the gene identifier
       object:
-        range: chromosome
+        range: Chromosome
         description: >-
           object should be the chromosome identifier
     defining_slots:
@@ -57,6 +57,6 @@ slots:
     description: The end of the feature in positive 1-based integer coordinates
 
   assembly:
-    domain: genomic entity
+    domain: GenomicEntity
     range: string
     required: true

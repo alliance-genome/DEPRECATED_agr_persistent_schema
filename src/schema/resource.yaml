@@ -14,15 +14,15 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  resource:
-    is_a: information content entity
+  Resource:
+    is_a: InformationContentEntity
     slots:
       - title
-      - iso abbreviation
-      - medline abbreviation
-      - copyright date
-      - print issn
-      - online issn
+      - iso_abbreviation
+      - medline_abbreviation
+      - copyright_date
+      - print_issn
+      - online_issn
       - publisher
       - volumes
       - summary
@@ -50,32 +50,32 @@ classes:
 
 slots:
 
-  resource id:
-    domain: resource
+  resource_id:
+    domain: Resource
 
-  iso abbreviation:
+  iso_abbreviation:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
-  medline abbreviation:
+  medline_abbreviation:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
-  print issn:
+  print_issn:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
-  online issn:
+  online_issn:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
   editors:
     description: >-
       holds between a resource and a editor_resource
     multivalued: true
-    domain: resource
-    range: author reference
+    domain: Resource
+    range: AuthorReference

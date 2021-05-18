@@ -183,15 +183,13 @@ linkml:Nodeidentifier NONLITERAL
           &<http://alliancegenome.orgGenomicEntity_tes> ;
           rdf:type [ <http://alliancegenome.orgGenomicEntity> ] ? ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/hgvs_nomenclature> @linkml:String ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_reference_sequence>
-          @<http://alliancegenome.orgBiologicalSequence> ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_variant_sequence>
-          @<http://alliancegenome.orgBiologicalSequence> ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_left>
-          @<http://alliancegenome.orgBiologicalSequence> ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_right>
-          @<http://alliancegenome.orgBiologicalSequence> ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/date_produced> @linkml:Date ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_reference_sequence> @linkml:String
+          ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/genomic_variant_sequence> @linkml:String ?
+          ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_left> @linkml:String ? ;
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/padding_right> @linkml:String ? ;
+          <http://alliancegenome.orgdate_produced> @linkml:Date ? ;
           <http://alliancegenome.orgrelease> @linkml:String ? ;
           <http://alliancegenome.orgdata_provider> @linkml:String * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/computed_gene>
@@ -204,8 +202,7 @@ linkml:Nodeidentifier NONLITERAL
           <http://alliancegenome.orgreferences>
           @<https://github.com/alliance-genome/agr_persistent_schema/src/schema/reference/Reference> * ;
           <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/note> @linkml:String ? ;
-          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/protein_sequence>
-          @<http://alliancegenome.orgBiologicalSequence> ?
+          <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/protein_sequence> @linkml:String ?
        ) ;
        rdf:type [ <https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant> ]
     )

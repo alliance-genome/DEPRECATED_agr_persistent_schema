@@ -18,7 +18,7 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  variant genomic location:
+  VariantGenomicLocation:
     aliases: ['genomic location']
     slots:
       - subject
@@ -29,11 +29,11 @@ classes:
       - end
     slot_usage:
       subject:
-        range: variant
+        range: Variant
         description: >-
           subject should be the variant identifier
       object:
-        range: chromosome
+        range: Chromosome
         description: >-
           object should be the chromosome identifier
     defining_slots:
@@ -47,4 +47,4 @@ classes:
 slots:
 
   located on:
-    range: chromosome
+    range: Chromosome

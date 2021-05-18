@@ -30,10 +30,10 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  person:
+  Person:
     slots:
-      - last name
-      - first name
+      - last_name
+      - first_name
       - orcid
     exact_mappings:
       - schema:person
@@ -45,5 +45,5 @@ classes:
 slots:
 
   orcid:
-    domain: information content entity
+    domain: InformationContentEntity
     range: string

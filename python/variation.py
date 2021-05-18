@@ -1,5 +1,5 @@
 # Auto generated from variation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation
@@ -21,7 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import AlleleId, BiologicalSequence, GeneId, GenomicEntity, GenomicEntityId, TranscriptId
+from . core import AlleleId, GeneId, GenomicEntity, GenomicEntityId, TranscriptId
 from . genomic import GeneGenomicLocation
 from . reference import ReferenceId
 from linkml.utils.metamodelcore import URIorCURIE, XSDDate
@@ -59,15 +59,15 @@ class Variant(GenomicEntity):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant"
+    class_name: ClassVar[str] = "Variant"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variation/Variant")
 
     id: Union[str, VariantId] = None
     hgvs_nomenclature: Optional[str] = None
-    genomic_reference_sequence: Optional[Union[str, BiologicalSequence]] = None
-    genomic_variant_sequence: Optional[Union[str, BiologicalSequence]] = None
-    padding_left: Optional[Union[str, BiologicalSequence]] = None
-    padding_right: Optional[Union[str, BiologicalSequence]] = None
+    genomic_reference_sequence: Optional[str] = None
+    genomic_variant_sequence: Optional[str] = None
+    padding_left: Optional[str] = None
+    padding_right: Optional[str] = None
     date_produced: Optional[Union[str, XSDDate]] = None
     release: Optional[str] = None
     data_provider: Optional[Union[str, List[str]]] = empty_list()
@@ -78,7 +78,7 @@ class Variant(GenomicEntity):
     type: Optional[Union[str, URIorCURIE]] = None
     references: Optional[Union[Union[str, ReferenceId], List[Union[str, ReferenceId]]]] = empty_list()
     note: Optional[str] = None
-    protein_sequence: Optional[Union[str, BiologicalSequence]] = None
+    protein_sequence: Optional[str] = None
     cross_references: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -90,17 +90,17 @@ class Variant(GenomicEntity):
         if self.hgvs_nomenclature is not None and not isinstance(self.hgvs_nomenclature, str):
             self.hgvs_nomenclature = str(self.hgvs_nomenclature)
 
-        if self.genomic_reference_sequence is not None and not isinstance(self.genomic_reference_sequence, BiologicalSequence):
-            self.genomic_reference_sequence = BiologicalSequence(self.genomic_reference_sequence)
+        if self.genomic_reference_sequence is not None and not isinstance(self.genomic_reference_sequence, str):
+            self.genomic_reference_sequence = str(self.genomic_reference_sequence)
 
-        if self.genomic_variant_sequence is not None and not isinstance(self.genomic_variant_sequence, BiologicalSequence):
-            self.genomic_variant_sequence = BiologicalSequence(self.genomic_variant_sequence)
+        if self.genomic_variant_sequence is not None and not isinstance(self.genomic_variant_sequence, str):
+            self.genomic_variant_sequence = str(self.genomic_variant_sequence)
 
-        if self.padding_left is not None and not isinstance(self.padding_left, BiologicalSequence):
-            self.padding_left = BiologicalSequence(self.padding_left)
+        if self.padding_left is not None and not isinstance(self.padding_left, str):
+            self.padding_left = str(self.padding_left)
 
-        if self.padding_right is not None and not isinstance(self.padding_right, BiologicalSequence):
-            self.padding_right = BiologicalSequence(self.padding_right)
+        if self.padding_right is not None and not isinstance(self.padding_right, str):
+            self.padding_right = str(self.padding_right)
 
         if self.date_produced is not None and not isinstance(self.date_produced, XSDDate):
             self.date_produced = XSDDate(self.date_produced)
@@ -138,8 +138,8 @@ class Variant(GenomicEntity):
         if self.note is not None and not isinstance(self.note, str):
             self.note = str(self.note)
 
-        if self.protein_sequence is not None and not isinstance(self.protein_sequence, BiologicalSequence):
-            self.protein_sequence = BiologicalSequence(self.protein_sequence)
+        if self.protein_sequence is not None and not isinstance(self.protein_sequence, str):
+            self.protein_sequence = str(self.protein_sequence)
 
         if self.cross_references is None:
             self.cross_references = []
@@ -160,32 +160,29 @@ class slots:
 slots.note = Slot(uri=DEFAULT_.note, name="note", curie=DEFAULT_.curie('note'),
                    model_uri=DEFAULT_.note, domain=None, range=Optional[str])
 
-slots.date_produced = Slot(uri=DEFAULT_.date_produced, name="date produced", curie=DEFAULT_.curie('date_produced'),
-                   model_uri=DEFAULT_.date_produced, domain=Variant, range=Optional[Union[str, XSDDate]])
-
-slots.hgvs_nomenclature = Slot(uri=DEFAULT_.hgvs_nomenclature, name="hgvs nomenclature", curie=DEFAULT_.curie('hgvs_nomenclature'),
+slots.hgvs_nomenclature = Slot(uri=DEFAULT_.hgvs_nomenclature, name="hgvs_nomenclature", curie=DEFAULT_.curie('hgvs_nomenclature'),
                    model_uri=DEFAULT_.hgvs_nomenclature, domain=Variant, range=Optional[str])
 
-slots.genomic_reference_sequence = Slot(uri=DEFAULT_.genomic_reference_sequence, name="genomic reference sequence", curie=DEFAULT_.curie('genomic_reference_sequence'),
-                   model_uri=DEFAULT_.genomic_reference_sequence, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
+slots.genomic_reference_sequence = Slot(uri=DEFAULT_.genomic_reference_sequence, name="genomic_reference_sequence", curie=DEFAULT_.curie('genomic_reference_sequence'),
+                   model_uri=DEFAULT_.genomic_reference_sequence, domain=Variant, range=Optional[str])
 
-slots.genomic_variant_sequence = Slot(uri=DEFAULT_.genomic_variant_sequence, name="genomic variant sequence", curie=DEFAULT_.curie('genomic_variant_sequence'),
-                   model_uri=DEFAULT_.genomic_variant_sequence, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
+slots.genomic_variant_sequence = Slot(uri=DEFAULT_.genomic_variant_sequence, name="genomic_variant_sequence", curie=DEFAULT_.curie('genomic_variant_sequence'),
+                   model_uri=DEFAULT_.genomic_variant_sequence, domain=Variant, range=Optional[str])
 
-slots.padding_left = Slot(uri=DEFAULT_.padding_left, name="padding left", curie=DEFAULT_.curie('padding_left'),
-                   model_uri=DEFAULT_.padding_left, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
+slots.padding_left = Slot(uri=DEFAULT_.padding_left, name="padding_left", curie=DEFAULT_.curie('padding_left'),
+                   model_uri=DEFAULT_.padding_left, domain=Variant, range=Optional[str])
 
-slots.padding_right = Slot(uri=DEFAULT_.padding_right, name="padding right", curie=DEFAULT_.curie('padding_right'),
-                   model_uri=DEFAULT_.padding_right, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
+slots.padding_right = Slot(uri=DEFAULT_.padding_right, name="padding_right", curie=DEFAULT_.curie('padding_right'),
+                   model_uri=DEFAULT_.padding_right, domain=Variant, range=Optional[str])
 
-slots.protein_sequence = Slot(uri=DEFAULT_.protein_sequence, name="protein sequence", curie=DEFAULT_.curie('protein_sequence'),
-                   model_uri=DEFAULT_.protein_sequence, domain=Variant, range=Optional[Union[str, BiologicalSequence]])
+slots.protein_sequence = Slot(uri=DEFAULT_.protein_sequence, name="protein_sequence", curie=DEFAULT_.curie('protein_sequence'),
+                   model_uri=DEFAULT_.protein_sequence, domain=Variant, range=Optional[str])
 
-slots.computed_gene = Slot(uri=DEFAULT_.computed_gene, name="computed gene", curie=DEFAULT_.curie('computed_gene'),
+slots.computed_gene = Slot(uri=DEFAULT_.computed_gene, name="computed_gene", curie=DEFAULT_.curie('computed_gene'),
                    model_uri=DEFAULT_.computed_gene, domain=Variant, range=Optional[Union[str, GeneId]])
 
-slots.is_variant_of_transcript = Slot(uri=DEFAULT_.is_variant_of_transcript, name="is variant of transcript", curie=DEFAULT_.curie('is_variant_of_transcript'),
+slots.is_variant_of_transcript = Slot(uri=DEFAULT_.is_variant_of_transcript, name="is_variant_of_transcript", curie=DEFAULT_.curie('is_variant_of_transcript'),
                    model_uri=DEFAULT_.is_variant_of_transcript, domain=Variant, range=Optional[Union[str, TranscriptId]])
 
-slots.is_variant_of_allele = Slot(uri=DEFAULT_.is_variant_of_allele, name="is variant of allele", curie=DEFAULT_.curie('is_variant_of_allele'),
+slots.is_variant_of_allele = Slot(uri=DEFAULT_.is_variant_of_allele, name="is_variant_of_allele", curie=DEFAULT_.curie('is_variant_of_allele'),
                    model_uri=DEFAULT_.is_variant_of_allele, domain=Variant, range=Optional[Union[str, AlleleId]])
