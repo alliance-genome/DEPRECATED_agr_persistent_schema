@@ -61,6 +61,8 @@ types:
     typeof: string
     description: >-
       A string that provides a human-readable description of something
+    exact_mappings:
+      - biolink:NarrativeText
 
   unit:                      # this should be generalized in core.yaml
     typeof: string
@@ -68,6 +70,7 @@ types:
     id_prefixes:
       - UO
     exact_mappings:
+      - biolink:Unit
       - qud:Unit
 
 ## ------------
@@ -189,7 +192,6 @@ classes:
     is_a: Attribute
     exact_mappings:
       - GENO:0000133
-    exact_mappings:
       - biolink:Zygosity
 
 ## ------------
@@ -472,6 +474,7 @@ classes:
       - UMLSSC:T167
       - UMLSST:sbst
     exact_mappings:
+      - biolink:ChemicalSubstance
       - SIO:010004
       - WIKIDATA:Q79529
       # Chemical
@@ -547,6 +550,7 @@ classes:
       - UMLSSC:T121
       - UMLSST:phsu
     exact_mappings:
+      - biolink:Drug
       - WIKIDATA:Q12140
       - CHEBI:23888
       # UMLS Semantic Type "Clinical Drug"
@@ -569,23 +573,22 @@ classes:
       - ExposureEvent
     description: >-
       A treatment is targeted at a disease or phenotype and may involve
-      multiple drug 'exposures', medical devices and/or procedures
+      multiple drug 'exposures' and/or procedures
     slots:
       - has_drug
-      - has_device
       - has_procedure
     exact_mappings:
       - OGMS:0000090
       - SIO:001398
+      - biolink:Treatment
 
   Procedure:
     is_a: NamedThing
-    mixins:
-      - activity and behavior                   # Το Do: add mixin
     description: >-
       A series of actions conducted in a certain order or manner
     exact_mappings:
       # Procedures
+      - biolink:Procedure
       - UMLSSG:PROC
     narrow_mappings:
       # Laboratory Procedure
@@ -1176,6 +1179,8 @@ slots:
     description: >-
       A grouping for any property that holds between a node and a value
     domain: NamedThing
+    exact_mappings:
+      - biolink:node_property
 
   is_metabolite:
     is_a: node_property
@@ -1184,36 +1189,38 @@ slots:
     description: >-
       indicates whether a chemical substance is a metabolite
     exact_mappings:
+      - biolink:is_metabolite
       - CHEBI:25212
 
   has_constituent:
     description: >-
       one or more chemical substances within a mixture
     is_a: node_property
+    exact_mappings:
+      - biolink:has_constituent
     range: ChemicalSubstance
     multivalued: true
 
   has_zygosity:
     is_a: node_property
+    exact_mappings:
+      - biolink:has_zygosity
     domain: GenomicEntity
     range: Zygosity
 
   has_drug:
     is_a: node_property
+    exact_mappings:
+      - biolink:has_drug
     description: >-
       connects an entity to one or more drugs
     range: Drug
     multivalued: true
 
-  has_device:
-    is_a: node_property
-    description: >-
-      connects an entity to one or more (medical) devices
-    range: Device
-    multivalued: true
-
   has_procedure:
     is_a: node_property
+    exact_mappings:
+    - biolink:has_procedure
     description: >-
       connects an entity to one or more (medical) procedures
     range: Procedure
@@ -1262,6 +1269,7 @@ slots:
     is_a: related_to
     symmetric: true
     exact_mappings:
+      - biolink:related_condition
       - GENO:0000790
 
   overlaps:                      # this should be generalized in core.yaml
@@ -1407,6 +1415,7 @@ slots:
     is_a: has_part
     description: holds between a genomic entity and a genotypic entity that is a sub-component of it
     exact_mappings:
+      - biolink:has_variant_part
       - GENO:0000382
 
   model_of:
@@ -1467,18 +1476,18 @@ slots:
       Co-occurrence of a certain allele of a genetic marker and the phenotype
       of interest in the same individuals at above-chance level
     exact_mappings:
+      - biolink:genetic_association
       - WIKIDATA_PROPERTY:P2293
 
-  gene associated with condition:
+  gene_associated_with_condition:
     is_a: genetic_association
     description: >-
       holds between a gene and a disease or phenotypic feature that the gene or its alleles/products may influence, contribute to, or correlate with
-    domain: gene
+    domain: Gene
     range: DiseaseOrPhenotype
-    in_subset:
-      - translator_minimal
-    inverse: condition associated with gene
+    inverse: condition_associated_with_gene
     exact_mappings:
+      - biolink:gene_associated_with_condition
       - RTXKG1:gene_associated_with_condition
     broad_mappings:
       # broader than a single gene: 'genotype' pathogenic for condition?
@@ -1490,38 +1499,37 @@ slots:
       - NCIT:R175
       - NCIT:R48
 
-  condition associated with gene:
+  condition_associated_with_gene:
     is_a: genetic_association
     description: >-
       holds between a gene and a disease or phenotypic feature that may be influenced, contribute to, or be correlated with the gene or its alleles/products
     domain: DiseaseOrPhenotype
-    range: gene
-    in_subset:
-      - translator_minimal
-    inverse: gene associated with condition
+    range: Gene
+    inverse: gene_associated_with_condition
+    exact_mappings:
+      - biolink:condition_associated_with_gene
     narrow_mappings:
       # narrower since just diseases, not phenotypic features as well
       - NCIT:R176
       - hetio:ASSOCIATES_DaG
 
-  affects risk for:
+  affects_risk_for:
     is_a: related_to
+    exact_mappings:
+      - biolink:affects_risk_for
     description: >-
       holds between two entities where exposure to one entity alters the chance of developing the other
-    in_subset:
-      - translator_minimal
 
   predisposes:
-    is_a: affects risk for
+    is_a: affects_risk_for
     description: >-
       holds between two entities where exposure to one entity increases the chance of developing the other
-    in_subset:
-      - translator_minimal
     exact_mappings:
+      - biolink:predisposes
       - SEMMEDDB:PREDISPOSES
       - SEMMEDDB:predisposes
 
-  contributes to:
+  contributes_to:
     is_a: related_to
     description: >-
       holds between two entities where the occurrence, existence, or activity of one causes or contributes to the occurrence or generation of the other
@@ -1531,6 +1539,7 @@ slots:
       # RTX contributed mapping tagged as 'inverse' of this Biolink predicate
       - IDO:0000664
     exact_mappings:
+      - biolink:contributes_to
       - RO:0002326
     narrow_mappings:
       - CTD:marker_mechanism
@@ -1543,11 +1552,10 @@ slots:
   causes:
     description: >-
       holds between two entities where the occurrence, existence, or activity of one causes the occurrence or generation of the other
-    is_a: contributes to
-    in_subset:
-      - translator_minimal
-    inverse: caused by
+    is_a: contributes_to
+    inverse: caused_by
     exact_mappings:
+      - biolink:causes
       - RO:0002506
       - SEMMEDDB:CAUSES
       - SEMMEDDB:causes
@@ -1586,15 +1594,14 @@ slots:
       - SNOMED:has_realization
       - UMLS:has_physiologic_effect
 
-  caused by:
+  caused_by:
     description: >-
       holds between two entities where the occurrence, existence,
       or activity of one is caused by the occurrence or generation of the other
     is_a: related_to
-    in_subset:
-      - translator_minimal
     inverse: causes
     exact_mappings:
+      - biolink:caused_by
       - WIKIDATA_PROPERTY:P828
     narrow_mappings:
       - RO:0001022
@@ -1617,9 +1624,10 @@ slots:
       presence of the entity reduces or eliminates some or
       all aspects of the condition.
     # 'biological entity' currently includes 'exposure event' which covers alot of related ground
-    domain: biological entity
+    domain: BiologicalEntity
     range: DiseaseOrPhenotype
     exact_mappings:
+      - biolink:ameliorates
       - RO:0003307
       - CTD:therapeutic
 
@@ -1631,23 +1639,23 @@ slots:
       and a condition (a phenotype or disease), where the presence
       of the entity worsens some or all aspects of the condition.
     # 'biological entity' currently includes 'exposure event' which covers alot of related ground
-    domain: biological entity
+    domain: BiologicalEntity
     range: DiseaseOrPhenotype
     exact_mappings:
+      - biolink:exacerbates
       - RO:0003309
 
-  correlated with:
+  correlated_with:
     is_a: related_to
     description: >-
       holds between any two named thing entities. For example, correlated_with
       holds between a disease or phenotypic feature and a measurable molecular
       entity that is used as an indicator of the presence or state of the disease or feature.
-    domain: named thing
-    range: named thing
-    in_subset:
-      - translator_minimal
+    domain: NamedThing
+    range: NamedThing
     symmetric: true
     exact_mappings:
+      - biolink:correlated_with
       - RO:0002610
       - PATO:correlates_with
     narrow_mappings:
@@ -1664,35 +1672,34 @@ slots:
       - SNOMED:associated_with
       - SNOMED:has_associated_finding
 
-  has biomarker:
-    is_a: correlated with
+  has_biomarker:
+    is_a: correlated_with
     description: >-
       holds between a disease or phenotypic feature and a measurable
       molecular entity that is used as an indicator of the presence
       or state of the disease or feature.
     domain: DiseaseOrPhenotype
-    range: molecular entity
-    in_subset:
-      - translator_minimal
-    inverse: biomarker for
+    range: MolecularEntity
+    exact_mappings:
+      - biolink:has_biomarker
+    inverse: biomarker_for
     narrow_mappings:
       # some RTX terms contributed as inverses of 'biolink:biomarker_for'
       - NCIT:disease_has_finding
       - NCIT:disease_has_molecular_abnormality
       - NCIT:disease_is_marked_by_gene
 
-  biomarker for:
-    is_a: correlated with
+  biomarker_for:
+    is_a: correlated_with
     description: >-
       holds between a measurable molecular entity and a disease
       or phenotypic feature, where the entity is used as an indicator
       of the presence or state of the disease or feature.
-    domain: molecular entity
+    domain: MolecularEntity
     range: DiseaseOrPhenotype
-    in_subset:
-      - translator_minimal
-    inverse: has biomarker
+    inverse: has_biomarker
     exact_mappings:
+      - biolink:biomarker_for
       - NCIT:R39
     broad_mappings:
       # Generic marker definition not specific to biomarkers per say
