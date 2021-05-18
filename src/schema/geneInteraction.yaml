@@ -58,25 +58,7 @@ classes:
   ## THINGS
   ## ------
 
-  Entity:                         # this should be generalized in core.yaml
-    description: >-
-      Root Biolink Model class for all things and informational relationships, real or imagined.
-    abstract: true
-    slots:
-      - id
-      - iri
-      - category
-      - type   # rdf:type
-      - name
-      - description
-      - source
-      - provided by
-      - has attribute
-    exact_mappings:
-      - biolink:entity
-
   NamedThing:                         # this should be generalized in core.yaml
-    is_a: Entity
     description: >-
       a databased entity or concept/class
     slot_usage:
@@ -119,7 +101,6 @@ classes:
   ## ------------
 
   Association:                     # this should be generalized in core.yaml
-    is_a: Entity
     description: >-
       A typed association between two entities, supported by evidence
     comments:
@@ -177,13 +158,13 @@ classes:
     is_a: GeneToGeneAssociation
     abstract: true
     slots:
-      cross_references
-      data_provider
-      interaction_type
-      interactor_A_role
-      interactor_B_role
-      interactor_A_type
-      interactor_B_type
+      - cross_references
+      - data_provider
+      - interaction_type
+      - interactor_A_role
+      - interactor_B_role
+      - interactor_A_type
+      - interactor_B_type
     defining_slots:
       - subject
       - predicate
@@ -212,8 +193,8 @@ classes:
           Additional identifier(s) of the interaction annotation other than the primary id.
       subject:
         range: Gene                   # is this declaration needed since it is already made in the parent class?
-        values_from:
-          - alliance
+#        values_from:
+#          - alliance
       predicate:
         subproperty_of: interacts_with
         symmetric: true
@@ -229,8 +210,8 @@ classes:
         range: uriorcurie
         description: >-
           The database that curated the interaction. e.g. BioGRID
-        values_from:
-          - mi
+#        values_from:
+#          - mi
 #        exact_mappings: # need to determine how to specify that the values should be an ontology class or descendant
 #          - mi:0461
         required: true
@@ -249,8 +230,8 @@ classes:
       factors (e.g. protein-DNA interactions)
     is_a: GeneInteraction
     slots:
-      aggregation_database
-      detection_method
+      - aggregation_database
+      - detection_method
     slot_usage:
       aggregation_database:
         values_from:
@@ -280,9 +261,9 @@ classes:
       A genetic interaction between genes (e.g. phenotypic suppression)
     is_a: GeneInteraction
     slots:
-      interactor_A_genetic_perturbation
-      interactor_B_genetic_perturbation
-      phenotype_or_trait
+      - interactor_A_genetic_perturbation
+      - interactor_B_genetic_perturbation
+      - phenotype_or_trait
     slot_usage:
       predicate:
         subproperty_of: genetically_interacts_with
@@ -299,28 +280,14 @@ slots:
     multivalued: false
     range: uriorcurie
 
-  association_publications:                     # this should be generalized in core.yaml
-    singular_name: 'association publication'
+  publications:                     # this should be generalized in core.yaml
+    singular_name: 'publication'
     description: >-
       connects an association to publications supporting the association
     is_a: association_slot
     multivalued: true
     domain: Association
     range: Reference
-
-  relation:                     # this should be generalized in core.yaml
-    is_a: association_slot
-    description: >-
-      The relation which describes an association between a subject and
-      an object in a more granular manner. Usually this is a term from
-      Relation Ontology, but it can be any edge CURIE.
-    domain: Association
-    range: uriorcurie
-    required: true
-    id_prefixes:
-      - RO
-      - BSPO
-      - SIO
 
   interaction_type:
     required: true
