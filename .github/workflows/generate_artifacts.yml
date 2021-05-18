@@ -45,18 +45,17 @@ jobs:
         sudo apt-get install -y graphviz
         wget https://github.com/joelittlejohn/jsonschema2pojo/releases/download/jsonschema2pojo-1.0.2/jsonschema2pojo-1.0.2.tar.gz
         tar -xvzf jsonschema2pojo-1.0.2.tar.gz
-	export PYTHONPATH=.:$PYTHONPATH
         pip install -r requirements.txt
-    - name: Generate Alliance Persistent Model artifacts
+	
+    - name: Generate Alliance Persistent Schema Model artifacts
       run: |
         export PATH=$PATH:`pwd`/jsonschema2pojo-1.0.2/bin
         make -B install all
         if [ $? -eq 0 ]; then
           git config --global user.name "$GITHUB_NAME"
           git config --global user.email "$GITHUB_EMAIL"
-	  git add target/*
-	  git add docs/*
-          git commit -m "Regenerate artifacts from alliance_schema.yaml"
+          git add target/*
+          git commit -m "Regenerate artifacts from biolink-model.yaml"
           git push
         else
           echo "'make' failed to finish successfully"
