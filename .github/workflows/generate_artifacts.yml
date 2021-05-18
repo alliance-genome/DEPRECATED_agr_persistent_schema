@@ -46,7 +46,7 @@ jobs:
         wget https://github.com/joelittlejohn/jsonschema2pojo/releases/download/jsonschema2pojo-1.0.2/jsonschema2pojo-1.0.2.tar.gz
         tar -xvzf jsonschema2pojo-1.0.2.tar.gz
         pip install -r requirements.txt
-	
+
     - name: Generate Alliance Persistent Schema Model artifacts
       run: |
         export PATH=$PATH:`pwd`/jsonschema2pojo-1.0.2/bin
