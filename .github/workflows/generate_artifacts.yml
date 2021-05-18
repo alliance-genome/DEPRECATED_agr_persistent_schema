@@ -45,7 +45,8 @@ jobs:
         sudo apt-get install -y graphviz
         wget https://github.com/joelittlejohn/jsonschema2pojo/releases/download/jsonschema2pojo-1.0.2/jsonschema2pojo-1.0.2.tar.gz
         tar -xvzf jsonschema2pojo-1.0.2.tar.gz
-        pip install pipenv
+	export PYTHONPATH=.:$PYTHONPATH
+        pip install -r requirements.txt
     - name: Generate Alliance Persistent Model artifacts
       run: |
         export PATH=$PATH:`pwd`/jsonschema2pojo-1.0.2/bin
@@ -53,13 +54,8 @@ jobs:
         if [ $? -eq 0 ]; then
           git config --global user.name "$GITHUB_NAME"
           git config --global user.email "$GITHUB_EMAIL"
-          git add python/*
-          git add context* 
-          git add jsonschema/*
-          git add owl/*
-          git add graphviz/*
-          git add graphql/*
-          git add rdf/*
+	  git add target/*
+	  git add docs/*
           git commit -m "Regenerate artifacts from alliance_schema.yaml"
           git push
         else
