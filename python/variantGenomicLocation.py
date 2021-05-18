@@ -1,5 +1,5 @@
 # Auto generated from variantGenomicLocation.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation
@@ -53,7 +53,7 @@ class VariantGenomicLocation(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant genomic location"
+    class_name: ClassVar[str] = "VariantGenomicLocation"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantGenomicLocation/VariantGenomicLocation")
 
     subject: Union[str, VariantId] = None
@@ -103,8 +103,8 @@ class slots:
 slots.located_on = Slot(uri=DEFAULT_.located_on, name="located on", curie=DEFAULT_.curie('located_on'),
                    model_uri=DEFAULT_.located_on, domain=None, range=Optional[Union[str, ChromosomeId]])
 
-slots.variant_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="variant genomic location_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_genomic_location_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])
+slots.VariantGenomicLocation_subject = Slot(uri=DEFAULT_.subject, name="VariantGenomicLocation_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.VariantGenomicLocation_subject, domain=VariantGenomicLocation, range=Union[str, VariantId])
 
-slots.variant_genomic_location_object = Slot(uri=DEFAULT_.object, name="variant genomic location_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_genomic_location_object, domain=VariantGenomicLocation, range=Union[str, ChromosomeId])
+slots.VariantGenomicLocation_object = Slot(uri=DEFAULT_.object, name="VariantGenomicLocation_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.VariantGenomicLocation_object, domain=VariantGenomicLocation, range=Union[str, ChromosomeId])

@@ -38,12 +38,12 @@ type Gene
     synonyms: String
     secondaryIdentifiers: [String]
     crossReferences: [String]
-    genomicLocations: [GeneGenomicLocation]
     name: String
     symbol: String
     geneSynopsis: String
     geneSynopsisURL: String
     type: Uriorcurie
+    genomicLocations: [GeneGenomicLocation]
   }
 
 type GeneGenomicLocation

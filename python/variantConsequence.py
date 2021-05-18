@@ -1,5 +1,5 @@
 # Auto generated from variantConsequence.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: variantConsequence
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence
@@ -21,7 +21,7 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from . core import BiologicalSequence, GeneId, TranscriptId
+from . core import GeneId, TranscriptId
 from . variation import VariantId
 from linkml_model.types import Float, Integer, String
 
@@ -53,7 +53,7 @@ class VariantGeneConsequence(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant gene consequence"
+    class_name: ClassVar[str] = "VariantGeneConsequence"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantGeneConsequence")
 
     subject: Union[str, VariantId] = None
@@ -106,13 +106,13 @@ class VariantTranscriptConsequence(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "variant transcript consequence"
+    class_name: ClassVar[str] = "VariantTranscriptConsequence"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/variantConsequence/VariantTranscriptConsequence")
 
     subject: Union[str, VariantId] = None
     object: Union[str, TranscriptId] = None
-    amino_acid_reference: Optional[Union[str, BiologicalSequence]] = None
-    amino_acid_variant: Optional[Union[str, BiologicalSequence]] = None
+    amino_acid_reference: Optional[str] = None
+    amino_acid_variant: Optional[str] = None
     codon_reference: Optional[str] = None
     codon_variant: Optional[str] = None
     cdna_start: Optional[int] = None
@@ -137,11 +137,11 @@ class VariantTranscriptConsequence(YAMLRoot):
         if not isinstance(self.object, TranscriptId):
             self.object = TranscriptId(self.object)
 
-        if self.amino_acid_reference is not None and not isinstance(self.amino_acid_reference, BiologicalSequence):
-            self.amino_acid_reference = BiologicalSequence(self.amino_acid_reference)
+        if self.amino_acid_reference is not None and not isinstance(self.amino_acid_reference, str):
+            self.amino_acid_reference = str(self.amino_acid_reference)
 
-        if self.amino_acid_variant is not None and not isinstance(self.amino_acid_variant, BiologicalSequence):
-            self.amino_acid_variant = BiologicalSequence(self.amino_acid_variant)
+        if self.amino_acid_variant is not None and not isinstance(self.amino_acid_variant, str):
+            self.amino_acid_variant = str(self.amino_acid_variant)
 
         if self.codon_reference is not None and not isinstance(self.codon_reference, str):
             self.codon_reference = str(self.codon_reference)
@@ -189,110 +189,110 @@ class VariantTranscriptConsequence(YAMLRoot):
 class slots:
     pass
 
-slots.vep_impact = Slot(uri=DEFAULT_.vep_impact, name="vep impact", curie=DEFAULT_.curie('vep_impact'),
+slots.vep_impact = Slot(uri=DEFAULT_.vep_impact, name="vep_impact", curie=DEFAULT_.curie('vep_impact'),
                    model_uri=DEFAULT_.vep_impact, domain=VariantGeneConsequence, range=Optional[str])
 
-slots.polyphen_score = Slot(uri=DEFAULT_.polyphen_score, name="polyphen score", curie=DEFAULT_.curie('polyphen_score'),
+slots.polyphen_score = Slot(uri=DEFAULT_.polyphen_score, name="polyphen_score", curie=DEFAULT_.curie('polyphen_score'),
                    model_uri=DEFAULT_.polyphen_score, domain=VariantGeneConsequence, range=Optional[float])
 
-slots.polyphen_prediction = Slot(uri=DEFAULT_.polyphen_prediction, name="polyphen prediction", curie=DEFAULT_.curie('polyphen_prediction'),
+slots.polyphen_prediction = Slot(uri=DEFAULT_.polyphen_prediction, name="polyphen_prediction", curie=DEFAULT_.curie('polyphen_prediction'),
                    model_uri=DEFAULT_.polyphen_prediction, domain=VariantGeneConsequence, range=Optional[str])
 
-slots.sift_score = Slot(uri=DEFAULT_.sift_score, name="sift score", curie=DEFAULT_.curie('sift_score'),
+slots.sift_score = Slot(uri=DEFAULT_.sift_score, name="sift_score", curie=DEFAULT_.curie('sift_score'),
                    model_uri=DEFAULT_.sift_score, domain=VariantGeneConsequence, range=Optional[float])
 
-slots.sift_prediction = Slot(uri=DEFAULT_.sift_prediction, name="sift prediction", curie=DEFAULT_.curie('sift_prediction'),
+slots.sift_prediction = Slot(uri=DEFAULT_.sift_prediction, name="sift_prediction", curie=DEFAULT_.curie('sift_prediction'),
                    model_uri=DEFAULT_.sift_prediction, domain=VariantGeneConsequence, range=Optional[str])
 
-slots.amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="amino acid reference", curie=DEFAULT_.curie('amino_acid_reference'),
-                   model_uri=DEFAULT_.amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
+slots.amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="amino_acid_reference", curie=DEFAULT_.curie('amino_acid_reference'),
+                   model_uri=DEFAULT_.amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.amino_acid_variant = Slot(uri=DEFAULT_.amino_acid_variant, name="amino acid variant", curie=DEFAULT_.curie('amino_acid_variant'),
-                   model_uri=DEFAULT_.amino_acid_variant, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
+slots.amino_acid_variant = Slot(uri=DEFAULT_.amino_acid_variant, name="amino_acid_variant", curie=DEFAULT_.curie('amino_acid_variant'),
+                   model_uri=DEFAULT_.amino_acid_variant, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.codon_reference = Slot(uri=DEFAULT_.codon_reference, name="codon reference", curie=DEFAULT_.curie('codon_reference'),
+slots.codon_reference = Slot(uri=DEFAULT_.codon_reference, name="codon_reference", curie=DEFAULT_.curie('codon_reference'),
                    model_uri=DEFAULT_.codon_reference, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.codon_variant = Slot(uri=DEFAULT_.codon_variant, name="codon variant", curie=DEFAULT_.curie('codon_variant'),
+slots.codon_variant = Slot(uri=DEFAULT_.codon_variant, name="codon_variant", curie=DEFAULT_.curie('codon_variant'),
                    model_uri=DEFAULT_.codon_variant, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.cdna_start = Slot(uri=DEFAULT_.cdna_start, name="cdna start", curie=DEFAULT_.curie('cdna_start'),
+slots.cdna_start = Slot(uri=DEFAULT_.cdna_start, name="cdna_start", curie=DEFAULT_.curie('cdna_start'),
                    model_uri=DEFAULT_.cdna_start, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.cdna_end = Slot(uri=DEFAULT_.cdna_end, name="cdna end", curie=DEFAULT_.curie('cdna_end'),
+slots.cdna_end = Slot(uri=DEFAULT_.cdna_end, name="cdna_end", curie=DEFAULT_.curie('cdna_end'),
                    model_uri=DEFAULT_.cdna_end, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.cds_start = Slot(uri=DEFAULT_.cds_start, name="cds start", curie=DEFAULT_.curie('cds_start'),
+slots.cds_start = Slot(uri=DEFAULT_.cds_start, name="cds_start", curie=DEFAULT_.curie('cds_start'),
                    model_uri=DEFAULT_.cds_start, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.cds_end = Slot(uri=DEFAULT_.cds_end, name="cds end", curie=DEFAULT_.curie('cds_end'),
+slots.cds_end = Slot(uri=DEFAULT_.cds_end, name="cds_end", curie=DEFAULT_.curie('cds_end'),
                    model_uri=DEFAULT_.cds_end, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.protein_start = Slot(uri=DEFAULT_.protein_start, name="protein start", curie=DEFAULT_.curie('protein_start'),
+slots.protein_start = Slot(uri=DEFAULT_.protein_start, name="protein_start", curie=DEFAULT_.curie('protein_start'),
                    model_uri=DEFAULT_.protein_start, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.protein_end = Slot(uri=DEFAULT_.protein_end, name="protein end", curie=DEFAULT_.curie('protein_end'),
+slots.protein_end = Slot(uri=DEFAULT_.protein_end, name="protein_end", curie=DEFAULT_.curie('protein_end'),
                    model_uri=DEFAULT_.protein_end, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.hgvs_protein_nomenclature = Slot(uri=DEFAULT_.hgvs_protein_nomenclature, name="hgvs protein nomenclature", curie=DEFAULT_.curie('hgvs_protein_nomenclature'),
+slots.hgvs_protein_nomenclature = Slot(uri=DEFAULT_.hgvs_protein_nomenclature, name="hgvs_protein_nomenclature", curie=DEFAULT_.curie('hgvs_protein_nomenclature'),
                    model_uri=DEFAULT_.hgvs_protein_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.hgvs_coding_nomenclature = Slot(uri=DEFAULT_.hgvs_coding_nomenclature, name="hgvs coding nomenclature", curie=DEFAULT_.curie('hgvs_coding_nomenclature'),
+slots.hgvs_coding_nomenclature = Slot(uri=DEFAULT_.hgvs_coding_nomenclature, name="hgvs_coding_nomenclature", curie=DEFAULT_.curie('hgvs_coding_nomenclature'),
                    model_uri=DEFAULT_.hgvs_coding_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.vep_consequence = Slot(uri=DEFAULT_.vep_consequence, name="vep consequence", curie=DEFAULT_.curie('vep_consequence'),
+slots.vep_consequence = Slot(uri=DEFAULT_.vep_consequence, name="vep_consequence", curie=DEFAULT_.curie('vep_consequence'),
                    model_uri=DEFAULT_.vep_consequence, domain=None, range=Optional[str])
 
-slots.cnda_end = Slot(uri=DEFAULT_.cnda_end, name="cnda end", curie=DEFAULT_.curie('cnda_end'),
+slots.cnda_end = Slot(uri=DEFAULT_.cnda_end, name="cnda_end", curie=DEFAULT_.curie('cnda_end'),
                    model_uri=DEFAULT_.cnda_end, domain=None, range=Optional[str])
 
-slots.cns_end = Slot(uri=DEFAULT_.cns_end, name="cns end", curie=DEFAULT_.curie('cns_end'),
+slots.cns_end = Slot(uri=DEFAULT_.cns_end, name="cns_end", curie=DEFAULT_.curie('cns_end'),
                    model_uri=DEFAULT_.cns_end, domain=None, range=Optional[str])
 
-slots.variant_gene_consequence_subject = Slot(uri=DEFAULT_.subject, name="variant gene consequence_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_gene_consequence_subject, domain=VariantGeneConsequence, range=Union[str, VariantId])
+slots.VariantGeneConsequence_subject = Slot(uri=DEFAULT_.subject, name="VariantGeneConsequence_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.VariantGeneConsequence_subject, domain=VariantGeneConsequence, range=Union[str, VariantId])
 
-slots.variant_gene_consequence_object = Slot(uri=DEFAULT_.object, name="variant gene consequence_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_gene_consequence_object, domain=VariantGeneConsequence, range=Union[str, GeneId])
+slots.VariantGeneConsequence_object = Slot(uri=DEFAULT_.object, name="VariantGeneConsequence_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.VariantGeneConsequence_object, domain=VariantGeneConsequence, range=Union[str, GeneId])
 
-slots.variant_transcript_consequence_subject = Slot(uri=DEFAULT_.subject, name="variant transcript consequence_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_subject, domain=VariantTranscriptConsequence, range=Union[str, VariantId])
+slots.VariantTranscriptConsequence_subject = Slot(uri=DEFAULT_.subject, name="VariantTranscriptConsequence_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_subject, domain=VariantTranscriptConsequence, range=Union[str, VariantId])
 
-slots.variant_transcript_consequence_object = Slot(uri=DEFAULT_.object, name="variant transcript consequence_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_object, domain=VariantTranscriptConsequence, range=Union[str, TranscriptId])
+slots.VariantTranscriptConsequence_object = Slot(uri=DEFAULT_.object, name="VariantTranscriptConsequence_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_object, domain=VariantTranscriptConsequence, range=Union[str, TranscriptId])
 
-slots.variant_transcript_consequence_amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="variant transcript consequence_amino acid reference", curie=DEFAULT_.curie('amino_acid_reference'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
+slots.VariantTranscriptConsequence_amino_acid_reference = Slot(uri=DEFAULT_.amino_acid_reference, name="VariantTranscriptConsequence_amino_acid_reference", curie=DEFAULT_.curie('amino_acid_reference'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_amino_acid_reference, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_amino_acid_variant = Slot(uri=DEFAULT_.amino_acid_variant, name="variant transcript consequence_amino acid variant", curie=DEFAULT_.curie('amino_acid_variant'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_amino_acid_variant, domain=VariantTranscriptConsequence, range=Optional[Union[str, BiologicalSequence]])
+slots.VariantTranscriptConsequence_amino_acid_variant = Slot(uri=DEFAULT_.amino_acid_variant, name="VariantTranscriptConsequence_amino_acid_variant", curie=DEFAULT_.curie('amino_acid_variant'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_amino_acid_variant, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_codon_reference = Slot(uri=DEFAULT_.codon_reference, name="variant transcript consequence_codon reference", curie=DEFAULT_.curie('codon_reference'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_codon_reference, domain=VariantTranscriptConsequence, range=Optional[str])
+slots.VariantTranscriptConsequence_codon_reference = Slot(uri=DEFAULT_.codon_reference, name="VariantTranscriptConsequence_codon_reference", curie=DEFAULT_.curie('codon_reference'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_codon_reference, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_codon_variant = Slot(uri=DEFAULT_.codon_variant, name="variant transcript consequence_codon variant", curie=DEFAULT_.curie('codon_variant'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_codon_variant, domain=VariantTranscriptConsequence, range=Optional[str])
+slots.VariantTranscriptConsequence_codon_variant = Slot(uri=DEFAULT_.codon_variant, name="VariantTranscriptConsequence_codon_variant", curie=DEFAULT_.curie('codon_variant'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_codon_variant, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_cdna_start = Slot(uri=DEFAULT_.cdna_start, name="variant transcript consequence_cdna start", curie=DEFAULT_.curie('cdna_start'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_cdna_start, domain=VariantTranscriptConsequence, range=Optional[int])
+slots.VariantTranscriptConsequence_cdna_start = Slot(uri=DEFAULT_.cdna_start, name="VariantTranscriptConsequence_cdna_start", curie=DEFAULT_.curie('cdna_start'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_cdna_start, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.variant_transcript_consequence_cnda_end = Slot(uri=DEFAULT_.cnda_end, name="variant transcript consequence_cnda end", curie=DEFAULT_.curie('cnda_end'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_cnda_end, domain=VariantTranscriptConsequence, range=Optional[str])
+slots.VariantTranscriptConsequence_cnda_end = Slot(uri=DEFAULT_.cnda_end, name="VariantTranscriptConsequence_cnda_end", curie=DEFAULT_.curie('cnda_end'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_cnda_end, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_cds_start = Slot(uri=DEFAULT_.cds_start, name="variant transcript consequence_cds start", curie=DEFAULT_.curie('cds_start'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_cds_start, domain=VariantTranscriptConsequence, range=Optional[int])
+slots.VariantTranscriptConsequence_cds_start = Slot(uri=DEFAULT_.cds_start, name="VariantTranscriptConsequence_cds_start", curie=DEFAULT_.curie('cds_start'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_cds_start, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.variant_transcript_consequence_cns_end = Slot(uri=DEFAULT_.cns_end, name="variant transcript consequence_cns end", curie=DEFAULT_.curie('cns_end'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_cns_end, domain=VariantTranscriptConsequence, range=Optional[str])
+slots.VariantTranscriptConsequence_cns_end = Slot(uri=DEFAULT_.cns_end, name="VariantTranscriptConsequence_cns_end", curie=DEFAULT_.curie('cns_end'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_cns_end, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_protein_start = Slot(uri=DEFAULT_.protein_start, name="variant transcript consequence_protein start", curie=DEFAULT_.curie('protein_start'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_protein_start, domain=VariantTranscriptConsequence, range=Optional[int])
+slots.VariantTranscriptConsequence_protein_start = Slot(uri=DEFAULT_.protein_start, name="VariantTranscriptConsequence_protein_start", curie=DEFAULT_.curie('protein_start'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_protein_start, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.variant_transcript_consequence_protein_end = Slot(uri=DEFAULT_.protein_end, name="variant transcript consequence_protein end", curie=DEFAULT_.curie('protein_end'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_protein_end, domain=VariantTranscriptConsequence, range=Optional[int])
+slots.VariantTranscriptConsequence_protein_end = Slot(uri=DEFAULT_.protein_end, name="VariantTranscriptConsequence_protein_end", curie=DEFAULT_.curie('protein_end'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_protein_end, domain=VariantTranscriptConsequence, range=Optional[int])
 
-slots.variant_transcript_consequence_hgvs_protein_nomenclature = Slot(uri=DEFAULT_.hgvs_protein_nomenclature, name="variant transcript consequence_hgvs protein nomenclature", curie=DEFAULT_.curie('hgvs_protein_nomenclature'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_hgvs_protein_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
+slots.VariantTranscriptConsequence_hgvs_protein_nomenclature = Slot(uri=DEFAULT_.hgvs_protein_nomenclature, name="VariantTranscriptConsequence_hgvs_protein_nomenclature", curie=DEFAULT_.curie('hgvs_protein_nomenclature'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_hgvs_protein_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
 
-slots.variant_transcript_consequence_hgvs_coding_nomenclature = Slot(uri=DEFAULT_.hgvs_coding_nomenclature, name="variant transcript consequence_hgvs coding nomenclature", curie=DEFAULT_.curie('hgvs_coding_nomenclature'),
-                   model_uri=DEFAULT_.variant_transcript_consequence_hgvs_coding_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])
+slots.VariantTranscriptConsequence_hgvs_coding_nomenclature = Slot(uri=DEFAULT_.hgvs_coding_nomenclature, name="VariantTranscriptConsequence_hgvs_coding_nomenclature", curie=DEFAULT_.curie('hgvs_coding_nomenclature'),
+                   model_uri=DEFAULT_.VariantTranscriptConsequence_hgvs_coding_nomenclature, domain=VariantTranscriptConsequence, range=Optional[str])

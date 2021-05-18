@@ -1,5 +1,5 @@
 # Auto generated from informationContentEntity.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: informationContentEntity
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/informationContentEntity
@@ -61,7 +61,7 @@ class InformationContentEntity(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.InformationContentEntity
     class_class_curie: ClassVar[str] = "alliance:InformationContentEntity"
-    class_name: ClassVar[str] = "information content entity"
+    class_name: ClassVar[str] = "InformationContentEntity"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.InformationContentEntity
 
     id: Union[str, InformationContentEntityId] = None
@@ -85,7 +85,7 @@ class AuthorReference(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = ALLIANCE.AuthorReference
     class_class_curie: ClassVar[str] = "alliance:AuthorReference"
-    class_name: ClassVar[str] = "author reference"
+    class_name: ClassVar[str] = "AuthorReference"
     class_model_uri: ClassVar[URIRef] = ALLIANCE.AuthorReference
 
     corresponding_author: Optional[Union[str, InformationContentEntityId]] = None
@@ -127,28 +127,28 @@ class AuthorReference(YAMLRoot):
 class slots:
     pass
 
-slots.creation_date = Slot(uri=ALLIANCE.creation_date, name="creation date", curie=ALLIANCE.curie('creation_date'),
+slots.creation_date = Slot(uri=ALLIANCE.creation_date, name="creation_date", curie=ALLIANCE.curie('creation_date'),
                    model_uri=ALLIANCE.creation_date, domain=None, range=Optional[Union[str, XSDDate]])
 
 slots.summary = Slot(uri=ALLIANCE.summary, name="summary", curie=ALLIANCE.curie('summary'),
                    model_uri=ALLIANCE.summary, domain=InformationContentEntity, range=Optional[str])
 
-slots.copyright_date = Slot(uri=ALLIANCE.copyright_date, name="copyright date", curie=ALLIANCE.curie('copyright_date'),
+slots.copyright_date = Slot(uri=ALLIANCE.copyright_date, name="copyright_date", curie=ALLIANCE.curie('copyright_date'),
                    model_uri=ALLIANCE.copyright_date, domain=InformationContentEntity, range=Optional[Union[str, XSDDate]])
 
 slots.authors = Slot(uri=ALLIANCE.authors, name="authors", curie=ALLIANCE.curie('authors'),
                    model_uri=ALLIANCE.authors, domain=InformationContentEntity, range=Optional[Union[Union[dict, "AuthorReference"], List[Union[dict, "AuthorReference"]]]])
 
-slots.corresponding_author = Slot(uri=ALLIANCE.corresponding_author, name="corresponding author", curie=ALLIANCE.curie('corresponding_author'),
+slots.corresponding_author = Slot(uri=ALLIANCE.corresponding_author, name="corresponding_author", curie=ALLIANCE.curie('corresponding_author'),
                    model_uri=ALLIANCE.corresponding_author, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
 
-slots.first_name = Slot(uri=ALLIANCE.first_name, name="first name", curie=ALLIANCE.curie('first_name'),
+slots.first_name = Slot(uri=ALLIANCE.first_name, name="first_name", curie=ALLIANCE.curie('first_name'),
                    model_uri=ALLIANCE.first_name, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
 
-slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle names", curie=ALLIANCE.curie('middle_names'),
+slots.middle_names = Slot(uri=ALLIANCE.middle_names, name="middle_names", curie=ALLIANCE.curie('middle_names'),
                    model_uri=ALLIANCE.middle_names, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
 
-slots.last_name = Slot(uri=ALLIANCE.last_name, name="last name", curie=ALLIANCE.curie('last_name'),
+slots.last_name = Slot(uri=ALLIANCE.last_name, name="last_name", curie=ALLIANCE.curie('last_name'),
                    model_uri=ALLIANCE.last_name, domain=InformationContentEntity, range=Optional[Union[str, InformationContentEntityId]])
 
 slots.initials = Slot(uri=ALLIANCE.initials, name="initials", curie=ALLIANCE.curie('initials'),

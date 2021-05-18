@@ -34,20 +34,19 @@ slots:
       Denormalization to help with classifying types of crossReferences,
       distinguishing DOIs from PMC ids, etc.
 
-  page areas:
+  page_areas:
     required: true
     multivalued: true
     range: string
 
-  display name:
+  display_name:
     required: true
     multivalued: false
     range: string
 
-  cross reference id:
+  cross_reference_id:
     required: true
     multivalued: false
     range: string
-    identifier: true
 
 

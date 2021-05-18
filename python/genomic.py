@@ -1,5 +1,5 @@
 # Auto generated from genomic.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: Alliance-Schema-Prototype-Variation
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic
@@ -58,7 +58,7 @@ class Chromosome(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "chromosome"
+    class_name: ClassVar[str] = "Chromosome"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/Chromosome")
 
     id: Union[str, ChromosomeId] = None
@@ -78,7 +78,7 @@ class GeneGenomicLocation(YAMLRoot):
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "gene genomic location"
+    class_name: ClassVar[str] = "GeneGenomicLocation"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/genomic/GeneGenomicLocation")
 
     subject: Union[str, VariantId] = None
@@ -134,8 +134,8 @@ slots.end = Slot(uri=DEFAULT_.end, name="end", curie=DEFAULT_.curie('end'),
 slots.assembly = Slot(uri=DEFAULT_.assembly, name="assembly", curie=DEFAULT_.curie('assembly'),
                    model_uri=DEFAULT_.assembly, domain=GenomicEntity, range=str)
 
-slots.gene_genomic_location_subject = Slot(uri=DEFAULT_.subject, name="gene genomic location_subject", curie=DEFAULT_.curie('subject'),
-                   model_uri=DEFAULT_.gene_genomic_location_subject, domain=GeneGenomicLocation, range=Union[str, VariantId])
+slots.GeneGenomicLocation_subject = Slot(uri=DEFAULT_.subject, name="GeneGenomicLocation_subject", curie=DEFAULT_.curie('subject'),
+                   model_uri=DEFAULT_.GeneGenomicLocation_subject, domain=GeneGenomicLocation, range=Union[str, VariantId])
 
-slots.gene_genomic_location_object = Slot(uri=DEFAULT_.object, name="gene genomic location_object", curie=DEFAULT_.curie('object'),
-                   model_uri=DEFAULT_.gene_genomic_location_object, domain=GeneGenomicLocation, range=Union[str, ChromosomeId])
+slots.GeneGenomicLocation_object = Slot(uri=DEFAULT_.object, name="GeneGenomicLocation_object", curie=DEFAULT_.curie('object'),
+                   model_uri=DEFAULT_.GeneGenomicLocation_object, domain=GeneGenomicLocation, range=Union[str, ChromosomeId])

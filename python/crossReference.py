@@ -1,5 +1,5 @@
 # Auto generated from crossReference.yaml by pythongen.py version: 0.9.0
-# Generation date: 2021-04-27 08:49
+# Generation date: 2021-05-17 17:02
 # Schema: crossReference
 #
 # id: https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference
@@ -21,7 +21,9 @@ from linkml.utils.formatutils import camelcase, underscore, sfx
 from linkml.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml.utils.curienamespace import CurieNamespace
-from linkml_model.types import String
+from . informationContentEntity import InformationContentEntity, InformationContentEntityId
+from linkml.utils.metamodelcore import URIorCURIE, XSDDate
+from linkml_model.types import Date, String, Uriorcurie
 
 metamodel_version = "1.7.0"
 
@@ -42,29 +44,35 @@ DEFAULT_ = CurieNamespace('', 'https://github.com/alliance-genome/agr_persistent
 # Types
 
 # Class references
-class CrossReferenceCrossReferenceId(extended_str):
+class CrossReferenceId(InformationContentEntityId):
     pass
 
 
 @dataclass
-class CrossReference(YAMLRoot):
+class CrossReference(InformationContentEntity):
     _inherited_slots: ClassVar[List[str]] = []
 
     class_class_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference")
     class_class_curie: ClassVar[str] = None
-    class_name: ClassVar[str] = "cross reference"
+    class_name: ClassVar[str] = "CrossReference"
     class_model_uri: ClassVar[URIRef] = URIRef("https://github.com/alliance-genome/agr_persistent_schema/src/schema/crossReference/CrossReference")
 
-    cross_reference_id: Union[str, CrossReferenceCrossReferenceId] = None
+    id: Union[str, CrossReferenceId] = None
+    cross_reference_id: str = None
     page_areas: Union[str, List[str]] = None
     display_name: str = None
     prefix: str = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.id is None:
+            raise ValueError("id must be supplied")
+        if not isinstance(self.id, CrossReferenceId):
+            self.id = CrossReferenceId(self.id)
+
         if self.cross_reference_id is None:
             raise ValueError("cross_reference_id must be supplied")
-        if not isinstance(self.cross_reference_id, CrossReferenceCrossReferenceId):
-            self.cross_reference_id = CrossReferenceCrossReferenceId(self.cross_reference_id)
+        if not isinstance(self.cross_reference_id, str):
+            self.cross_reference_id = str(self.cross_reference_id)
 
         if self.page_areas is None:
             raise ValueError("page_areas must be supplied")
@@ -97,11 +105,11 @@ class slots:
 slots.prefix = Slot(uri=DEFAULT_.prefix, name="prefix", curie=DEFAULT_.curie('prefix'),
                    model_uri=DEFAULT_.prefix, domain=None, range=str)
 
-slots.page_areas = Slot(uri=DEFAULT_.page_areas, name="page areas", curie=DEFAULT_.curie('page_areas'),
+slots.page_areas = Slot(uri=DEFAULT_.page_areas, name="page_areas", curie=DEFAULT_.curie('page_areas'),
                    model_uri=DEFAULT_.page_areas, domain=None, range=Union[str, List[str]])
 
-slots.display_name = Slot(uri=DEFAULT_.display_name, name="display name", curie=DEFAULT_.curie('display_name'),
+slots.display_name = Slot(uri=DEFAULT_.display_name, name="display_name", curie=DEFAULT_.curie('display_name'),
                    model_uri=DEFAULT_.display_name, domain=None, range=str)
 
-slots.cross_reference_id = Slot(uri=DEFAULT_.cross_reference_id, name="cross reference id", curie=DEFAULT_.curie('cross_reference_id'),
-                   model_uri=DEFAULT_.cross_reference_id, domain=None, range=URIRef)
+slots.cross_reference_id = Slot(uri=DEFAULT_.cross_reference_id, name="cross_reference_id", curie=DEFAULT_.curie('cross_reference_id'),
+                   model_uri=DEFAULT_.cross_reference_id, domain=None, range=str)

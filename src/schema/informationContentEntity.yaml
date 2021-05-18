@@ -38,12 +38,12 @@ classes:
       Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
       alternate CURIE otherwise.
     slots:
-      - creation date
+      - creation_date
       - id
     exact_mappings:
       - IAO:0000030
 
-  author_reference:
+  AuthorReference:
     slots:
       - corresponding_author
       - first_name
@@ -64,63 +64,63 @@ slots:
 
   summary:
     description: >-
-    domain: information content entity
+    domain: InformationContentEntity
     range: string
 
   copyright_date:
     description: >-
-    domain: information content entity
+    domain: InformationContentEntity
     range: date
 
   authors:
     multivalued: true
-    domain: information content entity
-    range: author reference
+    domain: InformationContentEntity
+    range: AuthorReference
 
   corresponding_author:
     description: >-
-    range: information content entity
-    domain: information content entity
+    range: InformationContentEntity
+    domain: InformationContentEntity
 
   first_name:
     description: >-
-    domain: information content entity
-    range: information content entity
+    domain: InformationContentEntity
+    range: InformationContentEntity
 
   middle_names:
     description: >-
-    domain: information content entity
-    range: information content entity
+    domain: InformationContentEntity
+    range: InformationContentEntity
     multivalued: false
 
   last_name:
     description: >-
-    domain: information content entity
-    range: information content entity
+    domain: InformationContentEntity
+    range: InformationContentEntity
 
 
   initials:
     description: >-
-    domain: information content entity
-    range: information content entity
+    domain: InformationContentEntity
+    range: InformationContentEntity
 
   title:
     multivalued: false
     description: >-
       A human readable title for a reference.
-    domain: information content entity
+    domain: InformationContentEntity
     range: string
 
   volumes:
     singular_name: volume
     multivalued: false
     range: string
-    domain: information content entity
+    domain: InformationContentEntity
     description: >-
 
   publisher:
-    range: information content entity
-    domain: information content entity
+    range: InformationContentEntity
+    domain: InformationContentEntity
 
   address:
     description: >-

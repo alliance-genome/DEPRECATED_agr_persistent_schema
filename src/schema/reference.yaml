@@ -15,8 +15,8 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
-  reference:
-    is_a: information_content_entity
+  Reference:
+    is_a: InformationContentEntity
     slots:
       - title
       - alliance_category
@@ -61,8 +61,8 @@ classes:
 
 slots:
 
-  reference id:
-    domain: reference
+  reference_id:
+    domain: Reference
 
   topics:
     singular_name: topic
@@ -75,19 +75,19 @@ slots:
     description: >-
       Type of information content entity as described by pub med.
     range: string
-    domain: information content entity
+    domain: InformationContentEntity
 
   date_published:
     description: >-
       Date on which an entity was created.
     range: date
-    domain: information content entity
+    domain: InformationContentEntity
 
   date_last_modified_in_PubMed:
     description: >-
       Date on which an entity was created.
     range: date
-    domain: information content entity
+    domain: InformationContentEntity
 
   date_last_modified:
     description: >-
@@ -98,27 +98,27 @@ slots:
     description: >-
       Year in which an entity was created.
     range: string
-    domain: information content entity
+    domain: InformationContentEntity
 
   month_published:
     description: >-
       Month in which an entity was created.
     range: string
-    domain: information content entity
+    domain: InformationContentEntity
 
   day_published:
     description: >-
       Day in which an entity was created.
     range: string
-    domain: information content entity
+    domain: InformationContentEntity
 
   date_arrived_in_PubMed:
     description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.
     range: date
-    domain: information content entity
+    domain: InformationContentEntity
 
   mod_reference_types:
-    singular_name: mod reference type
+    singular_name: mod_reference_type
     multivalued: true
     description: List of types as assigned at a MOD.
 
@@ -131,53 +131,53 @@ slots:
 
   issue_date:
     description: Date on which an entity was issued.
-    domain: information content entity
+    domain: InformationContentEntity
     range: date
 
   last_modified:
     description: Date on which an entity was last modified in PubMed or in the MOD.
-    domain: information content entity
+    domain: InformationContentEntity
     range: date
 
   volume:
     multivalued: false
     range: string
-    domain: information content entity
+    domain: InformationContentEntity
 
   pages:
     description: page number of source referenced for statement or publication
-    domain: information content entity
+    domain: InformationContentEntity
     multivalued: true
     exact_mappings:
       - WIKIDATA_PROPERTY:P304
 
   abstract:
     multivalued: false
-    domain: reference
+    domain: Reference
     range: string
 
   citation:
     multivalued: false
-    domain: reference
+    domain: Reference
     range: string
 
   issue_name:
     multivalued: false
-    domain: reference
+    domain: Reference
 
   alliance_category:
     multivalued: false
-    domain: reference
+    domain: Reference
 
   keywords:
     multivalued: true
     description: keywords tagging a publication
-    domain: information content entity
+    domain: InformationContentEntity
     range: string
 
   from_resource:
-    domain: reference
-    range: resource
+    domain: Reference
+    range: Resource
 
 enums:
   tag_set:

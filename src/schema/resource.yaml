@@ -15,14 +15,14 @@ prefixes:
 
 classes:
   Resource:
-    is_a: information content entity
+    is_a: InformationContentEntity
     slots:
       - title
-      - iso abbreviation
-      - medline abbreviation
-      - copyright date
-      - print issn
-      - online issn
+      - iso_abbreviation
+      - medline_abbreviation
+      - copyright_date
+      - print_issn
+      - online_issn
       - publisher
       - volumes
       - summary
@@ -51,31 +51,31 @@ classes:
 slots:
 
   resource_id:
-    domain: resource
+    domain: Resource
 
   iso_abbreviation:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
   medline_abbreviation:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
   print_issn:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
   online_issn:
     description: >-
-    domain: resource
+    domain: Resource
     range: string
 
   editors:
     description: >-
       holds between a resource and a editor_resource
     multivalued: true
-    domain: resource
-    range: author reference
+    domain: Resource
+    range: AuthorReference
