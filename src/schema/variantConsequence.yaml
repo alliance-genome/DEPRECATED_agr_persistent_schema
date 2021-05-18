@@ -16,9 +16,14 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
+<<<<<<< HEAD
 
   VariantGeneConsequence:
     aliases: ['GeneLevelConsequence']
+=======
+  VariantGeneConsequence:
+    aliases: ['gene level consequence']
+>>>>>>> main
     slots:
       - subject
       - object
@@ -39,18 +44,25 @@ classes:
           object should be the gene identifier
 
   VariantTranscriptConsequence:
+<<<<<<< HEAD
     aliases: ['TranscriptLevelConsequence']
+=======
+    aliases: ['transcript level consequence']
+>>>>>>> main
     description: >-
       Class for transcript-level VEP results
     slots:
       - subject
       - object
+<<<<<<< HEAD
       - vep_consequence
       - vep_impact
       - polyphen_score
       - polyphen_prediction
       - sift_score
       - sift_prediction
+=======
+>>>>>>> main
       - amino_acid_reference
       - amino_acid_variant
       - codon_reference
@@ -95,7 +107,11 @@ classes:
         description: End position of variant in cDNA coordinates
       cds_start:
         description: Start position of variant in CDS coordinates
+<<<<<<< HEAD
       cds_end:
+=======
+      cns_end:
+>>>>>>> main
         description: End position of variant in CDS coordinates
       protein_start:
         description: Start position of variant in amino acid sequence
@@ -111,6 +127,7 @@ slots:
 
   vep_impact:
     description: VEP predicted impact of variation on molecule
+<<<<<<< HEAD
     range: string
 
 
@@ -120,29 +137,58 @@ slots:
 
   polyphen_score:
     description: PolyPhen-2 score between 0 and 1
+=======
+    domain: VariantGeneConsequence
+
+  polyphen_score:
+    description: PolyPhen-2 score between 0 and 1
+    domain: VariantGeneConsequence
+>>>>>>> main
     range: float
 
   polyphen_prediction:
     description: PolyPhen-2 prediction
+<<<<<<< HEAD
     range: polyphen_prediction_levels
 
   sift_score:
     description: SIFT score between 0 and 1
+=======
+    domain: VariantGeneConsequence
+
+  sift_score:
+    description: SIFT score between 0 and 1
+    domain: VariantGeneConsequence
+>>>>>>> main
     range: float
 
   sift_prediction:
     description: SIFT prediction
+<<<<<<< HEAD
     range: sift_prediction_levels
 
   amino_acid_reference:
     description: reference genome amino acid sequence at variant position
     domain: VariantTranscriptConsequence
     range: biological_sequence
+=======
+    domain: VariantGeneConsequence
+
+
+  amino_acid_reference:
+    description: reference genome amino acid sequence at variant position
+    domain: VariantTranscriptConsequence
+    range: string
+>>>>>>> main
 
   amino_acid_variant:
     description: variant amino acid sequence at variant position
     domain: VariantTranscriptConsequence
+<<<<<<< HEAD
     range: biological_sequence
+=======
+    range: string
+>>>>>>> main
 
   codon_reference:
     description: >-
@@ -196,6 +242,7 @@ slots:
     description: HGVSc nomenclature for variation in coding sequence
     domain: VariantTranscriptConsequence
 
+<<<<<<< HEAD
 enums:
 
   vep_consequence_levels:
@@ -215,3 +262,6 @@ enums:
       possibly_damaging:
       probably_damaging:
       benign:
+=======
+  vep_consequence:
+>>>>>>> main

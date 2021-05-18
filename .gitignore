@@ -5,5 +5,9 @@ venv/
 docs/*md
 docs/types/
 */my_schema.*
+<<<<<<< HEAD
 .idea/
 .python-version
+=======
+.idea/
+>>>>>>> main

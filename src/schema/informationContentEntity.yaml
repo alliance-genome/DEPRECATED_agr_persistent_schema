@@ -39,7 +39,11 @@ classes:
       alternate CURIE otherwise.
     slots:
       - creation_date
+<<<<<<< HEAD
       - curie
+=======
+      - id
+>>>>>>> main
     exact_mappings:
       - IAO:0000030
 
@@ -53,7 +57,10 @@ classes:
       - cross_references
 
 slots:
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
   creation_date:
     aliases: [ 'publication date' ]
     range: date
@@ -98,6 +105,10 @@ slots:
     description: >-
     domain: InformationContentEntity
     range: InformationContentEntity
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
   initials:
     description: >-

@@ -14,7 +14,10 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
   Resource:
     is_a: InformationContentEntity
     slots:
@@ -51,7 +54,11 @@ classes:
 
 slots:
 
+<<<<<<< HEAD
   resource id:
+=======
+  resource_id:
+>>>>>>> main
     domain: Resource
 
   iso_abbreviation:

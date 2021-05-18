@@ -18,7 +18,10 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
   VariantGenomicLocation:
     aliases: ['genomic location']
     slots:
@@ -48,9 +51,13 @@ classes:
 slots:
 
   located on:
+<<<<<<< HEAD
     range: Chromosome
 
   assembly:
     domain: VariantGenomicLocation
     range: Assembly
     required: true
+=======
+    range: Chromosome
+>>>>>>> main

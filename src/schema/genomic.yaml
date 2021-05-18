@@ -23,9 +23,36 @@ classes:
     slots:
       - curie
 
+<<<<<<< HEAD
   Assembly:
     slots:
       - curie
+=======
+  GeneGenomicLocation:
+    slots:
+      - subject
+      - predicate
+      - object
+      - assembly
+      - start
+      - end
+    slot_usage:
+      subject:
+        range: Variant
+        description: >-
+          subject should be the gene identifier
+      object:
+        range: Chromosome
+        description: >-
+          object should be the chromosome identifier
+    defining_slots:
+      - subject
+      - predicate
+      - object
+      - assembly
+      - start
+      - end
+>>>>>>> main
 
 slots:
 
@@ -35,6 +62,7 @@ slots:
   end:
     description: The end of the feature in positive 1-based integer coordinates
 
+<<<<<<< HEAD
 
   gene_id:
     required: true
@@ -55,3 +83,9 @@ slots:
   allele_id:
     required: true
     range: string
+=======
+  assembly:
+    domain: GenomicEntity
+    range: string
+    required: true
+>>>>>>> main
