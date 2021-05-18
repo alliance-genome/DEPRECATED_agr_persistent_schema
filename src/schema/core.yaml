@@ -39,7 +39,7 @@ prefixes:
 
 types:
 
-  biological sequence:
+  biological_sequence:
     typeof: string
 
 ## ------------
@@ -49,28 +49,32 @@ types:
 classes:
 
   GenomicEntity:
-    description: >-
     slots:
       - id
       - taxon
-      - synonyms
-      - secondary_identifiers
-      - cross_references
-      - genomic_locations
+
+  Transcript:
+    is_a: GenomicEntity
+    description: >-
+
     id_prefixes:
       - ENSEMBL
-      - HGNC
       - FB
+      - WB
       - MGI
       - RGD
       - SGD
-      - WB
       - ZFIN
 
   Gene:
     description: >-
     is_a: GenomicEntity
     slots:
+      - curie
+      - synonyms
+      - secondary_identifiers
+      - cross_references
+      - genomic_locations
       - name
       - symbol
       - gene_synopsis
@@ -86,26 +90,27 @@ classes:
       - WB
       - ZFIN
 
-  Transcript:
-    is_a: GenomicEntity
+  DiseaseAssociation:
     description: >-
-    id_prefixes:
-      - ENSEMBL
-      - FB
-      - WB
-      - MGI
-      - RGD
-      - SGD
-      - ZFIN
+      Dummy disease association class
 
-  Allele:
-    is_a: GenomicEntity
+  PhenotypeAssociation:
+    description: >-
+      Dummy phenotype association class
+
+  Species:
+
+  Disease:
+
+  Phenotype:
 
 ## ------------
 ## SLOTS
 ## ------------
 
 slots:
+
+  curie:
 
   taxon:
     description: >-
@@ -192,7 +197,7 @@ slots:
       a human-readable name for an entity
 
   cross_references:
-    singular_name: has cross reference
+    singular_name: cross_reference
     description: >-
     multivalued: true
 
@@ -202,7 +207,12 @@ slots:
     exact_mappings:
       - biolink:symbol
 
-  synonym:
+  from_species:
+    description: holds between a genomic entity and a species
+    range: Species
+
+  synonyms:
+    singular_name: synonym
     description: holds between a named thing and a synonym
     multivalued: true
 
@@ -215,13 +225,24 @@ slots:
     description: >-
       This is the MeSH qualifier term that is optionally added to the descriptor term.
 
-  synonyms:
-
   type:
     range: uriorcurie
 
+  taxon_id:
+    description: NCBI taxid
+    range: integer
+
   references:
+    singular_name: reference
     description: holds between an object and a reference
     multivalued: true
     domain: Resource
     range: Reference
+
+  phenotype_associations:
+    singular_name: phenotype_association
+    range: PhenotypeAssociation
+
+  disease_associations:
+    singular_name: disease_association
+    range: DiseaseAssociation

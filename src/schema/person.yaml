@@ -30,6 +30,7 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
+
   Person:
     slots:
       - last_name
@@ -47,3 +48,4 @@ slots:
   orcid:
     domain: InformationContentEntity
     range: string
+

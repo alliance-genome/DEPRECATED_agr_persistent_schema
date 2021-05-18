@@ -18,6 +18,7 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
+
   VariantGenomicLocation:
     aliases: ['genomic location']
     slots:

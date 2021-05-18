@@ -21,7 +21,11 @@ classes:
   Chromosome:
     description: The ID of the landmark used to establish the coordinate system for the current feature.
     slots:
-      - id
+      - curie
+
+  Assembly:
+    slots:
+      - curie
 
   GeneGenomicLocation:
     slots:
@@ -58,5 +62,5 @@ slots:
 
   assembly:
     domain: GenomicEntity
-    range: string
     required: true
+    range: Chromosome

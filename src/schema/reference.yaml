@@ -73,7 +73,7 @@ slots:
 
   PubMed_type:
     description: >-
-      Type of information content entity as described by pub med.
+      Type of InformationContentEntity as described by pub med.
     range: string
     domain: InformationContentEntity
 
@@ -111,6 +111,7 @@ slots:
       Day in which an entity was created.
     range: string
     domain: InformationContentEntity
+
 
   date_arrived_in_PubMed:
     description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.
@@ -184,5 +185,3 @@ enums:
     permissible_values:
       image:
       test:
-
-

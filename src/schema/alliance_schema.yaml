@@ -39,6 +39,8 @@ imports:
   - core
   - informationContentEntity
   - person
+  - allele
+  - affectedGenomicModel
 
 
 subsets:

@@ -4,6 +4,7 @@ title: Alliance Schema Prototype Variation
 
 imports:
   - core
+  - allele
   - linkml:types
   - informationContentEntity
 
@@ -23,8 +24,11 @@ classes:
   Variant:
     is_a: GenomicEntity
     description: >-
-      Variant class
+      A DNA sequence that differs relative to a designated
+      reference sequence.  The sequence occurs at a single
+      position or in contiguous nucleotides.
     slots:
+      - curie
       - id
       - hgvs_nomenclature
       - genomic_reference_sequence
@@ -35,24 +39,33 @@ classes:
       - release
       - data_provider
       - computed_gene
+      - variant_of_transcript
+      - variant_of_allele
+      - synonyms
+      - type
+      - references
+      - notes
       - is_variant_of_transcript
       - is_variant_of_allele
       - synonyms
       - type
       - references
-      - note
+      - notes
       - protein_sequence
       - cross_references
     exact_mappings:
       - SO:0001059
 
+
 # Slots
 
 slots:
 
-  note:
+  notes:
+    singular_name: note
     range: string
-    multivalued: false
+    multivalued: true
+
 
   hgvs_nomenclature:
     description: HGVSg nomenclature for variant
@@ -68,6 +81,7 @@ slots:
     domain: Variant
     range: string
 
+
   padding_left:
     description: >-
       flanking sequence upstream of the variation position
@@ -80,7 +94,7 @@ slots:
       flanking sequence downstream of the variation position
       on the sense strand of the reference genome
     domain: Variant
-    range: string
+    range: biological_sequence
 
   protein_sequence:
     domain: Variant
@@ -89,6 +103,14 @@ slots:
   computed_gene:
     domain: Variant
     range: Gene
+
+  variant_of_transcript:
+    domain: Variant
+    range: Transcript
+
+  variant_of_allele:
+    domain: Variant
+    range: Allele
 
   is_variant_of_transcript:
     domain: Variant

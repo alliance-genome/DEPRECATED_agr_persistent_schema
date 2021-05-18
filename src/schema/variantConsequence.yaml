@@ -16,6 +16,7 @@ prefixes:
   schema: 'http://schema.org/'
 
 classes:
+
   VariantGeneConsequence:
     aliases: ['gene level consequence']
     slots:
@@ -38,12 +39,18 @@ classes:
           object should be the gene identifier
 
   VariantTranscriptConsequence:
-    aliases: ['transcript level consequence']
+    aliases: ['TranscriptLevelConsequence']
     description: >-
       Class for transcript-level VEP results
     slots:
       - subject
       - object
+      - vep_consequence
+      - vep_impact
+      - polyphen_score
+      - polyphen_prediction
+      - sift_score
+      - sift_prediction
       - amino_acid_reference
       - amino_acid_variant
       - codon_reference
@@ -88,7 +95,7 @@ classes:
         description: End position of variant in cDNA coordinates
       cds_start:
         description: Start position of variant in CDS coordinates
-      cns_end:
+      cds_end:
         description: End position of variant in CDS coordinates
       protein_start:
         description: Start position of variant in amino acid sequence
@@ -104,7 +111,12 @@ slots:
 
   vep_impact:
     description: VEP predicted impact of variation on molecule
-    domain: VariantGeneConsequence
+    range: string
+
+
+  vep_consequence:
+    description: VEP consequence
+    range: vep_consequence_levels
 
   polyphen_score:
     description: PolyPhen-2 score between 0 and 1
@@ -113,7 +125,7 @@ slots:
 
   polyphen_prediction:
     description: PolyPhen-2 prediction
-    domain: VariantGeneConsequence
+    range: polyphen_prediction_levels
 
   sift_score:
     description: SIFT score between 0 and 1
@@ -122,7 +134,7 @@ slots:
 
   sift_prediction:
     description: SIFT prediction
-    domain: VariantGeneConsequence
+    range: sift_prediction_levels
 
 
   amino_acid_reference:
@@ -187,4 +199,23 @@ slots:
     description: HGVSc nomenclature for variation in coding sequence
     domain: VariantTranscriptConsequence
 
-  vep_consequence:
+enums:
+
+  vep_consequence_levels:
+    permissible_values:
+      high:
+      moderate:
+      low:
+      modifier:
+
+  sift_prediction_levels:
+    permissible_values:
+      deleterious:
+      tolerated:
+
+  polyphen_prediction_levels:
+    permissible_values:
+      possibly_damaging:
+      probably_damaging:
+      benign:
+

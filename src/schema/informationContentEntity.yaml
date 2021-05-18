@@ -39,6 +39,7 @@ classes:
       alternate CURIE otherwise.
     slots:
       - creation_date
+      - curie
       - id
     exact_mappings:
       - IAO:0000030
@@ -53,6 +54,7 @@ classes:
       - cross_references
 
 slots:
+
   creation_date:
     aliases: [ 'publication date' ]
     range: date
@@ -98,7 +100,6 @@ slots:
     domain: InformationContentEntity
     range: InformationContentEntity
 
-
   initials:
     description: >-
     domain: InformationContentEntity
@@ -127,4 +128,3 @@ slots:
       the particulars of the place where someone or an organization is situated.  For now, this slot is a
       simple text "blob" containing all relevant details of the given location for fitness of purpose.
       For the moment, this "address" can include other contact details such as email and phone number(?).
-
