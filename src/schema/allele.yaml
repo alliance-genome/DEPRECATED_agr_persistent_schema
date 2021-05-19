@@ -32,30 +32,22 @@ classes:
     slots:
       - name
       - symbol
-      - description
       - taxon_id
-      - date_produced # mixin?
-      - data_provider # mixin?
-      - release
       - cross_references
       - synonyms
       - affected_genes
-      - from_species
-      - phenotype_associations
-      - disease_associations
       - contains_construct
       - molecular_mutation
       - functional_impact
       - generation_method
       - associated_references
       - associated_notes
-      - germline_transmission_status
-      - parent_cell_line
-      - mutant_cell_lines
-      - embryonic_stem_cell_lines
+      - germline_transmission_status # specific to MGI
+      - parent_cell_line # specific to MGI
+      - mutant_cell_lines # specific to MGI
+      - embryonic_stem_cell_lines # specific to MGI
       - images
       - feature_type
-      - carried_by
       - origins
       - database_status
       - inheritence_mode
@@ -65,6 +57,9 @@ classes:
       - is_extinct
     exact_mappings:
       - SO:0001023
+    slot_usage:
+      synonyms:
+        description: synonyms for allele names and symbols
 
   ReferenceType:
     description: >-
@@ -173,13 +168,6 @@ slots:
     range: string
     values_from:
       - SO
-
-  carried_by:
-    description: >-
-      Affected genomic models that carry the allele
-    multivalued: true
-    domain: Allele
-    range: AffectedGenomicModel
 
   origins:
     singular_name: origin
