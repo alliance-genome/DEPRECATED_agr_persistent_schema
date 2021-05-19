@@ -1,0 +1,28 @@
+id,mappings,description
+AffectedGenomicModel,,"Includes inbred strains, stocks, disease models and mutant genotypes"
+AffectedGenomicModelComponent,,Allele that affects the model and its zygosity
+Allele,,"One of multiple possible forms of a functional genomic element (most often described as a locus or gene), differing from the reference DNA sequence.  The genomic element can be endogenous or constructed."
+Assembly,,
+AuthorReference,,
+CellLine,,Dummy cell line class
+Chromosome,,The ID of the landmark used to establish the coordinate system for the current feature.
+Construct,,Dummy construct class
+CrossReference,,
+Disease,,
+DiseaseAssociation,,Dummy disease association class
+Gene,,
+GeneGenomicLocation,,
+GenomicEntity,,
+Image,,Dummy image class
+InformationContentEntity,,a piece of information that typically describes some topic of discourse or is used as support. Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual alternate CURIE otherwise.
+NoteType,,Describes the relation between a note and an object
+Phenotype,,
+PhenotypeAssociation,,Dummy phenotype association class
+Reference,,
+ReferenceType,,Describes the relation between a reference and an object
+Resource,,
+SequenceTargetingReagent,,Dummy sequence targeting reagent class
+Species,,
+Transcript,,
+Variant,,A DNA sequence that differs relative to a designated reference sequence.  The sequence occurs at a single position or in contiguous nucleotides.
+
