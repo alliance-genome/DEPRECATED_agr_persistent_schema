@@ -586,7 +586,7 @@ classes:
   Treatment:
     aliases: ['medical action', 'medical intervention']
     # 'named thing' seems too generic here but not sure what applies better here
-#    is_a: NamedThing
+    is_a: NamedThing
     mixins:
       - ExposureEvent
     description: >-
@@ -926,7 +926,7 @@ classes:
       - biolink:GeneAsAModelOfDiseaseAssociation
 
   AGMToDiseaseAssociation:
-#    is_a: OrganismalEntityAsAModelOfDiseaseAssociation
+    is_a: OrganismalEntityAsAModelOfDiseaseAssociation
     slot_usage:
       subject:
         range: AffectedGenomicModel
