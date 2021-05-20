@@ -1,7 +1,7 @@
 id: https://github.com/alliance-genome/agr_persistent_schema/phenotypeAndDiseaseAssociation.yaml
-name: Alliance-Schema-Prototype-Phenotype-&-Disease-Association
-title: Alliance Schema Prototype Phenotype & Disease Association
-description: Alliance Phenotype & Disease Association Schema Prototype with LinkML
+name: Alliance-Schema-Prototype-Phenotype-and-Disease-Association
+title: Alliance Schema Prototype Phenotype and Disease Association
+description: Alliance Phenotype and Disease Association Schema Prototype with LinkML
 
 default_prefix: alliance
 default_range: string
@@ -23,33 +23,49 @@ imports:
   - linkml:types
   - reference
   - core                # This presumes the dependency on the Association, NamedThing and BiologicalEntity classes and related_to slot
-  - allele              # Once Mark QT's pull request is merged
-  - affectedGenomicModel      # Once Mark QT's pull request is merged
+  - allele
+  - affectedGenomicModel
 
 
 prefixes:
   alliance: 'http://alliancegenome.org'
+  APO: 'http://purl.obolibrary.org/obo/APO_'
   biolink: 'https://w3id.org/biolink/vocab/'
   DOID: 'http://purl.obolibrary.org/obo/DOID_'
+  EDAM-DATA: 'http://edamontology.org/data_'
+  EDAM-FORMAT: 'http://edamontology.org/format_'
+  EDAM-OPERATION: 'http://edamontology.org/operation_'
+  EDAM-TOPIC: 'http://edamontology.org/topic_'
   faldo: 'http://biohackathon.org/resource/faldo#'
+  FBcv: 'http://purl.obolibrary.org/obo/FBcv_'
+  GENO: 'http://purl.obolibrary.org/obo/GENO_'
   gff: 'https://w3id.org/gff'
   hetio: 'http://translator.ncats.nih.gov/hetio_'
+  HP: 'http://purl.obolibrary.org/obo/HP_'
   linkml: 'https://w3id.org/linkml/'
   MONDO: 'http://purl.obolibrary.org/obo/MONDO_'
+  MP: 'http://purl.obolibrary.org/obo/MP_'
   NCIT: 'http://purl.obolibrary.org/obo/NCIT_'
   NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  PATO: 'http://purl.obolibrary.org/obo/PATO_'
   qud: 'http://qudt.org/1.1/schema/qudt#'
   RO: 'http://purl.obolibrary.org/obo/RO_'
   RTXKG1: 'http://kg1endpoint.rtx.ai/'
   schema: 'http://schema.org/'
+  SEMMEDDB: 'https://skr3.nlm.nih.gov/SemMedDB'
   SIO: 'http://semanticscience.org/resource/SIO_'
   # The UMLS Semantic types and groups namespaces don't have a directly
   # resolvable Base URI, but we point to a pair of sensible web documents
   UMLSSC: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/code#'
   UMLSSG: 'https://metamap.nlm.nih.gov/Docs/SemGroups_2018.txt/group#'
   UMLSST: 'https://metamap.nlm.nih.gov/Docs/SemanticTypes_2018AB.txt/type#'
+  upheno: 'http://purl.obolibrary.org/obo/UBERON_'
+  UO: 'http://purl.obolibrary.org/obo/UO_'
+  WBPhenotype: 'http://purl.obolibrary.org/obo/WBPhenotype_'
   WIKIDATA: 'https://www.wikidata.org/wiki/'            # Wikidata Entity
   WIKIDATA_PROPERTY: 'https://www.wikidata.org/wiki/Property:'  # Wikidata Property - not a conventional namespace prefix
+  XCO: 'http://purl.obolibrary.org/obo/XCO_'
+  ZP: 'http://purl.obolibrary.org/obo/ZP_'
 
 ## ------------
 ## TYPES
@@ -72,6 +88,24 @@ types:
     exact_mappings:
       - biolink:Unit
       - qud:Unit
+
+  iri_type:
+    typeof: uriorcurie
+    description: >-
+      An IRI
+
+  category_type:
+    typeof: uriorcurie
+    description: >-
+      A primitive type in which the value denotes a class within the biolink model.
+      The value must be a URI or a CURIE. In a Neo4j representation, the value should
+      be the CURIE for the biolink class, for example biolink:Gene. For an RDF representation,
+      the value should be a URI such as https://w3id.org/biolink/vocab/Gene
+
+  label_type:
+    typeof: string
+    description: >-
+      A string that provides a human-readable name for an entity
 
 ## ------------
 ## CLASSES
@@ -116,22 +150,9 @@ classes:
       # extracted from either of the next two slots
       - has_quantitative_value
       - has_qualitative_value
-      - iri                    # 'url'
-      - source                 # 'source'
-    slot_usage:
-      name:
-        description: >-
-          The human-readable 'attribute name' can be set to a string which reflects its context of
-          interpretation, e.g. SEPIO evidence/provenance/confidence annotation or it can default
-          to the name associated with the 'has_attribute_type' slot ontology term.
-    id_prefixes:
-      - EDAM-DATA
-      - EDAM-FORMAT
-      - EDAM-OPERATION
-      - EDAM-TOPIC
-    exact_mappings:
-      - SIO:000614
-      - biolink:Attribute
+      - iri                    # To Do: add iri slot declaration or ensure in imported/inherited content
+      - source                 # To Do: disambiguate or add iri slot declaration or ensure in imported/inherited content
+    slot_usage
 
   BiologicalSex:
     is_a: Attribute
@@ -219,14 +240,6 @@ classes:
          a category of bl:Sample, and by typed more specifically with an ontology class UBERON:nnn, which has as category bl:AnatomicalEntity
     see_also:
       - https://github.com/biolink/biolink-model/issues/486
-    examples:
-      - value: UBERON:0000955
-        description: >-
-          the class 'brain' from the Uberon anatomy ontology
-    id_prefixes:
-      - MESH
-      - UMLS
-      - KEGG.BRITE ## br/ko number
 
   ThingWithTaxon:                       # this should be generalized in core.yaml
     mixin: true
@@ -247,6 +260,20 @@ classes:
       suspensions and colloids.
     slots:
       - has_constituent
+
+  ExposureEvent:                       # this should be generalized in core.yaml
+    aliases: ['exposure', 'experimental condition']
+    mixin: true
+    description: >-
+      An incidence of a feature of the environment of an organism that
+      influences one or more phenotypic features of that organism, potentially mediated by genes
+    broad_mappings:
+      # Event
+      - UMLSSC:T051
+      - UMLSST:evnt
+    exact_mappings:
+      - biolink:ExposureEvent
+      - XCO:0000000
 
   DiseaseOrPhenotypeToEntityAssociationMixin:
     mixin: true
@@ -328,11 +355,6 @@ classes:
         range: Allele
         description: >-
           a sequence variant in which the allele state is associated with some other entity
-        examples:
-          - value: ClinVar:38077
-            description: "ClinVar representation of NM_000059.3(BRCA2):c.7007G>A (p.Arg2336His)"
-          - value: ClinGen:CA024716
-            description: "chr13:g.32921033G>C (hg19) in ClinGen"
     exact_mappings:
       - biolink:VariantToEntityAssociationMixin
 
@@ -348,7 +370,7 @@ classes:
       object:
         range: Phenotype
         description: "phenotypic class"
-        values_from: [ 'upheno', 'hp', 'mp', 'wbphenotype', 'zp', 'apo', 'FBcv' ]
+        values_from: [ 'upheno', 'HP', 'MP', 'WBPhenotype', 'ZP', 'APO', 'FBcv' ]
         examples:
           - value: HP:0002487
             description: Hyperkinesis
@@ -384,7 +406,7 @@ classes:
     exact_mappings:
       - biolink:ModelToDiseaseAssociationMixin
 
-  MolecularEntityToEntityAssociationMixin:
+  MolecularEntityToEntityAssociationMixin:            # this should be generalized in core.yaml or chemical/drug.yaml
     description: >-
       An interaction between a molecular entity and another entity
     mixin: true
@@ -397,7 +419,7 @@ classes:
     exact_mappings:
       - biolink:MolecularEntityToEntityAssociationMixin
 
-  ChemicalToEntityAssociationMixin:
+  ChemicalToEntityAssociationMixin:               # this should be generalized in core.yaml or chemical/drug.yaml
     description: >-
       An interaction between a chemical entity and another entity
     is_a: MolecularEntityToEntityAssociationMixin
@@ -411,7 +433,7 @@ classes:
     exact_mappings:
       - biolink:ChemicalToEntityAssociationMixin
 
-  DrugToEntityAssociationMixin:
+  DrugToEntityAssociationMixin:                   # this should be generalized in core.yaml or chemical/drug.yaml
     description: >-
       An interaction between a drug and another entity
     is_a: MolecularEntityToEntityAssociationMixin
@@ -428,6 +450,62 @@ classes:
 ## ------------
 ## THINGS
 ## ------------
+
+  Entity:                         # this should be generalized in core.yaml
+    description: >-
+      Root Biolink Model class for all things and informational relationships, real or imagined.
+    abstract: true
+    slots:
+      - id
+      - iri
+      - category
+      - type   # rdf:type
+      - name
+      - description
+      - source
+#      - provided_by
+      - has_attribute
+    exact_mappings:
+      - biolink:Entity
+
+  NamedThing:                         # this should be generalized in core.yaml
+    is_a: Entity
+    description: >-
+      a databased entity or concept/class
+    slot_usage:
+      category:
+        range: NamedThing
+        required: true
+    exact_mappings:
+      - biolink:NamedThing
+      - BFO:0000001
+      - WIKIDATA:Q35120
+      # UMLS Semantic Group "Objects"
+      - UMLSSG:OBJC
+      # Entity
+      - UMLSSC:T071
+      - UMLSST:enty
+
+  BiologicalEntity:                         # this should be generalized in core.yaml
+    is_a: NamedThing
+    abstract: true
+    exact_mappings:
+      - biolink:BiologicalEntity
+    narrow_mappings:
+      - WIKIDATA:Q28845870
+      # UMLS Semantic Type "Experimental Model of Disease"
+      - UMLSSC:T050
+      - UMLSST:emod
+      # SIO term is 'biological entity' but less inclusive than the Biolink scope
+      - SIO:010046
+
+  MolecularEntity:                         # this should be generalized in core.yaml
+    is_a: BiologicalEntity
+    description: >-
+      A gene, gene product, small molecule or macromolecule (including protein complex)"
+    exact_mappings:
+      - CHEBI:24431
+      - biolink:MolecularEntity
 
   OrganismTaxon:                       # this should be generalized in core.yaml
     aliases:
@@ -480,59 +558,8 @@ classes:
       # Chemical
       - UMLSSC:T103
       - UMLSST:chem
-    narrow_mappings:
-      - CHEBI:24431
-      # Chemical Viewed Structurally
-      - UMLSSC:T104
-      - UMLSST:chvs
-      # Organic Chemical
-      - UMLSSC:T109
-      - UMLSST:orch
-      # Nucleic Acid, Nucleoside, or Nucleotide
-      - UMLSSC:T114
-      - UMLSST:nnon
-      # Chemical Viewed Functionally
-      - UMLSSC:T120
-      - UMLSST:chvf
-      # Biomedical or Dental Material
-      - UMLSSC:T122
-      - UMLSST:bodm
-      # Indicator, Reagent, or Diagnostic Aid
-      - UMLSSC:T130
-      - UMLSST:irda
-      # Hazardous or Poisonous Substance
-      - UMLSSC:T131
-      - UMLSST:hops
-      # Element, Ion, or Isotope
-      - UMLSSC:T196
-      - UMLSST:elii
-      # Inorganic Chemical
-      - UMLSSC:T197
-      - UMLSST:inch
     id_prefixes:
-      - PUBCHEM.COMPOUND
-      - CHEMBL.COMPOUND
-      - UNII
       - CHEBI
-      - DRUGBANK
-      - MESH
-      - CAS
-      - DrugCentral
-      - GTOPDB
-      - HMDB
-      - KEGG.COMPOUND
-      - ChemBank
-      - Aeolus
-      - PUBCHEM.SUBSTANCE
-      - SIDER.DRUG
-      - INCHI
-      - INCHIKEY
-      # - iupac # is not actually a CURIE namespace but only a naming convention for chemistry
-      # - SMILES  # is not actually a CURIE namespace but only a query language for chemistry
-      - KEGG.GLYCAN  ## G number
-      - KEGG.DRUG    ## D number
-      - KEGG.DGROUP  ## DG number
-      - KEGG.ENVIRON ## E number
 
   Drug:                      # this should be generalized in core.yaml or chemical/drug.yaml
     is_a: MolecularEntity
@@ -544,11 +571,6 @@ classes:
       mitigation, treatment, or prevention of disease
     comments:
       - The CHEBI ID represents a role rather than a substance
-    broad_mappings:
-      # Pharmacologic Substance: Any natural, endogenously-derived,
-      # synthetic or semi-synthetic compound with pharmacologic activity.
-      - UMLSSC:T121
-      - UMLSST:phsu
     exact_mappings:
       - biolink:Drug
       - WIKIDATA:Q12140
@@ -556,10 +578,6 @@ classes:
       # UMLS Semantic Type "Clinical Drug"
       - UMLSSC:T200
       - UMLSST:clnd
-    narrow_mappings:
-      # Antibiotic
-      - UMLSSC:T195
-      - UMLSST:antb
     id_prefixes:
       - RXCUI
       - NDC
@@ -568,7 +586,7 @@ classes:
   Treatment:
     aliases: ['medical action', 'medical intervention']
     # 'named thing' seems too generic here but not sure what applies better here
-    is_a: NamedThing
+#    is_a: NamedThing
     mixins:
       - ExposureEvent
     description: >-
@@ -634,20 +652,6 @@ classes:
       - biolink:ReagentTargetedGene
       - GENO:0000504
 
-  ExposureEvent:                       # this should be generalized in core.yaml
-    aliases: ['exposure', 'experimental condition']
-    mixin: true
-    description: >-
-      An incidence of a feature of the environment of an organism that
-      influences one or more phenotypic features of that organism, potentially mediated by genes
-    broad_mappings:
-      # Event
-      - UMLSSC:T051
-      - UMLSST:evnt
-    exact_mappings:
-      - biolink:ExposureEvent
-      - XCO:0000000
-
   DiseaseOrPhenotype:
     is_a: BiologicalEntity
     description: >-
@@ -666,8 +670,9 @@ classes:
     aliases: ['condition', 'disorder', 'medical condition']
     is_a: DiseaseOrPhenotype
     slot_usage:
-      desription: >-
-        The definition of the disease (DO) term
+      desription:
+        description: >-
+          The definition of the disease (DO) term
     exact_mappings:
       - biolink:Disease
       - MONDO:0000001
@@ -693,14 +698,35 @@ classes:
       - WIKIDATA:Q104053
     slots:
       - phenotype_statement
-    slot_usage:
-      id:
-        required: false          # Can we declare the id be not required if the ancestor slot 'id' is required?
 
 
 ## ------------
 ## ASSOCIATIONS
 ## ------------
+
+  Association:                     # this should be generalized in core.yaml
+    description: >-
+      A typed association between two entities, supported by evidence
+    comments:
+      - This is roughly the model used by biolink and ontobio at the moment
+    slots:
+      - subject
+      - predicate
+      - object
+      - negated
+      - qualifiers
+      - publications
+    slot_usage:
+      type:
+        description: rdf:type of biolink:Association should be fixed at rdf:Statement
+      category:
+        range: category_type
+        required: false
+    exact_mappings:
+      - OBAN:association
+      - rdf:Statement
+      - owl:Axiom
+      - biolink:Association
 
   GenotypeToGenotypePartAssociation:                # this should be declared in allele.yaml or similar
     is_a: Association
@@ -758,7 +784,7 @@ classes:
       - object
     slot_usage:
       predicate:
-        subproperty_of: has_part            # this subproperty was left with a ? in biolink; may want to revisit
+#        subproperty_of:           # this subproperty was left with a ? in biolink; may want to revisit
         description: >-
           the relationship type used to connect genotype to gene
       subject:
@@ -788,6 +814,8 @@ classes:
         range: Genotype
         description: >-
           genotype that is associated with the phenotypic feature
+      object:
+        range: Phenotype
     exact_mappings:
       - biolink:GenotypeToPhenotypicFeatureAssociation
 
@@ -898,7 +926,7 @@ classes:
       - biolink:GeneAsAModelOfDiseaseAssociation
 
   AGMToDiseaseAssociation:
-    is_a: OrganismalEntityAsAModelOfDiseaseAssociation
+#    is_a: OrganismalEntityAsAModelOfDiseaseAssociation
     slot_usage:
       subject:
         range: AffectedGenomicModel
@@ -979,7 +1007,7 @@ classes:
           a sequence variant in which the allele state is
           associated in some way with the phenotype state
 
-  VariantToDiseaseAssociation:
+  AlleleToDiseaseAssociation:
     is_a: Association
     exact_mappings:
       - biolink:VariantToDiseaseAssociation
@@ -1035,7 +1063,7 @@ classes:
             description: hereditary breast cancer
 
   VariantAsAModelOfDiseaseAssociation:
-    is_a: VariantToDiseaseAssociation
+    is_a: AlleleToDiseaseAssociation
     exact_mappings:
       - biolink:VariantAsAModelOfDiseaseAssociation
     defining_slots:
@@ -1182,6 +1210,40 @@ slots:
     exact_mappings:
       - biolink:node_property
 
+  iri:
+    description: >-
+      An IRI for an entity. This is determined by the id using expansion rules.
+    range: iri_type
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P854
+      - biolink:iri
+
+  category:
+    is_a: type
+    domain: Entity
+    range: category_type
+    description: >-
+      Name of the high level ontology class in which this entity is categorized. Corresponds to the label for the biolink entity type class.
+       * In a neo4j database this MAY correspond to the neo4j label tag.
+       * In an RDF database it should be a biolink model class URI.
+      This field is multi-valued. It should include values for ancestors of the biolink class; for example, a protein such as Shh would have
+      category values `biolink:Protein`, `biolink:GeneProduct`, `biolink:MolecularEntity`, ...
+      In an RDF database, nodes will typically have an rdf:type triples. This can be to the most specific biolink class, or potentially to a class
+      more specific than something in biolink. For example, a sequence feature `f` may have a rdf:type assertion to a SO class such as TF_binding_site,
+      which is more specific than anything in biolink. Here we would have categories {biolink:GenomicEntity, biolink:MolecularEntity, biolink:NamedThing}
+    is_class_field: true
+    multivalued: true
+    exact_mappings:
+      - biolink:category
+
+  source:
+    description: >-
+      a lightweight analog to the association class 'has provider' slot, which is the string name, or
+      the authoritative (i.e. database) namespace, designating the origin of the entity to which the slot belongs.
+    range: label_type
+    exact_mappings:
+      - biolink:source
+
   is_metabolite:
     is_a: node_property
     domain: ChemicalSubstance
@@ -1238,9 +1300,58 @@ slots:
     exact_mappings:
       - biolink:sequence_variant_qualifier
 
+  publications:                     # this should be generalized in core.yaml
+    singular_name: 'publication'
+    description: >-
+      connects an association to publications supporting the association
+    is_a: association_slot
+    exact_mappings:
+      - biolink:publications
+    multivalued: true
+    domain: Association
+    range: Reference
+
 ## --------------------
 ## PREDICATES/RELATIONS
 ## --------------------
+
+  related_to:                         # this should be generalized in core.yaml
+    description: >-
+      A relationship that is asserted between two named things
+    domain: NamedThing
+    range: NamedThing
+    multivalued: true
+    inherited: true
+    symmetric: true
+    exact_mappings:
+      - biolink:related_to
+      - skos:relatedMatch
+      - SEMMEDDB:ASSOCIATED_WITH
+      - SEMMEDDB:associated_with
+
+  affects:
+    is_a: related_to
+    description: >-
+      describes an entity that has a direct affect on the state or quality
+      of another existing entity. Use of the 'affects' predicate implies that
+      the affected entity already exists, unlike predicates such as
+      'affects risk for' and 'prevents, where the outcome is something
+      that may or may not come to be.
+    inverse: affected_by
+    exact_mappings:
+      - biolink:affects
+      - SEMMEDDB:AFFECTS
+      - SEMMEDDB:affects
+      - RTXKG1:affects
+
+  affected_by:
+    is_a: related_to
+    description: >-
+      describes an entity of which the state or quality is affected by
+      another existing entity.
+    inverse: affects
+    exact_mappings:
+      - biolink:affected_by
 
   in_taxon:                       # this should be generalized in core.yaml
     aliases:
@@ -1280,12 +1391,6 @@ slots:
     exact_mappings:
       - biolink:overlaps
       - RO:0002131
-    narrow_mappings:
-      - BSPO:0005001
-      - CHEMBL.MECHANISM:overlaps_with
-      - RO:0002100
-      - RO:0002102
-      - RO:0002433
 
   has_part:                      # this should be generalized in core.yaml
     is_a: overlaps
@@ -1295,50 +1400,9 @@ slots:
     exact_mappings:
       - biolink:has_part
       - BFO:0000051
-      # term name seems to be 'realizes' but RTX maps this term here
       - BFO:0000055
       - WIKIDATA_PROPERTY:P527
       - RO:0001019
-      - RTXKG1:has_part
-      - RXNORM:consists_of
-      - RXNORM:has_part
-    broad_mappings:
-      # To 'contain' is 'to have something inside or include something as a part'; slightly broader?
-      - RO:0001019
-      - FMA:contains
-      - RXNORM:contains
-    narrow_mappings:
-      - BFO:0000117
-      # RTX term originally mapped to 'biolink:coexists_with'?
-      - FMA:has_constitutional_part
-      - FMA:has_part
-      # Several of the following RTX terms were originally mapped as inverses to 'biolink:part_of'?
-      - FMA:has_member
-      - FOODON:00001563
-      - FOODON:00002420
-      - LOINC:has_component
-      - LOINC:has_member
-      - MEDDRA:has_member
-      - MONDO:disease_has_major_feature
-      - NCIT:complex_has_physical_part
-      - NDDF:has_ingredient
-      - PathWhiz:has_element_in_bound
-      # This RTX contributed term was tagged as 'biolink:has_gene_product' but seems more compositional in nature
-      - NCIT:R50
-      - PDQ:has_component
-      - PathWhiz:has_protein_in_complex
-      - RO:0002104
-      - RO:0002180
-      - RO:0002351
-      - RO:0002473
-      - RO:0002524
-      - RO:0002551
-      - RTXKG1:composed_primarily_of
-      - RTXKG1:contains_process
-      - RTXKG1:has_plasma_membrane_part
-      - RXNORM:has_ingredient
-      - SNOMED:has_component
-      - UMLS:has_component
 
   part_of:                      # this should be generalized in core.yaml
     is_a: overlaps
@@ -1351,65 +1415,6 @@ slots:
       - SEMMEDDB:PART_OF
       - SEMMEDDB:part_of
       - WIKIDATA_PROPERTY:P361
-      - FMA:part_of
-      - RXNORM:constitutes
-      - RXNORM:part_of
-    broad_mappings:
-      # To 'contain' is 'to have something inside or include something as a part'
-      - RO:0001018
-      - FMA:contained_in
-      - RXNORM:contained_in
-    narrow_mappings:
-      - BSPO:0001106
-      - BSPO:0001108
-      - BSPO:0001113
-      - BSPO:0001115
-      - UBERON_CORE:layer_part_of
-      - UBERON_CORE:subdivision_of
-      - UBERON_CORE:trunk_part_of
-      - CHEBI:is_substituent_group_from
-      - CPT:panel_element_of
-      - CPT:panel_element_of_possibly_included
-      - DRUGBANK:component_of
-      - FMA:constitutional_part_of
-      - FMA:member_of
-      - FMA:regional_part_of
-      - FMA:related_developmental_entity_of
-      - LOINC:component_of
-      - LOINC:has_supersystem
-      - LOINC:member_of
-      - LOINC:multipart_of
-      - MEDDRA:member_of
-      - MONDO:part_of_progression_of_disease
-      - NCIT:R82
-      - NCIT:R27
-      - NCIT:is_component_of_chemotherapy_regimen
-      - NDDF:ingredient_of
-      - PDQ:component_of
-      - RO:0002007
-      - RO:0002350
-      - RO:0002376
-      - RO:0002380
-      - RO:0002571
-      - RO:0002572
-      - RO:0002576
-      - RXNORM:ingredient_of
-      - RXNORM:ingredients_of
-      - RXNORM:precise_ingredient_of
-      - SNOMED:active_ingredient_of
-      - SNOMED:basis_of_strength_substance_of
-      - SNOMED:component_of
-      - SNOMED:direct_substance_of
-      - SNOMED:during
-      - SNOMED:focus_of
-      - SNOMED:has_dependent
-      - SNOMED:part_anatomy_structure_of
-      - SNOMED:precise_active_ingredient_of
-      - UBERON:subdivision_of
-      - UMLS:component_of
-      - UMLS:has_owning_affiliate
-      - UMLS:owning_subsection_of
-      - VANDF:ingredient_of
 
   has_variant_part:                         # this should be declared in allele.yaml or similar
     is_a: has_part
@@ -1438,23 +1443,10 @@ slots:
     domain: BiologicalEntity
     range: Phenotype
     inverse: phenotype_of
-    close_mappings:
-      # RTX contributed term tagged as 'inverse'
-      - OMIM:phenotype_of
     exact_mappings:
       - biolink:has_phenotype
       - RO:0002200
       - RTXKG1:has_phenotype
-      - SNOMED:characterized_by
-    broad_mappings:
-      # Disease–presents–Symptom; symptom or finding may be a phenotype but not necessarily
-      - hetio:PRESENTS_DpS
-      - NCIT:R115
-      - OMIM:has_phenotype
-    narrow_mappings:
-      - NCIT:R89
-      - OBO:doid#has_symptom
-      - RO:0004022
 
   phenotype_of:
     is_a: related_to
@@ -1533,21 +1525,9 @@ slots:
     is_a: related_to
     description: >-
       holds between two entities where the occurrence, existence, or activity of one causes or contributes to the occurrence or generation of the other
-    in_subset:
-      - translator_minimal
-    close_mappings:
-      # RTX contributed mapping tagged as 'inverse' of this Biolink predicate
-      - IDO:0000664
     exact_mappings:
       - biolink:contributes_to
       - RO:0002326
-    narrow_mappings:
-      - CTD:marker_mechanism
-      - MONDO:predisposes_towards
-      # RTX mapped this to 'biolink:related_to' but this term seems a more precise mapping
-      - RO:0002255
-      # RTX term 'contributes to condition' mapped to 'biolink:causes' seems more suitable here
-      - RO:0003304
 
   causes:
     description: >-
@@ -1560,39 +1540,6 @@ slots:
       - SEMMEDDB:CAUSES
       - SEMMEDDB:causes
       - WIKIDATA_PROPERTY:P1542
-      - SNOMED:cause_of
-    broad_mappings:
-      - RO:0002410
-    narrow_mappings:
-      - MONDO:disease_triggers
-      - GOREL:0000040
-      - MONDO:disease_causes_feature
-      - MONDO:disease_triggers
-      - NCIT:allele_has_abnormality
-      - NCIT:biological_process_has_result_biological_process
-      - NCIT:chemical_or_drug_has_physiologic_effect
-      # RTX mapped terms as 'biolink:part_of' but implied sequence of causality suggests 'biolink:causes'?
-      - NCIT:chemical_or_drug_initiates_biological_process
-      - NCIT:process_initiates_biological_process
-      - NCIT:chromosome_mapped_to_disease
-      - NCIT:disease_has_normal_tissue_origin
-      - OBO:nbo#in_response_to
-      - ORPHA:317343
-      - ORPHA:317344
-      - ORPHA:317346
-      - ORPHA:410295
-      - ORPHA:410296
-      # RTX mapped this term to 'biolink:related_to' but this term seems a more precise mapping
-      - RO:0002256
-      - RO:0002315
-      - RO:0002507
-      - RO:0002509
-      - RO:0004001
-      # RTX mapping
-      - RTXKG1:capable_of_part_of
-      - SNOMED:causative_agent_of
-      - SNOMED:has_realization
-      - UMLS:has_physiologic_effect
 
   caused_by:
     description: >-
@@ -1603,17 +1550,6 @@ slots:
     exact_mappings:
       - biolink:caused_by
       - WIKIDATA_PROPERTY:P828
-    narrow_mappings:
-      - RO:0001022
-      - RO:0002608
-      - RO:0004019
-      - RO:0004020
-      - RO:0004028
-      - RO:0009501
-      - RTXKG1:disease_caused_by_disruption_of
-      - RTXKG1:disease_has_basis_in_dysfunction_of
-      - RTXKG1:realized_in_response_to
-      - RTXKG1:realized_in_response_to_stimulus
 
   ameliorates:
     is_a: affects
@@ -1629,7 +1565,6 @@ slots:
     exact_mappings:
       - biolink:ameliorates
       - RO:0003307
-      - CTD:therapeutic
 
   exacerbates:
     is_a: affects
@@ -1658,19 +1593,6 @@ slots:
       - biolink:correlated_with
       - RO:0002610
       - PATO:correlates_with
-    narrow_mappings:
-      # RTX contributed term: note that association is not always correlation?
-      - LOINC:associated_with
-      - NCIT:is_associated_disease_of
-      # RTX term deemed inverse of this biolink term?
-      - NCIT:is_cytogenetic_abnormality_of_disease
-      - ORPHA:317345
-      - PDQ:associated_disease
-      # RTX mapping for this term was just 'related_to' but there seems to be a stronger correlation implied
-      - RO:0004029
-      - RTXKG1:associated_with_disease
-      - SNOMED:associated_with
-      - SNOMED:has_associated_finding
 
   has_biomarker:
     is_a: correlated_with
@@ -1701,13 +1623,3 @@ slots:
     exact_mappings:
       - biolink:biomarker_for
       - NCIT:R39
-    broad_mappings:
-      # Generic marker definition not specific to biomarkers per say
-      - RO:0002607
-    narrow_mappings:
-      - NCIT:R47
-      # RTX term was tagged as 'biolink:actively_involved_in' but maps better here?
-      - NCIT:genetic_biomarker_related_to
-      - NCIT:is_molecular_abnormality_of_disease
-      - ORPHA:465410
-      - SEMMEDDB:diagnoses
