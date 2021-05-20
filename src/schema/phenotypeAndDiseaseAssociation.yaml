@@ -152,7 +152,14 @@ classes:
       - has_qualitative_value
       - iri                    # To Do: add iri slot declaration or ensure in imported/inherited content
       - source                 # To Do: disambiguate or add iri slot declaration or ensure in imported/inherited content
-    slot_usage
+    slot_usage:
+      name:
+        description: >-
+          The human-readable 'attribute name' can be set to a string which reflects its context of
+          interpretation, e.g. SEPIO evidence/provenance/confidence annotation or it can default
+          to the name associated with the 'has attribute type' slot ontology term.
+    exact_mappings:
+      - SIO:000614
 
   BiologicalSex:
     is_a: Attribute
