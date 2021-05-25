@@ -26,7 +26,7 @@ classes:
     slots:
       - id
       - name
-      - from_species
+      - from_species    # Or should we use taxon here?
       - clonality
       - heavy_chain_isotype
       - light_chain_isotype

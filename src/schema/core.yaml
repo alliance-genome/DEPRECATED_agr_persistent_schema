@@ -131,6 +131,21 @@ classes:
       - note_type
       - note_text
 
+  NoteAssociation:
+    is_a: relationship
+    description: >-
+      Holds between some entity and a Note.
+    slots:
+      - references
+    slot_usage:
+      subject:
+        range: entity
+      object:
+        range: Note
+      references:
+        description: >-
+          References to which some note can be attributed.
+
   Synonym:
 
 ## ------------
