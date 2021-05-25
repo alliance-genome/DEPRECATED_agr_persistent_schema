@@ -27,6 +27,8 @@ emit_prefixes:
   - xsd
   - skos
 
+imports:
+  - linkml:types
 
 classes:
 
@@ -215,7 +217,7 @@ slots:
   orcid:
     domain: InformationContentEntity
     range: string
-    
+
   curie:
 
   taxon:
