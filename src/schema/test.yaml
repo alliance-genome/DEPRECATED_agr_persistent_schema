@@ -30,8 +30,112 @@ emit_prefixes:
 imports:
   - linkml:types
 
+subsets:
+  alliance subset:
+    description: >-
+      Subset consisting of just the alliance activities
+      
 classes:
 
+  Allele:
+    # is_a: GenomicEntity
+    description: >-
+      One of multiple possible forms of a functional genomic
+      element (most often described as a locus or gene),
+      differing from the reference DNA sequence.  The genomic
+      element can be endogenous or constructed.
+    slots:
+      - name
+      - symbol
+      - description
+      - taxon_id
+      - date_produced # mixin?
+      - data_provider # mixin?
+      - release
+      - cross_references
+      - synonyms
+      - affected_genes
+      - from_species
+      - phenotype_associations
+      - disease_associations
+      - contains_construct
+      - molecular_mutation
+      - functional_impact
+      - generation_method
+      - associated_references
+      - associated_notes
+      - germline_transmission_status
+      - parent_cell_line
+      - mutant_cell_lines
+      - embryonic_stem_cell_lines
+      - images
+      - feature_type
+      - carried_by
+      - origins
+      - database_status
+      - inheritence_mode
+      - in_collection
+      - transposon_insertion
+      - aberration
+      - is_extinct
+    exact_mappings:
+      - SO:0001023
+
+  ReferenceType:
+    description: >-
+      Describes the relation between a reference and an object
+    slots:
+      - reference_association
+      - references
+
+  NoteType:
+    description: >-
+      Describes the relation between a note and an object
+    slots:
+      - note_association
+      - notes
+
+  Construct:
+    description: >-
+      Dummy construct class
+
+  CellLine:
+    description: >-
+      Dummy cell line class
+
+  Image:
+    description: >-
+      Dummy image class
+
+  SequenceTargetingReagent:
+    description: >-
+      Dummy sequence targeting reagent class
+
+  VariantGenomicLocation:
+    aliases: ['genomic location']
+    slots:
+      - subject
+      - predicate
+      - object
+      - assembly
+      - start
+      - end
+    slot_usage:
+      subject:
+        range: Variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: Chromosome
+        description: >-
+          object should be the chromosome identifier
+    defining_slots:
+      - subject
+      - predicate
+      - object
+      - assembly
+      - start
+      - end
   GenomicEntity:
     slots:
       - id
@@ -220,6 +324,129 @@ classes:
   Assembly:
     slots:
       - curie
+  VariantGeneConsequence:
+    aliases: ['gene level consequence']
+    slots:
+      - subject
+      - object
+      - vep_consequence
+      - vep_impact
+      - polyphen_score
+      - polyphen_prediction
+      - sift_score
+      - sift_prediction
+    slot_usage:
+      subject:
+        range: Variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: Gene
+        description: >-
+          object should be the gene identifier
+
+  VariantTranscriptConsequence:
+    aliases: ['TranscriptLevelConsequence']
+    description: >-
+      Class for transcript-level VEP results
+    slots:
+      - subject
+      - object
+      - vep_consequence
+      - vep_impact
+      - polyphen_score
+      - polyphen_prediction
+      - sift_score
+      - sift_prediction
+      - amino_acid_reference
+      - amino_acid_variant
+      - codon_reference
+      - codon_variant
+      - cdna_start
+      - cdna_end
+      - cds_start
+      - cds_end
+      - protein_start
+      - protein_end
+      - hgvs_protein_nomenclature
+      - hgvs_coding_nomenclature
+    slot_usage:
+      subject:
+        range: Variant
+        description: >-
+          subject should be the variant identifier
+      object:
+        range: Transcript
+        description: >-
+          object should be the transcript identifier
+      amino_acid_reference:
+        description: >-
+          Amino acid sequence encoded by codon(s) in reference genome sequence
+          altered by the variant
+      amino_acid_variant:
+        description: >-
+          Amino acid sequence encoded by codon(s) in variant sequence
+      codon_reference:
+        description: >-
+          Reference genome sequence of codon(s) altered by the variant.  Bases
+          affected by the variant are given in upper case, bases flanking the
+          variation are given in lower case
+      codon_variant:
+        description: >-
+          Sequence of codon(s) in variant sequence altered by the variant.
+          Bases affected by the variant are given in upper case, bases flanking
+          the variation are given in lower case
+      cdna_start:
+        description: Start position of variant in cDNA coordinates
+      cnda_end:
+        description: End position of variant in cDNA coordinates
+      cds_start:
+        description: Start position of variant in CDS coordinates
+      cds_end:
+        description: End position of variant in CDS coordinates
+      protein_start:
+        description: Start position of variant in amino acid sequence
+      protein_end:
+        description: End position of variant in amino acid sequence
+      hgvs_protein_nomenclature:
+        description: HGVS protein sequence (HGVSp) name
+      hgvs_coding_nomenclature:
+        description: HGVS coding sequence (HGVSc) name
+
+  Variant:
+    is_a: GenomicEntity
+    description: >-
+      A DNA sequence that differs relative to a designated
+      reference sequence.  The sequence occurs at a single
+      position or in contiguous nucleotides.
+    slots:
+      - curie
+      - id
+      - hgvs_nomenclature
+      - genomic_reference_sequence
+      - genomic_variant_sequence
+      - padding_left
+      - padding_right
+      - date_produced
+      - release
+      - data_provider
+      - computed_gene
+      - variant_of_transcript
+      - variant_of_allele
+      - synonyms
+      - type
+      - references
+      - notes
+      - is_variant_of_transcript
+      - is_variant_of_allele
+      - synonyms
+      - type
+      - references
+      - notes
+      - protein_sequence
+      - cross_references
+    exact_mappings:
+      - SO:0001059
 
   GeneGenomicLocation:
     slots:
@@ -248,6 +475,317 @@ classes:
 
 slots:
 
+
+  affected_genes:
+    description:
+      Gene(s) altered in allele
+    multivalued: true
+    domain: Allele
+    range: Gene
+
+  contains_construct:
+    domain: Allele
+    range: Construct
+
+  molecular_mutation:
+    description: >-
+      Description of the DNA changes if precise
+      genomic location unknown
+    domain: Allele
+    range: string
+    values_from:
+      - SO
+
+  functional_impact:
+    description: >-
+      Experimentally assessed functional impact of the
+      allele, e.g. knockout / amorphic
+    domain: Allele
+    range: string
+
+  generation_method:
+    description: >-
+      Technique used to create the allele, e.g.
+      spontaneous / naturally occuring / radiation
+    domain: Allele
+    range: string
+    multivalued: false
+
+  associated_references:
+    description: >-
+      References associated with the entity in some way
+    range: ReferenceType
+    multivalued: true
+
+  reference_association:
+    description: >-
+      Description of how a reference is associated with
+      an entity, e.g. molecular / origin / other
+    domain: ReferenceType
+    range: reference_association_types
+
+  reference:
+    description: >-
+      Associated reference
+    domain: ReferenceType
+    range: Reference
+
+  associated_notes:
+    description: >-
+      Notes associated with the entity in some way
+    range: NoteType
+
+  note_association:
+    description: >-
+      Description of how a note is associated with
+      an entity, e.g. curators comments / private / origin
+    domain: NoteType
+    range: note_association_types
+
+  feature_type:
+    description: >-
+      Allele classification
+    domain: Allele
+    range: string
+    values_from:
+      - SO
+
+  carried_by:
+    description: >-
+      Affected genomic models that carry the allele
+    multivalued: true
+    domain: Allele
+    range: AffectedGenomicModel
+
+  origins:
+    singular_name: origin
+    description: >-
+      Affected genomic models that the allele was introduced in
+    multivalued: true
+    domain: Allele
+    range: AffectedGenomicModel
+
+  germline_transmission_status:
+    description: >-
+      For alleles made in cell lines, have they been
+      transmitted to the germline of an animal
+    domain: Allele
+    range: string
+
+  parent_cell_line:
+    description: >-
+      Parental cell line of alleles made in embryonic
+      stem cells
+    domain: Allele
+    range: CellLine
+
+  mutant_cell_lines:
+    singular_name: mutant_cell_line
+    description: >-
+      Mutant cell lines known to carry the allele
+    domain: Allele
+    range: CellLine
+    multivalued: true
+
+  embryonic_stem_cell_lines:
+    aliases: ['allele_derivation']
+    singular_name: embryonic_stem_cell_line
+    description: >-
+      Embryonic stem cell lines known to carry the allele
+
+  images:
+    singular_name: image
+    description: >-
+      Any associated image
+    range: Image
+
+  database_status:
+    description: >-
+      Database status of the allele
+    range: database_statuses
+
+  inheritence_mode:
+    description: >-
+      Mode of inheritence, e.g. dominant / semi-dominant /
+      recessive / unknown
+    domain: Allele
+    range: modes_of_inheritence
+
+  in_collection:
+    description: >-
+      Set of high-throughput alleles made by large projects
+    domain: Allele
+    range: string
+
+  transposon_insertion:
+    description: >-
+      Associated transposon insertion that causes the
+      mutation
+    domain: Allele
+    range: string
+
+  aberration:
+    description: >-
+      Associated deficiency (etc.) whose breakpoint causes
+      the mutation
+    domain: Allele
+    range: string
+
+  is_extinct:
+    description: >-
+      Does the allele still exist in a population somewhere?
+    domain: Allele
+    range: boolean
+
+  located on:
+    range: Chromosome
+
+  notes:
+    singular_name: note
+    range: string
+    multivalued: true
+
+  vep_impact:
+    description: VEP predicted impact of variation on molecule
+    range: string
+
+
+  vep_consequence:
+    description: VEP consequence
+    range: vep_consequence_levels
+
+  polyphen_score:
+    description: PolyPhen-2 score between 0 and 1
+    domain: VariantGeneConsequence
+    range: float
+
+  polyphen_prediction:
+    description: PolyPhen-2 prediction
+    range: polyphen_prediction_levels
+
+  sift_score:
+    description: SIFT score between 0 and 1
+    domain: VariantGeneConsequence
+    range: float
+
+  sift_prediction:
+    description: SIFT prediction
+    range: sift_prediction_levels
+
+
+  amino_acid_reference:
+    description: reference genome amino acid sequence at variant position
+    domain: VariantTranscriptConsequence
+    range: string
+
+  amino_acid_variant:
+    description: variant amino acid sequence at variant position
+    domain: VariantTranscriptConsequence
+    range: string
+
+  codon_reference:
+    description: >-
+      reference sequence of codon(s) affected by variation - bases
+      outside of the variant region are in lower case, those within are in
+      upper case (e.g. cTa)
+    domain: VariantTranscriptConsequence
+
+  codon_variant:
+    description: >-
+      variant sequence of codon(s) affected by variation - bases
+      outside of the variant region are in lower case, those within are in
+      upper case (e.g. cAa)
+    domain: VariantTranscriptConsequence
+
+  cdna_start:
+    description: start position of variation in cDNA coordinates
+    domain: VariantTranscriptConsequence
+    range: integer
+
+  cdna_end:
+    description: end position of variation in cDNA coordinates
+    domain: VariantTranscriptConsequence
+    range: integer
+
+  cds_start:
+    description: start position of variation in CDS coordinates
+    domain: VariantTranscriptConsequence
+    range: integer
+
+  cds_end:
+    description: end position of variation in CDS coordinates
+    domain: VariantTranscriptConsequence
+    range: integer
+
+  protein_start:
+    description: start position of variation in protein amino acid coordinates
+    domain: VariantTranscriptConsequence
+    range: integer
+
+  protein_end:
+    description: end position of variation in protein amino acid coordinates
+    domain: VariantTranscriptConsequence
+    range: integer
+
+  hgvs_protein_nomenclature:
+    description: HGVSp nomenclature for variation in protein
+    domain: VariantTranscriptConsequence
+
+  hgvs_coding_nomenclature:
+    description: HGVSc nomenclature for variation in coding sequence
+    domain: VariantTranscriptConsequence
+  hgvs_nomenclature:
+    description: HGVSg nomenclature for variant
+    domain: Variant
+
+  genomic_reference_sequence:
+    description: reference genome sequence at variation position
+    domain: Variant
+    range: string
+
+  genomic_variant_sequence:
+    description: variant genome sequence at variation position
+    domain: Variant
+    range: string
+
+
+  padding_left:
+    description: >-
+      flanking sequence upstream of the variation position
+      on the sense strand of the reference genome
+    domain: Variant
+    range: string
+
+  padding_right:
+    description: >-
+      flanking sequence downstream of the variation position
+      on the sense strand of the reference genome
+    domain: Variant
+    range: biological_sequence
+
+  protein_sequence:
+    domain: Variant
+    range: string
+
+  computed_gene:
+    domain: Variant
+    range: Gene
+
+  variant_of_transcript:
+    domain: Variant
+    range: Transcript
+
+  variant_of_allele:
+    domain: Variant
+    range: Allele
+
+  is_variant_of_transcript:
+    domain: Variant
+    range: Transcript
+
+  is_variant_of_allele:
+    domain: Variant
+    range: Allele
 
   start:
     description: The start of the feature in positive 1-based integer coordinates
@@ -640,7 +1178,56 @@ slots:
     range: Resource
 
 enums:
+
+  database_statuses:
+    permissible_values:
+      live:
+      dead:
+      suppressed:
+      history:
+      private:
+      approved:
+
+  reference_association_types:
+    permissible_values:
+      molecular:
+      other:
+
+  note_association_types:
+    permissible_values:
+      molecular:
+      origin:
+      cytology:
+      private:
+      curator_comments:
+
+  modes_of_inheritence:
+    permissible_values:
+      dominant:
+      recessive:
+      semi_dominant:
+      unknown:
+
+
   tag_set:
     permissible_values:
       image:
       test:
+
+  vep_consequence_levels:
+    permissible_values:
+      high:
+      moderate:
+      low:
+      modifier:
+
+  sift_prediction_levels:
+    permissible_values:
+      deleterious:
+      tolerated:
+
+  polyphen_prediction_levels:
+    permissible_values:
+      possibly_damaging:
+      probably_damaging:
+      benign:
