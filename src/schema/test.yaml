@@ -212,7 +212,10 @@ classes:
 
 slots:
 
-
+  orcid:
+    domain: InformationContentEntity
+    range: string
+    
   curie:
 
   taxon:
