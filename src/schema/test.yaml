@@ -216,7 +216,6 @@ slots:
 
   orcid:
     domain: InformationContentEntity
-    range: string
 
   curie:
 
