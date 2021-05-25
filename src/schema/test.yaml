@@ -30,6 +30,17 @@ emit_prefixes:
 
 classes:
 
+  CrossReference:
+    is_a: InformationContentEntity
+    slots:
+      - curie
+      - page_areas
+      - display_name
+      - prefix
+    defining_slots:
+      - cross_reference_id
+      - page_areas
+
   InformationContentEntity:
     aliases: ['information', 'information artifact', 'information entity']
     abstract: true
@@ -144,6 +155,23 @@ classes:
         identifier: true
 
 slots:
+
+  prefix:
+    required: true
+    multivalued: false
+    description: >-
+      Denormalization to help with classifying types of crossReferences,
+      distinguishing DOIs from PMC ids, etc.
+
+  page_areas:
+    required: true
+    multivalued: true
+    range: string
+
+  display_name:
+    required: true
+    multivalued: false
+    range: string
 
   creation_date:
     aliases: [ 'publication date' ]
