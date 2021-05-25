@@ -1,0 +1,374 @@
+id: https://github.com/alliance-genome/agr_persistent_schema/alliance_schema
+name: Alliance-Schema-Prototype
+description: Alliance Schema Prototype
+
+license: https://creativecommons.org/publicdomain/zero/1.0/
+version: 0.0.1
+
+prefixes:
+  alliance: 'http://alliancegenome.org'
+  linkml: 'https://w3id.org/linkml/'
+  gff: 'https://w3id.org/gff'
+  faldo: 'http://biohackathon.org/resource/faldo#'
+  biolink: 'https://w3id.org/biolink/vocab/'
+  NLMID: 'https://www.ncbi.nlm.nih.gov/nlmcatalog/?term='
+  schema: 'http://schema.org/'
+
+default_prefix: alliance
+default_range: string
+
+default_curi_maps:
+  - obo_context
+  - idot_context
+
+emit_prefixes:
+  - rdf
+  - rdfs
+  - xsd
+  - skos
+
+
+classes:
+
+  InformationContentEntity:
+    aliases: ['information', 'information artifact', 'information entity']
+    abstract: true
+    description: >-
+      a piece of information that typically describes some topic of discourse or is used as support.
+      Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
+      alternate CURIE otherwise.
+    slots:
+      - creation_date
+      - curie
+      - id
+    exact_mappings:
+      - IAO:0000030
+
+  AuthorReference:
+    slots:
+      - corresponding_author
+      - first_name
+      - middle_names
+      - last_name
+      - initials
+      - cross_references
+
+  Resource:
+    is_a: InformationContentEntity
+    slots:
+      - title
+      - iso_abbreviation
+      - medline_abbreviation
+      - copyright_date
+      - print_issn
+      - online_issn
+      - publisher
+      - volumes
+      - summary
+      - synonyms
+      - authors
+      - editors
+    id_prefixes:
+      - PMID
+      - NLMID
+      - DOI
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+    slot_usage:
+      id:
+        description: >-
+          Precedence of identifiers for references is as follows: PMID if available; DOI if not; actual
+          alternate CURIE otherwise.
+      title:
+        description: >-
+          the title of the publication
+
+  Reference:
+    is_a: InformationContentEntity
+    slots:
+      - title
+      - alliance_category
+      - date_published
+      - year_published
+      - month_published
+      - day_published
+      - date_arrived_in_PubMed
+      # date arrived in source enumeration
+      - date_last_modified_in_PubMed
+      - date_last_modified
+      - volume
+      - pages
+      - abstract
+      - citation
+      - PubMed_type
+      - issue_name
+      - issue_date
+      - mod_reference_types
+      - authors
+      - tags
+      - topics
+      - cross_references
+      - publisher
+      - keywords
+      - from_resource
+    id_prefixes:
+      - PMID
+      - NLMID
+      - DOI
+      - SGD
+      - FB
+      - WB
+      - ZFIN
+      - MGI
+      - RGD
+      - PMC
+      - DOI
+    slot_usage: # use regex to constrain local id
+      id:
+        pattern: # check this add a regex - check about resourceDescriptor
+
+  Person:
+    slots:
+      - last_name
+      - first_name
+      - orcid
+    exact_mappings:
+      - schema:person
+      - foaf:Person
+    slot_usage:
+      person id:
+        identifier: true
+
+slots:
+
+  creation_date:
+    aliases: [ 'publication date' ]
+    range: date
+    description: >-
+      date on which an entity was created. This can be applied to nodes or edges
+    exact_mappings:
+      - dct:createdOn
+      - WIKIDATA_PROPERTY:P577
+
+  summary:
+    description: >-
+    domain: InformationContentEntity
+    range: string
+
+  copyright_date:
+    description: >-
+    domain: InformationContentEntity
+    range: date
+
+  authors:
+    multivalued: true
+    domain: InformationContentEntity
+    range: AuthorReference
+
+  corresponding_author:
+    description: >-
+    range: InformationContentEntity
+    domain: InformationContentEntity
+
+  first_name:
+    description: >-
+    domain: InformationContentEntity
+    range: InformationContentEntity
+
+  middle_names:
+    description: >-
+    domain: InformationContentEntity
+    range: InformationContentEntity
+    multivalued: false
+
+  last_name:
+    description: >-
+    domain: InformationContentEntity
+    range: InformationContentEntity
+
+  initials:
+    description: >-
+    domain: InformationContentEntity
+    range: InformationContentEntity
+
+  title:
+    multivalued: false
+    description: >-
+      A human readable title for a reference.
+    domain: InformationContentEntity
+    range: string
+
+  volumes:
+    singular_name: volume
+    multivalued: false
+    range: string
+    domain: InformationContentEntity
+    description: >-
+
+  publisher:
+    range: InformationContentEntity
+    domain: InformationContentEntity
+
+  address:
+    description: >-
+      the particulars of the place where someone or an organization is situated.  For now, this slot is a
+      simple text "blob" containing all relevant details of the given location for fitness of purpose.
+      For the moment, this "address" can include other contact details such as email and phone number(?).
+
+  iso_abbreviation:
+    description: >-
+    domain: Resource
+    range: string
+
+  medline_abbreviation:
+    description: >-
+    domain: Resource
+    range: string
+
+  print_issn:
+    description: >-
+    domain: Resource
+    range: string
+
+  online_issn:
+    description: >-
+    domain: Resource
+    range: string
+
+  editors:
+    singular_name: editor
+    description: >-
+      holds between a resource and a editor_resource
+    multivalued: true
+    domain: Resource
+    range: AuthorReference
+
+
+  reference_id:
+    domain: Reference
+
+  topics:
+    singular_name: topic
+    range: uriorcurie
+    exact_mappings:
+      - foaf:topic
+    description: Connects an object to a vocabulary term or ontology that describes some aspect of the entity.
+
+  PubMed_type:
+    description: >-
+      Type of InformationContentEntity as described by pub med.
+    range: string
+    domain: InformationContentEntity
+
+  date_published:
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: InformationContentEntity
+
+  date_last_modified_in_PubMed:
+    description: >-
+      Date on which an entity was created.
+    range: date
+    domain: InformationContentEntity
+
+  date_last_modified:
+    description: >-
+      Date on which an entity was last modified by the MOD.
+    range: date
+
+  year_published:
+    description: >-
+      Year in which an entity was created.
+    range: string
+    domain: InformationContentEntity
+
+  month_published:
+    description: >-
+      Month in which an entity was created.
+    range: string
+    domain: InformationContentEntity
+
+  day_published:
+    description: >-
+      Day in which an entity was created.
+    range: string
+    domain: InformationContentEntity
+
+
+  date_arrived_in_PubMed:
+    description: Day in which a reference or resource was created in PUBMED. Only relevant for PUBMED references.
+    range: date
+    domain: InformationContentEntity
+
+  mod_reference_types:
+    singular_name: mod_reference_type
+    multivalued: true
+    description: List of types as assigned at a MOD.
+
+  tags:
+    singular_name: tag
+    description: >-
+      Optional ist of controlled vocabulary tags that give categories to each pub (ie: "can show images").
+    multivalued: true
+    range: tag_set
+
+  issue_date:
+    description: Date on which an entity was issued.
+    domain: InformationContentEntity
+    range: date
+
+  last_modified:
+    description: Date on which an entity was last modified in PubMed or in the MOD.
+    domain: InformationContentEntity
+    range: date
+
+  volume:
+    multivalued: false
+    range: string
+    domain: InformationContentEntity
+
+  pages:
+    description: page number of source referenced for statement or publication
+    domain: InformationContentEntity
+    multivalued: true
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P304
+
+  abstract:
+    multivalued: false
+    domain: Reference
+    range: string
+
+  citation:
+    multivalued: false
+    domain: Reference
+    range: string
+
+  issue_name:
+    multivalued: false
+    domain: Reference
+
+  alliance_category:
+    multivalued: false
+    domain: Reference
+
+  keywords:
+    multivalued: true
+    description: keywords tagging a publication
+    domain: InformationContentEntity
+    range: string
+
+  from_resource:
+    domain: Reference
+    range: Resource
+
+enums:
+  tag_set:
+    permissible_values:
+      image:
+      test:
