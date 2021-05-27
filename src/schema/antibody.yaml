@@ -9,115 +9,76 @@ imports:
 classes:
 
   Antibody:
-    description: >-
-      A immunoglobulin sample that binds some specific molecule(s) for the
-      purposes of detection or purification.
-    # is_a: named thing
+    is_a: BiologicalEntity
     mixins:
       - AuditedObject
+      - Reagent
+    description: >-
+      Immunoglobulin proteins that bind specific molecule(s). Can be used
+      experimentally for the purposes of detection or purification.
+    notes: >-
+      Inherits "id" and "taxon" slots from parental "BiologicalEntity".
     aliases: ['antibody', 'antibodies', 'antiserum', 'antisera']
-    # exact_mappings:
-    #   - db:id_number    # Is there an antibody ontology out there?
-    id_prefixes:    # Are these just for 1o IDs, or 2o IDs too? (ATCC, RRID)
+    id_prefixes:
+      - RGD
+      - SGD
       - FB
       - MGI
       - WB
       - ZFIN
     slots:
-      - id
       - name
-      - from_species    # Or should we use taxon here?
+      - antigen_taxon
       - clonality
       - heavy_chain_isotype
       - light_chain_isotype
-      - antibody_target_genes
-      - antigen_description
-      - antigen_species
-      - associated_notes
-      - generated_by
-      - manufactured_by
-      # - disease    # Need a way to give DOID term and reference. Or a generic way to specify CV term and publication attribution.
-      - synonyms
+      # - antibody_target_genes    # This needs to be attributed too?
       - cross_references
       - secondary_identifiers
       - references
       - original_reference
+      # - disease    # Need a way to give DOID term and reference. Or a generic way to specify CV term and publication attribution.
     slot_usage:
       id:
         description: >-
-          A unique identifier for the antibody.
-          This could be a MOD ID: e.g., "WBAntibody0000001".
-          Otherwise, this could be an Alliance-minted ID.
-        identifier: true
-        required: true
-        multivalued: false
-        domain: Antibody
-        range: uriorcurie
+          A unique identifier for the antibody: e.g., "WBAntibody0000001".
+          As not all MODs have IDs, some will need to be minted at the
+          Alliance.
+        notes: >-
+          FB does not have IDs for antibodies.
       name:
         description: >-
-          Publicly displayed name of the antibody.
-          It often includes the name of the antibody target: e.g., "anti-WNT-4".
-          It may also include the host species and antibody clonality.
+          Publicly displayed name of the antibody. It often includes the name
+          of the antibody target: e.g., "anti-WNT-4". It may also include the
+          host species and antibody clonality.
         notes: >-
-          Should we give all antibodies a name (i.e., make it required)?
-        required: true
-        multivalued: false
-        domain: Antibody
-        range: string
-      from_species:
+          FB does not have names for antibodies, but would be easy to generate,
+          so we may want to make this required.
+      taxon:
         description: >-
           The species in which the antibody was raised: e.g., mouse, rabbit,
           guinea pig, goat, camel, etc.
-        required: true
-        multivalued: false
-        domain: Antibody
-        range: Species
-      associated_notes:
-        description: >-
-          Note associated with an entity in some way.
-        domain: Antibody
-        range: AntibodyNote
-      synonyms:
-        description: >-
-          The symbols and fullnames used to refer to the antibody:
-          e.g., "AbRA-18".
+        notes: >-
+          FB does not have host taxon information for antibodies.
         required: false
-        multivalued: true
-        domain: Antibody
-        range: Synonym
-      cross_references:
-        description: >-
-          Cross references to other web sites describing the antibody.
-        required: false
-        multivalued: true
-        domain: Antibody
-        range: CrossReference
-      secondary_identifiers:
-        description: >-
-          Secondary identifiers for the antibody: e.g., "AB_2096358".
-        required: false
-        multivalued: true
-        domain: Antibody
-        range: uriorcurie    # "core.yaml" doesn't define range of 2o IDs.
-      references:
-        description: >-
-          References in which this antibody has been described or used.
-        required: true
-        multivalued: true
-        domain: Antibody    # "core.yaml" has "domain: resource". Should I not use this slot here?
-        range: Reference
 
   AntibodyNote:
-    is_a: Note
-    description: >-
-      Describes the relation between an Antibody and a Note.
-    notes: >-
-      I created a distinct AntibodyNote to enum applicable "note_type".
+    is_a: BiologicalEntityNote
     slot_usage:
-      note_association:
-        range: antibody_note_association_types
+      note_type:
+        range: antibody_note_type_set
 
 slots:
+
+  antigen_taxon:
+    is_a: taxon
+    description: >-
+      Holds between an Antibody and the species from which the antigen
+      originates (as represented by taxon).
+    required: false
+    multivalued: false
+    domain: Antibody
+    range: uriorcurie
 
   clonality:
     description: >-
@@ -126,7 +87,7 @@ slots:
     required: true
     multivalued: false
     domain: Antibody
-    range: clonality_set
+    range: antibody_clonality_set
 
   heavy_chain_isotype:
     description: >-
@@ -144,128 +105,75 @@ slots:
     domain: Antibody
     range: light_chain_isotype_set
 
-  antibody_target_genes:
-    description: >-
-      Holds between an Antibody and the Gene from which the antigen originates:
-      e.g., "wnt-4".
-    required: false
-    multivalued: true
-    domain: Antibody
-    range: Gene
-
-  antigen_description:
-    description: >-
-      A short description of the antigen, particularly helpful when it does not
-      correspond to an Alliance gene: e.g., "lacZ", "GFP".
-    notes: I think this will be an antibody specific slot.
-    required: false
-    multivalued: false
-    domain: Antibody
-    range: string
-
-  antigen_species:
-    is_a: taxon
-    description: >-
-      Holds between an Antibody and the species from which the antigen
-      originates. May be useful in combination with "antigen_description":
-      e.g., "mouse", "zebrafish"
-    required: false
-    multivalued: false
-    domain: Antibody
-    range: uriorcurie
-
-
-########
-  generated_by:
-    description: >-
-      Holds between an Antibody and the Laboratory that generated it:
-      e.g., "Thomas Blumenthal"
-    required: false
-    multivalued: true
-    domain: Antibody
-    range: Laboratory
-
-  manufactured_by:
-    description: >-
-      Holds between an Antibody and a Company that manufactured it:
-      e.g., "Molecular Probes"
-    required: false
-    multivalued: true
-    domain: Antibody
-    range: Company
-
-  original_reference:
-    is_a: references
-    description: >-
-      Holds between an antibody and the reference that describes the original
-      generation of the antibody.
-    required: false
-    multivalued: false
-    domain: Antibody
-    range: Reference
-
 enums:
 
-  clonality_set:
+  antibody_clonality_set:
     permissible_values:
-      clonality_type:
-        monoclonal
-        polyclonal
-        unspecified
+      monoclonal:
+      polyclonal:
+      unspecified:
 
   heavy_chain_isotype_set:
     permissible_values:
-      heavy_chain_isotypes:
-        IgA
-        IgA1
-        IgA2
-        IgD
-        IgE
-        IgG
-        IgG1
-        IgG2
-        IgG2a
-        IgG2b
-        IgG2c
-        IgG3
-        IgG4
-        IgM
-        IgN
-        IgR
-        IgW
-        IgX
-        IgY
+      IgA:
+      IgA1:
+      IgA2:
+      IgD:
+      IgE:
+      IgG:
+      IgG1:
+      IgG2:
+      IgG2a:
+      IgG2b:
+      IgG2c:
+      IgG3:
+      IgG4:
+      IgM:
+      IgN:
+      IgR:
+      IgW:
+      IgX:
+      IgY:
 
   light_chain_isotype_set:
     permissible_values:
-      light_chain_isotypes:
-        k
-        l
-        l1
-        l2
-        l3
-        l4
-        r
-        s
-        i
-        i1
-        i2
-        i3
-        i4
+      k:
+      l:
+      l1:
+      l2:
+      l3:
+      l4:
+      r:
+      s:
+      i:
+      i1:
+      i2:
+      i3:
+      i4:
 
-  antibody_note_association_types:
+  antibody_note_type_set:
     permissible_values:
       summary:
-        # summary - intended for prominent display (WB).
-        # e.g., "Antibodies against SEIP-1 were raised by injection of the
-        #        peptide 261KKEEPGLLDLRKRK, corresponding to the C-terminus of
-        #        SEIP-1, into rabbits."
+        description: >-
+          A high level summary of the antibody intended for prominent display:
+          e.g., "Antibodies against SEIP-1 were raised by injection of the
+          peptide 261KKEEPGLLDLRKRK, corresponding to the C-terminus of SEIP-1,
+          into rabbits."
+        notes: >-
+          Equivalent to WB "summary".
       antigen_description:
-        # notes about the epitope/region covered
-        # e.g., "N-terminal peptide (SQFRPEKKEKSTCSIC); ; full length ceKDM1A
-        #        (amino acids 1-897)".
+        description: >-
+          A description about the antigen used to generate the antibody:
+          e.g., "N-terminal peptide (SQFRPEKKEKSTCSIC); ; full length ceKDM1A
+          (amino acids 1-897)".
       general:
-        # remark - general comment
-        # e.g., "Possible pseudonym: 7G1"
+        description: >-
+          Information pertaining to the antibody that is not covered by other
+          fields: e.g., "Possible pseudonym: 7G1", "High level of background",
+          "Works well for immunoprecipitation."
+        notes: >-
+          Equivalent to WB "remark".
       private:
-      curator_comment:
+        description: >-
+          Information intended for internal use, generally regarding aspects
+          of curation.

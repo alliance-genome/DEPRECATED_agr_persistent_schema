@@ -50,10 +50,16 @@ types:
 
 classes:
 
-  GenomicEntity:
+  BiologicalEntity:
+    description: >-
+      A high-level entity comprising .
+    abstract: true
     slots:
       - id
       - taxon
+
+  GenomicEntity:
+    is_a: BiologicalEntity
 
   Transcript:
     is_a: GenomicEntity
@@ -107,46 +113,42 @@ classes:
 
   Phenotype:
 
+  Synonym:
+
   AuditedObject:
     mixin: true
     description: >-
-      Some entity for which both the time of changes,
-      and who's making those changes, are tracked. 
+      Some entity for which changes are tracked, including date/time of change
+      and the agent responsible for the change.
     slots:
       - produced_by
       - date_produced
       - modified_by
       - date_last_modified
 
-  Laboratory:
-
-  Company:
-
-  Note:
+  Reagent:
+    mixin: true
     description: >-
-      Text describing some specified attribute of an entity.
-    notes: >-
-      Similar to "NoteType" in allele.yaml.
+      A material entity used in experiments.
     slots:
+      - generated_by
+      - manufactured_by
+
+  BiologicalEntityNote:
+    description: >-
+      A note describing some aspect of some entity.
+    slots:
+      - note_subject
       - note_type
       - note_text
-
-  NoteAssociation:
-    is_a: relationship
-    description: >-
-      Holds between some entity and a Note.
-    slots:
       - references
-    slot_usage:
-      subject:
-        range: entity
-      object:
-        range: Note
-      references:
-        description: >-
-          References to which some note can be attributed.
 
-  Synonym:
+# TO DO
+  # Antibody-Gene relationship (with references).
+  # EntitySynonym relationship
+
+
+
 
 ## ------------
 ## SLOTS
@@ -154,31 +156,58 @@ classes:
 
 slots:
 
-  current:
-    range: boolean
-
-  note_text:
+  note_subject:
     description: >-
-      The free-text note.
-    domain: Note
-    range: string
+      The entity being described by the note.
+    domain: BiologicalEntityNote
+    range: BiologicalEntity
 
   note_type:
     description: >-
-      Description of how a note is associated with
-      an entity, e.g. curators comments / private / origin
-    domain: Note
-    range: note_types
+      The type of note, typically, but not exclusively, the attribute that is
+      being described: e.g., cytology, private, curator_comments.
+    notes: >-
+      Note types listed here as having range "string", but should probably be
+      constrained to specific "enum" sets depending on the entity type.
+    domain: BiologicalEntityNote
+    range: string
+
+  note_text:
+    description: >-
+      The text of the note describing some aspect of an entity.
+    domain: BiologicalEntityNote
+    range: string
+
+  generated_by:
+    description: >-
+      Holds between a material entity and an Agent that generated it:
+      e.g., "Thomas Blumenthal", "Kornberg Laboratory".
+    required: false
+    multivalued: true
+    range: Agent
+
+  manufactured_by:
+    description: >-
+      Holds between a material entity and an Agent that has manufactured it:
+      e.g., "Molecular Probes".
+    required: false
+    multivalued: true
+    range: Agent
+
+  current:
+    range: boolean
 
   curie:
 
   taxon:
     description: >-
-      Placeholder description.
+      The taxon from which the biological entity derives.
+    multivalued: false
     range: uriorcurie
 
   secondary_identifiers:
     multivalued: true
+    range: uriorcurie
 
   gene_synopsis:
     description: >-
@@ -276,6 +305,9 @@ slots:
   name:
     description: >-
       a human-readable name for an entity
+    required: false
+    multivalued: false
+    range: string
 
   cross_references:
     singular_name: cross_reference
@@ -291,7 +323,11 @@ slots:
       - biolink:symbol
 
   from_species:
-    description: holds between an entity and a species
+    description: >-
+      Holds between an entity and a Species.
+    notes: >-
+      This may be redundant with the "taxon" slot, but if not, then the
+      distinct usage of "taxon" versus "from_species" needs clarification.
     range: Species
 
   synonyms:
@@ -320,7 +356,13 @@ slots:
     singular_name: reference
     description: holds between an object and a reference
     multivalued: true
-    domain: Resource
+    range: Reference
+
+  original_reference:
+    is_a: references
+    description: >-
+      Holds between an entity and the first reference to describe that entity.
+    multivalued: false
     range: Reference
 
   phenotype_associations:
@@ -332,11 +374,3 @@ slots:
     range: DiseaseAssociation
 
 enums:
-
-  note_types:
-    permissible_values:
-      molecular:
-      origin:
-      cytology:
-      private:
-      curator_comments:
