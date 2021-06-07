@@ -136,7 +136,7 @@ classes:
 
   BiologicalEntityNote:
     description: >-
-      A note describing some aspect of some BiologicalEntity.
+      A note describing some aspect of a BiologicalEntity.
     slots:
       - note_subject
       - note_type
@@ -169,6 +169,8 @@ classes:
         range: BiologicalEntity
       object:
         range: Synonym
+      predicate:
+        range: synonym_type_set
       current:
         description: >-
           Indicates if the synonym is the currently accepted/preferred synonym
@@ -400,3 +402,11 @@ slots:
     range: DiseaseAssociation
 
 enums:
+  synonym_type_set:
+    permissible_values:
+      symbol:
+        notes: >-
+          Equivalent to FB "symbol".
+      fullname:
+        notes: >-
+          Equivalent to FB "fullname".
