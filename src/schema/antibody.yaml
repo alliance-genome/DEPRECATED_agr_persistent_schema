@@ -32,7 +32,7 @@ classes:
       - clonality
       - heavy_chain_isotype
       - light_chain_isotype
-      # - antibody_target_genes    # This needs to be attributed too?
+      - antibody_target_genes
       - cross_references
       - secondary_identifiers
       - references
@@ -42,10 +42,9 @@ classes:
       id:
         description: >-
           A unique identifier for the antibody: e.g., "WBAntibody0000001".
-          As not all MODs have IDs, some will need to be minted at the
-          Alliance.
         notes: >-
-          FB does not have IDs for antibodies.
+          As not all MODs have IDs (e.g., FB), some IDs will need to be minted
+          at the Alliance.
       name:
         description: >-
           Publicly displayed name of the antibody. It often includes the name
@@ -54,6 +53,7 @@ classes:
         notes: >-
           FB does not have names for antibodies, but would be easy to generate,
           so we may want to make this required.
+        required: true
       taxon:
         description: >-
           The species in which the antibody was raised: e.g., mouse, rabbit,
@@ -61,6 +61,10 @@ classes:
         notes: >-
           FB does not have host taxon information for antibodies.
         required: false
+      original_reference:
+        description: >-
+          The reference providing the original description of the antibody's
+          generation.
 
   AntibodyNote:
     is_a: BiologicalEntityNote
@@ -69,6 +73,14 @@ classes:
         range: antibody_note_type_set
 
 slots:
+
+  antibody_target_genes:
+    description: >-
+      The genes whose gene products are recognized by the antibody.
+    required: false
+    multivalued: true
+    domain: Antibody
+    range: Gene
 
   antigen_taxon:
     is_a: taxon

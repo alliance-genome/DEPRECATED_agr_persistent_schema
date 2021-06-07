@@ -136,19 +136,43 @@ classes:
 
   BiologicalEntityNote:
     description: >-
-      A note describing some aspect of some entity.
+      A note describing some aspect of some BiologicalEntity.
     slots:
       - note_subject
       - note_type
       - note_text
       - references
 
-# TO DO
-  # Antibody-Gene relationship (with references).
-  # EntitySynonym relationship
+  Association:
+    description: >-
+      A typed association between two entities, supported by evidence.
+    close_mappings:
+      - biolink:association
+    notes:
+      Keeping this more generic than biolink:association by foregoing the
+      "qualifiers" and "negated" slots.
+      object
+    slots:
+      - subject
+      - predicate
+      - object
+      - references
 
-
-
+  BiologicalEntitySynonym:
+    is_a: Association
+    description: >-
+      A relationship between an entity and a synonym.
+    slots:
+      - current
+    slot_usage:
+      subject:
+        range: BiologicalEntity
+      object:
+        range: Synonym
+      current:
+        description: >-
+          Indicates if the synonym is the currently accepted/preferred synonym
+          for the entity.
 
 ## ------------
 ## SLOTS
@@ -281,6 +305,7 @@ slots:
       - biolink:subject
 
   object:
+    is_a: association_slot
     description: >-
       connects an association to the object of the association.
       For example, in a gene-to-phenotype association, the gene is subject and phenotype is object.
@@ -289,6 +314,7 @@ slots:
       - biolink:object
 
   predicate:
+    is_a: association_slot
     description: >-
       A high-level grouping for the relationship type. This is analogous to category for nodes.
       In RDF, this corresponds to rdf:predicate and in Neo4j this corresponds to the
